@@ -5,48 +5,9 @@
     <description></description>
     <link>http://bencode.github.io/</link>
     <atom:link href="http://bencode.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 04 Nov 2014 08:18:29 +0800</pubDate>
-    <lastBuildDate>Tue, 04 Nov 2014 08:18:29 +0800</lastBuildDate>
+    <pubDate>Wed, 05 Nov 2014 17:23:16 +0800</pubDate>
+    <lastBuildDate>Wed, 05 Nov 2014 17:23:16 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
-    
-      <item>
-        <title>Swift学习笔记-基础</title>
-        <description>&lt;p&gt;可以使用xcode的playground边写边学&lt;/p&gt;
-
-&lt;h2 id=&quot;section&quot;&gt;常量变量&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;let maxCount = 15
-var index = 0
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;使用let申明常量，使用var申明变量。&lt;/p&gt;
-
-&lt;p&gt;let类似于java中的final, 适合一次初始化多次使用。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;var message: String
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;类型申明的格式还是和Object C一样，只是在swift中大大加强了编译器推断能力，这是swift语言的一大特点，虽然是强类型语言，但却有动态语言简洁的形。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;let π = 3.14159
-let 你好 = &quot;你好世界&quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;变量名可以使用中文哦〜 ，虽然正常情况下没什么用，但是搞吧搞吧估计能进行中文编程了。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;注释&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;这是一个注释
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-        <pubDate>Mon, 03 Nov 2014 07:41:11 +0800</pubDate>
-        <link>http://bencode.github.io/swift/the-basics.html</link>
-        <guid isPermaLink="true">http://bencode.github.io/swift/the-basics.html</guid>
-        
-        
-        <category>swift</category>
-        
-      </item>
     
   </channel>
 </rss>
