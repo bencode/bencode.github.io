@@ -5,9 +5,33 @@
     <description></description>
     <link>http://bencode.github.io/</link>
     <atom:link href="http://bencode.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 05 Nov 2014 17:23:16 +0800</pubDate>
-    <lastBuildDate>Wed, 05 Nov 2014 17:23:16 +0800</lastBuildDate>
+    <pubDate>Thu, 06 Nov 2014 20:53:57 +0800</pubDate>
+    <lastBuildDate>Thu, 06 Nov 2014 20:53:57 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>Polymer 学习记录(API Developer Guide)</title>
+        <description>&lt;p&gt;&lt;a href=&quot;https://www.polymer-project.org/docs/polymer/polymer.html&quot;&gt;资料&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;help make developing web components much easier&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;使用&lt;polymer-element&gt;申明组件&lt;/polymer-element&gt;&lt;/p&gt;
+
+&lt;p&gt;有一些保留的attributes用于描述组件&lt;/p&gt;
+
+&lt;p&gt;目前有：name, attributes, extends, noscript, constractor&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 06 Nov 2011 00:00:00 +0800</pubDate>
+        <link>http://bencode.github.io/polymer/learning/api-developer-guide.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/polymer/learning/api-developer-guide.html</guid>
+        
+        
+        <category>polymer</category>
+        
+        <category>learning</category>
+        
+      </item>
     
   </channel>
 </rss>
