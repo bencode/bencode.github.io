@@ -5,15 +5,17 @@
     <description></description>
     <link>http://bencode.github.io/</link>
     <atom:link href="http://bencode.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 06 Nov 2014 23:05:38 +0800</pubDate>
-    <lastBuildDate>Thu, 06 Nov 2014 23:05:38 +0800</lastBuildDate>
+    <pubDate>Thu, 06 Nov 2014 23:37:57 +0800</pubDate>
+    <lastBuildDate>Thu, 06 Nov 2014 23:37:57 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
         <title>Polymer 学习记录(API Developer Guide)</title>
-        <description>&lt;p&gt;&lt;a href=&quot;https://www.polymer-project.org/docs/polymer/polymer.html&quot;&gt;资料&lt;/a&gt;&lt;/p&gt;
+        <description>&lt;p&gt;&lt;a href=&quot;https://www.polymer-project.org/docs/polymer/polymer.html&quot;&gt;链接&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;help make developing web components much easier&lt;/code&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;help make developing web components much easier&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;h2 id=&quot;section&quot;&gt;申明&lt;/h2&gt;
 
@@ -21,11 +23,10 @@
 
 &lt;h2 id=&quot;section-1&quot;&gt;属性&lt;/h2&gt;
 
-&lt;p&gt;有一些保留的attributes用于描述组件, 如：name, attributes, extends, noscript, constractor&lt;/p&gt;
-
-&lt;p&gt;其他的属性将会自动应用到组件上&lt;/p&gt;
-
-&lt;p&gt;属性名的大小写是无关紧要的，polymer会聪明地应用到实际对象上&lt;/p&gt;
+&lt;p&gt;有一些保留的attributes用于描述组件  &lt;br /&gt;
+如：&lt;em&gt;name, attributes, extends, noscript, constractor&lt;/em&gt;&lt;br /&gt;
+其他的属性将会自动应用到组件上  &lt;br /&gt;
+属性名的大小写是无关紧要的，polymer会聪明地应用到实际对象上&lt;/p&gt;
 
 &lt;h2 id=&quot;section-2&quot;&gt;注册&lt;/h2&gt;
 
@@ -40,7 +41,29 @@
   &lt;li&gt;HTML Element的属性和方法&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;所以为了避免冲突，请不要定义id, children, focus, title, hidden等属性和方法，”结果不可预料“？ &amp;lt;－－ 文档中是这么说的&lt;/p&gt;
+&lt;p&gt;所以为了避免冲突，请不要定义&lt;em&gt;id, children, focus, title, hidden&lt;/em&gt;等属性和方法&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;结果不可预料 ？ &amp;lt;－－ 文档中是这么说的&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;属性的引用&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;polymer-element name=&quot;my-component&quot;&amp;gt;
+  &amp;lt;template&amp;gt;
+    &amp;lt;app-globals id=&quot;globals&quot;&amp;gt;&amp;lt;/app-globals&amp;gt;
+    &amp;lt;div id=&quot;firstname&quot;&amp;gt;&amp;lt;/div&amp;gt;
+    &amp;lt;div id=&quot;lastname&quot;&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;/template&amp;gt;
+  &amp;lt;script&amp;gt;
+    Polymer({
+      ready: function() { 
+        console.log(&#39;Last name: &#39; + this.$.globals.lastName); 
+      }
+    });
+  &amp;lt;/script&amp;gt;
+&amp;lt;/polymer-element&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 </description>
         <pubDate>Sun, 06 Nov 2011 00:00:00 +0800</pubDate>

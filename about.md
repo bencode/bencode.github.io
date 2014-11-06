@@ -1,11 +1,14 @@
 ---
 layout: page
-title: About
-permalink: /about/
+title: 资源
+permalink: /links/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
+## [文档]
 
-You can find the source code for the Jekyll new theme at: [github.com/jglovier/jekyll-new](https://github.com/jglovier/jekyll-new)
+[kramdown](http://kramdown.gettalong.org/quickref.html)
 
-You can find the source code for Jekyll at [github.com/jekyll/jekyll](https://github.com/jekyll/jekyll)
+
+## 模式
+
+[MonostatePattern](http://c2.com/cgi/wiki?MonostatePattern)
