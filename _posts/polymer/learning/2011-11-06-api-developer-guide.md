@@ -42,23 +42,6 @@ Polymer(tag-name, prototype)
 
 ## 属性的引用
 
-```html
-<polymer-element name="my-component">
-  <template>
-    <app-globals id="globals"></app-globals>
-    <div id="firstname">{{$.globals.firstName}}</div>
-    <div id="lastname">{{$.globals.lastName}}</div>
-  </template>
-  <script>
-    Polymer({
-      ready: function() { 
-        console.log('Last name: ' + this.$.globals.lastName); 
-      }
-    });
-  </script>
-</polymer-element>
-```
 
-
-
-
+在模板中 `$.globals.firstName`
+在js中 `this.$.globals.firstName`

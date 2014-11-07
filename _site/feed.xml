@@ -5,8 +5,8 @@
     <description></description>
     <link>http://bencode.github.io/</link>
     <atom:link href="http://bencode.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 06 Nov 2014 23:37:57 +0800</pubDate>
-    <lastBuildDate>Thu, 06 Nov 2014 23:37:57 +0800</lastBuildDate>
+    <pubDate>Fri, 07 Nov 2014 10:14:41 +0800</pubDate>
+    <lastBuildDate>Fri, 07 Nov 2014 10:14:41 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -49,22 +49,8 @@
 
 &lt;h2 id=&quot;section-3&quot;&gt;属性的引用&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;polymer-element name=&quot;my-component&quot;&amp;gt;
-  &amp;lt;template&amp;gt;
-    &amp;lt;app-globals id=&quot;globals&quot;&amp;gt;&amp;lt;/app-globals&amp;gt;
-    &amp;lt;div id=&quot;firstname&quot;&amp;gt;&amp;lt;/div&amp;gt;
-    &amp;lt;div id=&quot;lastname&quot;&amp;gt;&amp;lt;/div&amp;gt;
-  &amp;lt;/template&amp;gt;
-  &amp;lt;script&amp;gt;
-    Polymer({
-      ready: function() { 
-        console.log(&#39;Last name: &#39; + this.$.globals.lastName); 
-      }
-    });
-  &amp;lt;/script&amp;gt;
-&amp;lt;/polymer-element&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
+&lt;p&gt;在模板中 &lt;code&gt;$.globals.firstName&lt;/code&gt;&lt;br /&gt;
+在js中 &lt;code&gt;this.$.globals.firstName&lt;/code&gt;&lt;/p&gt;
 </description>
         <pubDate>Sun, 06 Nov 2011 00:00:00 +0800</pubDate>
         <link>http://bencode.github.io/polymer/learning/api-developer-guide.html</link>
