@@ -5,8 +5,8 @@
     <description></description>
     <link>http://bencode.github.io/</link>
     <atom:link href="http://bencode.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 07 Nov 2014 14:03:12 +0800</pubDate>
-    <lastBuildDate>Fri, 07 Nov 2014 14:03:12 +0800</lastBuildDate>
+    <pubDate>Fri, 07 Nov 2014 19:34:34 +0800</pubDate>
+    <lastBuildDate>Fri, 07 Nov 2014 19:34:34 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -30,7 +30,7 @@
 
 &lt;h2 id=&quot;section-2&quot;&gt;注册&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code&gt;Polymer(tag-name, prototype)
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;Polymer(tag-name, prototype)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&quot;custom-element-prototype-chain&quot;&gt;Custom element prototype chain&lt;/h2&gt;
@@ -54,7 +54,7 @@
 
 &lt;h2 id=&quot;section-4&quot;&gt;生命周期&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code&gt;{
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;{
   created: function() {},  
   ready: function() {},  
   attached: function() {},
@@ -68,7 +68,7 @@
 
 &lt;p&gt;polymer解析定义，更新以及载入资源都是异步的，所以需要一个类似domready的事件来防止&lt;a href=&quot;http://en.wikipedia.org/wiki/Flash_of_unstyled_content&quot;&gt;FOUC&lt;/a&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$(window).on(&#39;polymer-ready&#39;, function() {
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;$(window).on(&#39;polymer-ready&#39;, function() {
   var xfoo = $(&#39;x-foo&#39;)
 })
 &lt;/code&gt;&lt;/pre&gt;
@@ -87,7 +87,7 @@
 
 &lt;p&gt;默认属性是&lt;em&gt;undefined&lt;/em&gt;, 可以使用以下两种方式申明默认值&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;&amp;lt;polymer-element name=&quot;x-foo&quot; attributes=&quot;bar&quot;&amp;gt;
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;polymer-element name=&quot;x-foo&quot; attributes=&quot;bar&quot;&amp;gt;
   &amp;lt;script&amp;gt;
     Polymer({
       bar: false
@@ -96,7 +96,7 @@
 
 &lt;p&gt;更简洁的方式&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;&amp;lt;polymer-element name=&quot;x-foo&quot;&amp;gt;
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;polymer-element name=&quot;x-foo&quot;&amp;gt;
   &amp;lt;script&amp;gt;
     Polymer({
       publish: {
@@ -109,7 +109,7 @@
   &lt;p&gt;对于属性类型为对象和数组的，需要在created回调方法中设置默认值，以保证每个组件有独立的实例数据&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;pre&gt;&lt;code&gt;&amp;lt;polymer-element name=&quot;x-defaults&quot; attributes=&quot;settings&quot;&amp;gt;
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;polymer-element name=&quot;x-defaults&quot; attributes=&quot;settings&quot;&amp;gt;
   &amp;lt;script&amp;gt;
     Polymer({
       created: function() {
@@ -134,7 +134,168 @@
 
 &lt;h2 id=&quot;section-6&quot;&gt;数据绑定&lt;/h2&gt;
 
+&lt;p&gt;核心特点，有整整一章介绍哦：）&lt;/p&gt;
+
 &lt;h2 id=&quot;computed-properties&quot;&gt;Computed properties&lt;/h2&gt;
+
+&lt;p&gt;可以使用Polymer Expression来定义属性，这个属性也可以参于Data Binding哦。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;template&amp;gt;
+  &amp;lt;input type=&quot;number&quot; value=&quot;&quot; ...
+  &amp;lt;em&amp;gt;^1 = &amp;lt;/em&amp;gt;
+&amp;lt;/template&amp;gt;
+&amp;lt;script&amp;gt;
+  Polymer({
+    num: 2,
+    computed: {
+      square: &#39;num * num&#39;   //  &amp;lt;-- Polymer Expression
+    }
+  })
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-7&quot;&gt;申明式事件映射&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;template&amp;gt;
+  &amp;lt;input on-click=&quot;&quot;
+
+&amp;lt;script&amp;gt;
+  Polymer({
+    buttonClick: function(event, detail, sender) {
+    }
+  })
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-8&quot;&gt;属性监听&lt;/h2&gt;
+
+&lt;h3 id=&quot;section-9&quot;&gt;基于约定的属性监听机制&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;polymer-element properties=&quot;better&quot;&amp;gt;
+
+  &amp;lt;script&amp;gt;
+    Polymer({
+      better: &#39;&#39;,
+      betterChanged: function(oldValue, newValue) {
+      }
+    })
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-10&quot;&gt;自定义的属性监听&lt;/h3&gt;
+
+&lt;p&gt;有时候基于约定还搞不定时，需要使用&lt;code&gt;observe&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;Polymer({
+  observe {
+    foo: &#39;validate&#39;,
+    bar: &#39;validate&#39;
+  },
+
+  validate: function(oldValue, newValue) {
+  }
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-11&quot;&gt;自动节点查找&lt;/h3&gt;
+
+&lt;p&gt;有id的dom节点引用，可以通过&lt;code&gt;this.$.id&lt;/code&gt; 引用得到&lt;/p&gt;
+
+&lt;h2 id=&quot;section-12&quot;&gt;自定义事件&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;Polymer({
+  onClick: function() {
+    this.fire(&#39;ouch&#39;, { ... })
+  }
+})
+
+
+$(&#39;ouch-button&#39;).on(&#39;ouch&#39;, function(e) {
+  e.type
+  e.detail
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-13&quot;&gt;扩展&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;polymer-element name=&quot;polymer-coller&quot; extends=&quot;polymer-cool&quot;&amp;gt;
+  &amp;lt;template&amp;gt;
+    &amp;lt;shadow&amp;gt;&amp;lt;/shadow&amp;gt;  &amp;lt;!-- 调用父类模板 --&amp;gt;
+  &amp;lt;/template&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;调用父类的方法&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;Polymer({
+  praise: &#39;cool&#39;,
+  makeCoolest: function() {
+    this.super()  // 调用父类方法
+  }
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这是如何实现的?  arguments.callee.caller ?&lt;/p&gt;
+
+&lt;h2 id=&quot;section-14&quot;&gt;内置方法&lt;/h2&gt;
+
+&lt;h3 id=&quot;dom&quot;&gt;监听原生dom子节点变化&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;onMutation(element, callback)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-15&quot;&gt;处理异步任务&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Polymer中到处都是异步，变化会先被收集，然后一次性处理，而不是每次都执行。&lt;br /&gt;
+  这样就可以进行优化，并且防止重复的工作，并且减少不必要的FOUC&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;this.async(function() {
+  this.foo = 3  // this会自动绑定到节点对象
+}, null, 1000)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-16&quot;&gt;延迟任务&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;this.responseChanged = function() {
+  this.job(&#39;job1&#39;, function() {
+    this.fire(&#39;done&#39;)
+  }, 5000)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;job可以避免重复操作，类似于我实现的schedule&lt;/p&gt;
+
+&lt;h2 id=&quot;section-17&quot;&gt;高级主题&lt;/h2&gt;
+
+&lt;h3 id=&quot;section-18&quot;&gt;一些方法&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;this.cancelUnbindAll()
+unbindAll()
+preventDispose
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-19&quot;&gt;数据变化如何传递&lt;/h3&gt;
+
+&lt;p&gt;如果Object.observe()支持，则使用它来监听属性变化&lt;br /&gt;
+如果不支持，则使用Platform.flash()来轮询检查变量&lt;/p&gt;
+
+&lt;h3 id=&quot;polymer-element&quot;&gt;Polymer Element如何初始化&lt;/h3&gt;
+
+&lt;p&gt;从性能上考虑，element在created时，如果不在main document内，避免创建ShadowDOM, 进行事件监听，监控属性变化。  &lt;br /&gt;
+这在行为上类似原生的img和video&lt;/p&gt;
+
+&lt;p&gt;在以下场景，element将会初始化&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;当在main document中创建, document.defaultView存在&lt;/li&gt;
+  &lt;li&gt;attached&lt;/li&gt;
+  &lt;li&gt;当它的shadowRoot节点被初始化时&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;alwaysPrepare属性可以强制初始化&lt;/p&gt;
+
+&lt;h3 id=&quot;section-20&quot;&gt;路径&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;this.resolvePath(x-foo.png)&lt;/code&gt;&lt;/p&gt;
 
 </description>
         <pubDate>Sun, 06 Nov 2011 00:00:00 +0800</pubDate>
