@@ -5,8 +5,8 @@
     <description></description>
     <link>http://bencode.github.io/</link>
     <atom:link href="http://bencode.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 07 Nov 2014 10:14:41 +0800</pubDate>
-    <lastBuildDate>Fri, 07 Nov 2014 10:14:41 +0800</lastBuildDate>
+    <pubDate>Fri, 07 Nov 2014 14:03:12 +0800</pubDate>
+    <lastBuildDate>Fri, 07 Nov 2014 14:03:12 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -49,8 +49,93 @@
 
 &lt;h2 id=&quot;section-3&quot;&gt;属性的引用&lt;/h2&gt;
 
-&lt;p&gt;在模板中 &lt;code&gt;$.globals.firstName&lt;/code&gt;&lt;br /&gt;
+&lt;p&gt;在模板中 &lt;code&gt;$.globals.firstName&lt;/code&gt;  &lt;br /&gt;
 在js中 &lt;code&gt;this.$.globals.firstName&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;生命周期&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  created: function() {},  
+  ready: function() {},  
+  attached: function() {},
+  domReady: function() {},  
+  detached: function() {},  
+  attributeChanged: function(name, oldValue, newValue) {}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;polymer-ready&quot;&gt;polymer-ready&lt;/h2&gt;
+
+&lt;p&gt;polymer解析定义，更新以及载入资源都是异步的，所以需要一个类似domready的事件来防止&lt;a href=&quot;http://en.wikipedia.org/wiki/Flash_of_unstyled_content&quot;&gt;FOUC&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$(window).on(&#39;polymer-ready&#39;, function() {
+  var xfoo = $(&#39;x-foo&#39;)
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-5&quot;&gt;公共属性&lt;/h2&gt;
+
+&lt;p&gt;有两种方式申明公共属性&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;polymer-element节点中使用attributes属性 (推荐)&lt;/li&gt;
+  &lt;li&gt;polymer构造器中使用publish&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;在节点中申明的好处是，一眼就能看出有哪些公共属性。   &lt;br /&gt;
+不过当属性很多，需要默认值，以及使用&lt;em&gt;reflect&lt;/em&gt;特性时，使用js的方式还是更方便。&lt;/p&gt;
+
+&lt;p&gt;默认属性是&lt;em&gt;undefined&lt;/em&gt;, 可以使用以下两种方式申明默认值&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;polymer-element name=&quot;x-foo&quot; attributes=&quot;bar&quot;&amp;gt;
+  &amp;lt;script&amp;gt;
+    Polymer({
+      bar: false
+    })
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;更简洁的方式&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;polymer-element name=&quot;x-foo&quot;&amp;gt;
+  &amp;lt;script&amp;gt;
+    Polymer({
+      publish: {
+        bar: false
+      }
+    })
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;对于属性类型为对象和数组的，需要在created回调方法中设置默认值，以保证每个组件有独立的实例数据&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;polymer-element name=&quot;x-defaults&quot; attributes=&quot;settings&quot;&amp;gt;
+  &amp;lt;script&amp;gt;
+    Polymer({
+      created: function() {
+        this.settings = {
+          textColor: &#39;blue&#39;
+        }
+      }
+    })
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;property-reflection&quot;&gt;property reflection&lt;/h2&gt;
+
+&lt;p&gt;设置对象属性时，会自动传递到节点&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;this.name = &quot;Joe&quot;  --&amp;gt; this.setAttribute(&#39;name&#39;, &#39;Joe&#39;)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;由于双向绑定机制，这个特性大多数情况下用不到，所以默认是关闭的&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;property reflection和双向数据绑定不是一回事&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;section-6&quot;&gt;数据绑定&lt;/h2&gt;
+
+&lt;h2 id=&quot;computed-properties&quot;&gt;Computed properties&lt;/h2&gt;
+
 </description>
         <pubDate>Sun, 06 Nov 2011 00:00:00 +0800</pubDate>
         <link>http://bencode.github.io/polymer/learning/api-developer-guide.html</link>
