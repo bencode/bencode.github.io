@@ -5,9 +5,166 @@
     <description></description>
     <link>http://bencode.github.io/</link>
     <atom:link href="http://bencode.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 07 Nov 2014 19:41:45 +0800</pubDate>
-    <lastBuildDate>Fri, 07 Nov 2014 19:41:45 +0800</lastBuildDate>
+    <pubDate>Fri, 07 Nov 2014 23:50:34 +0800</pubDate>
+    <lastBuildDate>Fri, 07 Nov 2014 23:50:34 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>Polymer 学习记录(Data Binding)</title>
+        <description>&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;For Polymer elements, &lt;strong&gt;the model is always the element itself&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;polymer-element name=&quot;name-tag&quot;&amp;gt;
+  &amp;lt;template&amp;gt;
+    This is &amp;lt;b&amp;gt;{ {owner}}&amp;lt;/b&amp;gt;&#39;s name-tag element.
+  &amp;lt;/template&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;document.querySelector(&#39;name-tag&#39;).owner = &#39;June&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;template&quot;&gt;&amp;lt;template&amp;gt;&lt;/h3&gt;
+
+&lt;p&gt;在Polymer中，使用template定义自定义元素的shadow dom&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;数据绑定和事件处理&lt;/h3&gt;
+
+&lt;p&gt;在事件绑定方法中可以取得事件源节点和模型&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;template repeat=&quot;{ {s in stories}}&quot;&amp;gt;
+  &amp;lt;li on-click={ {selectStory}}&amp;gt;{ {s.headline}}&amp;lt;/li&amp;gt;
+
+selectStory: function(e, detail, sender) {
+  var story = e.target.templateInstance.model.s
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;types-of-bindings&quot;&gt;Types of bindings&lt;/h2&gt;
+
+&lt;p&gt;有多种绑定数据和模板的方式&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;单模板实例&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;template&amp;gt;
+  &amp;lt;template bind=&quot;{ {person}}&quot;&amp;gt;
+    This template can bind to the person object’s properties, like { {name}}.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;为了方便可以创建&lt;em&gt;name scope&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;template bind=&quot;persion as p&quot;&amp;gt;
+  ... like { {p.name}}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;循环模板&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;template repeat=&quot;{ {array}}&quot;&amp;gt;
+  Creates an instance with { {}} bindings  for every element in the array collection.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;使用空表达式&lt;code&gt;{ {}}&lt;/code&gt;表示当前对象&lt;/p&gt;
+
+&lt;p&gt;repeat也支持&lt;em&gt;name scope&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;template repeat=&quot;{ {user, userIndex in users}}&quot;&amp;gt;
+  { {user.name}}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;repeat可以省略&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;this.items = [
+  { name: &#39;Milk&#39; },
+  ...
+]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;template bind=&quot;{ {item}}&quot;&amp;gt;
+  &amp;lt;p&amp;gt;items count: { {length}}
+  &amp;lt;template repeat&amp;gt;
+    &amp;lt;li&amp;gt;{ {name}}&amp;lt;/li&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;条件模板&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;template if=&quot;{ {conditionalValue}}&quot;&amp;gt;
+  Binds if and only if conditionalValue is truthy.
+&amp;lt;/template&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可以混合使用&lt;em&gt;repeat&lt;/em&gt;和&lt;em&gt;if&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;template repeat=&quot;{ {item in list.items}}&quot; if=&quot;{ {list.showItems}}&quot;&amp;gt;
+  &amp;lt;li&amp;gt;{ {item.name}}&amp;lt;/li&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;引用模板&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;template id=&quot;myTemplate&quot;&amp;gt;
+  这个模板可以被其他地方引用
+&amp;lt;/template&amp;gt;
+
+&amp;lt;template bind ref=&quot;myTemplate&quot;&amp;gt;
+  这里的内容就忽略啦，使用myTemplate模板内容了
+&amp;lt;/template&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;node-binding&quot;&gt;Node Binding&lt;/h3&gt;
+
+&lt;p&gt;node binding用于关联节点和模型&lt;/p&gt;
+
+&lt;p&gt;如何绑定依赖于节点类型和绑定名称，绑定名称和绑定在节点中出现的位置有关系&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;textContent 如 &lt;code&gt;&amp;lt;span&amp;gt;{ {someText}}&amp;lt;/span&amp;gt;&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;styleName 如 &lt;code&gt;&amp;lt;span style=&quot;{ {someStyles}}&quot;&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;section-5&quot;&gt;文本绑定&lt;/h4&gt;
+
+&lt;p&gt;出现在节点中间的绑定就是textContent binding&lt;/p&gt;
+
+&lt;p&gt;比如 &lt;code&gt;&amp;lt;p&amp;gt;This paragraph has some { {adjective}} text.&amp;lt;/p&amp;gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;textContent绑定是单向的，改变模型，会改变内容, 但反之不会&lt;/p&gt;
+
+&lt;h4 id=&quot;section-6&quot;&gt;属性绑定&lt;/h4&gt;
+
+&lt;p&gt;如何进行属性绑定和节点类型和属性名有关&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;大部分标准dom的属性绑定都是单向的，比如style&lt;/li&gt;
+  &lt;li&gt;表单元素，支持双向绑定&lt;/li&gt;
+  &lt;li&gt;polymer element的公共属性是支持双向绑定的&lt;/li&gt;
+  &lt;li&gt;自定义元素可以实现自己的绑定方式&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;section-7&quot;&gt;表单元素值的绑定&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;input元素的value和checked&lt;/li&gt;
+  &lt;li&gt;options元素的value&lt;/li&gt;
+  &lt;li&gt;select元素的selectIndex和value&lt;/li&gt;
+  &lt;li&gt;textarea的value&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;section-8&quot;&gt;条件属性&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;span hidden?=&quot;{ {isHidden}}&quot;&amp;gt;This may or may not be hidden.&amp;lt;/span&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+        <pubDate>Mon, 07 Nov 2011 00:00:00 +0800</pubDate>
+        <link>http://bencode.github.io/polymer/learning/data-binding.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/polymer/learning/data-binding.html</guid>
+        
+        
+        <category>polymer</category>
+        
+        <category>learning</category>
+        
+      </item>
     
       <item>
         <title>Polymer 学习记录(API Developer Guide)</title>
@@ -143,8 +300,8 @@
 &lt;p&gt;可以使用Polymer Expression来定义属性，这个属性也可以参于Data Binding哦。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;template&amp;gt;
-  &amp;lt;input type=&quot;number&quot; value=&quot;&quot; ...
-  &amp;lt;em&amp;gt;^1 = &amp;lt;/em&amp;gt;
+  &amp;lt;input type=&quot;number&quot; value=&quot;{ {num}}&quot; ...
+  &amp;lt;em&amp;gt;{ {num}}^1 = { {square}}&amp;lt;/em&amp;gt;
 &amp;lt;/template&amp;gt;
 &amp;lt;script&amp;gt;
   Polymer({
@@ -159,7 +316,7 @@
 &lt;h2 id=&quot;section-7&quot;&gt;申明式事件映射&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;template&amp;gt;
-  &amp;lt;input on-click=&quot;&quot;
+  &amp;lt;input on-click=&quot;{ {buttonClick}}&quot;
 
 &amp;lt;script&amp;gt;
   Polymer({

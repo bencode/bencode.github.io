@@ -148,8 +148,8 @@ $(window).on('polymer-ready', function() {
 
 ```html
 <template>
-  <input type="number" value="{{num}}" ...
-  <em>{{num}}^1 = {{square}}</em>
+  <input type="number" value="{ {num}}" ...
+  <em>{ {num}}^1 = { {square}}</em>
 </template>
 <script>
   Polymer({
@@ -165,7 +165,7 @@ $(window).on('polymer-ready', function() {
 
 ```html
 <template>
-  <input on-click="{{buttonClick}}"
+  <input on-click="{ {buttonClick}}"
 
 <script>
   Polymer({
