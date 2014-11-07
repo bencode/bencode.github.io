@@ -12,14 +12,14 @@ categories: polymer learning
 
 ## 申明
 
-使用<polymer-element>申明组件
+使用`<polymer-element>`申明组件
 
 
 ## 属性
 
 有一些保留的attributes用于描述组件  
 如：*name, attributes, extends, noscript, constractor*
-其他的属性将会自动应用到组件上  
+其他的属性将会自动应用到组件  
 属性名的大小写是无关紧要的，polymer会聪明地应用到实际对象上
 
 
@@ -30,6 +30,9 @@ Polymer(tag-name, prototype)
 ```
 
 ## Custom element prototype chain
+
+
+Polymer对象属性和方法的继承链：
 
 1. prototype对象中定义的属性和方法
 2. Polymer定义的基本属性和方法
@@ -205,7 +208,7 @@ Polymer({
 ```
 
 
-### 自动节点查找
+## 自动节点查找
 
 有id的dom节点引用，可以通过`this.$.id` 引用得到
 
@@ -315,7 +318,7 @@ preventDispose
 alwaysPrepare属性可以强制初始化
 
 
-### 路径
+### 路径问题
 
 `this.resolvePath(x-foo.png)`
 

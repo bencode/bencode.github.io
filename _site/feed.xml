@@ -5,8 +5,8 @@
     <description></description>
     <link>http://bencode.github.io/</link>
     <atom:link href="http://bencode.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 07 Nov 2014 19:34:34 +0800</pubDate>
-    <lastBuildDate>Fri, 07 Nov 2014 19:34:34 +0800</lastBuildDate>
+    <pubDate>Fri, 07 Nov 2014 19:41:45 +0800</pubDate>
+    <lastBuildDate>Fri, 07 Nov 2014 19:41:45 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -19,13 +19,13 @@
 
 &lt;h2 id=&quot;section&quot;&gt;申明&lt;/h2&gt;
 
-&lt;p&gt;使用&lt;polymer-element&gt;申明组件&lt;/polymer-element&gt;&lt;/p&gt;
+&lt;p&gt;使用&lt;code&gt;&amp;lt;polymer-element&amp;gt;&lt;/code&gt;申明组件&lt;/p&gt;
 
 &lt;h2 id=&quot;section-1&quot;&gt;属性&lt;/h2&gt;
 
 &lt;p&gt;有一些保留的attributes用于描述组件  &lt;br /&gt;
 如：&lt;em&gt;name, attributes, extends, noscript, constractor&lt;/em&gt;&lt;br /&gt;
-其他的属性将会自动应用到组件上  &lt;br /&gt;
+其他的属性将会自动应用到组件  &lt;br /&gt;
 属性名的大小写是无关紧要的，polymer会聪明地应用到实际对象上&lt;/p&gt;
 
 &lt;h2 id=&quot;section-2&quot;&gt;注册&lt;/h2&gt;
@@ -34,6 +34,8 @@
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&quot;custom-element-prototype-chain&quot;&gt;Custom element prototype chain&lt;/h2&gt;
+
+&lt;p&gt;Polymer对象属性和方法的继承链：&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;prototype对象中定义的属性和方法&lt;/li&gt;
@@ -195,7 +197,7 @@
 })
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&quot;section-11&quot;&gt;自动节点查找&lt;/h3&gt;
+&lt;h2 id=&quot;section-11&quot;&gt;自动节点查找&lt;/h2&gt;
 
 &lt;p&gt;有id的dom节点引用，可以通过&lt;code&gt;this.$.id&lt;/code&gt; 引用得到&lt;/p&gt;
 
@@ -293,7 +295,7 @@ preventDispose
 
 &lt;p&gt;alwaysPrepare属性可以强制初始化&lt;/p&gt;
 
-&lt;h3 id=&quot;section-20&quot;&gt;路径&lt;/h3&gt;
+&lt;h3 id=&quot;section-20&quot;&gt;路径问题&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;this.resolvePath(x-foo.png)&lt;/code&gt;&lt;/p&gt;
 
