@@ -292,3 +292,171 @@ PolymerExpressions.prototype.uppercase = function(input) {
 <link rel="import" href="uppercase-filter.html" />
 ```
 
+## 兼容性相关的注意事项
+
+不支持template的浏览器，将不支持template节点存在于某些元素里，比如select和table
+
+Polymer采用变通的方式
+
+```html
+<table>
+  <tr template repeat="{ {tr in rows}}">
+    <td>Hello</td>
+  </tr>
+</table>
+```
+
+select的例子
+
+```html
+<polymer-element name="my-select">
+  <template>
+    <select>
+      <option template repeat="{ {options}}">{ {}}</option>
+```
+
+有些浏览器对属性值中有特殊字符不支持，如
+
+```html
+<img src="/users/{ {id}}.jpg" /> 
+```
+
+可以在属性前加_
+
+```html
+<img _src="/users/{ {id}}.jpg" />
+```
+
+
+## 数据绑定如何工作
+
+Polymer在数据绑定时，不是像传统的ajax那样，会将整片dom进行替换，  
+而是进行**最小的必要的dom变化**
+
+例：
+
+```html
+<table>
+    <template repeat="{ {item in items}}">
+      <tr><td> { {item.name}} </td><td> { {item.count}} </td></tr>
+    </template>
+   <tr><td> Bass </td><td> 7 </td></tr>  
+   <tr><td> Catfish </td><td> 8 </td></tr> 
+   <tr><td> Trout </td><td> 0 </td></tr>
+</table>
+```
+
+比如现在你对items进行重新排序，polymer不会创建和销毁dom，仅仅也是重新排列一下dom
+
+如果改变了一个item的count，则只会改变一个td中的值
+
+
+### 数据绑定如何跟踪每个模板实例
+
+当模板创建一个或多个实例，它会将实例插入紧跟着模板的位置，并且跟踪每个实例最后节点  
+这样第一个实例就是模板结尾开始到第一个实例结尾，后面的依旧。
+
+```html
+<template repeat="{ {item in myList}}">
+  <img>
+  <span>{ {item.name}}</span>
+</template>                  
+  <img>
+  <span>foo</span>   ⇐ terminating node in template instance
+  <img>
+  <span>bar</span>   ⇐ terminating node in template instance
+  <img>
+  <span>baz</span>   ⇐ terminating node in template instance
+```
+
+### 直接操作模板生成的节点
+
+正常情况下，你不应该直接去修改模板生成的dom。 
+非要修改，根据上面的原理，只要不修改最后一个节点，那问题是不大的。 
+所以如果要修改，一般来说嵌套一层，只修改里面的dom节点。 
+但是当修改模型后，修改的dom可能会被替换，因为双向数据绑定只针对于表单域。
+
+
+## 在Polymer Element之外使用数据绑定
+
+- 使用auto-binding template
+- 可以直接使用[TemplateBinding](https://github.com/polymer/TemplateBinding)
+
+
+### 使用auto-binding template可以享有以下特性
+
+- 完整的数据绑定功能
+- 申明式事件映射
+- 自动节点查找
+
+
+## Template Binding
+
+Polymer的Template Binding扩展了Html TemplateElement, 让它支持数据绑定的方式来创建，管理和移除内容。
+
+可以独立使用Template Binding
+
+```html
+<template id="greeting" bind="{ { salutations }}">
+  Hello, { {who}} - { {what}}
+</template>
+
+<script>
+  var t = document.querySelector('#greeting')
+  var model = {
+    salutations: { what: 'GoodBye', who: 'Imperative' }
+  }
+  t.model = model   // <-- 设置模型
+```
+
+## Node.bind()
+
+[Node.bind](https://github.com/polymer/NodeBind) 用于数据绑定，可以将节点绑定到数据属性，它也可以独立的使用
+
+
+### 基本使用
+
+```js
+var obj = {
+  path: {
+    to: {
+      value: 'hi'
+    }
+  }
+}
+
+var textNode = document.createTextNode('mytext')
+textNode.bind('textContent', new PathObserver(obj, 'path.to.value'))
+```
+
+### 绑定类型
+
+以下类型可以进行双向绑定
+
+- Text node - textContent
+- HtmlInputElement - value & checked
+- HtmlTextareaElement - value
+- HtmlSelectElement - value 和 selectedIndex
+
+所以其他的都绑定到元素属性
+
+
+### 自定义元素的绑定
+
+```js
+MyFancyHTMLWidget.prototype.bind = function(name, observable, oneTime) {
+  if (name == 'myBinding') {
+    // interpret the binding meaning
+    // if oneTime is false, this should return an object which
+    // has a close() method.
+    // this will allow TemplateBinding to clean up this binding
+    // when the instance containing it is removed.
+  } else {
+    return HTMLElement.prototype.bind.call(
+      this, name, observable, oneTime
+    )
+  }
+}
+```
+
+

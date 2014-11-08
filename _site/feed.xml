@@ -5,8 +5,8 @@
     <description></description>
     <link>http://bencode.github.io/</link>
     <atom:link href="http://bencode.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 08 Nov 2014 10:07:34 +0800</pubDate>
-    <lastBuildDate>Sat, 08 Nov 2014 10:07:34 +0800</lastBuildDate>
+    <pubDate>Sat, 08 Nov 2014 11:26:01 +0800</pubDate>
+    <lastBuildDate>Sat, 08 Nov 2014 11:26:01 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -271,6 +271,163 @@ toFixed: function(value, precision) {
 &lt;p&gt;全局过滤器使用html import方式载入&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;link rel=&quot;import&quot; href=&quot;uppercase-filter.html&quot; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-18&quot;&gt;兼容性相关的注意事项&lt;/h2&gt;
+
+&lt;p&gt;不支持template的浏览器，将不支持template节点存在于某些元素里，比如select和table&lt;/p&gt;
+
+&lt;p&gt;Polymer采用变通的方式&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;table&amp;gt;
+  &amp;lt;tr template repeat=&quot;{ {tr in rows}}&quot;&amp;gt;
+    &amp;lt;td&amp;gt;Hello&amp;lt;/td&amp;gt;
+  &amp;lt;/tr&amp;gt;
+&amp;lt;/table&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;select的例子&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;polymer-element name=&quot;my-select&quot;&amp;gt;
+  &amp;lt;template&amp;gt;
+    &amp;lt;select&amp;gt;
+      &amp;lt;option template repeat=&quot;{ {options}}&quot;&amp;gt;{ {}}&amp;lt;/option&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;有些浏览器对属性值中有特殊字符不支持，如&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;img src=&quot;/users/{ {id}}.jpg&quot; /&amp;gt; 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可以在属性前加_&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;img _src=&quot;/users/{ {id}}.jpg&quot; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-19&quot;&gt;数据绑定如何工作&lt;/h2&gt;
+
+&lt;p&gt;Polymer在数据绑定时，不是像传统的ajax那样，会将整片dom进行替换，  &lt;br /&gt;
+而是进行&lt;strong&gt;最小的必要的dom变化&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;例：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;table&amp;gt;
+    &amp;lt;template repeat=&quot;{ {item in items}}&quot;&amp;gt;
+      &amp;lt;tr&amp;gt;&amp;lt;td&amp;gt; { {item.name}} &amp;lt;/td&amp;gt;&amp;lt;td&amp;gt; { {item.count}} &amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;
+    &amp;lt;/template&amp;gt;
+   &amp;lt;tr&amp;gt;&amp;lt;td&amp;gt; Bass &amp;lt;/td&amp;gt;&amp;lt;td&amp;gt; 7 &amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;  
+   &amp;lt;tr&amp;gt;&amp;lt;td&amp;gt; Catfish &amp;lt;/td&amp;gt;&amp;lt;td&amp;gt; 8 &amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt; 
+   &amp;lt;tr&amp;gt;&amp;lt;td&amp;gt; Trout &amp;lt;/td&amp;gt;&amp;lt;td&amp;gt; 0 &amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;
+&amp;lt;/table&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;比如现在你对items进行重新排序，polymer不会创建和销毁dom，仅仅也是重新排列一下dom&lt;/p&gt;
+
+&lt;p&gt;如果改变了一个item的count，则只会改变一个td中的值&lt;/p&gt;
+
+&lt;h3 id=&quot;section-20&quot;&gt;数据绑定如何跟踪每个模板实例&lt;/h3&gt;
+
+&lt;p&gt;当模板创建一个或多个实例，它会将实例插入紧跟着模板的位置，并且跟踪每个实例最后节点  &lt;br /&gt;
+这样第一个实例就是模板结尾开始到第一个实例结尾，后面的依旧。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;template repeat=&quot;{ {item in myList}}&quot;&amp;gt;
+  &amp;lt;img&amp;gt;
+  &amp;lt;span&amp;gt;{ {item.name}}&amp;lt;/span&amp;gt;
+&amp;lt;/template&amp;gt;                  
+  &amp;lt;img&amp;gt;
+  &amp;lt;span&amp;gt;foo&amp;lt;/span&amp;gt;   ⇐ terminating node in template instance
+  &amp;lt;img&amp;gt;
+  &amp;lt;span&amp;gt;bar&amp;lt;/span&amp;gt;   ⇐ terminating node in template instance
+  &amp;lt;img&amp;gt;
+  &amp;lt;span&amp;gt;baz&amp;lt;/span&amp;gt;   ⇐ terminating node in template instance
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-21&quot;&gt;直接操作模板生成的节点&lt;/h3&gt;
+
+&lt;p&gt;正常情况下，你不应该直接去修改模板生成的dom。 &lt;br /&gt;
+非要修改，根据上面的原理，只要不修改最后一个节点，那问题是不大的。 &lt;br /&gt;
+所以如果要修改，一般来说嵌套一层，只修改里面的dom节点。 &lt;br /&gt;
+但是当修改模型后，修改的dom可能会被替换，因为双向数据绑定只针对于表单域。&lt;/p&gt;
+
+&lt;h2 id=&quot;polymer-element&quot;&gt;在Polymer Element之外使用数据绑定&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;使用auto-binding template&lt;/li&gt;
+  &lt;li&gt;可以直接使用&lt;a href=&quot;https://github.com/polymer/TemplateBinding&quot;&gt;TemplateBinding&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;auto-binding-template&quot;&gt;使用auto-binding template可以享有以下特性&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;完整的数据绑定功能&lt;/li&gt;
+  &lt;li&gt;申明式事件映射&lt;/li&gt;
+  &lt;li&gt;自动节点查找&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;template-binding&quot;&gt;Template Binding&lt;/h2&gt;
+
+&lt;p&gt;Polymer的Template Binding扩展了Html TemplateElement, 让它支持数据绑定的方式来创建，管理和移除内容。&lt;/p&gt;
+
+&lt;p&gt;可以独立使用Template Binding&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;template id=&quot;greeting&quot; bind=&quot;{ { salutations }}&quot;&amp;gt;
+  Hello, { {who}} - { {what}}
+&amp;lt;/template&amp;gt;
+
+&amp;lt;script&amp;gt;
+  var t = document.querySelector(&#39;#greeting&#39;)
+  var model = {
+    salutations: { what: &#39;GoodBye&#39;, who: &#39;Imperative&#39; }
+  }
+  t.model = model   // &amp;lt;-- 设置模型
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;nodebind&quot;&gt;Node.bind()&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/polymer/NodeBind&quot;&gt;Node.bind&lt;/a&gt; 用于数据绑定，可以将节点绑定到数据属性，它也可以独立的使用&lt;/p&gt;
+
+&lt;h3 id=&quot;section-22&quot;&gt;基本使用&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var obj = {
+  path: {
+    to: {
+      value: &#39;hi&#39;
+    }
+  }
+}
+
+var textNode = document.createTextNode(&#39;mytext&#39;)
+textNode.bind(&#39;textContent&#39;, new PathObserver(obj, &#39;path.to.value&#39;))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-23&quot;&gt;绑定类型&lt;/h3&gt;
+
+&lt;p&gt;以下类型可以进行双向绑定&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Text node - textContent&lt;/li&gt;
+  &lt;li&gt;HtmlInputElement - value &amp;amp; checked&lt;/li&gt;
+  &lt;li&gt;HtmlTextareaElement - value&lt;/li&gt;
+  &lt;li&gt;HtmlSelectElement - value 和 selectedIndex&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;所以其他的都绑定到元素属性&lt;/p&gt;
+
+&lt;h3 id=&quot;section-24&quot;&gt;自定义元素的绑定&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;MyFancyHTMLWidget.prototype.bind = function(name, observable, oneTime) {
+  if (name == &#39;myBinding&#39;) {
+    // interpret the binding meaning
+    // if oneTime is false, this should return an object which
+    // has a close() method.
+    // this will allow TemplateBinding to clean up this binding
+    // when the instance containing it is removed.
+  } else {
+    return HTMLElement.prototype.bind.call(
+      this, name, observable, oneTime
+    )
+  }
+}
 &lt;/code&gt;&lt;/pre&gt;
 
 </description>
