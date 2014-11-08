@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Polymer学习笔记(Helper Methods)
+title: Polymer学习笔记 - Helper Methods
 categories: learning polymer
 ---
 

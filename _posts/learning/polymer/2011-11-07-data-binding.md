@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Polymer学习笔记(Data Binding)
+title: Polymer学习笔记 - Data Binding
 categories: learning polymer
 ---
 

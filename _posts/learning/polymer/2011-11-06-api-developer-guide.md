@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Polymer学习笔记(API Developer Guide)
+title: Polymer学习笔记 - API Developer Guide
 categories: learning polymer
 ---
 

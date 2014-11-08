@@ -5,12 +5,12 @@
     <description></description>
     <link>http://bencode.github.io/</link>
     <atom:link href="http://bencode.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 08 Nov 2014 15:39:53 +0800</pubDate>
-    <lastBuildDate>Sat, 08 Nov 2014 15:39:53 +0800</lastBuildDate>
+    <pubDate>Sat, 08 Nov 2014 16:26:57 +0800</pubDate>
+    <lastBuildDate>Sat, 08 Nov 2014 16:26:57 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
-        <title>HTML5 Template 学习笔记</title>
+        <title>Polymer学习笔记 - HTML5 Template</title>
         <description>&lt;p&gt;&lt;a href=&quot;http://www.html5rocks.com/zh/tutorials/webcomponents/template/&quot;&gt;参考资料&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;section&quot;&gt;特性检测&lt;/h2&gt;
@@ -49,8 +49,63 @@ document.body.appendChild(clone);
 &lt;/code&gt;&lt;/pre&gt;
 </description>
         <pubDate>Tue, 08 Nov 2011 00:00:00 +0800</pubDate>
-        <link>http://bencode.github.io/learning/html5/template.html</link>
-        <guid isPermaLink="true">http://bencode.github.io/learning/html5/template.html</guid>
+        <link>http://bencode.github.io/learning/polymer/template.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/learning/polymer/template.html</guid>
+        
+        
+        <category>learning</category>
+        
+        <category>polymer</category>
+        
+      </item>
+    
+      <item>
+        <title>Polymer学习笔记 - Shadow DOM</title>
+        <description>&lt;h2 id=&quot;section&quot;&gt;基本使用&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var el = document.createElement(&#39;div&#39;)
+var shadow = el.createShadowRoot()
+shadow.innerHTML = &#39;&amp;lt;content select=&quot;q&quot;&amp;gt;&amp;lt;/content&amp;gt;&#39;
+document.body.appendChild(el)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;subtrees&quot;&gt;subtrees&lt;/h2&gt;
+
+&lt;p&gt;一个节点承载三棵树： light DOM, shadow DOM 和 composed DOM&lt;/p&gt;
+
+&lt;p&gt;组件提供者创建shadow DOM, 使用者提供light DOM， 然后浏览器结合两者成为composed DOM进行渲染。 &lt;br /&gt;
+shadow DOM不能被用户访问到，它有自己的空间。 &lt;br /&gt;
+这本质上是一种封装和开放，设计上的艺术。&lt;/p&gt;
+
+&lt;h2 id=&quot;polyfill&quot;&gt;Polyfill&lt;/h2&gt;
+
+&lt;p&gt;原生不支持ShadowDom的浏览器，可以使用ShadowDOMPolyfill来包装，只是即使这样，也有若干限制。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;事件重定向&lt;/h3&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;已知的缺陷&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;css封装性&lt;/li&gt;
+  &lt;li&gt;Object.prototype.toString和原生支持的返回不一致&lt;/li&gt;
+  &lt;li&gt;document, window, document.body, document.head等不可配置，不能被重写&lt;/li&gt;
+  &lt;li&gt;跨window, frame未实现&lt;/li&gt;
+  &lt;li&gt;:host()伪类选择器最多支持1层嵌套的括号选择器&lt;br /&gt;
+例：&lt;code&gt;:host(.zot)&lt;/code&gt; and &lt;code&gt;:host(.zot:not(.bar))&lt;/code&gt; 支持, &lt;br /&gt;
+  &lt;code&gt;:host(.zot:not(.bar:nth-child(2)))&lt;/code&gt; 不支持&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;[资料]&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.polymer-project.org/platform/shadow-dom.html&quot;&gt;https://www.polymer-project.org/platform/shadow-dom.html&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://dvcs.w3.org/hg/webcomponents/raw-file/57f8cfc4a7dc/explainer/index.html#shadow-dom-section&quot;&gt;https://dvcs.w3.org/hg/webcomponents/raw-file/57f8cfc4a7dc/explainer/index.html#shadow-dom-section&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom/&quot;&gt;http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom/&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-201/&quot;&gt;http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-201/&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-301/&quot;&gt;http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-301/&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Tue, 08 Nov 2011 00:00:00 +0800</pubDate>
+        <link>http://bencode.github.io/learning/html5/shadow-dom.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/learning/html5/shadow-dom.html</guid>
         
         
         <category>learning</category>
@@ -60,7 +115,7 @@ document.body.appendChild(clone);
       </item>
     
       <item>
-        <title>Polymer学习笔记(Helper Methods)</title>
+        <title>Polymer学习笔记 - Helper Methods</title>
         <description>&lt;h2 id=&quot;html-imports&quot;&gt;动态Html imports&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;Polymer.import(urls, callback)
@@ -104,7 +159,7 @@ Polymer.forceReady通知Polymer强制注册所有已ready的元素，忽略未�
       </item>
     
       <item>
-        <title>Polymer学习笔记(Data Binding)</title>
+        <title>Polymer学习笔记 - Data Binding</title>
         <description>&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
 
 &lt;blockquote&gt;
@@ -537,7 +592,7 @@ textNode.bind(&#39;textContent&#39;, new PathObserver(obj, &#39;path.to.value&#3
       </item>
     
       <item>
-        <title>Polymer学习笔记(API Developer Guide)</title>
+        <title>Polymer学习笔记 - API Developer Guide</title>
         <description>&lt;p&gt;&lt;a href=&quot;https://www.polymer-project.org/docs/polymer/polymer.html&quot;&gt;链接&lt;/a&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
