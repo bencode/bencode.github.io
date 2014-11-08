@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Polymer 学习记录(API Developer Guide)
-categories: polymer learning
+title: Polymer学习笔记(API Developer Guide)
+categories: learning polymer
 ---
 
 [链接](https://www.polymer-project.org/docs/polymer/polymer.html)
@@ -10,9 +10,9 @@ categories: polymer learning
 > help make developing web components much easier
 
 
-## 申明
+## 声明
 
-使用`<polymer-element>`申明组件
+使用`<polymer-element>`声明组件
 
 
 ## 属性
@@ -77,16 +77,16 @@ $(window).on('polymer-ready', function() {
 
 ## 公共属性
 
-有两种方式申明公共属性
+有两种方式声明公共属性
 
 1. polymer-element节点中使用attributes属性 (推荐)
 2. polymer构造器中使用publish
 
-在节点中申明的好处是，一眼就能看出有哪些公共属性。   
+在节点中声明的好处是，一眼就能看出有哪些公共属性。   
 不过当属性很多，需要默认值，以及使用*reflect*特性时，使用js的方式还是更方便。
 
 
-默认属性是*undefined*, 可以使用以下两种方式申明默认值
+默认属性是*undefined*, 可以使用以下两种方式声明默认值
 
 ```html
 <polymer-element name="x-foo" attributes="bar">
@@ -161,7 +161,7 @@ $(window).on('polymer-ready', function() {
 </script>
 ```
 
-## 申明式事件映射
+## 声明式事件映射
 
 ```html
 <template>

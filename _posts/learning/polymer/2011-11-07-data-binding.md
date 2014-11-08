@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Polymer 学习记录(Data Binding)
-categories: polymer learning
+title: Polymer学习笔记(Data Binding)
+categories: learning polymer
 ---
 
 ## Overview
@@ -386,7 +386,7 @@ Polymer在数据绑定时，不是像传统的ajax那样，会将整片dom进行
 ### 使用auto-binding template可以享有以下特性
 
 - 完整的数据绑定功能
-- 申明式事件映射
+- 声明式事件映射
 - 自动节点查找
 
 

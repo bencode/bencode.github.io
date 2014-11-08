@@ -5,12 +5,62 @@
     <description></description>
     <link>http://bencode.github.io/</link>
     <atom:link href="http://bencode.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 08 Nov 2014 11:43:29 +0800</pubDate>
-    <lastBuildDate>Sat, 08 Nov 2014 11:43:29 +0800</lastBuildDate>
+    <pubDate>Sat, 08 Nov 2014 15:39:53 +0800</pubDate>
+    <lastBuildDate>Sat, 08 Nov 2014 15:39:53 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
-        <title>Polymer 学习记录(Helper Methods)</title>
+        <title>HTML5 Template 学习笔记</title>
+        <description>&lt;p&gt;&lt;a href=&quot;http://www.html5rocks.com/zh/tutorials/webcomponents/template/&quot;&gt;参考资料&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;特性检测&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;function supportTemplate() {
+  return &#39;content&#39; in document.createElement(&#39;template&#39;)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;声明模板内容&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;template id=&quot;mytemplate&quot;&amp;gt;
+  &amp;lt;img src=&quot;&quot; alt=&quot;great image&quot;&amp;gt;
+  &amp;lt;div class=&quot;comment&quot;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;/template&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;特性&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;模板内容在激活前不会被渲染&lt;/li&gt;
+  &lt;li&gt;处于模板中的内容无副作用&lt;/li&gt;
+  &lt;li&gt;处理模板中的内容不在文档中&lt;/li&gt;
+  &lt;li&gt;模板可以放置在任意位置，包括&lt;code&gt;&amp;lt;head&amp;gt;, &amp;lt;body&amp;gt;, &amp;lt;frameset&amp;gt;&lt;/code&gt;&lt;br /&gt;
+  并且任何能够出现在以上节点中的内容都可以出现在&lt;code&gt;&amp;lt;template&amp;gt;&lt;/code&gt;中&lt;br /&gt;
+  template能够安全地出现在html解析器不允许出现的位置，几乎可以作为任何内容的子节点，如&lt;code&gt;&amp;lt;table&amp;gt;&lt;/code&gt;和&lt;code&gt;&amp;lt;select&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;激活&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var t = document.querySelector(&#39;#mytemplate&#39;)
+t.content.querySelector(&#39;img&#39;).src = &#39;logo.png&#39;;
+
+var clone = document.importNode(t.content, true);
+document.body.appendChild(clone);
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+        <pubDate>Tue, 08 Nov 2011 00:00:00 +0800</pubDate>
+        <link>http://bencode.github.io/learning/html5/template.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/learning/html5/template.html</guid>
+        
+        
+        <category>learning</category>
+        
+        <category>html5</category>
+        
+      </item>
+    
+      <item>
+        <title>Polymer学习笔记(Helper Methods)</title>
         <description>&lt;h2 id=&quot;html-imports&quot;&gt;动态Html imports&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;Polymer.import(urls, callback)
@@ -43,18 +93,18 @@ Polymer.waitingFor帮助方法返回一个阻塞状态的polymer-element列表�
 Polymer.forceReady通知Polymer强制注册所有已ready的元素，忽略未完成的元素。&lt;/p&gt;
 </description>
         <pubDate>Tue, 08 Nov 2011 00:00:00 +0800</pubDate>
-        <link>http://bencode.github.io/polymer/learning/helper-methods.html</link>
-        <guid isPermaLink="true">http://bencode.github.io/polymer/learning/helper-methods.html</guid>
+        <link>http://bencode.github.io/learning/polymer/helper-methods.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/learning/polymer/helper-methods.html</guid>
         
-        
-        <category>polymer</category>
         
         <category>learning</category>
+        
+        <category>polymer</category>
         
       </item>
     
       <item>
-        <title>Polymer 学习记录(Data Binding)</title>
+        <title>Polymer学习笔记(Data Binding)</title>
         <description>&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
 
 &lt;blockquote&gt;
@@ -404,7 +454,7 @@ toFixed: function(value, precision) {
 
 &lt;ul&gt;
   &lt;li&gt;完整的数据绑定功能&lt;/li&gt;
-  &lt;li&gt;申明式事件映射&lt;/li&gt;
+  &lt;li&gt;声明式事件映射&lt;/li&gt;
   &lt;li&gt;自动节点查找&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -476,27 +526,27 @@ textNode.bind(&#39;textContent&#39;, new PathObserver(obj, &#39;path.to.value&#3
 
 </description>
         <pubDate>Mon, 07 Nov 2011 00:00:00 +0800</pubDate>
-        <link>http://bencode.github.io/polymer/learning/data-binding.html</link>
-        <guid isPermaLink="true">http://bencode.github.io/polymer/learning/data-binding.html</guid>
+        <link>http://bencode.github.io/learning/polymer/data-binding.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/learning/polymer/data-binding.html</guid>
         
-        
-        <category>polymer</category>
         
         <category>learning</category>
+        
+        <category>polymer</category>
         
       </item>
     
       <item>
-        <title>Polymer 学习记录(API Developer Guide)</title>
+        <title>Polymer学习笔记(API Developer Guide)</title>
         <description>&lt;p&gt;&lt;a href=&quot;https://www.polymer-project.org/docs/polymer/polymer.html&quot;&gt;链接&lt;/a&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;help make developing web components much easier&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h2 id=&quot;section&quot;&gt;申明&lt;/h2&gt;
+&lt;h2 id=&quot;section&quot;&gt;声明&lt;/h2&gt;
 
-&lt;p&gt;使用&lt;code&gt;&amp;lt;polymer-element&amp;gt;&lt;/code&gt;申明组件&lt;/p&gt;
+&lt;p&gt;使用&lt;code&gt;&amp;lt;polymer-element&amp;gt;&lt;/code&gt;声明组件&lt;/p&gt;
 
 &lt;h2 id=&quot;section-1&quot;&gt;属性&lt;/h2&gt;
 
@@ -554,17 +604,17 @@ textNode.bind(&#39;textContent&#39;, new PathObserver(obj, &#39;path.to.value&#3
 
 &lt;h2 id=&quot;section-5&quot;&gt;公共属性&lt;/h2&gt;
 
-&lt;p&gt;有两种方式申明公共属性&lt;/p&gt;
+&lt;p&gt;有两种方式声明公共属性&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;polymer-element节点中使用attributes属性 (推荐)&lt;/li&gt;
   &lt;li&gt;polymer构造器中使用publish&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;在节点中申明的好处是，一眼就能看出有哪些公共属性。   &lt;br /&gt;
+&lt;p&gt;在节点中声明的好处是，一眼就能看出有哪些公共属性。   &lt;br /&gt;
 不过当属性很多，需要默认值，以及使用&lt;em&gt;reflect&lt;/em&gt;特性时，使用js的方式还是更方便。&lt;/p&gt;
 
-&lt;p&gt;默认属性是&lt;em&gt;undefined&lt;/em&gt;, 可以使用以下两种方式申明默认值&lt;/p&gt;
+&lt;p&gt;默认属性是&lt;em&gt;undefined&lt;/em&gt;, 可以使用以下两种方式声明默认值&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;polymer-element name=&quot;x-foo&quot; attributes=&quot;bar&quot;&amp;gt;
   &amp;lt;script&amp;gt;
@@ -633,7 +683,7 @@ textNode.bind(&#39;textContent&#39;, new PathObserver(obj, &#39;path.to.value&#3
 &amp;lt;/script&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&quot;section-7&quot;&gt;申明式事件映射&lt;/h2&gt;
+&lt;h2 id=&quot;section-7&quot;&gt;声明式事件映射&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;template&amp;gt;
   &amp;lt;input on-click=&quot;{ {buttonClick}}&quot;
@@ -778,13 +828,13 @@ preventDispose
 
 </description>
         <pubDate>Sun, 06 Nov 2011 00:00:00 +0800</pubDate>
-        <link>http://bencode.github.io/polymer/learning/api-developer-guide.html</link>
-        <guid isPermaLink="true">http://bencode.github.io/polymer/learning/api-developer-guide.html</guid>
+        <link>http://bencode.github.io/learning/polymer/api-developer-guide.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/learning/polymer/api-developer-guide.html</guid>
         
-        
-        <category>polymer</category>
         
         <category>learning</category>
+        
+        <category>polymer</category>
         
       </item>
     
