@@ -5,9 +5,53 @@
     <description></description>
     <link>http://bencode.github.io/</link>
     <atom:link href="http://bencode.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 08 Nov 2014 11:26:01 +0800</pubDate>
-    <lastBuildDate>Sat, 08 Nov 2014 11:26:01 +0800</lastBuildDate>
+    <pubDate>Sat, 08 Nov 2014 11:43:29 +0800</pubDate>
+    <lastBuildDate>Sat, 08 Nov 2014 11:43:29 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>Polymer 学习记录(Helper Methods)</title>
+        <description>&lt;h2 id=&quot;html-imports&quot;&gt;动态Html imports&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;Polymer.import(urls, callback)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;&amp;lt;dynamic-element&amp;gt;
+  I&#39;m just an unknown element.
+&amp;lt;/dynamic-element&amp;gt;
+
+&amp;lt;script&amp;gt;
+  var button = document.querySelector(&#39;button&#39;)
+  button.addEventListener(&#39;click&#39;, function() {
+    Polymer.import([&#39;dynamic-element.html&#39;], function() {
+      document.querySelector(&#39;dynamic-element&#39;).description = &#39;a dynamic import&#39;
+    })
+  });
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;mixins&quot;&gt;mixins&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;Polymer.mixin(target, obj1 [, obj2, ..., objN ] )
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;强制注册元素&lt;/h2&gt;
+
+&lt;p&gt;默认情况下，Polymer会等待所有元素ready, 再进行注册和更新。 &lt;br /&gt;
+如果一个元素没有调用Polymer构造函数，也没有使用noscript属性，则它会一直等待。 &lt;br /&gt;
+Polymer.waitingFor帮助方法返回一个阻塞状态的polymer-element列表。  &lt;br /&gt;
+Polymer.forceReady通知Polymer强制注册所有已ready的元素，忽略未完成的元素。&lt;/p&gt;
+</description>
+        <pubDate>Tue, 08 Nov 2011 00:00:00 +0800</pubDate>
+        <link>http://bencode.github.io/polymer/learning/helper-methods.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/polymer/learning/helper-methods.html</guid>
+        
+        
+        <category>polymer</category>
+        
+        <category>learning</category>
+        
+      </item>
     
       <item>
         <title>Polymer 学习记录(Data Binding)</title>
