@@ -157,6 +157,138 @@ textContent绑定是单向的，改变模型，会改变内容, 但反之不会
 
 #### 条件属性
 
-```
+```html
 <span hidden?="{ {isHidden}}">This may or may not be hidden.</span>
 ```
+
+### 一次性绑定
+
+```html
+<input type="text" value="[[ obj.value ]]">
+```
+
+
+## 表达式
+
+### 行为和限制
+
+表达式是javascript的子集
+
+1. 表达式用来处理简单的逻辑，不应该把复杂的逻辑放在表达式中
+2. 表达式从来不是使用eval执行，也不能访问global变量。
+3. 不能使用表达式插入HTML, 为了防止xss，默认对输出值进行html escape
+
+
+### 执行
+
+表达式可以使用在以下三种情况 
+
+```
+{ {expression}}
+
+[[expression]]
+
+computed: {
+  name: expression
+}
+```
+
+### 上下文(scope)
+
+- bind, repeat, if属性表达式使用的是父模板的作用域
+- 最外层模板中表达式和computed属性表达式使用的作用域都是元素本身
+
+### 嵌套作用域规则
+
+对于name scope模板，其父作用域是可见的，否则父作用域不可见
+
+```html
+<template>
+  <!-- outermost template -- element's properties available -->
+  <template bind="{ {organization as organization}}">
+    <!-- organization.* available -->
+    <template bind="{ {organization.contact as contact}}">
+      <!-- organization.* & contact.* available -->
+      <template bind="{ {contact.address}}">
+        <!-- only properties of address are available -->
+        <template bind="{ {streetAddress as streetAddress}}">
+          <!-- streetAddress.* and properties of address are available.
+               NOT organization.* or contact.* -->
+```
+
+### 过滤器
+
+```html
+{ {user | formatUserName}}
+```
+
+上面的方式，如果user中的字段变化了，表达式不会重新求值,  
+因为表达式不知道应该监听什么属性变化，所以得主动告诉它。
+
+```html
+{ { {firstName: user.firstName, lastName: user.lastName} | formatUserName}}
+```
+
+#### tokenList, styleObject
+
+```html
+<div class="{ {{ active: user.selected, big: user.type == 'super' }}}"  
+<div style="{ {styles | styleObject}}">
+```
+
+#### 自定义过滤器
+
+
+```js
+Polymer('greeting-tag', {
+  ...
+  toUpperCase: function(value) {
+    return value.toUpperCase()
+  },
+```
+
+需要处理双向绑定的过滤器：
+
+```js
+toUpperCase: {
+  toDOM: function(value) {
+    return value.toUpperCase()
+  },
+  toModel: function(value) {
+    return value.toLowerCase()
+  }
+}
+```
+
+#### 过滤器参数
+
+```
+{ {myNumber | toFixed(2)}}
+
+toFixed: function(value, precision) {
+  return Number(value).toFixed(precision)
+}
+```
+
+#### chaining filter
+
+```
+{ {myNumber | toHex | toUpperCase}}
+```
+
+
+#### 自定义全局过滤器
+
+
+```js
+PolymerExpressions.prototype.uppercase = function(input) {
+  return input.toUpperCase()
+}
+```
+
+全局过滤器使用html import方式载入
+
+```html
+<link rel="import" href="uppercase-filter.html" />
+```
+

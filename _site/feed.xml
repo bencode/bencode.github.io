@@ -5,8 +5,8 @@
     <description></description>
     <link>http://bencode.github.io/</link>
     <atom:link href="http://bencode.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 07 Nov 2014 23:50:34 +0800</pubDate>
-    <lastBuildDate>Fri, 07 Nov 2014 23:50:34 +0800</lastBuildDate>
+    <pubDate>Sat, 08 Nov 2014 10:07:34 +0800</pubDate>
+    <lastBuildDate>Sat, 08 Nov 2014 10:07:34 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -152,8 +152,127 @@ selectStory: function(e, detail, sender) {
 
 &lt;h4 id=&quot;section-8&quot;&gt;条件属性&lt;/h4&gt;
 
-&lt;pre&gt;&lt;code&gt;&amp;lt;span hidden?=&quot;{ {isHidden}}&quot;&amp;gt;This may or may not be hidden.&amp;lt;/span&amp;gt;
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;span hidden?=&quot;{ {isHidden}}&quot;&amp;gt;This may or may not be hidden.&amp;lt;/span&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-9&quot;&gt;一次性绑定&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;input type=&quot;text&quot; value=&quot;[[ obj.value ]]&quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-10&quot;&gt;表达式&lt;/h2&gt;
+
+&lt;h3 id=&quot;section-11&quot;&gt;行为和限制&lt;/h3&gt;
+
+&lt;p&gt;表达式是javascript的子集&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;表达式用来处理简单的逻辑，不应该把复杂的逻辑放在表达式中&lt;/li&gt;
+  &lt;li&gt;表达式从来不是使用eval执行，也不能访问global变量。&lt;/li&gt;
+  &lt;li&gt;不能使用表达式插入HTML, 为了防止xss，默认对输出值进行html escape&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;section-12&quot;&gt;执行&lt;/h3&gt;
+
+&lt;p&gt;表达式可以使用在以下三种情况 &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{ {expression}}
+
+[[expression]]
+
+computed: {
+  name: expression
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;scope&quot;&gt;上下文(scope)&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;bind, repeat, if属性表达式使用的是父模板的作用域&lt;/li&gt;
+  &lt;li&gt;最外层模板中表达式和computed属性表达式使用的作用域都是元素本身&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;section-13&quot;&gt;嵌套作用域规则&lt;/h3&gt;
+
+&lt;p&gt;对于name scope模板，其父作用域是可见的，否则父作用域不可见&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;template&amp;gt;
+  &amp;lt;!-- outermost template -- element&#39;s properties available --&amp;gt;
+  &amp;lt;template bind=&quot;{ {organization as organization}}&quot;&amp;gt;
+    &amp;lt;!-- organization.* available --&amp;gt;
+    &amp;lt;template bind=&quot;{ {organization.contact as contact}}&quot;&amp;gt;
+      &amp;lt;!-- organization.* &amp;amp; contact.* available --&amp;gt;
+      &amp;lt;template bind=&quot;{ {contact.address}}&quot;&amp;gt;
+        &amp;lt;!-- only properties of address are available --&amp;gt;
+        &amp;lt;template bind=&quot;{ {streetAddress as streetAddress}}&quot;&amp;gt;
+          &amp;lt;!-- streetAddress.* and properties of address are available.
+               NOT organization.* or contact.* --&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-14&quot;&gt;过滤器&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;{ {user | formatUserName}}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上面的方式，如果user中的字段变化了，表达式不会重新求值,  &lt;br /&gt;
+因为表达式不知道应该监听什么属性变化，所以得主动告诉它。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;{ { {firstName: user.firstName, lastName: user.lastName} | formatUserName}}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;tokenlist-styleobject&quot;&gt;tokenList, styleObject&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;div class=&quot;{ }&quot;  
+&amp;lt;div style=&quot;{ {styles | styleObject}}&quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;section-15&quot;&gt;自定义过滤器&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;Polymer(&#39;greeting-tag&#39;, {
+  ...
+  toUpperCase: function(value) {
+    return value.toUpperCase()
+  },
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;需要处理双向绑定的过滤器：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;toUpperCase: {
+  toDOM: function(value) {
+    return value.toUpperCase()
+  },
+  toModel: function(value) {
+    return value.toLowerCase()
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;section-16&quot;&gt;过滤器参数&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;{ {myNumber | toFixed(2)}}
+
+toFixed: function(value, precision) {
+  return Number(value).toFixed(precision)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;chaining-filter&quot;&gt;chaining filter&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;{ {myNumber | toHex | toUpperCase}}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;section-17&quot;&gt;自定义全局过滤器&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;PolymerExpressions.prototype.uppercase = function(input) {
+  return input.toUpperCase()
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;全局过滤器使用html import方式载入&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;link rel=&quot;import&quot; href=&quot;uppercase-filter.html&quot; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
 </description>
         <pubDate>Mon, 07 Nov 2011 00:00:00 +0800</pubDate>
         <link>http://bencode.github.io/polymer/learning/data-binding.html</link>
