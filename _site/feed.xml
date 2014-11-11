@@ -5,9 +5,65 @@
     <description></description>
     <link>http://bencode.github.io/</link>
     <atom:link href="http://bencode.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 08 Nov 2014 16:26:57 +0800</pubDate>
-    <lastBuildDate>Sat, 08 Nov 2014 16:26:57 +0800</lastBuildDate>
+    <pubDate>Tue, 11 Nov 2014 09:40:12 +0800</pubDate>
+    <lastBuildDate>Tue, 11 Nov 2014 09:40:12 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>child_process的同步方法execSync</title>
+        <description>&lt;p&gt;node中通过child_processt和shell交互很方便，只是0.10.x版本中的exec没有同步版本，让做“脚本”用途的node写起来很是麻烦。&lt;br /&gt;
+而在0.11.12版本后添加了execSync方法解决了这个问题。&lt;/p&gt;
+
+&lt;p&gt;首先node版本要到0.11.12以上才有这个api，可以使用n进行快速安装&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;sudo npm install -g n
+n 0.11.14   // 到目前为止，已有0.11.14版了
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后就可以使用了&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var exec = require(&#39;child_process&#39;).execSync;
+exec(&#39;git log&#39;, { encoding: &#39;utf-8&#39; });
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;运行一下，就发现控制台有git log的输出了 &lt;br /&gt;
+上面在options中指定了encoding, 如果不指定，返回的是一个&lt;code&gt;Buffer&lt;/code&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 11 Nov 2014 00:00:00 +0800</pubDate>
+        <link>http://bencode.github.io/snap/nodejs/exec-sync.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/snap/nodejs/exec-sync.html</guid>
+        
+        
+        <category>snap</category>
+        
+        <category>nodejs</category>
+        
+      </item>
+    
+      <item>
+        <title>mruby源码阅读1</title>
+        <description>&lt;p&gt;include/mrbconf.h&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;define FALSE 0
+define TRUE 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;include/mrb/value.h&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+        <pubDate>Sun, 09 Nov 2014 00:00:00 +0800</pubDate>
+        <link>http://bencode.github.io/codereading/mruby/mruby-01.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/codereading/mruby/mruby-01.html</guid>
+        
+        
+        <category>codereading</category>
+        
+        <category>mruby</category>
+        
+      </item>
     
       <item>
         <title>Polymer学习笔记 - HTML5 Template</title>
@@ -48,7 +104,7 @@ var clone = document.importNode(t.content, true);
 document.body.appendChild(clone);
 &lt;/code&gt;&lt;/pre&gt;
 </description>
-        <pubDate>Tue, 08 Nov 2011 00:00:00 +0800</pubDate>
+        <pubDate>Sat, 08 Nov 2014 00:00:00 +0800</pubDate>
         <link>http://bencode.github.io/learning/polymer/template.html</link>
         <guid isPermaLink="true">http://bencode.github.io/learning/polymer/template.html</guid>
         
@@ -103,7 +159,7 @@ shadow DOM不能被用户访问到，它有自己的空间。 &lt;br /&gt;
 &lt;a href=&quot;http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-201/&quot;&gt;http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-201/&lt;/a&gt;&lt;br /&gt;
 &lt;a href=&quot;http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-301/&quot;&gt;http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-301/&lt;/a&gt;&lt;/p&gt;
 </description>
-        <pubDate>Tue, 08 Nov 2011 00:00:00 +0800</pubDate>
+        <pubDate>Sat, 08 Nov 2014 00:00:00 +0800</pubDate>
         <link>http://bencode.github.io/learning/html5/shadow-dom.html</link>
         <guid isPermaLink="true">http://bencode.github.io/learning/html5/shadow-dom.html</guid>
         
@@ -147,7 +203,7 @@ shadow DOM不能被用户访问到，它有自己的空间。 &lt;br /&gt;
 Polymer.waitingFor帮助方法返回一个阻塞状态的polymer-element列表。  &lt;br /&gt;
 Polymer.forceReady通知Polymer强制注册所有已ready的元素，忽略未完成的元素。&lt;/p&gt;
 </description>
-        <pubDate>Tue, 08 Nov 2011 00:00:00 +0800</pubDate>
+        <pubDate>Sat, 08 Nov 2014 00:00:00 +0800</pubDate>
         <link>http://bencode.github.io/learning/polymer/helper-methods.html</link>
         <guid isPermaLink="true">http://bencode.github.io/learning/polymer/helper-methods.html</guid>
         
@@ -580,7 +636,7 @@ textNode.bind(&#39;textContent&#39;, new PathObserver(obj, &#39;path.to.value&#3
 &lt;/code&gt;&lt;/pre&gt;
 
 </description>
-        <pubDate>Mon, 07 Nov 2011 00:00:00 +0800</pubDate>
+        <pubDate>Fri, 07 Nov 2014 00:00:00 +0800</pubDate>
         <link>http://bencode.github.io/learning/polymer/data-binding.html</link>
         <guid isPermaLink="true">http://bencode.github.io/learning/polymer/data-binding.html</guid>
         
@@ -882,7 +938,7 @@ preventDispose
 &lt;p&gt;&lt;code&gt;this.resolvePath(x-foo.png)&lt;/code&gt;&lt;/p&gt;
 
 </description>
-        <pubDate>Sun, 06 Nov 2011 00:00:00 +0800</pubDate>
+        <pubDate>Thu, 06 Nov 2014 00:00:00 +0800</pubDate>
         <link>http://bencode.github.io/learning/polymer/api-developer-guide.html</link>
         <guid isPermaLink="true">http://bencode.github.io/learning/polymer/api-developer-guide.html</guid>
         
