@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Polymer学习笔记 - Shadow DOM
-categories: learning html5
+categories: reading polymer
 ---
 
 ## 基本使用

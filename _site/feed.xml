@@ -5,9 +5,22 @@
     <description></description>
     <link>http://bencode.github.io/</link>
     <atom:link href="http://bencode.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 11 Nov 2014 23:20:45 +0800</pubDate>
-    <lastBuildDate>Tue, 11 Nov 2014 23:20:45 +0800</lastBuildDate>
+    <pubDate>Wed, 12 Nov 2014 09:16:37 +0800</pubDate>
+    <lastBuildDate>Wed, 12 Nov 2014 09:16:37 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>［译］Shadow DOM 101</title>
+        <description>&lt;p&gt;正在进行中…&lt;/p&gt;
+</description>
+        <pubDate>Tue, 11 Nov 2014 00:00:00 +0800</pubDate>
+        <link>http://bencode.github.io/translation/shadow-dom-101.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/translation/shadow-dom-101.html</guid>
+        
+        
+        <category>translation</category>
+        
+      </item>
     
       <item>
         <title>child_process的同步方法execSync</title>
@@ -31,11 +44,9 @@ exec(&#39;git log&#39;, { encoding: &#39;utf-8&#39; });
 
 </description>
         <pubDate>Tue, 11 Nov 2014 00:00:00 +0800</pubDate>
-        <link>http://bencode.github.io/snap/nodejs/exec-sync.html</link>
-        <guid isPermaLink="true">http://bencode.github.io/snap/nodejs/exec-sync.html</guid>
+        <link>http://bencode.github.io/nodejs/exec-sync.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/nodejs/exec-sync.html</guid>
         
-        
-        <category>snap</category>
         
         <category>nodejs</category>
         
@@ -55,13 +66,13 @@ define TRUE 1
 &lt;/code&gt;&lt;/pre&gt;
 </description>
         <pubDate>Sun, 09 Nov 2014 00:00:00 +0800</pubDate>
-        <link>http://bencode.github.io/codereading/mruby/mruby-01.html</link>
-        <guid isPermaLink="true">http://bencode.github.io/codereading/mruby/mruby-01.html</guid>
+        <link>http://bencode.github.io/codereading/ruby/mruby-01.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/codereading/ruby/mruby-01.html</guid>
         
         
         <category>codereading</category>
         
-        <category>mruby</category>
+        <category>ruby</category>
         
       </item>
     
@@ -105,11 +116,11 @@ document.body.appendChild(clone);
 &lt;/code&gt;&lt;/pre&gt;
 </description>
         <pubDate>Sat, 08 Nov 2014 00:00:00 +0800</pubDate>
-        <link>http://bencode.github.io/learning/polymer/template.html</link>
-        <guid isPermaLink="true">http://bencode.github.io/learning/polymer/template.html</guid>
+        <link>http://bencode.github.io/reading/polymer/template.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/reading/polymer/template.html</guid>
         
         
-        <category>learning</category>
+        <category>reading</category>
         
         <category>polymer</category>
         
@@ -160,13 +171,13 @@ shadow DOM不能被用户访问到，它有自己的空间。 &lt;br /&gt;
 &lt;a href=&quot;http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-301/&quot;&gt;http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-301/&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Sat, 08 Nov 2014 00:00:00 +0800</pubDate>
-        <link>http://bencode.github.io/learning/html5/shadow-dom.html</link>
-        <guid isPermaLink="true">http://bencode.github.io/learning/html5/shadow-dom.html</guid>
+        <link>http://bencode.github.io/reading/polymer/shadow-dom.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/reading/polymer/shadow-dom.html</guid>
         
         
-        <category>learning</category>
+        <category>reading</category>
         
-        <category>html5</category>
+        <category>polymer</category>
         
       </item>
     
@@ -204,11 +215,11 @@ Polymer.waitingFor帮助方法返回一个阻塞状态的polymer-element列表�
 Polymer.forceReady通知Polymer强制注册所有已ready的元素，忽略未完成的元素。&lt;/p&gt;
 </description>
         <pubDate>Sat, 08 Nov 2014 00:00:00 +0800</pubDate>
-        <link>http://bencode.github.io/learning/polymer/helper-methods.html</link>
-        <guid isPermaLink="true">http://bencode.github.io/learning/polymer/helper-methods.html</guid>
+        <link>http://bencode.github.io/reading/polymer/helper-methods.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/reading/polymer/helper-methods.html</guid>
         
         
-        <category>learning</category>
+        <category>reading</category>
         
         <category>polymer</category>
         
@@ -637,11 +648,11 @@ textNode.bind(&#39;textContent&#39;, new PathObserver(obj, &#39;path.to.value&#3
 
 </description>
         <pubDate>Fri, 07 Nov 2014 00:00:00 +0800</pubDate>
-        <link>http://bencode.github.io/learning/polymer/data-binding.html</link>
-        <guid isPermaLink="true">http://bencode.github.io/learning/polymer/data-binding.html</guid>
+        <link>http://bencode.github.io/reading/polymer/data-binding.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/reading/polymer/data-binding.html</guid>
         
         
-        <category>learning</category>
+        <category>reading</category>
         
         <category>polymer</category>
         
@@ -939,13 +950,97 @@ preventDispose
 
 </description>
         <pubDate>Thu, 06 Nov 2014 00:00:00 +0800</pubDate>
-        <link>http://bencode.github.io/learning/polymer/api-developer-guide.html</link>
-        <guid isPermaLink="true">http://bencode.github.io/learning/polymer/api-developer-guide.html</guid>
+        <link>http://bencode.github.io/reading/polymer/api-developer-guide.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/reading/polymer/api-developer-guide.html</guid>
         
         
-        <category>learning</category>
+        <category>reading</category>
         
         <category>polymer</category>
+        
+      </item>
+    
+      <item>
+        <title>RCP开发日积月累</title>
+        <description>&lt;h4 id=&quot;swt-layout-2006-8-17&quot;&gt;1. 关于SWT Layout &lt;em&gt;(2006-8-17)&lt;/em&gt;&lt;/h4&gt;
+
+&lt;p&gt;&lt;code&gt;GridLayout&lt;/code&gt;往往是很好的选择&lt;/p&gt;
+
+&lt;h4 id=&quot;hibernate----2006--8-17&quot;&gt;2. hibernate可以读取数据, 但插入或更新时, 无异常, 却不能正常更新 &lt;em&gt;(2006–8-17)&lt;/em&gt;&lt;/h4&gt;
+
+&lt;p&gt;改用数据库连接池, DataSource, 可以使用 apache 的 dpcp&lt;/p&gt;
+
+&lt;h4 id=&quot;swt-table--2006-8-21&quot;&gt;3. 为SWT Table 控件添加可编辑属性 &lt;em&gt;(2006-8-21)&lt;/em&gt;&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;TreeView#setCellEditors(CellEditor[] editors)  
+TreeView#setCellModifier(ICellModifier modifier)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;swt-list--2006-8-22&quot;&gt;4. SWT List 控件不支持图片 &lt;em&gt;(2006-8-22)&lt;/em&gt;&lt;/h4&gt;
+
+&lt;p&gt;用&lt;code&gt;Table&lt;/code&gt;代替&lt;/p&gt;
+
+&lt;h4 id=&quot;swt-table--2006-8-28&quot;&gt;5. 怎么样设置SWT &lt;code&gt;Table&lt;/code&gt; 的行高 &lt;em&gt;(2006-8-28)&lt;/em&gt;&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;方法一、创建一个相应高度的, 一像素宽的图片, 插到 TableItem 里&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;方法二、&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;table.addListener(SWT.MeasureItem,  new Listener() {
+     void handleEvent(Event event)  {
+           event.height = 25; // here
+     }
+});
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;section&quot;&gt;6. 取得屏幕大小 &lt;em&gt;(2006-8-30)&lt;/em&gt;&lt;/h4&gt;
+
+&lt;p&gt;参看&lt;code&gt;Display#getPrimaryMonitor()&lt;/code&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;swt-table--2006-9-2&quot;&gt;7. 关于SWT &lt;code&gt;Table&lt;/code&gt;中, 加入其他控件 &lt;em&gt;(2006-9-2)&lt;/em&gt;&lt;/h4&gt;
+
+&lt;p&gt;SWT Table 中 加其他控件， 用 &lt;code&gt;TableEditor&lt;/code&gt;  &lt;br /&gt;
+但要注意， 如果删除&lt;code&gt;TableItem&lt;/code&gt;， 要重新构造所有行的&lt;code&gt;TableEditor&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h4 id=&quot;hibernate--2006-9-3&quot;&gt;8. 关于Hibernate 延迟加载 &lt;em&gt;(2006-9-3)&lt;/em&gt;&lt;/h4&gt;
+
+&lt;p&gt;如果超出Session范围，读取延迟数据将会出错， 但却又不想把Session带到使用它的地方。  &lt;br /&gt;
+因为这样会让Hibernate污染其他层. 而如果关掉 lazy 又损失性能. 怎么办？  &lt;/p&gt;
+
+&lt;p&gt;可以用&lt;code&gt;Hibernate.initialize(...)&lt;/code&gt;, 主动提取需要的数据&lt;/p&gt;
+
+&lt;h4 id=&quot;formeditorsectionpartsectionpartmanagedformsection-2006--11-8&quot;&gt;9. 在&lt;code&gt;FormEditor&lt;/code&gt;中加&lt;code&gt;SectionPart&lt;/code&gt;时，记得要把&lt;code&gt;SectionPart&lt;/code&gt;加到&lt;code&gt;ManagedForm&lt;/code&gt;中(否则折叠Section时，鼠标会显示忙) &lt;em&gt;(2006–11-8)&lt;/em&gt;&lt;/h4&gt;
+
+&lt;h4 id=&quot;structuredviewersetlabelprovider-lp&quot;&gt;10. StructuredViewer#setLabelProvider(… lp)&lt;/h4&gt;
+
+&lt;p&gt;此 lp 可实现 &lt;code&gt;IColorProvider&lt;/code&gt; 以及 &lt;code&gt;IFontProvider&lt;/code&gt; 以便添加前景背景色，以及需要的字体效果&lt;/p&gt;
+
+&lt;h4 id=&quot;uiui&quot;&gt;11. 方法有时候不在UI线程中，却要操作UI&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;if (Display.getCurrent() != null) {  
+    updateViewer(event);  
+} else {  
+    Display.getDefault().asyncExec(new Runnable() {  
+        public void run() {  
+            updateViewer(event);  
+        }  
+    });  
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;section-1&quot;&gt;12 有时候忙，却又不想太麻烦&lt;/h4&gt;
+
+&lt;p&gt;看看：&lt;code&gt;org.eclipse.swt.custom.BusyIndicator&lt;/code&gt;&lt;/p&gt;
+</description>
+        <pubDate>Thu, 17 Aug 2006 00:00:00 +0800</pubDate>
+        <link>http://bencode.github.io/eclipse/RCP.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/eclipse/RCP.html</guid>
+        
+        
+        <category>eclipse</category>
         
       </item>
     
