@@ -5,8 +5,8 @@
     <description></description>
     <link>http://bencode.github.io/</link>
     <atom:link href="http://bencode.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 12 Nov 2014 23:15:36 +0800</pubDate>
-    <lastBuildDate>Wed, 12 Nov 2014 23:15:36 +0800</lastBuildDate>
+    <pubDate>Wed, 12 Nov 2014 23:36:31 +0800</pubDate>
+    <lastBuildDate>Wed, 12 Nov 2014 23:36:31 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -961,6 +961,88 @@ preventDispose
       </item>
     
       <item>
+        <title>TableViewer, TreeViewer双击编辑</title>
+        <description>&lt;p&gt;在TreeViewer或TableViewer中，可用CellEditor结合CellModifier可以很实现表格的编辑功能，但是默认的是单击，就会打开编辑区域。有时候我们会需要双击进行（或者其他），于是我写了一个&lt;code&gt;DoubleCellModifier&lt;/code&gt;，只要让你的&lt;code&gt;CellModifier&lt;/code&gt;继承它，就可以很方便实现双击编辑。&lt;/p&gt;
+
+&lt;p&gt;具体代码如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;package com.longthsoft.rcppart.ui;  
+  
+import org.eclipse.jface.viewers.ICellModifier;  
+import org.eclipse.jface.viewers.TableViewer;  
+import org.eclipse.jface.viewers.TreeViewer;  
+import org.eclipse.swt.events.MouseAdapter;  
+import org.eclipse.swt.events.MouseEvent;  
+import org.eclipse.swt.widgets.Item;  
+  
+public abstract class DoubleClickCellModifier implements ICellModifier {  
+     
+    private boolean doubleClick;  
+    private Object element;  
+    private String property;  
+     
+    public DoubleClickCellModifier(final TableViewer tableViewer) {  
+        tableViewer.getTable().addMouseListener(new MouseAdapter() {  
+            @Override  
+            public void mouseDoubleClick(MouseEvent e) {  
+                if (allowModify(element, property)) {  
+                    int column = UIUtil.getPropertyColumnIndex(tableViewer, property);  
+                    doubleClick = true;  
+                    tableViewer.editElement(element, column);  
+                    doubleClick = false;  
+                }  
+            }  
+        });  
+    }  
+     
+    public DoubleClickCellModifier(final TreeViewer treeViewer) {  
+        treeViewer.getTree().addMouseListener(new MouseAdapter() {  
+            public void mouseDoubleClick(MouseEvent e) {  
+                if (allowModify(element, property)) {  
+                    int column =UIUtil.getPropertyColumnIndex(treeViewer, property);  
+                    doubleClick = true;  
+                    treeViewer.editElement(element, column);  
+                    doubleClick = false;  
+                }  
+            }  
+        });  
+    }  
+     
+    public boolean canModify(Object element, String property) {  
+        this.element = element;  
+        this.property = property;  
+        if (doubleClick) {  
+            return true;  
+        } else {  
+            return false;  
+        }  
+    }  
+     
+    public void modify(Object element, String property, Object value) {  
+        if (element instanceof Item) {  
+            element = ((Item) element).getData();  
+        }  
+        doModify(element, property, value);  
+    }  
+     
+    public boolean allowModify(Object element, String property) {  
+        return true;  
+    }  
+     
+    public abstract void doModify(Object element, String property, Object value);  
+} 
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+        <pubDate>Sat, 16 Dec 2006 00:00:00 +0800</pubDate>
+        <link>http://bencode.github.io/eclipse/table-view-dbclick-edit.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/eclipse/table-view-dbclick-edit.html</guid>
+        
+        
+        <category>eclipse</category>
+        
+      </item>
+    
+      <item>
         <title>让JFace Dialog底部的按扭居中</title>
         <description>&lt;p&gt;查Eclipse源码可以看到： &lt;/p&gt;
 
@@ -992,90 +1074,6 @@ protected void createButtonsForButtonBar(Composite parent) {
         <pubDate>Sat, 16 Dec 2006 00:00:00 +0800</pubDate>
         <link>http://bencode.github.io/eclipse/align-center-jface-dialog-button.html</link>
         <guid isPermaLink="true">http://bencode.github.io/eclipse/align-center-jface-dialog-button.html</guid>
-        
-        
-        <category>eclipse</category>
-        
-      </item>
-    
-      <item>
-        <title>RCP开发日积月累</title>
-        <description>&lt;h4 id=&quot;swt-layout-2006-8-17&quot;&gt;1. 关于SWT Layout &lt;em&gt;(2006-8-17)&lt;/em&gt;&lt;/h4&gt;
-
-&lt;p&gt;&lt;code&gt;GridLayout&lt;/code&gt;往往是很好的选择&lt;/p&gt;
-
-&lt;h4 id=&quot;hibernate----2006--8-17&quot;&gt;2. hibernate可以读取数据, 但插入或更新时, 无异常, 却不能正常更新 &lt;em&gt;(2006–8-17)&lt;/em&gt;&lt;/h4&gt;
-
-&lt;p&gt;改用数据库连接池, DataSource, 可以使用 apache 的 dpcp&lt;/p&gt;
-
-&lt;h4 id=&quot;swt-table--2006-8-21&quot;&gt;3. 为SWT Table 控件添加可编辑属性 &lt;em&gt;(2006-8-21)&lt;/em&gt;&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;TreeView#setCellEditors(CellEditor[] editors)  
-TreeView#setCellModifier(ICellModifier modifier)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&quot;swt-list--2006-8-22&quot;&gt;4. SWT List 控件不支持图片 &lt;em&gt;(2006-8-22)&lt;/em&gt;&lt;/h4&gt;
-
-&lt;p&gt;用&lt;code&gt;Table&lt;/code&gt;代替&lt;/p&gt;
-
-&lt;h4 id=&quot;swt-table--2006-8-28&quot;&gt;5. 怎么样设置SWT &lt;code&gt;Table&lt;/code&gt; 的行高 &lt;em&gt;(2006-8-28)&lt;/em&gt;&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;方法一、创建一个相应高度的, 一像素宽的图片, 插到 TableItem 里&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;方法二、&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;table.addListener(SWT.MeasureItem,  new Listener() {
-     void handleEvent(Event event)  {
-           event.height = 25; // here
-     }
-});
-&lt;/code&gt;&lt;/pre&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;section&quot;&gt;6. 取得屏幕大小 &lt;em&gt;(2006-8-30)&lt;/em&gt;&lt;/h4&gt;
-
-&lt;p&gt;参看&lt;code&gt;Display#getPrimaryMonitor()&lt;/code&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;swt-table--2006-9-2&quot;&gt;7. 关于SWT &lt;code&gt;Table&lt;/code&gt;中, 加入其他控件 &lt;em&gt;(2006-9-2)&lt;/em&gt;&lt;/h4&gt;
-
-&lt;p&gt;SWT Table 中 加其他控件， 用 &lt;code&gt;TableEditor&lt;/code&gt;  &lt;br /&gt;
-但要注意， 如果删除&lt;code&gt;TableItem&lt;/code&gt;， 要重新构造所有行的&lt;code&gt;TableEditor&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h4 id=&quot;hibernate--2006-9-3&quot;&gt;8. 关于Hibernate 延迟加载 &lt;em&gt;(2006-9-3)&lt;/em&gt;&lt;/h4&gt;
-
-&lt;p&gt;如果超出Session范围，读取延迟数据将会出错， 但却又不想把Session带到使用它的地方。  &lt;br /&gt;
-因为这样会让Hibernate污染其他层. 而如果关掉 lazy 又损失性能. 怎么办？  &lt;/p&gt;
-
-&lt;p&gt;可以用&lt;code&gt;Hibernate.initialize(...)&lt;/code&gt;, 主动提取需要的数据&lt;/p&gt;
-
-&lt;h4 id=&quot;formeditorsectionpartsectionpartmanagedformsection-2006--11-8&quot;&gt;9. 在&lt;code&gt;FormEditor&lt;/code&gt;中加&lt;code&gt;SectionPart&lt;/code&gt;时，记得要把&lt;code&gt;SectionPart&lt;/code&gt;加到&lt;code&gt;ManagedForm&lt;/code&gt;中(否则折叠Section时，鼠标会显示忙) &lt;em&gt;(2006–11-8)&lt;/em&gt;&lt;/h4&gt;
-
-&lt;h4 id=&quot;structuredviewersetlabelprovider-lp&quot;&gt;10. StructuredViewer#setLabelProvider(… lp)&lt;/h4&gt;
-
-&lt;p&gt;此 lp 可实现 &lt;code&gt;IColorProvider&lt;/code&gt; 以及 &lt;code&gt;IFontProvider&lt;/code&gt; 以便添加前景背景色，以及需要的字体效果&lt;/p&gt;
-
-&lt;h4 id=&quot;uiui&quot;&gt;11. 方法有时候不在UI线程中，却要操作UI&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;if (Display.getCurrent() != null) {  
-    updateViewer(event);  
-} else {  
-    Display.getDefault().asyncExec(new Runnable() {  
-        public void run() {  
-            updateViewer(event);  
-        }  
-    });  
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&quot;section-1&quot;&gt;12 有时候忙，却又不想太麻烦&lt;/h4&gt;
-
-&lt;p&gt;看看：&lt;code&gt;org.eclipse.swt.custom.BusyIndicator&lt;/code&gt;&lt;/p&gt;
-</description>
-        <pubDate>Thu, 17 Aug 2006 00:00:00 +0800</pubDate>
-        <link>http://bencode.github.io/eclipse/RCP.html</link>
-        <guid isPermaLink="true">http://bencode.github.io/eclipse/RCP.html</guid>
         
         
         <category>eclipse</category>
