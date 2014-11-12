@@ -5,8 +5,8 @@
     <description></description>
     <link>http://bencode.github.io/</link>
     <atom:link href="http://bencode.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 12 Nov 2014 09:16:37 +0800</pubDate>
-    <lastBuildDate>Wed, 12 Nov 2014 09:16:37 +0800</lastBuildDate>
+    <pubDate>Wed, 12 Nov 2014 23:15:36 +0800</pubDate>
+    <lastBuildDate>Wed, 12 Nov 2014 23:15:36 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -957,6 +957,44 @@ preventDispose
         <category>reading</category>
         
         <category>polymer</category>
+        
+      </item>
+    
+      <item>
+        <title>让JFace Dialog底部的按扭居中</title>
+        <description>&lt;p&gt;查Eclipse源码可以看到： &lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;// in Dialog.class  
+protected Control createButtonBar(Composite parent) {  
+    ...  
+  
+    GridData data = new GridData(GridData.HORIZONTAL_ALIGN_END  
+                | GridData.VERTICAL_ALIGN_CENTER);  
+    composite.setLayoutData(data);  
+    composite.setFont(parent.getFont());  
+         
+    / Add the buttons to the button bar.  
+    createButtonsForButtonBar(composite);  
+}  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;于是，我应该在自己的Dialog类中， 这样:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@Override  
+protected void createButtonsForButtonBar(Composite parent) {  
+    GridData gridData = (GridData) parent.getLayoutData();  
+    gridData.horizontalAlignment = SWT.CENTER;  
+     
+    ...  
+}  
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+        <pubDate>Sat, 16 Dec 2006 00:00:00 +0800</pubDate>
+        <link>http://bencode.github.io/eclipse/align-center-jface-dialog-button.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/eclipse/align-center-jface-dialog-button.html</guid>
+        
+        
+        <category>eclipse</category>
         
       </item>
     
