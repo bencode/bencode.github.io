@@ -5,8 +5,8 @@
     <description></description>
     <link>http://bencode.github.io/</link>
     <atom:link href="http://bencode.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 12 Nov 2014 23:36:31 +0800</pubDate>
-    <lastBuildDate>Wed, 12 Nov 2014 23:36:31 +0800</lastBuildDate>
+    <pubDate>Fri, 14 Nov 2014 13:57:02 +0800</pubDate>
+    <lastBuildDate>Fri, 14 Nov 2014 13:57:02 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -961,6 +961,573 @@ preventDispose
       </item>
     
       <item>
+        <title>git学习记录</title>
+        <description>&lt;p&gt;用git一段时间了，但是只掌握了其中一小部分内容，这两天把progit重新看一遍，这里就记一下关键的东西&lt;/p&gt;
+
+&lt;p&gt;pro git 这本书是作者免费提供的哦，佩服作者Scott Chacon的奉献精神，大家可以到这里看&lt;a href=&quot;http://progit.org&quot;&gt;http://progit.org&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;1. 开始&lt;/h2&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;1.1 关于版本控制&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;本地版本控制, 如rcs&lt;/li&gt;
+  &lt;li&gt;集中式版本控制, 如 cvs, svn.  主要有以下缺点
+    &lt;ul&gt;
+      &lt;li&gt;服务器挂了, 所有版本信息就丢失了&lt;/li&gt;
+      &lt;li&gt;不能山上写代码, 然后比较, CI等&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;分布式版本控制&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;git&quot;&gt;1.2 关于git及特点&lt;/h3&gt;
+
+&lt;p&gt;git诞生于Linux，一开始被用来管理Linux内核代码，有以下特点&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;速度&lt;/li&gt;
+  &lt;li&gt;简单设计&lt;/li&gt;
+  &lt;li&gt;对非线性开发有强大的支持(成千上万个并行分支) —– 这个是git最重要的特点，可以改变开发模式&lt;/li&gt;
+  &lt;li&gt;完全分布式&lt;/li&gt;
+  &lt;li&gt;适合巨大项目(像linux内核)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;git-1&quot;&gt;1.3 git基础&lt;/h3&gt;
+
+&lt;p&gt;这一节很重要，对git的使用和理解有很的帮助&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;快照&lt;br /&gt;
+  giit是基于快照机制的(其他版本控制系统往往基于的是差异信息)&lt;br /&gt;
+  比如新版本修改了一个文件, git仅仅把这个文件复制一次, 作为第二个版本的数据, 而不是计算并保存两个文件的差异信息.&lt;br /&gt;
+  可以说git仅是一个文件系统，然后在它上面构建一堆强大的工具&lt;/li&gt;
+  &lt;li&gt;几乎所有操作都不需要网络&lt;/li&gt;
+  &lt;li&gt;三种状态&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code&gt;workding directory  |   staging area    |     repository
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(1) 初始化git后, 我们平常的目录, 就是working directory, 我们添加修改删除文件都是在working directory中工作&lt;/p&gt;
+
+&lt;p&gt;(2) staging area（暂存区）， 可以想像成中间区域，当我们git status时， git 会比较：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;版本库 vs 暂存区
+暂存区 vs 工作区
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;即可能显示成这样：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+# On branch master
+#
+# Initial commit
+#
+# Changes to be committed:
+#   (use &quot;git rm --cached &amp;lt;file&amp;gt;...&quot; to unstage)
+#
+# new file:   README   &amp;lt;------------ 版本库和暂存区 diff
+#
+# Changes not staged for commit:
+#   (use &quot;git add &amp;lt;file&amp;gt;...&quot; to update what will be committed)
+#   (use &quot;git checkout -- &amp;lt;file&amp;gt;...&quot; to discard changes in working directory)
+#
+# modified:   README    &amp;lt;------------- 暂存区和工作区 diff
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;我们&lt;code&gt;git commit -m &#39;...&#39;&lt;/code&gt;, 是把暂存区的内容提交到版本库&lt;/p&gt;
+
+&lt;p&gt;所以我们添加文件后或者修改文件后需要&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git add ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;用以下命令比较版本库&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+git diff 比较工作区和暂存区的不同
+
+git diff --cached 比较版本库和暂存区的不同
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(3) respository 即版本库&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;1.4 安装&lt;/h3&gt;
+&lt;p&gt;没啥好记录的&lt;/p&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;1.5 配置&lt;/h3&gt;
+
+&lt;p&gt;git的配置信息存放在三个地方&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/etc/gitconfig
+~/.gitconfig
+.git/config
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;分别对应于不同的作用域，使用git config进行配置&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git config --system ...
+git config --global ...
+git config ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;一些例子&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+git config --global user.name &#39;John Doe&#39;
+git config --global user.email johndoe@example.com 
+
+git config --global core.editor emacs
+git config --global merge.tool vimdiff
+
+git config --list
+git config user.name
+
+git help config
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;git-&quot;&gt;2. git 基础操作&lt;/h2&gt;
+
+&lt;h3 id=&quot;git-2&quot;&gt;2.1 获得一个git版本库&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;
+git init  # 初始化git 版本库
+git add a.js
+git commit -m &#39;first commit&#39;
+
+git clone git://github.com/schacon/grit.git # 从远程获取
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;recording-changes-to-the-responsitory&quot;&gt;2.2.Recording Changes to the Responsitory&lt;/h3&gt;
+
+&lt;p&gt;git status和git add比较容易，使用git status时会有相当友好的提示，告诉你接下来做什么&lt;/p&gt;
+
+&lt;p&gt;有些文件我们不需要版本库管理，如编辑器产生的临时文件等&lt;br /&gt;
+可以在 .gitignore中放忽略文件&lt;/p&gt;
+
+&lt;p&gt;文件中可以允许下面规则：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;空行, #开头忽略&lt;/li&gt;
+  &lt;li&gt;standard glob patterns work&lt;/li&gt;
+  &lt;li&gt;结尾/ 表示目录&lt;/li&gt;
+  &lt;li&gt;!开头表示“非”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;
+git diff      # 比较工作区和暂存区，即看看有什么没有暂存
+git diff --cached # 比较版本库和暂存区
+
+git commit
+git commit -a   # 用这个可以让我们commit之前不需要运行git add, 它会自动git add已被traced的文件
+
+git rm
+git rm --cached   # 如果想remote文件，但是又不想从硬盘上把这个文件删除，可以使用--cached
+
+git mv 等效于
+rm
+git rm
+git add
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;2.3 查日志&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;
+git log
+git log -p -2 # 显示2条日志, 显示diff内容
+git log --stat # 列出文件修改信息
+
+git log --pretty=oneline|short|full|fuller # 不同的格式化形式输出日志
+
+git log --pretty=format:&quot;%h - %an, %ar : %s&quot;  # 特定格式输出日志
+
+git log --pretty=format:&quot;%h %s&quot; --graph   # 漂亮的ascii图，包括提交和merge信息
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;还可以指定时间区间等参数&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+git log --since=2.weeks # until, after, before
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可以使用gitk以gui方式看日志  —- 这个感觉挺好的&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gitk
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;undoing-things&quot;&gt;2.4 Undoing Things&lt;/h3&gt;
+
+&lt;p&gt;有时候注释写错了, 或者发现有文件没有add就commit了，此时可以使用&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git commit --amend   # ps: amend原来是修改的意思 :(
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;working-with-remotes&quot;&gt;2.5 Working with Remotes&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;
+git clone url # 从远程clone一个版本库
+git remote    # 看看配置了哪些远程仓库, 如果是clone来的，应该至少看到 origin
+git remote -v # 查看远程仓库，带URL等信息
+git remote add [short-name] url # 添加远程仓库，然后我们就可以从服务器上取得代码
+
+
+git fetch [remote-name] # 从服务器更新内容, 但并不合并到本地分支
+
+上面命令仅从服务器获取内容，比如我们git fetch，那么将从服务器获取内容，相当于 origin/master分支update了(remote-name省略表示使用默认远程server, 关于默认的remote，第3章有详细的介绍哦)
+我们可以checkout这个分支看看 git checkout origin/master， 也可以把它合并到当前分支 git merge origin/master
+这相当于git pull
+
+git pull [remote-name] [branch-name] # fetch + merge
+
+git push [remote-name] [branch-name] # 将本地分支branch-name push 到远程 remote-name上
+一般情况下我们使用git clone时，会自动设置默认的 server和branch，所以仅仅使用
+git pull和git push就可以了(第3章会有详细介绍哦)
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;git remote show [remote-name]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;查看remote信息&lt;/p&gt;
+
+&lt;p&gt;比如我们的知识库是这样子的:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$&amp;gt; git remote show origin
+
+* remote origin   # 名称
+  Fetch URL: git@wd.alibaba-inc.com:fdoc-doc.git
+  Push  URL: git@wd.alibaba-inc.com:fdoc-doc.git
+  HEAD branch: master
+  Remote branch:
+    master tracked    # 远程分支, 我们可以使用git checkout origin/master
+  Local branch configured for &#39;git pull&#39;:
+    master merges with remote master    # 这里说的就是当我们使用git pull时，会把远程master(origin/master)自动合并到本地master分支
+  Local ref configured for &#39;git push&#39;:
+    master pushes to master (fast-forwardable)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;再看看xray&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$&amp;gt; git remote show origin
+
+* remote origin
+  Fetch URL: git@github.com:qhwa/fdlint.git
+  Push  URL: git@github.com:qhwa/fdlint.git
+  HEAD branch: master
+  Remote branches:    # 看到远程有好几个分支呢, master是我们的主干分支
+    css-first-rule tracked
+    dsl            tracked
+    html-checker   tracked
+    master         tracked
+  Local branch configured for &#39;git pull&#39;:
+    master merges with remote master
+  Local ref configured for &#39;git push&#39;:
+    master pushes to master (fast-forwardable)
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;
+git remote rename ＃重命名remote
+git remote rm # 和git remote add 相反
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-5&quot;&gt;2.6 标记&lt;/h3&gt;
+
+&lt;p&gt;tag用于给commit弄个别名, 或打个标记，添加些信息。&lt;br /&gt;
+比如完成了1.0版commit后，可以：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git tag v1.0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;git show v1.0 # 可以这样查看日志
+git tag # 查看所有tag
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上面这种tag相当于commit的alias，即是把长长的sha1给个名字好记&lt;/p&gt;
+
+&lt;p&gt;还有一种tag(Annotated Tag)可以加额外的message&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git tag -a v1.2 -m &#39;增强版 基本上适合所有需要了哦&#39;
+git show v1.2 # 可以看到上述信息并且tag创建的日期也会存在
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;也可以给指定的commit加tag&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git tag -a v1.2 9fceb02
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;git push时并不会把tag push到remote, 我们需要这样&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git push origin v1.1
+git push origin --tags  # 所有tag都push
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-6&quot;&gt;2.7 小技巧&lt;/h3&gt;
+
+&lt;h4 id=&quot;auto-complete&quot;&gt;1. auto complete&lt;/h4&gt;
+&lt;p&gt;如果是linux, 可以source这个文件：contrib/completion &lt;br /&gt;
+  我的mac用zshell，好像帮你弄了auto complete&lt;/p&gt;
+
+&lt;h4 id=&quot;alias&quot;&gt;2. alias&lt;/h4&gt;
+
+&lt;p&gt;使用惯svn的 co up st ci 等简写命令的，可以觉得git怎么不提供简写的命令以加快录入速度&lt;/p&gt;
+
+&lt;p&gt;可以用alias配置自己的命令&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+  git config --global alias.co checkout
+  git config --global alias.br branch
+  git config --global alias.ci commit
+  git config --global alias.st status
+ &lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;运行外部命令，这个记录下，暂时还没用到&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+  git config --global alias.visual &quot;!gitk&quot;
+ &lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section-7&quot;&gt;3. 分支&lt;/h2&gt;
+
+&lt;p&gt;分支是git的“killer feature”, 我们使用svn co, svn sw都慢慢的，而git的分支非常轻量级，切换分支就像切换当前目录，&lt;br /&gt;
+而如果习惯了这种特定可能会改变我们开发的方式&lt;/p&gt;
+
+&lt;h3 id=&quot;section-8&quot;&gt;3.1 分支是什么&lt;/h3&gt;
+
+&lt;p&gt;建议有没时间都得看看：http://progit.org/book/ch3-1.html&lt;/p&gt;
+
+&lt;p&gt;记录一段关于branch的原文：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;a branch in Git is in actuality a simple file that contains the 40 character SHA-1 checksum of the commit it points to, &lt;br /&gt;
+branches are cheap to create and destroy. &lt;br /&gt;
+Creating a new branch is as quick and simple as writing 41 bytes to a file (40 characters and a newline).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;section-9&quot;&gt;3.2 创建分支和合并&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;git branch css_feature
+git checkout css_feature
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可以简写为&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git checkout -b css_feature
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;编辑好ci后，功能稳定了，需要合并回master&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git checkout master
+git merge css_feature
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;合并好后，css_feature分支有可能不需要了(分支仅仅是一个commit对象的引用， 合并分支就是创建一个新的commit对象)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;                             master
+                              |
+C0 -- C1 -- C2 -- C4 -------- C6
+             \               /
+              -- C3 -- C5 --
+                       |
+                    css_feature
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;比如以上，我们一开始在master上开发，开发C2时需要实现一个css_feature，然后建了一个新分支(css_feature)， 创建分支仅仅是创建一个引用(git中的引用都是长度为40的sha1字符串)，指向C2。&lt;/p&gt;
+
+&lt;p&gt;然后我们在css_feature上开发，两个commit后，这个功能完成了。&lt;/p&gt;
+
+&lt;p&gt;切回master分支， 发现有个小bug，然后做了C4这个bugfix之后， 我们需要把css_feature合并到master上。&lt;/p&gt;
+
+&lt;p&gt;当创建合并快照后，然后创建一个C6的commit对象指向它， 而C4, C5将成为C6的parent对象，即“历史”&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git branch -d css_feature # 删除原分支
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;在master分支下，git log看一下所有的提交都是存在的哦:)&lt;/p&gt;
+
+&lt;p&gt;如果没有合并的时候就尝试删除，git 不会删除成功，会提示:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;error: The branch &#39;css_feature&#39; is not fully merged.
+If you are sure you want to delete it, run &#39;git branch -D css_feature&#39;.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;section-10&quot;&gt;解决冲突&lt;/h4&gt;
+
+&lt;p&gt;比如我们在两个分支修改了同一文件的同一行，然后merge时发生冲突。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$&amp;gt; git status
+
+# On branch master
+# Unmerged paths:
+#   (use &quot;git add/rm &amp;lt;file&amp;gt;...&quot; as appropriate to mark resolution)
+#
+# both modified:      abc.txt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后打开文件，解决冲突保存后，再add并commit即可&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git add abc.txt 
+git commit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;合并的使用和svn有较大的区别&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;svn merge后，不管有没有冲突，都需要再CI一下，而且新分支上不存在原来分支的提交信息&lt;br /&gt;
+  解决冲突后需要resoved相应的冲突，然后再ci&lt;/li&gt;
+  &lt;li&gt;git merge, 如果没有冲突，将会直接创建一个新的commit对像（见上图），而且分支上的提交对象都存在当前分支上&lt;br /&gt;
+  如果有冲突，则不自动创建这个commit对象。由你自己解决好后， 再commit即可&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;到这里，git的日常使用应该没啥问题了&lt;/p&gt;
+
+&lt;h3 id=&quot;section-11&quot;&gt;3.3 分支管理&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;git branch  # 查看分支, 带*的为当前分支
+
+git branch -v  # 查看每个分支的最后一次提交
+
+git branch --merged  # 查看哪些分支已合并到当前分支
+git branch --no-merged
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-12&quot;&gt;3.4 利用分支－工作流程&lt;/h3&gt;
+
+&lt;p&gt;呵呵，日常工作中多多使用，积累经验&lt;/p&gt;
+
+&lt;h3 id=&quot;section-13&quot;&gt;3.5 远程分支&lt;/h3&gt;
+
+&lt;h2 id=&quot;git-tools&quot;&gt;6 Git Tools&lt;/h2&gt;
+
+&lt;h3 id=&quot;revision-selection&quot;&gt;6.1 Revision Selection&lt;/h3&gt;
+
+&lt;p&gt;一些版本选择的方式,可用于git log, git show 等&lt;/p&gt;
+
+&lt;h4 id=&quot;sha1&quot;&gt;SHA1&lt;/h4&gt;
+
+&lt;p&gt;git中索引一个对象(commit或文件，目录等)，都是使用40个字符长的sha1,&lt;br /&gt;
+而一般项目我们只要指定前面4位就可以了, 像linux这种大型的项目也只要40位中的前12位就保证全局唯一&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+git showe 066b2e8dc9f40101d74f1784acc23b860460bbf 
+
+git show 066b 
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;关于两个文件产生相同sha1的概率：&lt;/p&gt;
+
+&lt;p&gt;如果地球上所有的65亿人都写代码，每人每秒产出整个linux规模的代码，然后把它放在一个git responsitory中，过上个5年，应该会有50%的概率产生1例冲突&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git rev-parse v1.1 #-&amp;gt; 查看分支v1.1对应的sha1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;reflog&quot;&gt;Reflog&lt;/h4&gt;
+
+&lt;p&gt;a log of where your HEAD and branch references have been for the last few months &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git reflog
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;ancestry-references&quot;&gt;Ancestry References&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;
+git show HEAD^
+git show d921970^2 # the second parent...
+
+git show HEAD~
+git show HEAD~2  # the first parent of the first parent
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;commit-ranges&quot;&gt;Commit Ranges&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;
+git log master..experiment  # in experiment not in master
+
+git log origin/master..HEAD  # 即看看哪些东西还没有push
+
+git log origin/master.. #同上,如果省略一边, git 认为是HEAD
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;下面三个一样&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git log refA..refB
+git log ^refA refB
+git log refB --not refA
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;in refB not in refA&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git log refA refB ^refC
+git log refA refB --not refC
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;git log master...experiment   #in master and in experiment but not in both
+git log --left-right master...experiment  #一般这样用
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;interactive-staging&quot;&gt;6.2 Interactive Staging&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;git add -i # 采用交互式操作，适合不马上提交所有东东
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果只想提交文件修改的一部分，可以使用&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git add --patch  # 这功能强大，木有用过
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;stashing&quot;&gt;6.3 Stashing&lt;/h3&gt;
+
+&lt;p&gt;有时候工作到一半，需要切换到其他分支看看，可又不能提交当前的工作（因为还没有完成），就需要使用stash&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+git stash  # 保存
+
+... 干其他活
+
+
+git stash apply # 恢复修改到当前分支(不一定是原先stash的分支， 这说明可以把修改“搬”到其他分支中)
+
+
+#其他相关命令
+
+git stash list
+git stash drop ...
+git stash pop # --&amp;gt; git apply; git drop
+
+git stash branch
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;rewrite-history&quot;&gt;6.4 Rewrite History&lt;/h3&gt;
+
+&lt;h4 id=&quot;change-the-last-commit&quot;&gt;Change the Last Commit&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;git commit --amend
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;其他的好复杂，现在用不到，不看&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 17 Jan 2012 00:00:00 +0800</pubDate>
+        <link>http://bencode.github.io/git/git-study.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/git/git-study.html</guid>
+        
+        
+        <category>git</category>
+        
+      </item>
+    
+      <item>
         <title>TableViewer, TreeViewer双击编辑</title>
         <description>&lt;p&gt;在TreeViewer或TableViewer中，可用CellEditor结合CellModifier可以很实现表格的编辑功能，但是默认的是单击，就会打开编辑区域。有时候我们会需要双击进行（或者其他），于是我写了一个&lt;code&gt;DoubleCellModifier&lt;/code&gt;，只要让你的&lt;code&gt;CellModifier&lt;/code&gt;继承它，就可以很方便实现双击编辑。&lt;/p&gt;
 
@@ -1036,44 +1603,6 @@ public abstract class DoubleClickCellModifier implements ICellModifier {
         <pubDate>Sat, 16 Dec 2006 00:00:00 +0800</pubDate>
         <link>http://bencode.github.io/eclipse/table-view-dbclick-edit.html</link>
         <guid isPermaLink="true">http://bencode.github.io/eclipse/table-view-dbclick-edit.html</guid>
-        
-        
-        <category>eclipse</category>
-        
-      </item>
-    
-      <item>
-        <title>让JFace Dialog底部的按扭居中</title>
-        <description>&lt;p&gt;查Eclipse源码可以看到： &lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;// in Dialog.class  
-protected Control createButtonBar(Composite parent) {  
-    ...  
-  
-    GridData data = new GridData(GridData.HORIZONTAL_ALIGN_END  
-                | GridData.VERTICAL_ALIGN_CENTER);  
-    composite.setLayoutData(data);  
-    composite.setFont(parent.getFont());  
-         
-    / Add the buttons to the button bar.  
-    createButtonsForButtonBar(composite);  
-}  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;于是，我应该在自己的Dialog类中， 这样:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@Override  
-protected void createButtonsForButtonBar(Composite parent) {  
-    GridData gridData = (GridData) parent.getLayoutData();  
-    gridData.horizontalAlignment = SWT.CENTER;  
-     
-    ...  
-}  
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-        <pubDate>Sat, 16 Dec 2006 00:00:00 +0800</pubDate>
-        <link>http://bencode.github.io/eclipse/align-center-jface-dialog-button.html</link>
-        <guid isPermaLink="true">http://bencode.github.io/eclipse/align-center-jface-dialog-button.html</guid>
         
         
         <category>eclipse</category>
