@@ -10,39 +10,39 @@ categories: eclipse
 //在这里找 package org.eclipse.ui.model;  
 
 public class WorkbenchLabelProvider extends LabelProvider implements  
-        IColorProvider, IFontProvider {   
-        // 嘿,  啥都有了  
-    
-    ...  
+    IColorProvider, IFontProvider {   
+    // 嘿,  啥都有了  
   
-    public final String getText(Object element) {  
-        //query the element for its label  
-        IWorkbenchAdapter adapter = getAdapter(element);    
-        // 需要一个 IWorkbenchAdapter 呀  
-        if (adapter == null) {  
-            return "";  
-        }  
-        String label = adapter.getLabel(element);  
+  ...  
   
-        //return the decorated label  
-        return decorateText(label, element);  
+  public final String getText(Object element) {  
+    //query the element for its label  
+    IWorkbenchAdapter adapter = getAdapter(element);  
+    // 需要一个 IWorkbenchAdapter 呀  
+    if (adapter == null) {  
+      return "";  
     }  
+    String label = adapter.getLabel(element);  
   
-    protected IWorkbenchAdapter getAdapter(Object element) {  
-        if (!(element instanceof IAdaptable)) {   
-            // 这里的实现为何是这样？ 我们的Model一定要实现IAdaptable？ 
-            // 虽然这样，但我觉得侵入了Model，不好， 
-            // 虽然这里可能引入是UI Model，但这却增加了复杂性。  
-            // 我觉得这一步实现不好[还好它是方法是保护的，竟味着我们可以在子类中重写它，见下面]。  
-            return null;  
-        }  
-        return (IWorkbenchAdapter) ((IAdaptable) element)  
-                .getAdapter(IWorkbenchAdapter.class);  
+    //return the decorated label  
+    return decorateText(label, element);  
+  }  
+  
+  protected IWorkbenchAdapter getAdapter(Object element) {  
+    if (!(element instanceof IAdaptable)) {   
+      // 这里的实现为何是这样？ 我们的Model一定要实现IAdaptable？ 
+      // 虽然这样，但我觉得侵入了Model，不好， 
+      // 虽然这里可能引入是UI Model，但这却增加了复杂性。  
+      // 我觉得这一步实现不好[还好它是方法是保护的，竟味着我们可以在子类中重写它，见下面]。  
+      return null;  
     }  
+    return (IWorkbenchAdapter) ((IAdaptable) element)  
+        .getAdapter(IWorkbenchAdapter.class);  
+  }  
   
-     
+   
   
-    ...  
+  ...  
 }  
 ```
 
@@ -52,13 +52,13 @@ public class WorkbenchLabelProvider extends LabelProvider implements
 ```java 
 // package org.eclipse.ui.model;  
 public interface IWorkbenchAdapter {  
-    public Object[] getChildren(Object o);  
+  public Object[] getChildren(Object o);  
   
-    public ImageDescriptor getImageDescriptor(Object object);  
+  public ImageDescriptor getImageDescriptor(Object object);  
   
-    public String getLabel(Object o);  
+  public String getLabel(Object o);  
   
-    public Object getParent(Object o);  
+  public Object getParent(Object o);  
 }  
 ```
 
@@ -68,20 +68,20 @@ public interface IWorkbenchAdapter {
 ```java
 // 还是在这里 package org.eclipse.ui.model;  
 public class BaseWorkbenchContentProvider implements ITreeContentProvider {  
-    ...  
-    public Object[] getChildren(Object element) {    
-        // 哈，与上面的getText一样，如法炮制  
-        IWorkbenchAdapter adapter = getAdapter(element);  
-        if (adapter != null) {  
-            return adapter.getChildren(element);  
-        }  
-        return new Object[0];  
+  ...  
+  public Object[] getChildren(Object element) {  
+    // 哈，与上面的getText一样，如法炮制  
+    IWorkbenchAdapter adapter = getAdapter(element);  
+    if (adapter != null) {  
+      return adapter.getChildren(element);  
     }  
+    return new Object[0];  
+  }  
   
-    public Object[] getElements(Object element) {  
-        return getChildren(element);  
-    }  
-    ...  
+  public Object[] getElements(Object element) {  
+    return getChildren(element);  
+  }  
+  ...  
   
 }  
 ```
@@ -96,9 +96,9 @@ Platform.getAdapterManager(). registerAdapters(adapterFactory, ...);
 // package org.eclipse.core.runtime;  
 public interface IAdapterFactory {  
   
-    public Object getAdapter(Object adaptableObject, Class adapterType);  
+  public Object getAdapter(Object adaptableObject, Class adapterType);  
   
-    public Class[] getAdapterList();  
+  public Class[] getAdapterList();  
 }  
 ```
 
@@ -112,13 +112,13 @@ public interface IAdapterFactory {
 
 ```java 
 public MyWorkbenchLabelProvider extends  WorkbenchLabelProvider {  
-    protected IWorkbenchAdapter getAdapter(Object element) {  
-        IWorkbenchAdapter adapter = super.etAdapter(element)；  
-        if (adapter == null) {  
-           adapter = (IWorkbenchAdapter ) Platform.getAdapterManager().getAdapter(element, IWorkbenchAdapter.class);  
-        }  
-        return adapter;  
+  protected IWorkbenchAdapter getAdapter(Object element) {  
+    IWorkbenchAdapter adapter = super.etAdapter(element)；  
+    if (adapter == null) {  
+       adapter = (IWorkbenchAdapter ) Platform.getAdapterManager().getAdapter(element, IWorkbenchAdapter.class);  
     }  
+    return adapter;  
+  }  
 }  
 ```
 
@@ -131,15 +131,15 @@ public MyWorkbenchLabelProvider extends  WorkbenchLabelProvider {
 ```java
 // package org.eclipse.core.internal.runtime。AdapterManager  
   
-    public Object getAdapter(Object adaptable, Class adapterType) {  
-        IAdapterFactory factory = (IAdapterFactory) getFactories(adaptable.getClass()).get(adapterType.getName());  
-        Object result = null;  
-        if (factory != null)  
-            result = factory.getAdapter(adaptable, adapterType);  
-        if (result == null && adapterType.isInstance(adaptable))  
-            return adaptable;  
-        return result;  
-    }  
+  public Object getAdapter(Object adaptable, Class adapterType) {  
+    IAdapterFactory factory = (IAdapterFactory) getFactories(adaptable.getClass()).get(adapterType.getName());  
+    Object result = null;  
+    if (factory != null)  
+      result = factory.getAdapter(adaptable, adapterType);  
+    if (result == null && adapterType.isInstance(adaptable))  
+      return adaptable;  
+    return result;  
+  }  
 ```
 
 最好的是。先看看这个类是否已经实现了`IAdaptable`, 如果是，先问一下嘛，然后再去`Factory`里看看。

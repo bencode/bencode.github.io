@@ -11,15 +11,15 @@ categories: eclipse
 ``` java
 // in Dialog.class  
 protected Control createButtonBar(Composite parent) {  
-    ...  
+  ...  
   
-    GridData data = new GridData(GridData.HORIZONTAL_ALIGN_END  
-                | GridData.VERTICAL_ALIGN_CENTER);  
-    composite.setLayoutData(data);  
-    composite.setFont(parent.getFont());  
-         
-    / Add the buttons to the button bar.  
-    createButtonsForButtonBar(composite);  
+  GridData data = new GridData(GridData.HORIZONTAL_ALIGN_END  
+        | GridData.VERTICAL_ALIGN_CENTER);  
+  composite.setLayoutData(data);  
+  composite.setFont(parent.getFont());  
+     
+  / Add the buttons to the button bar.  
+  createButtonsForButtonBar(composite);  
 }  
 ```
 
@@ -28,9 +28,9 @@ protected Control createButtonBar(Composite parent) {
 ```java 
 @Override  
 protected void createButtonsForButtonBar(Composite parent) {  
-    GridData gridData = (GridData) parent.getLayoutData();  
-    gridData.horizontalAlignment = SWT.CENTER;  
-     
-    ...  
+  GridData gridData = (GridData) parent.getLayoutData();  
+  gridData.horizontalAlignment = SWT.CENTER;  
+   
+  ...  
 }  
 ```
