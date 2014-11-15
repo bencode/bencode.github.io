@@ -5,8 +5,8 @@
     <description></description>
     <link>http://bencode.github.io/</link>
     <atom:link href="http://bencode.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 15 Nov 2014 11:00:47 +0800</pubDate>
-    <lastBuildDate>Sat, 15 Nov 2014 11:00:47 +0800</lastBuildDate>
+    <pubDate>Sat, 15 Nov 2014 15:45:08 +0800</pubDate>
+    <lastBuildDate>Sat, 15 Nov 2014 15:45:08 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -1267,569 +1267,717 @@ return {
       </item>
     
       <item>
-        <title>git学习记录</title>
-        <description>&lt;p&gt;用git一段时间了，但是只掌握了其中一小部分内容，这两天把progit重新看一遍，这里就记一下关键的东西&lt;/p&gt;
+        <title>Inside jQuery</title>
+        <description>&lt;h3 id=&quot;jqueryfninit--99&quot;&gt;jQuery.fn.init处理流程  [99]&lt;/h3&gt;
 
-&lt;p&gt;pro git 这本书是作者免费提供的哦，佩服作者Scott Chacon的奉献精神，大家可以到这里看&lt;a href=&quot;http://progit.org&quot;&gt;http://progit.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;构造jQuery对象时，会转交给jQuery.fn.init处理。所以先看看它的处理流程, 就能够知道有几种方式调用jQuery方法，也知道内部的一些细节。&lt;/p&gt;
 
-&lt;h2 id=&quot;section&quot;&gt;1. 开始&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;1. $(dom)
+  this.context = this[0] = dom
+  this.length = 1;
+  return this;
 
-&lt;h3 id=&quot;section-1&quot;&gt;1.1 关于版本控制&lt;/h3&gt;
+
+2. $(&#39;body&#39;) 
+  this[0] = document.body
+  this.length = 1;
+  return this;
+
+
+3. $(html)
+  细节点: 下面两者等效，即会过滤前后非tag内容
+  $(&#39;1212&amp;lt;div&amp;gt;...&amp;lt;/div&amp;gt;dfdf&#39;) -&amp;gt; $(&#39;&amp;lt;div&amp;gt;...&amp;lt;/div&amp;gt;&#39;)
+
+  1. single tag: &#39;&amp;lt;div&amp;gt;&#39;, &#39;&amp;lt;div /&amp;gt;&#39;, &#39;&amp;lt;div&amp;gt;&amp;lt;/div&amp;gt;&#39;
+    1. document.createElement
+
+    2? $(&#39;&amp;lt;a&amp;gt;&#39;, {
+        id: &#39;mydiv&#39;,
+        href: &#39;...&#39;,
+        target: &#39;_blank&#39;
+      })
+        
+      jQuery.fn.attr.call(elm, attrs)
+
+  2. else 
+    jQuery.buildFragment
+
+4. $(&#39;#id&#39;)
+  document.getElementById
+
+5. $(selector) -&amp;gt; $(document).find(selector)
+   $(selector, jq) -&amp;gt; jq.find(selector)
+   $(selector, context) -&amp;gt; $(context).find(selector) 
+
+
+7. $(function) -&amp;gt; $(document).ready(function)
+
+
+8. $(jq) -&amp;gt; 创建一个新的jq对象
+  this.selector = jq.selector
+  this.context = jq.context
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;thiscontextthisselector&quot;&gt;关于this.context和this.selector&lt;/h3&gt;
+
+&lt;p&gt;context是jQuery对象的一个属性值, 一般情况下不需要知道它是什么， 但要深刻理解冒泡事件，就要知道它的值，现在仅列一下。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1. $(!selector)
+  context: undefined
+
+2. $(dom)
+  context: dom
+
+3. $(&#39;body&#39;)
+  context: document
+  selector = &#39;body&#39;
+
+4. $(html)
+  context = undefined
+  selector = &#39;&#39;
+  
+5. $(&#39;#id&#39;)
+  context = document
+  selector: selector
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;core&quot;&gt;core&lt;/h3&gt;
+
+&lt;p&gt;一些方法的备注&lt;/p&gt;
+
+&lt;h4 id=&quot;get---toarray&quot;&gt;1. get() -&amp;gt; toArray()&lt;/h4&gt;
+&lt;p&gt;无参数调用get,返回原生节点数组&lt;/p&gt;
+
+&lt;h4 id=&quot;end---thisprevobject--null&quot;&gt;2. end() -&amp;gt; this.prevObject || $(null)&lt;/h4&gt;
+&lt;p&gt;调用end()返回this.prevObject或空的jQuery对象&lt;/p&gt;
+
+&lt;p&gt;关于prevObject看下面jQuery对象结构图&lt;/p&gt;
+
+&lt;h4 id=&quot;pushstack&quot;&gt;3. pushStack&lt;/h4&gt;
+
+&lt;p&gt;会生成一个新的jQuery对象, 并设置prevObject指向当前jQuery对象，返回生成的jQuery对象。&lt;br /&gt;
+jquery方法中，如果是生成一个新的jQuery对象，一般会调用pushStack构造新的对象，如 find, slice等。&lt;/p&gt;
+
+&lt;p&gt;熟悉以下对象结构图，有助于更好地理解jQuery, 也能知道和评估它的成本&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/inside-jquery/01.png&quot; alt=&quot;jQuery对象结构图&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;extend&quot;&gt;extend&lt;/h3&gt;
+
+&lt;p&gt;这个方法太常用了，也太好用了， 有些边界情况记录一下&lt;/p&gt;
+
+&lt;h4 id=&quot;section&quot;&gt;1. 只有一个参数的情况，表示添加到当前对象&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;$.extend({...}) -&amp;gt; $.extend($, {...})
+$.fn.extend({...}) -&amp;gt; $.extend($.fn, {...})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;nullundefined&quot;&gt;2. null/undefined的参数将会忽略&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;$.extend({}, { number: 123 }, null, { other: &#39;me&#39; });
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;undefined&quot;&gt;3. undefined的字段将会忽略&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;$.extend({}, { a: 123, b: undefined });
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;结果中并不包含b字段，&lt;strong&gt;注：null字段还会存在的&lt;/strong&gt;，当然使用时不要太依赖这边边界。&lt;/p&gt;
+
+&lt;h4 id=&quot;arrayindex&quot;&gt;4. 参数类型为array时，将依据index进行合并&lt;/h4&gt;
+
+&lt;p&gt;这个特性其实不是很好，可能会产生误解&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;$.extend(true, { a: [1, 2, 3] }, { a: [2, 3] });
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;结果为 { a: [2, 3, 3] }, 不是 { a: [1, 2, 3, 2, 3] } 哦 &lt;/p&gt;
+
+&lt;h3 id=&quot;holdready----from-jquery16&quot;&gt;holdReady – from jquery1.6&lt;/h3&gt;
+
+&lt;p&gt;延迟domready的执行, 做性能优化的同学可以考虑这个方法的使用场景&lt;/p&gt;
+
+&lt;h3 id=&quot;domready&quot;&gt;domready&lt;/h3&gt;
+
+&lt;p&gt;下面是domready的原理&lt;/p&gt;
+
 &lt;ol&gt;
-  &lt;li&gt;本地版本控制, 如rcs&lt;/li&gt;
-  &lt;li&gt;集中式版本控制, 如 cvs, svn.  主要有以下缺点
-    &lt;ul&gt;
-      &lt;li&gt;服务器挂了, 所有版本信息就丢失了&lt;/li&gt;
-      &lt;li&gt;不能山上写代码, 然后比较, CI等&lt;/li&gt;
-    &lt;/ul&gt;
+  &lt;li&gt;先检查document.readyState === ‘complete’&lt;/li&gt;
+  &lt;li&gt;标准浏览器&lt;br /&gt;
+ document.addEventListener(‘DOMContextLoaded’,&lt;br /&gt;
+ 保险起见, 再注册&lt;br /&gt;
+ window.addEventListener(‘load’,&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;IE&lt;br /&gt;
+ document.attachEvent(‘onreadystatechange’,&lt;br /&gt;
+ 保险起见, 再注册&lt;br /&gt;
+ window.attachEvent(‘onload’,&lt;/p&gt;
+
+    &lt;p&gt;// 在IE下，如果非iframe, 则可做一定优化&lt;br /&gt;
+ document.documentElement.doScroll(‘left’)可调用, 则dom肯定ready了&lt;/p&gt;
   &lt;/li&gt;
-  &lt;li&gt;分布式版本控制&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&quot;git&quot;&gt;1.2 关于git及特点&lt;/h3&gt;
+&lt;h3 id=&quot;type-&quot;&gt;$.type 用于查看某个对象的类型&lt;/h3&gt;
 
-&lt;p&gt;git诞生于Linux，一开始被用来管理Linux内核代码，有以下特点&lt;/p&gt;
+&lt;p&gt;原理: &lt;br /&gt;
+toString.call(obj) –&amp;gt; 再查表&lt;/p&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;速度&lt;/li&gt;
-  &lt;li&gt;简单设计&lt;/li&gt;
-  &lt;li&gt;对非线性开发有强大的支持(成千上万个并行分支) —– 这个是git最重要的特点，可以改变开发模式&lt;/li&gt;
-  &lt;li&gt;完全分布式&lt;/li&gt;
-  &lt;li&gt;适合巨大项目(像linux内核)&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h3 id=&quot;isarray-isplainobject&quot;&gt;$.isArray, $.isPlainObject&lt;/h3&gt;
+&lt;p&gt;jQuery提供的类型判断中，最常用的有以上两个，其他的直接使用typeof 都能搞定&lt;/p&gt;
 
-&lt;h3 id=&quot;git-1&quot;&gt;1.3 git基础&lt;/h3&gt;
+&lt;h3 id=&quot;parsejson&quot;&gt;parseJSON&lt;/h3&gt;
 
-&lt;p&gt;这一节很重要，对git的使用和理解有很的帮助&lt;/p&gt;
+&lt;p&gt;实现中：原生支持使用原生，否则创建一个Function运行&lt;br /&gt;
+1. window.JSON&lt;br /&gt;
+2. new Function(…)();&lt;/p&gt;
+
+&lt;h3 id=&quot;noop-&quot;&gt;noop 空操作函数引用&lt;/h3&gt;
+&lt;p&gt;用这个可以减少每次空函数产生的内存&lt;/p&gt;
+
+&lt;h3 id=&quot;globaleval&quot;&gt;globalEval&lt;/h3&gt;
+
+&lt;p&gt;实现方案：如果存在window.execScript则使用它执行否则使用eval&lt;br /&gt;
+1. window.execScript&lt;br /&gt;
+2. eval&lt;/p&gt;
+
+&lt;h3 id=&quot;each&quot;&gt;each&lt;/h3&gt;
+&lt;p&gt;return false 相当于break&lt;/p&gt;
+
+&lt;h3 id=&quot;trim&quot;&gt;trim&lt;/h3&gt;
+
+&lt;p&gt;原生支持的话使用原生，否则使用正则式, 注意正则式技巧&lt;br /&gt;
+1. string#trim&lt;br /&gt;
+2. 用两个正则式分别replace前后两段空白&lt;/p&gt;
+
+&lt;h3 id=&quot;inarray&quot;&gt;inArray&lt;/h3&gt;
+
+&lt;p&gt;实现中：如果原生支持indexOf则直接使用, 否则自己处理&lt;br /&gt;
+1. array.indexOf&lt;br /&gt;
+2. … &lt;/p&gt;
+
+&lt;h3 id=&quot;grep&quot;&gt;grep&lt;/h3&gt;
+&lt;p&gt;支持第3个参数inv, 即选出callback为false的元素&lt;/p&gt;
+
+&lt;h3 id=&quot;map&quot;&gt;map&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;如果返回值为null/undefined，则不被添加到集合中&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;$.map([1, 2, 3], function(v) { return v === 2 ? null : 2 * v  });
+[2, 6]
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;快照&lt;br /&gt;
-  giit是基于快照机制的(其他版本控制系统往往基于的是差异信息)&lt;br /&gt;
-  比如新版本修改了一个文件, git仅仅把这个文件复制一次, 作为第二个版本的数据, 而不是计算并保存两个文件的差异信息.&lt;br /&gt;
-  可以说git仅是一个文件系统，然后在它上面构建一堆强大的工具&lt;/li&gt;
-  &lt;li&gt;几乎所有操作都不需要网络&lt;/li&gt;
-  &lt;li&gt;三种状态&lt;/li&gt;
+  &lt;li&gt;如果返回值是个数组，则“打散”后再添加到集合中&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;pre&gt;&lt;code&gt;workding directory  |   staging area    |     repository
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;$.map([1, 2, 3], function(v) { return [1, 2, 3] });
+[1, 2, 3, 1, 2, 3]
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;(1) 初始化git后, 我们平常的目录, 就是working directory, 我们添加修改删除文件都是在working directory中工作&lt;/p&gt;
+&lt;h3 id=&quot;proxyfn-context-&quot;&gt;proxy(fn, context, …)&lt;/h3&gt;
 
-&lt;p&gt;(2) staging area（暂存区）， 可以想像成中间区域，当我们git status时， git 会比较：&lt;/p&gt;
+&lt;p&gt;这个方法常常被我用于“减少缩进”&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;版本库 vs 暂存区
-暂存区 vs 工作区
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var A = {
+  init: function() {
+    var self = this;
+    $.ajax(url, {
+      data: ...
+      success: $.proxy(self, &#39;success&#39;);
+    });	
+  },
+
+  success: function() {
+    ...
+    this.render();
+  },
+
+  render: ...
+};
 &lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;即可能显示成这样：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-# On branch master
-#
-# Initial commit
-#
-# Changes to be committed:
-#   (use &quot;git rm --cached &amp;lt;file&amp;gt;...&quot; to unstage)
-#
-# new file:   README   &amp;lt;------------ 版本库和暂存区 diff
-#
-# Changes not staged for commit:
-#   (use &quot;git add &amp;lt;file&amp;gt;...&quot; to update what will be committed)
-#   (use &quot;git checkout -- &amp;lt;file&amp;gt;...&quot; to discard changes in working directory)
-#
-# modified:   README    &amp;lt;------------- 暂存区和工作区 diff
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;我们&lt;code&gt;git commit -m &#39;...&#39;&lt;/code&gt;, 是把暂存区的内容提交到版本库&lt;/p&gt;
-
-&lt;p&gt;所以我们添加文件后或者修改文件后需要&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git add ...
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;用以下命令比较版本库&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-git diff 比较工作区和暂存区的不同
-
-git diff --cached 比较版本库和暂存区的不同
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;(3) respository 即版本库&lt;/p&gt;
-
-&lt;h3 id=&quot;section-2&quot;&gt;1.4 安装&lt;/h3&gt;
-&lt;p&gt;没啥好记录的&lt;/p&gt;
-
-&lt;h3 id=&quot;section-3&quot;&gt;1.5 配置&lt;/h3&gt;
-
-&lt;p&gt;git的配置信息存放在三个地方&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;/etc/gitconfig
-~/.gitconfig
-.git/config
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;分别对应于不同的作用域，使用git config进行配置&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git config --system ...
-git config --global ...
-git config ...
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;一些例子&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-git config --global user.name &#39;John Doe&#39;
-git config --global user.email johndoe@example.com 
-
-git config --global core.editor emacs
-git config --global merge.tool vimdiff
-
-git config --list
-git config user.name
-
-git help config
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&quot;git-&quot;&gt;2. git 基础操作&lt;/h2&gt;
-
-&lt;h3 id=&quot;git-2&quot;&gt;2.1 获得一个git版本库&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;
-git init  # 初始化git 版本库
-git add a.js
-git commit -m &#39;first commit&#39;
-
-git clone git://github.com/schacon/grit.git # 从远程获取
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;recording-changes-to-the-responsitory&quot;&gt;2.2.Recording Changes to the Responsitory&lt;/h3&gt;
-
-&lt;p&gt;git status和git add比较容易，使用git status时会有相当友好的提示，告诉你接下来做什么&lt;/p&gt;
-
-&lt;p&gt;有些文件我们不需要版本库管理，如编辑器产生的临时文件等&lt;br /&gt;
-可以在 .gitignore中放忽略文件&lt;/p&gt;
-
-&lt;p&gt;文件中可以允许下面规则：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;空行, #开头忽略&lt;/li&gt;
-  &lt;li&gt;standard glob patterns work&lt;/li&gt;
-  &lt;li&gt;结尾/ 表示目录&lt;/li&gt;
-  &lt;li&gt;!开头表示“非”&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;
-git diff      # 比较工作区和暂存区，即看看有什么没有暂存
-git diff --cached # 比较版本库和暂存区
-
-git commit
-git commit -a   # 用这个可以让我们commit之前不需要运行git add, 它会自动git add已被traced的文件
-
-git rm
-git rm --cached   # 如果想remote文件，但是又不想从硬盘上把这个文件删除，可以使用--cached
-
-git mv 等效于
-rm
-git rm
-git add
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;section-4&quot;&gt;2.3 查日志&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;
-git log
-git log -p -2 # 显示2条日志, 显示diff内容
-git log --stat # 列出文件修改信息
-
-git log --pretty=oneline|short|full|fuller # 不同的格式化形式输出日志
-
-git log --pretty=format:&quot;%h - %an, %ar : %s&quot;  # 特定格式输出日志
-
-git log --pretty=format:&quot;%h %s&quot; --graph   # 漂亮的ascii图，包括提交和merge信息
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;还可以指定时间区间等参数&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-git log --since=2.weeks # until, after, before
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;可以使用gitk以gui方式看日志  —- 这个感觉挺好的&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;gitk
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;undoing-things&quot;&gt;2.4 Undoing Things&lt;/h3&gt;
-
-&lt;p&gt;有时候注释写错了, 或者发现有文件没有add就commit了，此时可以使用&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git commit --amend   # ps: amend原来是修改的意思 :(
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;working-with-remotes&quot;&gt;2.5 Working with Remotes&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;
-git clone url # 从远程clone一个版本库
-git remote    # 看看配置了哪些远程仓库, 如果是clone来的，应该至少看到 origin
-git remote -v # 查看远程仓库，带URL等信息
-git remote add [short-name] url # 添加远程仓库，然后我们就可以从服务器上取得代码
-
-
-git fetch [remote-name] # 从服务器更新内容, 但并不合并到本地分支
-
-上面命令仅从服务器获取内容，比如我们git fetch，那么将从服务器获取内容，相当于 origin/master分支update了(remote-name省略表示使用默认远程server, 关于默认的remote，第3章有详细的介绍哦)
-我们可以checkout这个分支看看 git checkout origin/master， 也可以把它合并到当前分支 git merge origin/master
-这相当于git pull
-
-git pull [remote-name] [branch-name] # fetch + merge
-
-git push [remote-name] [branch-name] # 将本地分支branch-name push 到远程 remote-name上
-一般情况下我们使用git clone时，会自动设置默认的 server和branch，所以仅仅使用
-git pull和git push就可以了(第3章会有详细介绍哦)
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;git remote show [remote-name]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;查看remote信息&lt;/p&gt;
-
-&lt;p&gt;比如我们的知识库是这样子的:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$&amp;gt; git remote show origin
-
-* remote origin   # 名称
-  Fetch URL: git@wd.alibaba-inc.com:fdoc-doc.git
-  Push  URL: git@wd.alibaba-inc.com:fdoc-doc.git
-  HEAD branch: master
-  Remote branch:
-    master tracked    # 远程分支, 我们可以使用git checkout origin/master
-  Local branch configured for &#39;git pull&#39;:
-    master merges with remote master    # 这里说的就是当我们使用git pull时，会把远程master(origin/master)自动合并到本地master分支
-  Local ref configured for &#39;git push&#39;:
-    master pushes to master (fast-forwardable)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;再看看xray&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$&amp;gt; git remote show origin
-
-* remote origin
-  Fetch URL: git@github.com:qhwa/fdlint.git
-  Push  URL: git@github.com:qhwa/fdlint.git
-  HEAD branch: master
-  Remote branches:    # 看到远程有好几个分支呢, master是我们的主干分支
-    css-first-rule tracked
-    dsl            tracked
-    html-checker   tracked
-    master         tracked
-  Local branch configured for &#39;git pull&#39;:
-    master merges with remote master
-  Local ref configured for &#39;git push&#39;:
-    master pushes to master (fast-forwardable)
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;
-git remote rename ＃重命名remote
-git remote rm # 和git remote add 相反
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;section-5&quot;&gt;2.6 标记&lt;/h3&gt;
-
-&lt;p&gt;tag用于给commit弄个别名, 或打个标记，添加些信息。&lt;br /&gt;
-比如完成了1.0版commit后，可以：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git tag v1.0
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;git show v1.0 # 可以这样查看日志
-git tag # 查看所有tag
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;上面这种tag相当于commit的alias，即是把长长的sha1给个名字好记&lt;/p&gt;
-
-&lt;p&gt;还有一种tag(Annotated Tag)可以加额外的message&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git tag -a v1.2 -m &#39;增强版 基本上适合所有需要了哦&#39;
-git show v1.2 # 可以看到上述信息并且tag创建的日期也会存在
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;也可以给指定的commit加tag&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git tag -a v1.2 9fceb02
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;git push时并不会把tag push到remote, 我们需要这样&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git push origin v1.1
-git push origin --tags  # 所有tag都push
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;section-6&quot;&gt;2.7 小技巧&lt;/h3&gt;
-
-&lt;h4 id=&quot;auto-complete&quot;&gt;1. auto complete&lt;/h4&gt;
-&lt;p&gt;如果是linux, 可以source这个文件：contrib/completion &lt;br /&gt;
-  我的mac用zshell，好像帮你弄了auto complete&lt;/p&gt;
-
-&lt;h4 id=&quot;alias&quot;&gt;2. alias&lt;/h4&gt;
-
-&lt;p&gt;使用惯svn的 co up st ci 等简写命令的，可以觉得git怎么不提供简写的命令以加快录入速度&lt;/p&gt;
-
-&lt;p&gt;可以用alias配置自己的命令&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;
-  git config --global alias.co checkout
-  git config --global alias.br branch
-  git config --global alias.ci commit
-  git config --global alias.st status
- &lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;运行外部命令，这个记录下，暂时还没用到&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;
-  git config --global alias.visual &quot;!gitk&quot;
- &lt;/code&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;section-7&quot;&gt;3. 分支&lt;/h2&gt;
-
-&lt;p&gt;分支是git的“killer feature”, 我们使用svn co, svn sw都慢慢的，而git的分支非常轻量级，切换分支就像切换当前目录，&lt;br /&gt;
-而如果习惯了这种特定可能会改变我们开发的方式&lt;/p&gt;
-
-&lt;h3 id=&quot;section-8&quot;&gt;3.1 分支是什么&lt;/h3&gt;
-
-&lt;p&gt;建议有没时间都得看看：http://progit.org/book/ch3-1.html&lt;/p&gt;
-
-&lt;p&gt;记录一段关于branch的原文：&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;a branch in Git is in actuality a simple file that contains the 40 character SHA-1 checksum of the commit it points to, &lt;br /&gt;
-branches are cheap to create and destroy. &lt;br /&gt;
-Creating a new branch is as quick and simple as writing 41 bytes to a file (40 characters and a newline).&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;section-9&quot;&gt;3.2 创建分支和合并&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;git branch css_feature
-git checkout css_feature
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;可以简写为&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git checkout -b css_feature
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;编辑好ci后，功能稳定了，需要合并回master&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git checkout master
-git merge css_feature
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;合并好后，css_feature分支有可能不需要了(分支仅仅是一个commit对象的引用， 合并分支就是创建一个新的commit对象)&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;                             master
-                              |
-C0 -- C1 -- C2 -- C4 -------- C6
-             \               /
-              -- C3 -- C5 --
-                       |
-                    css_feature
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;比如以上，我们一开始在master上开发，开发C2时需要实现一个css_feature，然后建了一个新分支(css_feature)， 创建分支仅仅是创建一个引用(git中的引用都是长度为40的sha1字符串)，指向C2。&lt;/p&gt;
-
-&lt;p&gt;然后我们在css_feature上开发，两个commit后，这个功能完成了。&lt;/p&gt;
-
-&lt;p&gt;切回master分支， 发现有个小bug，然后做了C4这个bugfix之后， 我们需要把css_feature合并到master上。&lt;/p&gt;
-
-&lt;p&gt;当创建合并快照后，然后创建一个C6的commit对象指向它， 而C4, C5将成为C6的parent对象，即“历史”&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git branch -d css_feature # 删除原分支
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;在master分支下，git log看一下所有的提交都是存在的哦:)&lt;/p&gt;
-
-&lt;p&gt;如果没有合并的时候就尝试删除，git 不会删除成功，会提示:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;error: The branch &#39;css_feature&#39; is not fully merged.
-If you are sure you want to delete it, run &#39;git branch -D css_feature&#39;.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&quot;section-10&quot;&gt;解决冲突&lt;/h4&gt;
-
-&lt;p&gt;比如我们在两个分支修改了同一文件的同一行，然后merge时发生冲突。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$&amp;gt; git status
-
-# On branch master
-# Unmerged paths:
-#   (use &quot;git add/rm &amp;lt;file&amp;gt;...&quot; as appropriate to mark resolution)
-#
-# both modified:      abc.txt
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;然后打开文件，解决冲突保存后，再add并commit即可&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git add abc.txt 
-git commit
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;合并的使用和svn有较大的区别&lt;/p&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;svn merge后，不管有没有冲突，都需要再CI一下，而且新分支上不存在原来分支的提交信息&lt;br /&gt;
-  解决冲突后需要resoved相应的冲突，然后再ci&lt;/li&gt;
-  &lt;li&gt;git merge, 如果没有冲突，将会直接创建一个新的commit对像（见上图），而且分支上的提交对象都存在当前分支上&lt;br /&gt;
-  如果有冲突，则不自动创建这个commit对象。由你自己解决好后， 再commit即可&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;前面这种形式的调用相当于… &lt;br /&gt;
+proxy(object, ‘name’) —&amp;gt; proxy(object[name], object)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;可传递额外的参数&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;到这里，git的日常使用应该没啥问题了&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var f = function(num, e) {
+	e.preventDefault();
+	console.debug(num);
+}; 
 
-&lt;h3 id=&quot;section-11&quot;&gt;3.3 分支管理&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;git branch  # 查看分支, 带*的为当前分支
-
-git branch -v  # 查看每个分支的最后一次提交
-
-git branch --merged  # 查看哪些分支已合并到当前分支
-git branch --no-merged
+btn1.click($.proxy(f, 123));
+btn2.click($.proxy(f, 456));
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&quot;section-12&quot;&gt;3.4 利用分支－工作流程&lt;/h3&gt;
+&lt;p&gt;额外参数会加到前面哦&lt;/p&gt;
 
-&lt;p&gt;呵呵，日常工作中多多使用，积累经验&lt;/p&gt;
+&lt;h3 id=&quot;access&quot;&gt;access&lt;/h3&gt;
+&lt;p&gt;这个方法在jQuery内部使用, 当需要设置/获取属性时&lt;br /&gt;
+ 如： attr, css, prop, val等将会统一调用access， 所以这些个方法会有一致行为&lt;/p&gt;
 
-&lt;h3 id=&quot;section-13&quot;&gt;3.5 远程分支&lt;/h3&gt;
+&lt;h3 id=&quot;callbacks&quot;&gt;Callbacks&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;jquery1.7提供，用于统一callback list的使用。如jq内部的Deferred使用了Callbacks&lt;br /&gt;
+可以使用它方便observer等模式的书写。&lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;h2 id=&quot;git-tools&quot;&gt;6 Git Tools&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var A = {
+  
+  init: function() {
+    this.fire(1, 2, 3);
+  }
+    
+};
+$.extend(A, $.Callbacks());
 
-&lt;h3 id=&quot;revision-selection&quot;&gt;6.1 Revision Selection&lt;/h3&gt;
 
-&lt;p&gt;一些版本选择的方式,可用于git log, git show 等&lt;/p&gt;
+A.add(function() {
+  console.debug(&#39;a&#39;, arguments);
+});
+A.add(function() {
+  console.debug(&#39;b&#39;, arguments); 
+});
 
-&lt;h4 id=&quot;sha1&quot;&gt;SHA1&lt;/h4&gt;
-
-&lt;p&gt;git中索引一个对象(commit或文件，目录等)，都是使用40个字符长的sha1,&lt;br /&gt;
-而一般项目我们只要指定前面4位就可以了, 像linux这种大型的项目也只要40位中的前12位就保证全局唯一&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-git showe 066b2e8dc9f40101d74f1784acc23b860460bbf 
-
-git show 066b 
-
+A.init();
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;关于两个文件产生相同sha1的概率：&lt;/p&gt;
+&lt;p&gt;2 callbacks对象的add/remove/fire等等方法支持detach的&lt;/p&gt;
 
-&lt;p&gt;如果地球上所有的65亿人都写代码，每人每秒产出整个linux规模的代码，然后把它放在一个git responsitory中，过上个5年，应该会有50%的概率产生1例冲突&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git rev-parse v1.1 #-&amp;gt; 查看分支v1.1对应的sha1
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;add = callbacks.add;
+add(); // 这样是能够正常使用的
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&quot;reflog&quot;&gt;Reflog&lt;/h4&gt;
+&lt;p&gt;所以以上例子可以更改为&lt;/p&gt;
 
-&lt;p&gt;a log of where your HEAD and branch references have been for the last few months &lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var B = {
+  init: function() {
+    this.publish(1, 2, 3);
+  }
+};
+var proxy = $.Callbacks();
+$.extend(B, {
+  publish: proxy.fire,
+  subscribe: proxy.add
+});
 
-&lt;pre&gt;&lt;code&gt;git reflog
+B.subscribe(function() {
+  console.debug(&#39;a&#39;, arguments); 
+});
+B.subscribe(function() {
+  console.debug(&#39;b&#39;, arguments);  
+});
+B.init();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这样仅向B暴露需要的方法&lt;/p&gt;
+
+&lt;p&gt;3 可以构造不同类型(行为)的Callbacks，目前有 once memory stopOnFalse unique, 他们可以组合使用&lt;br /&gt;
+  具体可以参看文档：http://api.jquery.com/jQuery.Callbacks&lt;/p&gt;
+
+&lt;h3 id=&quot;deferred&quot;&gt;Deferred&lt;/h3&gt;
+
+&lt;p&gt;根据 http://wiki.commonjs.org/wiki/Promises/A 引入一种更好的方式来管理回调方法的使用&lt;/p&gt;
+
+&lt;h4 id=&quot;section-1&quot;&gt;1 参数中添加回调&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;//正常用法
+$.ajax(&#39;mock.php&#39;, {
+  dataType: &#39;jsonp&#39;,
+  success: function(o) {
+    console.debug(o); 
+  } 
+});
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&quot;ancestry-references&quot;&gt;Ancestry References&lt;/h4&gt;
+&lt;h4 id=&quot;promise&quot;&gt;2 使用promise接口&lt;/h4&gt;
 
-&lt;pre&gt;&lt;code&gt;
-git show HEAD^
-git show d921970^2 # the second parent...
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var o = $.ajax(&#39;mock.php&#39;, { dataType: &#39;jsonp&#39; });
 
-git show HEAD~
-git show HEAD~2  # the first parent of the first parent
+o.done(function(o) {
+  console.debug(&#39;success1&#39;, o); 
+});
 
+o.done(function(o) {
+  console.debug(&#39;success2&#39;, o); 
+});
+
+
+var o = $.ajax(&#39;error.php&#39;, { dataType: &#39;jsonp&#39; });
+o.fail(function(e) {
+  console.debug(&#39;error&#39;, e); 
+});
+o.always(function() {
+  console.debug(&#39;complete&#39;); 
+});
+
+
+var o = $.ajax(&#39;mock.php&#39;, { dataType: &#39;jsonp&#39; });
+o.then(function() {
+  console.debug(&#39;success&#39;);
+}, function() {
+  console.debug(&#39;error&#39;);
+});
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&quot;commit-ranges&quot;&gt;Commit Ranges&lt;/h4&gt;
+&lt;h4 id=&quot;when-&quot;&gt;3 使用$.when, 当几个并行任务运行完毕&lt;/h4&gt;
 
-&lt;pre&gt;&lt;code&gt;
-git log master..experiment  # in experiment not in master
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var url = &#39;mock.php&#39;,
+  a1 = $.ajax(url, { dataType: &#39;jsonp&#39; }),
+  a2 = $.ajax(url, { dataType: &#39;jsonp&#39; }),
+  a3 = $.ajax(url, { dataType: &#39;jsonp&#39; });
 
-git log origin/master..HEAD  # 即看看哪些东西还没有push
-
-git log origin/master.. #同上,如果省略一边, git 认为是HEAD
-
+$.when(a1, a2, a3).done(function() {
+  console.debug(&#39;all complete&#39;);  
+});
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;下面三个一样&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var urls = [...],
+  promise = $.when($.map(urls, function(url) {
+    return $.ajax(url, { dataType: &#39;script&#39;, cache: false });	
+  }));
 
-&lt;pre&gt;&lt;code&gt;git log refA..refB
-git log ^refA refB
-git log refB --not refA
+promise.done(function() {
+    
+});
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;in refB not in refA&lt;/p&gt;
+&lt;h4 id=&quot;pipe&quot;&gt;4.使用pipe，几个任务需要串行运行&lt;/h4&gt;
 
-&lt;pre&gt;&lt;code&gt;git log refA refB ^refC
-git log refA refB --not refC
+&lt;p&gt;第二个请求依赖第一个请求，要完成后才能发&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var request = $.ajax(&#39;mock.php&#39;, { dataType: &#39;jsonp&#39; }),
+  chained = request.pipe(function(o) {
+    return $.ajax(&#39;mock&#39;, { dataType: &#39;jsonp&#39;, data: { o: o.data } }); 
+  });
+
+chained.done(function(o) {
+  console.debug(o); 
+});
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code&gt;git log master...experiment   #in master and in experiment but not in both
-git log --left-right master...experiment  #一般这样用
+&lt;p&gt;这么多请求顺序发, 因为后者使用到前者数据&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var urls = [
+  &#39;mock.php&#39;,
+  &#39;mock.php&#39;,
+  &#39;mock.php&#39;,
+  &#39;mock.php&#39;
+];
+
+var promise = $.when();
+$.each(urls, function(index, url) {
+  promise = promise.pipe(function(o) {
+    return $.ajax(url, { 
+      dataType: &#39;jsonp&#39;, 
+      data: { index: index, o: o &amp;amp;&amp;amp; o.data } 
+    });
+  });
+});
+promise.done(function(o) {
+  console.debug(&#39;all complete&#39;);
+}
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&quot;interactive-staging&quot;&gt;6.2 Interactive Staging&lt;/h3&gt;
+&lt;h4 id=&quot;deferred-1&quot;&gt;5 使用Deferred&lt;/h4&gt;
 
-&lt;pre&gt;&lt;code&gt;git add -i # 采用交互式操作，适合不马上提交所有东东
+&lt;p&gt;如何等待几个任务运行完毕，而又分离任务，让他们互不依赖&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var CountDown = function(promise) {
+  var span = $(&#39;span.countdown&#39;),
+    num = 15,
+    render = function() {
+      span.text(num);
+      if (num === 0) {
+        promise.resolve();
+      } else {
+        setTimeout(render, 1000);
+      }
+      num--;
+    };
+
+  render();
+};
+
+
+var RemoteHtml = function(promise) {
+  var div = $(&#39;div.remote-html&#39;);
+  div.html(&#39;loading...&#39;);
+
+  $.ajax(&#39;remote-html.php&#39;).done(function(html) {
+    div.html(html);
+    promise.resolve();
+  });
+};
+
+
+var ClickMe = function(promise) {
+  var btn = $(&#39;input.click-me&#39;),
+    num = 10;
+  btn.val(num);
+
+  btn.on(&#39;click&#39;, function() {
+    num--;
+    if (num &amp;gt;=0) {
+      btn.val(num);
+      if (num === 0) {
+        promise.resolve();  
+      }
+    }
+  });
+};
+
+
+var tasks = [CountDown, RemoteHtml, ClickMe];
+$.when.apply($, $.map(tasks, function(task) {
+  return $.Deferred(task);  
+})).done(function() {
+  alert(&#39;全部干完了&#39;);
+});
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;如果只想提交文件修改的一部分，可以使用&lt;/p&gt;
+&lt;h3 id=&quot;data&quot;&gt;data&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code&gt;git add --patch  # 这功能强大，木有用过
+&lt;h4 id=&quot;data-&quot;&gt;data 数据结构&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;div id=&quot;mydiv1&quot;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;div id=&quot;mydiv2&quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+&amp;lt;script&amp;gt;
+$(&#39;#mydiv1&#39;).data(&#39;someData1&#39;, &#39;some data 1 value&#39;);
+$(&#39;#mydiv1&#39;).data(&#39;some-data-2&#39;, { name: &#39;hello&#39; });
+
+$(&#39;#mydiv2&#39;).data(&#39;someData3&#39;, [1, 2, 3]);
+&amp;lt;/script&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&quot;stashing&quot;&gt;6.3 Stashing&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/inside-jquery/02.png&quot; alt=&quot;data数据结构&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;有时候工作到一半，需要切换到其他分支看看，可又不能提交当前的工作（因为还没有完成），就需要使用stash&lt;/p&gt;
+&lt;p&gt;我们用户的数据存在名叫data的域中，jQuery内部很多地方使用了这个jQuery.cache。&lt;br /&gt;
+如queue, event(下面会讲), 以及其他方法中的一些标识。&lt;br /&gt;
+如 html5的data是存已被cache等信息都存在jQuery.cache中，所以了解它将有助于我们排错。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;
-git stash  # 保存
+&lt;h4 id=&quot;acceptdata-1672&quot;&gt;acceptData [1672]&lt;/h4&gt;
 
-... 干其他活
+&lt;p&gt;内部使用accpetData检查元素是否允许使用data， 有三种元素不能使用：&lt;/p&gt;
 
-
-git stash apply # 恢复修改到当前分支(不一定是原先stash的分支， 这说明可以把修改“搬”到其他分支中)
-
-
-#其他相关命令
-
-git stash list
-git stash drop ...
-git stash pop # --&amp;gt; git apply; git drop
-
-git stash branch
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;embed
+非flash object
+applet
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&quot;rewrite-history&quot;&gt;6.4 Rewrite History&lt;/h3&gt;
+&lt;p&gt;设置时，名称将会被转成camelCase，获取时如果直接获取不到, 则会尝试将名称转成camelCase再次获取&lt;/p&gt;
 
-&lt;h4 id=&quot;change-the-last-commit&quot;&gt;Change the Last Commit&lt;/h4&gt;
+&lt;p&gt;所以目前&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;git commit --amend
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;elm.data(&#39;a-b&#39;, &#39;value&#39;) -&amp;gt; 内容key为 aB
+elm.data(&#39;aB&#39;), 没有问题
+elm.data(&#39;a-b&#39;), 直接取不到, 会将key转换成aB再次读取
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;其他的好复杂，现在用不到，不看&lt;/p&gt;
+&lt;p&gt;Q： 上述读取时，为什么是先使用a-b进行读取，读不到再转成aB读，不能直接转成aB读取吗？&lt;br /&gt;
+ A: 因为允许这种方式设置：elm.data({ ‘a-b’: ‘hello’ })&lt;br /&gt;
+   而这次方式设置时，目前没有对key进行camel的转化（我估计是对代码没有重构彻底，所以这里做了兼容，后续行为应该会一致）&lt;br /&gt;
+   PS: 看来jQuery的源码也和我们的代码一样，不是完美的&lt;/p&gt;
+
+&lt;p&gt;所以：我们应该全部使用 camelCase来设置和读取，以做到向后兼容&lt;/p&gt;
+
+&lt;h4 id=&quot;html5-data&quot;&gt;html5 data&lt;/h4&gt;
+
+&lt;p&gt;读取时如果cache从取不到, 则会尝试从 html5 data属性中取&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var config = elm.data(&#39;modConfig&#39;); // 取自data-mod-config属性
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;读取data属性值，数据转换规则如下&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;1 &quot;true&quot; -&amp;gt; true
+2 &quot;false&quot; -&amp;gt; false
+3 &quot;null&quot; -&amp;gt; null
+4 $.isNumberic(data) -&amp;gt; parseFloat(..
+5 &quot;{...}&quot;或&quot;[...]&quot; -&amp;gt; parseJSON(...
+	如果parseJSON失败，则为undefined
+6 不转化，即返回源字符串
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;data-1&quot;&gt;关于data事件&lt;/h4&gt;
+
+&lt;p&gt;这个特性jQuery文档中并未记录（可能是我没发现），但是这个代码从很早版本开始就有了, 1.4应该就有了，所以用用应该问题不大。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var elm = $(&#39;#mydiv1&#39;);
+
+elm.bind(&#39;getData&#39;, function(value, name) {
+  console.debug(&#39;getData&#39;, name, value);
+  return &#39;new data&#39;;
+});
+elm.bind(&#39;setData&#39;, function(value, name) {
+  console.debug(&#39;setData&#39;, name, value);
+});
+elm.bind(&#39;changeData&#39;, function(value, name) {
+  console.debug(&#39;changeData&#39;, name, value);
+});
+
+// set
+elm.data(&#39;myconfig&#39;, { url: &#39;http://www.google.com&#39; });
+
+// get 
+var value = elm.data(&#39;myconfig&#39;);
+console.debug(value);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可以看到通过绑定getData，我们可以响应data的事件，并且可以拦截取得的数据&lt;/p&gt;
+
+&lt;p&gt;当然通过事件：setData 和 changeData, 我们可以在数据设置前/设置后 做一些工作。&lt;br /&gt;
+感觉这里又有一个地方jQuery没做到位，就是setData应该也像getData一样，能够更改设置的值。&lt;/p&gt;
+
+&lt;h4 id=&quot;section-2&quot;&gt;静态和实例方法&lt;/h4&gt;
+
+&lt;p&gt;jQuery有两个data方法，一个是静态的，一个是实例的， 即 jQuery.data 和 jQuery.fn.data，后者会调用前者进行实际的数据存取工作&lt;br /&gt;
+我们应用代码中仅使用后者。&lt;/p&gt;
+
+&lt;h3 id=&quot;queue&quot;&gt;queue&lt;/h3&gt;
+
+&lt;p&gt;队列，一般用得比较少哦，有一个默认的fx的队列，动画使用的就是这个队列。 这个queue在jQuery中主要是为了动画而创建的。&lt;/p&gt;
+
+&lt;p&gt;下面是使用queue的一个例子&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;$(&#39;#button&#39;).click(function(e) {
+  e.preventDefault();
+  
+  var elm = $(this);
+
+  elm.delay(3000, &#39;my&#39;);
+  elm.queue(&#39;my&#39;, function(next) {
+    alert(&#39;反应慢&#39;);
+    setTimeout(next, 5000);
+  });
+  elm.queue(&#39;my&#39;, function() {
+    alert(&#39;又过了5秒&#39;);	
+  });
+
+  elm.dequeue(&#39;my&#39;);
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;promise-1&quot;&gt;promise&lt;/h3&gt;
+
+&lt;p&gt;返回一个queue的promise接口, 默认是fx&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;$(&#39;#button2&#39;).click(function(e) {
+  e.preventDefault();	
+    
+  $(&#39;#mydiv&#39;).animate({
+    width: &#39;500px&#39;,
+    height: &#39;200px&#39;	
+  }).animate({
+    &#39;margin-left&#39;: &#39;300px&#39;  
+  }).animate({
+    &#39;margin-top&#39;: &#39;300px&#39;  
+  }).promise().done(function() {
+    $(this).html(&#39;complete!&#39;);  
+  });
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;attr&quot;&gt;attr&lt;/h3&gt;
+
+&lt;p&gt;逻辑参考jQuery.attr&lt;/p&gt;
+
+&lt;h4 id=&quot;jqueryattrfn-jqueryattrfn&quot;&gt;1.  如果属性名称在jQuery.attrFn集合中， 采用相应的方法处理(参看jQuery.attrFn)&lt;/h4&gt;
+
+&lt;p&gt;有: val, css, html,  text, data, width, height, offset&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;左边相当于右边
+elm.attr(&#39;css&#39;, ...) -&amp;gt; elm.css(...);
+elm.attr(&#39;val&#39;, ...) -&amp;gt; elm.val(...);
+
+所以如果使用attr设置这些属性，如height, width, 也会得到可以预期的结果
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;当然我们自己使用时，不要依赖这个特性, 应该更明确地直接使用.css, .val等方法&lt;/p&gt;
+
+&lt;h4 id=&quot;hook&quot;&gt;2.  接下来使用”hook模”式对一些特殊属性进行处理&lt;/h4&gt;
+
+&lt;p&gt;jQuery.attrHooks集合中的属性采用hooks中的方法来处理(参看jQuery.attrHooks)&lt;br /&gt;
+有 type, value, tabIndex等等&lt;/p&gt;
+
+&lt;p&gt;根据浏览器支持的情况，attrHooks集合中的项会有不同，如IE中会对href,src,width,height,style等做特殊处理。 &lt;strong&gt;“这也提供了一种把特殊代码隔离的方法，我们可以用到实践中”&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;如果是checked disabled readonly selected 等 boolean类型的attribute(参看rboolean)使用 boolHook&lt;br /&gt;
+否则使用 nodeHook (即处理IE67不能使用getAttribute/setAttribute获取/设置一些属性, 如id/name)&lt;/p&gt;
+
+&lt;p&gt;设置属性时， 首先使用hook方法，如果返回空(代码中是undefined)， 则使用 elm.setAttribute方法&lt;br /&gt;
+获取属性时，首先使用hook方法，如果返回空(代码中是null), 则使用 elem.getAttribute方法&lt;/p&gt;
+
+&lt;h3 id=&quot;prop&quot;&gt;prop&lt;/h3&gt;
+
+&lt;p&gt;prop是直接读取/设置节点属性, 而attr使用 get/setAttribute来工作。 如我们使用 select.prop(‘selectedInde’) 或 checkbox.prop(‘checked’) 来获取属性。相当于 select[0].selectedIndex 或 checkbox[0].checked。&lt;/p&gt;
+
+&lt;p&gt;处理流程如下：&lt;/p&gt;
+
+&lt;p&gt;1. 使用jquery.propFix来 fix名称&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class -&amp;gt; className
+for -&amp;gt; htmlFor
+readonly -&amp;gt; readOnly
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;2. 如果存在于 jQuery.propHooks中， 则使用相应方法处理&lt;br /&gt;
+	目前好像只有tabIndex，我们不大走这个分支&lt;/p&gt;
+
+&lt;p&gt;3. 第2步不行，则使用：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set：elm[name] = value
+get: return elm[name]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;attrprop&quot;&gt;attr/prop&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;addClass()&lt;/code&gt; &lt;code&gt;removeClass()&lt;/code&gt; &lt;code&gt;toggleClass()&lt;/code&gt; &lt;code&gt;val()&lt;/code&gt; 等方法参数都可以是一个function。&lt;/p&gt;
+
+&lt;p&gt;add/removeClass/toggleClass 参数可以是一个function&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;elms.addClass(function(i) {
+  return &#39;item&#39; + i; 
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;toggleClass不仅可以用来切换class状态，还可以&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var checked = checkbox.prop(&#39;checked&#39;); 
+elm.toggleClass(&#39;selected&#39;, checked);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;val 可以正确地对 select进行取值/多选也可以(参看valHooks)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;sel.val(&#39;123&#39;), 会选中option.value相等的那个
+sel.val(), 会返回选中的option的值, 如果是多选，会返回一个数组
+
+sel.prop(&#39;selectedIndex&#39;) 获取选中的index 相当于sel[0].selectedIndex
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;attrhooks&quot;&gt;attrHooks&lt;/h3&gt;
+
+&lt;p&gt;有父节点的button/input 的type属性是不允许被改的&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;elm.attr(&#39;type&#39;, ...) 在jQuery中会抛出一个异常，来防止这种行为
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;事件&lt;/h3&gt;
 
 </description>
-        <pubDate>Tue, 17 Jan 2012 00:00:00 +0800</pubDate>
-        <link>http://bencode.github.io/git/git-study.html</link>
-        <guid isPermaLink="true">http://bencode.github.io/git/git-study.html</guid>
+        <pubDate>Thu, 23 Feb 2012 00:00:00 +0800</pubDate>
+        <link>http://bencode.github.io/javascript/inside-jquery.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/javascript/inside-jquery.html</guid>
         
         
-        <category>git</category>
+        <category>javascript</category>
         
       </item>
     
