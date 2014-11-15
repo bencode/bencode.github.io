@@ -5,8 +5,8 @@
     <description></description>
     <link>http://bencode.github.io/</link>
     <atom:link href="http://bencode.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 15 Nov 2014 15:45:08 +0800</pubDate>
-    <lastBuildDate>Sat, 15 Nov 2014 15:45:08 +0800</lastBuildDate>
+    <pubDate>Sat, 15 Nov 2014 16:00:26 +0800</pubDate>
+    <lastBuildDate>Sat, 15 Nov 2014 16:00:26 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -1968,9 +1968,6 @@ sel.prop(&#39;selectedIndex&#39;) 获取选中的index 相当于sel[0].selectedI
 
 &lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;elm.attr(&#39;type&#39;, ...) 在jQuery中会抛出一个异常，来防止这种行为
 &lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;section-3&quot;&gt;事件&lt;/h3&gt;
-
 </description>
         <pubDate>Thu, 23 Feb 2012 00:00:00 +0800</pubDate>
         <link>http://bencode.github.io/javascript/inside-jquery.html</link>

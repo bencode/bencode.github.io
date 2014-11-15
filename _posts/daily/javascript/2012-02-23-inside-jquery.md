@@ -759,14 +759,3 @@ sel.prop('selectedIndex') 获取选中的index 相当于sel[0].selectedIndex
 ```js
 elm.attr('type', ...) 在jQuery中会抛出一个异常，来防止这种行为
 ```
-
-
-### 事件
-
-
-
-
-
-
-  
-
