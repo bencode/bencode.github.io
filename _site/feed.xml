@@ -5,8 +5,8 @@
     <description></description>
     <link>http://bencode.github.io/</link>
     <atom:link href="http://bencode.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 15 Nov 2014 16:00:26 +0800</pubDate>
-    <lastBuildDate>Sat, 15 Nov 2014 16:00:26 +0800</lastBuildDate>
+    <pubDate>Sat, 15 Nov 2014 16:06:24 +0800</pubDate>
+    <lastBuildDate>Sat, 15 Nov 2014 16:06:24 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -961,6 +961,377 @@ preventDispose
       </item>
     
       <item>
+        <title>Nginx学习记录</title>
+        <description>&lt;p&gt;a high performance HTTP and reverse proxy server, as well as a mail proxy server&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;前言&lt;/h2&gt;
+
+&lt;p&gt;2009.10 &amp;gt;= 45% apache&lt;/p&gt;
+
+&lt;p&gt;nginx –&amp;gt; engine x&lt;/p&gt;
+
+&lt;p&gt;2008-9 http请求每天50亿&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;安装&lt;/h2&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;依赖&lt;/h3&gt;
+
+&lt;p&gt;gcc, pcre, zlib, openssl&lt;/p&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;当前稳定版本&lt;/h3&gt;
+
+&lt;p&gt;1.4.2&lt;/p&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;配置&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;./configure
+./configure --help
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;prefix&quot;&gt;–prefix&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;./configure --prefix=/User/bencode/bin/nginx
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;默认是/usr/local/nginx&lt;/p&gt;
+
+&lt;h3 id=&quot;section-5&quot;&gt;可配置的项&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;安装目录，配置文件路径，日志文件路径，进程描述符文件路径&lt;/li&gt;
+  &lt;li&gt;开启和关闭一些模块&lt;/li&gt;
+  &lt;li&gt;指定一些依赖库的路径&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;section-6&quot;&gt;编译碰到的问题&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;--with-pcre=...
+--with-openssl=
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-7&quot;&gt;运行&lt;/h2&gt;
+
+&lt;p&gt;由于需要运行在80端口, 所以需要root权限&lt;/p&gt;
+
+&lt;h3 id=&quot;section-8&quot;&gt;帮助&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;nginx -h
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-9&quot;&gt;操作命令&lt;/h3&gt;
+
+&lt;p&gt;注：使用nginx时要保证配置文件正确&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;nginx
+nginx -s quit  # 使用QUIT(3)信号
+nginx -s stop  # 使用TERM(15)信号
+nginx -s reload
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-10&quot;&gt;测试配置&lt;/h3&gt;
+
+&lt;p&gt;在生产机上修改配置时，可先cp一份，修改后先用以下测试&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;nginx -t -c modified.conf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-11&quot;&gt;基本配置&lt;/h2&gt;
+
+&lt;h3 id=&quot;section-12&quot;&gt;指令&lt;/h3&gt;
+
+&lt;p&gt;nginx由模块组成，每个模块提供一组指令&lt;/p&gt;
+
+&lt;h3 id=&quot;section-13&quot;&gt;指令上下文&lt;/h3&gt;
+
+&lt;p&gt;main&lt;br /&gt;
+http&lt;br /&gt;
+server&lt;br /&gt;
+location&lt;br /&gt;
+mail&lt;/p&gt;
+
+&lt;h4 id=&quot;include&quot;&gt;include&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;include sites/*.conf;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;一般来说，有几个配置文件组成&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;nginx.conf
+mime.types
+fastcgi.conf
+proxy.conf
+sites.conf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;section-14&quot;&gt;指令块&lt;/h4&gt;
+
+&lt;p&gt;由模块提供&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;events {
+    worker_connections  1024;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;section-15&quot;&gt;区段继承&lt;/h4&gt;
+
+&lt;h4 id=&quot;section-16&quot;&gt;单位&lt;/h4&gt;
+
+&lt;p&gt;大小&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;k m
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;client_max_body_size 20m;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;时间&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ms s m h d w M y
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;section-17&quot;&gt;变量&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;$nginx_version
+$remote_addr
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;section-18&quot;&gt;字符串&lt;/h4&gt;
+
+&lt;p&gt;可以不需要引号，如果包含空格，则需要引号&lt;/p&gt;
+
+&lt;h2 id=&quot;section-19&quot;&gt;进程结构&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/nginx/01.png&quot; alt=&quot;进程结构&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;异步非阻塞&lt;/p&gt;
+
+&lt;p&gt;epoll(linux)&lt;br /&gt;
+kqueue (max)&lt;/p&gt;
+
+&lt;p&gt;处理流程&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;while (true) {
+    for t in run_tasks:
+        t.handler();
+    update_time(&amp;amp;now);
+    timeout = ETERNITY;
+    for t in wait_tasks: /* sorted already */
+        if (t.time &amp;lt;= now) {
+            t.timeout_handler();
+        } else {
+            timeout = t.time - now;
+            break;
+        }
+    nevents = poll_function(events, timeout);
+    for i in nevents:
+        task t;
+        if (events[i].type == READ) {
+            t.handler = read_handler;
+        } else (events[i].type == WRITE) {
+            t.handler = write_handler;
+        }
+        run_tasks_add(t);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;数据：24G内存的机器上，处理的并发请求数达到过200万&lt;/p&gt;
+
+&lt;h3 id=&quot;section-20&quot;&gt;核心模块&lt;/h3&gt;
+
+&lt;p&gt;基本特征和指令，如进程管理和安全&lt;/p&gt;
+
+&lt;p&gt;http://nginx.org/en/docs/&lt;/p&gt;
+
+&lt;h4 id=&quot;daemon&quot;&gt;daemon&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;daemon on | off;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;errorlog&quot;&gt;error_log&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;error_log  logs/error.log;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;lognotfound&quot;&gt;log_not_found&lt;/h3&gt;
+
+&lt;h3 id=&quot;user&quot;&gt;user&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;user username group;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;workercpuaffinity&quot;&gt;worker_cpu_affinity&lt;/h3&gt;
+
+&lt;p&gt;在我的mac机下不支持&lt;/p&gt;
+
+&lt;h3 id=&quot;workerrlimitnofile&quot;&gt;worker_rlimit_nofile&lt;/h3&gt;
+
+&lt;p&gt;一个worker进程可以处理的文件数量&lt;/p&gt;
+
+&lt;h2 id=&quot;event&quot;&gt;event模块&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;配置网络机制，对性能会有重要影响&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;workerconnections&quot;&gt;worker_connections&lt;/h3&gt;
+
+&lt;p&gt;定义一个worker进程有够同时连接的数量&lt;/p&gt;
+
+&lt;h3 id=&quot;use&quot;&gt;use&lt;/h3&gt;
+
+&lt;p&gt;kqueue (mac)&lt;br /&gt;
+epoll  (linux)&lt;br /&gt;
+select (windows)&lt;/p&gt;
+
+&lt;h2 id=&quot;section-21&quot;&gt;配置模块&lt;/h2&gt;
+
+&lt;h3 id=&quot;include-1&quot;&gt;include&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;可以在配置文件的任何地方使用&lt;/li&gt;
+  &lt;li&gt;如果没有指定绝对路径，则相对于当前配置文件&lt;/li&gt;
+  &lt;li&gt;可以使用通配符&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;section-22&quot;&gt;必须的配置&lt;/h2&gt;
+
+&lt;h3 id=&quot;user-1&quot;&gt;user&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;user nginx nginx;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;workerprocesses&quot;&gt;worker_processes&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;worker_processes  4;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;lognotonfound&quot;&gt;log_not_on_found&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;log_not_on_found on;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;workerconnections-1&quot;&gt;worker_connections&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;worker_connections 1024;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;http&quot;&gt;http配置&lt;/h2&gt;
+
+&lt;h3 id=&quot;http-1&quot;&gt;http&lt;/h3&gt;
+
+&lt;h3 id=&quot;server&quot;&gt;server&lt;/h3&gt;
+
+&lt;p&gt;声明一个站点&lt;/p&gt;
+
+&lt;h3 id=&quot;location&quot;&gt;location&lt;/h3&gt;
+
+&lt;p&gt;定义一个站点的特定位置&lt;/p&gt;
+
+&lt;h3 id=&quot;section-23&quot;&gt;常用指令&lt;/h3&gt;
+
+&lt;p&gt;listern&lt;br /&gt;
+server_name&lt;br /&gt;
+root&lt;br /&gt;
+alias&lt;br /&gt;
+error_page&lt;br /&gt;
+index&lt;/p&gt;
+
+&lt;p&gt;sendfile&lt;br /&gt;
+tcp_nopush&lt;/p&gt;
+
+&lt;p&gt;log_not_found&lt;/p&gt;
+
+&lt;h3 id=&quot;section-24&quot;&gt;客户端请求&lt;/h3&gt;
+
+&lt;p&gt;keepalive_requests&lt;br /&gt;
+keepalive_timeout&lt;/p&gt;
+
+&lt;p&gt;send_timeout 默认为60s&lt;/p&gt;
+
+&lt;p&gt;client_max_body_size&lt;/p&gt;
+
+&lt;h3 id=&quot;location-1&quot;&gt;location&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;location [=&lt;/td&gt;
+      &lt;td&gt;~&lt;/td&gt;
+      &lt;td&gt;~*&lt;/td&gt;
+      &lt;td&gt;^~&lt;/td&gt;
+      &lt;td&gt;@] pattern { … }&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;pre&gt;&lt;code&gt;# 严格匹配 (querystring是可以加上的)
+location = /abcd {}
+
+# 前缀匹配
+location /abcd {}
+
+# 正则匹配，区分大小写
+location ~ ^/abcd {}
+
+# 正则匹配, 不区分大小写
+location ~* ^/abcd {}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;section-25&quot;&gt;搜索顺序&lt;/h4&gt;
+
+&lt;p&gt;严格匹配 &amp;gt; 无修辞精确匹配 &amp;gt; 正则匹配 &amp;gt; 无修辞匹配&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;location /doc {}
+location ~ /^document$ {}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;/document&lt;/p&gt;
+
+&lt;h3 id=&quot;rewrite-&quot;&gt;Rewrite 模块&lt;/h3&gt;
+
+&lt;p&gt;可以尝试打开 error_log debug 方便rewrite的编写&lt;/p&gt;
+
+&lt;h2 id=&quot;section-26&quot;&gt;和应用服务器连接&lt;/h2&gt;
+
+&lt;h3 id=&quot;proxy&quot;&gt;proxy&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;proxy_pass      http://127.0.0.1:8080;
+
+## 对响应本身不做任何处理
+proxy_redirect    off;    
+
+## 让应用服务器得到客户端host
+proxy_set_header  Host $host;
+
+## 让应用服务器得到用户ip
+proxy_set_header  X-Real-IP $remote_addr;
+
+## 让具有代理的客户端访问时，应用服务器能得到用户ip
+proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+
+
+client_max_body_size  10m;
+client_body_buffer_size 128k;
+
+
+proxy_connect_timeout 15;
+proxy_send_timeout    15;
+proxy_read_timeout    15;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;upstream&quot;&gt;upstream&lt;/h3&gt;
+
+&lt;h3 id=&quot;fastcgi&quot;&gt;fastcgi&lt;/h3&gt;
+
+</description>
+        <pubDate>Wed, 04 Sep 2013 00:00:00 +0800</pubDate>
+        <link>http://bencode.github.io/nginx/nginx.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/nginx/nginx.html</guid>
+        
+        
+        <category>nginx</category>
+        
+      </item>
+    
+      <item>
         <title>AOP及其在Javascript中的应用</title>
         <description>&lt;h2 id=&quot;section&quot;&gt;两个例子&lt;/h2&gt;
 
@@ -1260,718 +1631,6 @@ return {
         <pubDate>Wed, 26 Dec 2012 00:00:00 +0800</pubDate>
         <link>http://bencode.github.io/javascript/aop-practice.html</link>
         <guid isPermaLink="true">http://bencode.github.io/javascript/aop-practice.html</guid>
-        
-        
-        <category>javascript</category>
-        
-      </item>
-    
-      <item>
-        <title>Inside jQuery</title>
-        <description>&lt;h3 id=&quot;jqueryfninit--99&quot;&gt;jQuery.fn.init处理流程  [99]&lt;/h3&gt;
-
-&lt;p&gt;构造jQuery对象时，会转交给jQuery.fn.init处理。所以先看看它的处理流程, 就能够知道有几种方式调用jQuery方法，也知道内部的一些细节。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;1. $(dom)
-  this.context = this[0] = dom
-  this.length = 1;
-  return this;
-
-
-2. $(&#39;body&#39;) 
-  this[0] = document.body
-  this.length = 1;
-  return this;
-
-
-3. $(html)
-  细节点: 下面两者等效，即会过滤前后非tag内容
-  $(&#39;1212&amp;lt;div&amp;gt;...&amp;lt;/div&amp;gt;dfdf&#39;) -&amp;gt; $(&#39;&amp;lt;div&amp;gt;...&amp;lt;/div&amp;gt;&#39;)
-
-  1. single tag: &#39;&amp;lt;div&amp;gt;&#39;, &#39;&amp;lt;div /&amp;gt;&#39;, &#39;&amp;lt;div&amp;gt;&amp;lt;/div&amp;gt;&#39;
-    1. document.createElement
-
-    2? $(&#39;&amp;lt;a&amp;gt;&#39;, {
-        id: &#39;mydiv&#39;,
-        href: &#39;...&#39;,
-        target: &#39;_blank&#39;
-      })
-        
-      jQuery.fn.attr.call(elm, attrs)
-
-  2. else 
-    jQuery.buildFragment
-
-4. $(&#39;#id&#39;)
-  document.getElementById
-
-5. $(selector) -&amp;gt; $(document).find(selector)
-   $(selector, jq) -&amp;gt; jq.find(selector)
-   $(selector, context) -&amp;gt; $(context).find(selector) 
-
-
-7. $(function) -&amp;gt; $(document).ready(function)
-
-
-8. $(jq) -&amp;gt; 创建一个新的jq对象
-  this.selector = jq.selector
-  this.context = jq.context
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;thiscontextthisselector&quot;&gt;关于this.context和this.selector&lt;/h3&gt;
-
-&lt;p&gt;context是jQuery对象的一个属性值, 一般情况下不需要知道它是什么， 但要深刻理解冒泡事件，就要知道它的值，现在仅列一下。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;1. $(!selector)
-  context: undefined
-
-2. $(dom)
-  context: dom
-
-3. $(&#39;body&#39;)
-  context: document
-  selector = &#39;body&#39;
-
-4. $(html)
-  context = undefined
-  selector = &#39;&#39;
-  
-5. $(&#39;#id&#39;)
-  context = document
-  selector: selector
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;core&quot;&gt;core&lt;/h3&gt;
-
-&lt;p&gt;一些方法的备注&lt;/p&gt;
-
-&lt;h4 id=&quot;get---toarray&quot;&gt;1. get() -&amp;gt; toArray()&lt;/h4&gt;
-&lt;p&gt;无参数调用get,返回原生节点数组&lt;/p&gt;
-
-&lt;h4 id=&quot;end---thisprevobject--null&quot;&gt;2. end() -&amp;gt; this.prevObject || $(null)&lt;/h4&gt;
-&lt;p&gt;调用end()返回this.prevObject或空的jQuery对象&lt;/p&gt;
-
-&lt;p&gt;关于prevObject看下面jQuery对象结构图&lt;/p&gt;
-
-&lt;h4 id=&quot;pushstack&quot;&gt;3. pushStack&lt;/h4&gt;
-
-&lt;p&gt;会生成一个新的jQuery对象, 并设置prevObject指向当前jQuery对象，返回生成的jQuery对象。&lt;br /&gt;
-jquery方法中，如果是生成一个新的jQuery对象，一般会调用pushStack构造新的对象，如 find, slice等。&lt;/p&gt;
-
-&lt;p&gt;熟悉以下对象结构图，有助于更好地理解jQuery, 也能知道和评估它的成本&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/inside-jquery/01.png&quot; alt=&quot;jQuery对象结构图&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;extend&quot;&gt;extend&lt;/h3&gt;
-
-&lt;p&gt;这个方法太常用了，也太好用了， 有些边界情况记录一下&lt;/p&gt;
-
-&lt;h4 id=&quot;section&quot;&gt;1. 只有一个参数的情况，表示添加到当前对象&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;$.extend({...}) -&amp;gt; $.extend($, {...})
-$.fn.extend({...}) -&amp;gt; $.extend($.fn, {...})
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&quot;nullundefined&quot;&gt;2. null/undefined的参数将会忽略&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;$.extend({}, { number: 123 }, null, { other: &#39;me&#39; });
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&quot;undefined&quot;&gt;3. undefined的字段将会忽略&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;$.extend({}, { a: 123, b: undefined });
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;结果中并不包含b字段，&lt;strong&gt;注：null字段还会存在的&lt;/strong&gt;，当然使用时不要太依赖这边边界。&lt;/p&gt;
-
-&lt;h4 id=&quot;arrayindex&quot;&gt;4. 参数类型为array时，将依据index进行合并&lt;/h4&gt;
-
-&lt;p&gt;这个特性其实不是很好，可能会产生误解&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;$.extend(true, { a: [1, 2, 3] }, { a: [2, 3] });
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;结果为 { a: [2, 3, 3] }, 不是 { a: [1, 2, 3, 2, 3] } 哦 &lt;/p&gt;
-
-&lt;h3 id=&quot;holdready----from-jquery16&quot;&gt;holdReady – from jquery1.6&lt;/h3&gt;
-
-&lt;p&gt;延迟domready的执行, 做性能优化的同学可以考虑这个方法的使用场景&lt;/p&gt;
-
-&lt;h3 id=&quot;domready&quot;&gt;domready&lt;/h3&gt;
-
-&lt;p&gt;下面是domready的原理&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;先检查document.readyState === ‘complete’&lt;/li&gt;
-  &lt;li&gt;标准浏览器&lt;br /&gt;
- document.addEventListener(‘DOMContextLoaded’,&lt;br /&gt;
- 保险起见, 再注册&lt;br /&gt;
- window.addEventListener(‘load’,&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;IE&lt;br /&gt;
- document.attachEvent(‘onreadystatechange’,&lt;br /&gt;
- 保险起见, 再注册&lt;br /&gt;
- window.attachEvent(‘onload’,&lt;/p&gt;
-
-    &lt;p&gt;// 在IE下，如果非iframe, 则可做一定优化&lt;br /&gt;
- document.documentElement.doScroll(‘left’)可调用, 则dom肯定ready了&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;type-&quot;&gt;$.type 用于查看某个对象的类型&lt;/h3&gt;
-
-&lt;p&gt;原理: &lt;br /&gt;
-toString.call(obj) –&amp;gt; 再查表&lt;/p&gt;
-
-&lt;h3 id=&quot;isarray-isplainobject&quot;&gt;$.isArray, $.isPlainObject&lt;/h3&gt;
-&lt;p&gt;jQuery提供的类型判断中，最常用的有以上两个，其他的直接使用typeof 都能搞定&lt;/p&gt;
-
-&lt;h3 id=&quot;parsejson&quot;&gt;parseJSON&lt;/h3&gt;
-
-&lt;p&gt;实现中：原生支持使用原生，否则创建一个Function运行&lt;br /&gt;
-1. window.JSON&lt;br /&gt;
-2. new Function(…)();&lt;/p&gt;
-
-&lt;h3 id=&quot;noop-&quot;&gt;noop 空操作函数引用&lt;/h3&gt;
-&lt;p&gt;用这个可以减少每次空函数产生的内存&lt;/p&gt;
-
-&lt;h3 id=&quot;globaleval&quot;&gt;globalEval&lt;/h3&gt;
-
-&lt;p&gt;实现方案：如果存在window.execScript则使用它执行否则使用eval&lt;br /&gt;
-1. window.execScript&lt;br /&gt;
-2. eval&lt;/p&gt;
-
-&lt;h3 id=&quot;each&quot;&gt;each&lt;/h3&gt;
-&lt;p&gt;return false 相当于break&lt;/p&gt;
-
-&lt;h3 id=&quot;trim&quot;&gt;trim&lt;/h3&gt;
-
-&lt;p&gt;原生支持的话使用原生，否则使用正则式, 注意正则式技巧&lt;br /&gt;
-1. string#trim&lt;br /&gt;
-2. 用两个正则式分别replace前后两段空白&lt;/p&gt;
-
-&lt;h3 id=&quot;inarray&quot;&gt;inArray&lt;/h3&gt;
-
-&lt;p&gt;实现中：如果原生支持indexOf则直接使用, 否则自己处理&lt;br /&gt;
-1. array.indexOf&lt;br /&gt;
-2. … &lt;/p&gt;
-
-&lt;h3 id=&quot;grep&quot;&gt;grep&lt;/h3&gt;
-&lt;p&gt;支持第3个参数inv, 即选出callback为false的元素&lt;/p&gt;
-
-&lt;h3 id=&quot;map&quot;&gt;map&lt;/h3&gt;
-&lt;ol&gt;
-  &lt;li&gt;如果返回值为null/undefined，则不被添加到集合中&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;$.map([1, 2, 3], function(v) { return v === 2 ? null : 2 * v  });
-[2, 6]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;如果返回值是个数组，则“打散”后再添加到集合中&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;$.map([1, 2, 3], function(v) { return [1, 2, 3] });
-[1, 2, 3, 1, 2, 3]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;proxyfn-context-&quot;&gt;proxy(fn, context, …)&lt;/h3&gt;
-
-&lt;p&gt;这个方法常常被我用于“减少缩进”&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var A = {
-  init: function() {
-    var self = this;
-    $.ajax(url, {
-      data: ...
-      success: $.proxy(self, &#39;success&#39;);
-    });	
-  },
-
-  success: function() {
-    ...
-    this.render();
-  },
-
-  render: ...
-};
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;前面这种形式的调用相当于… &lt;br /&gt;
-proxy(object, ‘name’) —&amp;gt; proxy(object[name], object)&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;可传递额外的参数&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var f = function(num, e) {
-	e.preventDefault();
-	console.debug(num);
-}; 
-
-btn1.click($.proxy(f, 123));
-btn2.click($.proxy(f, 456));
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;额外参数会加到前面哦&lt;/p&gt;
-
-&lt;h3 id=&quot;access&quot;&gt;access&lt;/h3&gt;
-&lt;p&gt;这个方法在jQuery内部使用, 当需要设置/获取属性时&lt;br /&gt;
- 如： attr, css, prop, val等将会统一调用access， 所以这些个方法会有一致行为&lt;/p&gt;
-
-&lt;h3 id=&quot;callbacks&quot;&gt;Callbacks&lt;/h3&gt;
-&lt;ol&gt;
-  &lt;li&gt;jquery1.7提供，用于统一callback list的使用。如jq内部的Deferred使用了Callbacks&lt;br /&gt;
-可以使用它方便observer等模式的书写。&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var A = {
-  
-  init: function() {
-    this.fire(1, 2, 3);
-  }
-    
-};
-$.extend(A, $.Callbacks());
-
-
-A.add(function() {
-  console.debug(&#39;a&#39;, arguments);
-});
-A.add(function() {
-  console.debug(&#39;b&#39;, arguments); 
-});
-
-A.init();
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;2 callbacks对象的add/remove/fire等等方法支持detach的&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;add = callbacks.add;
-add(); // 这样是能够正常使用的
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;所以以上例子可以更改为&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var B = {
-  init: function() {
-    this.publish(1, 2, 3);
-  }
-};
-var proxy = $.Callbacks();
-$.extend(B, {
-  publish: proxy.fire,
-  subscribe: proxy.add
-});
-
-B.subscribe(function() {
-  console.debug(&#39;a&#39;, arguments); 
-});
-B.subscribe(function() {
-  console.debug(&#39;b&#39;, arguments);  
-});
-B.init();
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;这样仅向B暴露需要的方法&lt;/p&gt;
-
-&lt;p&gt;3 可以构造不同类型(行为)的Callbacks，目前有 once memory stopOnFalse unique, 他们可以组合使用&lt;br /&gt;
-  具体可以参看文档：http://api.jquery.com/jQuery.Callbacks&lt;/p&gt;
-
-&lt;h3 id=&quot;deferred&quot;&gt;Deferred&lt;/h3&gt;
-
-&lt;p&gt;根据 http://wiki.commonjs.org/wiki/Promises/A 引入一种更好的方式来管理回调方法的使用&lt;/p&gt;
-
-&lt;h4 id=&quot;section-1&quot;&gt;1 参数中添加回调&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;//正常用法
-$.ajax(&#39;mock.php&#39;, {
-  dataType: &#39;jsonp&#39;,
-  success: function(o) {
-    console.debug(o); 
-  } 
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&quot;promise&quot;&gt;2 使用promise接口&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var o = $.ajax(&#39;mock.php&#39;, { dataType: &#39;jsonp&#39; });
-
-o.done(function(o) {
-  console.debug(&#39;success1&#39;, o); 
-});
-
-o.done(function(o) {
-  console.debug(&#39;success2&#39;, o); 
-});
-
-
-var o = $.ajax(&#39;error.php&#39;, { dataType: &#39;jsonp&#39; });
-o.fail(function(e) {
-  console.debug(&#39;error&#39;, e); 
-});
-o.always(function() {
-  console.debug(&#39;complete&#39;); 
-});
-
-
-var o = $.ajax(&#39;mock.php&#39;, { dataType: &#39;jsonp&#39; });
-o.then(function() {
-  console.debug(&#39;success&#39;);
-}, function() {
-  console.debug(&#39;error&#39;);
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&quot;when-&quot;&gt;3 使用$.when, 当几个并行任务运行完毕&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var url = &#39;mock.php&#39;,
-  a1 = $.ajax(url, { dataType: &#39;jsonp&#39; }),
-  a2 = $.ajax(url, { dataType: &#39;jsonp&#39; }),
-  a3 = $.ajax(url, { dataType: &#39;jsonp&#39; });
-
-$.when(a1, a2, a3).done(function() {
-  console.debug(&#39;all complete&#39;);  
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var urls = [...],
-  promise = $.when($.map(urls, function(url) {
-    return $.ajax(url, { dataType: &#39;script&#39;, cache: false });	
-  }));
-
-promise.done(function() {
-    
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&quot;pipe&quot;&gt;4.使用pipe，几个任务需要串行运行&lt;/h4&gt;
-
-&lt;p&gt;第二个请求依赖第一个请求，要完成后才能发&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var request = $.ajax(&#39;mock.php&#39;, { dataType: &#39;jsonp&#39; }),
-  chained = request.pipe(function(o) {
-    return $.ajax(&#39;mock&#39;, { dataType: &#39;jsonp&#39;, data: { o: o.data } }); 
-  });
-
-chained.done(function(o) {
-  console.debug(o); 
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;这么多请求顺序发, 因为后者使用到前者数据&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var urls = [
-  &#39;mock.php&#39;,
-  &#39;mock.php&#39;,
-  &#39;mock.php&#39;,
-  &#39;mock.php&#39;
-];
-
-var promise = $.when();
-$.each(urls, function(index, url) {
-  promise = promise.pipe(function(o) {
-    return $.ajax(url, { 
-      dataType: &#39;jsonp&#39;, 
-      data: { index: index, o: o &amp;amp;&amp;amp; o.data } 
-    });
-  });
-});
-promise.done(function(o) {
-  console.debug(&#39;all complete&#39;);
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&quot;deferred-1&quot;&gt;5 使用Deferred&lt;/h4&gt;
-
-&lt;p&gt;如何等待几个任务运行完毕，而又分离任务，让他们互不依赖&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var CountDown = function(promise) {
-  var span = $(&#39;span.countdown&#39;),
-    num = 15,
-    render = function() {
-      span.text(num);
-      if (num === 0) {
-        promise.resolve();
-      } else {
-        setTimeout(render, 1000);
-      }
-      num--;
-    };
-
-  render();
-};
-
-
-var RemoteHtml = function(promise) {
-  var div = $(&#39;div.remote-html&#39;);
-  div.html(&#39;loading...&#39;);
-
-  $.ajax(&#39;remote-html.php&#39;).done(function(html) {
-    div.html(html);
-    promise.resolve();
-  });
-};
-
-
-var ClickMe = function(promise) {
-  var btn = $(&#39;input.click-me&#39;),
-    num = 10;
-  btn.val(num);
-
-  btn.on(&#39;click&#39;, function() {
-    num--;
-    if (num &amp;gt;=0) {
-      btn.val(num);
-      if (num === 0) {
-        promise.resolve();  
-      }
-    }
-  });
-};
-
-
-var tasks = [CountDown, RemoteHtml, ClickMe];
-$.when.apply($, $.map(tasks, function(task) {
-  return $.Deferred(task);  
-})).done(function() {
-  alert(&#39;全部干完了&#39;);
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;data&quot;&gt;data&lt;/h3&gt;
-
-&lt;h4 id=&quot;data-&quot;&gt;data 数据结构&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;div id=&quot;mydiv1&quot;&amp;gt;&amp;lt;/div&amp;gt;
-&amp;lt;div id=&quot;mydiv2&quot;&amp;gt;&amp;lt;/div&amp;gt;
-
-&amp;lt;script&amp;gt;
-$(&#39;#mydiv1&#39;).data(&#39;someData1&#39;, &#39;some data 1 value&#39;);
-$(&#39;#mydiv1&#39;).data(&#39;some-data-2&#39;, { name: &#39;hello&#39; });
-
-$(&#39;#mydiv2&#39;).data(&#39;someData3&#39;, [1, 2, 3]);
-&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/inside-jquery/02.png&quot; alt=&quot;data数据结构&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;我们用户的数据存在名叫data的域中，jQuery内部很多地方使用了这个jQuery.cache。&lt;br /&gt;
-如queue, event(下面会讲), 以及其他方法中的一些标识。&lt;br /&gt;
-如 html5的data是存已被cache等信息都存在jQuery.cache中，所以了解它将有助于我们排错。&lt;/p&gt;
-
-&lt;h4 id=&quot;acceptdata-1672&quot;&gt;acceptData [1672]&lt;/h4&gt;
-
-&lt;p&gt;内部使用accpetData检查元素是否允许使用data， 有三种元素不能使用：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;embed
-非flash object
-applet
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;设置时，名称将会被转成camelCase，获取时如果直接获取不到, 则会尝试将名称转成camelCase再次获取&lt;/p&gt;
-
-&lt;p&gt;所以目前&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;elm.data(&#39;a-b&#39;, &#39;value&#39;) -&amp;gt; 内容key为 aB
-elm.data(&#39;aB&#39;), 没有问题
-elm.data(&#39;a-b&#39;), 直接取不到, 会将key转换成aB再次读取
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Q： 上述读取时，为什么是先使用a-b进行读取，读不到再转成aB读，不能直接转成aB读取吗？&lt;br /&gt;
- A: 因为允许这种方式设置：elm.data({ ‘a-b’: ‘hello’ })&lt;br /&gt;
-   而这次方式设置时，目前没有对key进行camel的转化（我估计是对代码没有重构彻底，所以这里做了兼容，后续行为应该会一致）&lt;br /&gt;
-   PS: 看来jQuery的源码也和我们的代码一样，不是完美的&lt;/p&gt;
-
-&lt;p&gt;所以：我们应该全部使用 camelCase来设置和读取，以做到向后兼容&lt;/p&gt;
-
-&lt;h4 id=&quot;html5-data&quot;&gt;html5 data&lt;/h4&gt;
-
-&lt;p&gt;读取时如果cache从取不到, 则会尝试从 html5 data属性中取&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var config = elm.data(&#39;modConfig&#39;); // 取自data-mod-config属性
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;读取data属性值，数据转换规则如下&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;1 &quot;true&quot; -&amp;gt; true
-2 &quot;false&quot; -&amp;gt; false
-3 &quot;null&quot; -&amp;gt; null
-4 $.isNumberic(data) -&amp;gt; parseFloat(..
-5 &quot;{...}&quot;或&quot;[...]&quot; -&amp;gt; parseJSON(...
-	如果parseJSON失败，则为undefined
-6 不转化，即返回源字符串
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&quot;data-1&quot;&gt;关于data事件&lt;/h4&gt;
-
-&lt;p&gt;这个特性jQuery文档中并未记录（可能是我没发现），但是这个代码从很早版本开始就有了, 1.4应该就有了，所以用用应该问题不大。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var elm = $(&#39;#mydiv1&#39;);
-
-elm.bind(&#39;getData&#39;, function(value, name) {
-  console.debug(&#39;getData&#39;, name, value);
-  return &#39;new data&#39;;
-});
-elm.bind(&#39;setData&#39;, function(value, name) {
-  console.debug(&#39;setData&#39;, name, value);
-});
-elm.bind(&#39;changeData&#39;, function(value, name) {
-  console.debug(&#39;changeData&#39;, name, value);
-});
-
-// set
-elm.data(&#39;myconfig&#39;, { url: &#39;http://www.google.com&#39; });
-
-// get 
-var value = elm.data(&#39;myconfig&#39;);
-console.debug(value);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;可以看到通过绑定getData，我们可以响应data的事件，并且可以拦截取得的数据&lt;/p&gt;
-
-&lt;p&gt;当然通过事件：setData 和 changeData, 我们可以在数据设置前/设置后 做一些工作。&lt;br /&gt;
-感觉这里又有一个地方jQuery没做到位，就是setData应该也像getData一样，能够更改设置的值。&lt;/p&gt;
-
-&lt;h4 id=&quot;section-2&quot;&gt;静态和实例方法&lt;/h4&gt;
-
-&lt;p&gt;jQuery有两个data方法，一个是静态的，一个是实例的， 即 jQuery.data 和 jQuery.fn.data，后者会调用前者进行实际的数据存取工作&lt;br /&gt;
-我们应用代码中仅使用后者。&lt;/p&gt;
-
-&lt;h3 id=&quot;queue&quot;&gt;queue&lt;/h3&gt;
-
-&lt;p&gt;队列，一般用得比较少哦，有一个默认的fx的队列，动画使用的就是这个队列。 这个queue在jQuery中主要是为了动画而创建的。&lt;/p&gt;
-
-&lt;p&gt;下面是使用queue的一个例子&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;$(&#39;#button&#39;).click(function(e) {
-  e.preventDefault();
-  
-  var elm = $(this);
-
-  elm.delay(3000, &#39;my&#39;);
-  elm.queue(&#39;my&#39;, function(next) {
-    alert(&#39;反应慢&#39;);
-    setTimeout(next, 5000);
-  });
-  elm.queue(&#39;my&#39;, function() {
-    alert(&#39;又过了5秒&#39;);	
-  });
-
-  elm.dequeue(&#39;my&#39;);
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;promise-1&quot;&gt;promise&lt;/h3&gt;
-
-&lt;p&gt;返回一个queue的promise接口, 默认是fx&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;$(&#39;#button2&#39;).click(function(e) {
-  e.preventDefault();	
-    
-  $(&#39;#mydiv&#39;).animate({
-    width: &#39;500px&#39;,
-    height: &#39;200px&#39;	
-  }).animate({
-    &#39;margin-left&#39;: &#39;300px&#39;  
-  }).animate({
-    &#39;margin-top&#39;: &#39;300px&#39;  
-  }).promise().done(function() {
-    $(this).html(&#39;complete!&#39;);  
-  });
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;attr&quot;&gt;attr&lt;/h3&gt;
-
-&lt;p&gt;逻辑参考jQuery.attr&lt;/p&gt;
-
-&lt;h4 id=&quot;jqueryattrfn-jqueryattrfn&quot;&gt;1.  如果属性名称在jQuery.attrFn集合中， 采用相应的方法处理(参看jQuery.attrFn)&lt;/h4&gt;
-
-&lt;p&gt;有: val, css, html,  text, data, width, height, offset&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;左边相当于右边
-elm.attr(&#39;css&#39;, ...) -&amp;gt; elm.css(...);
-elm.attr(&#39;val&#39;, ...) -&amp;gt; elm.val(...);
-
-所以如果使用attr设置这些属性，如height, width, 也会得到可以预期的结果
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;当然我们自己使用时，不要依赖这个特性, 应该更明确地直接使用.css, .val等方法&lt;/p&gt;
-
-&lt;h4 id=&quot;hook&quot;&gt;2.  接下来使用”hook模”式对一些特殊属性进行处理&lt;/h4&gt;
-
-&lt;p&gt;jQuery.attrHooks集合中的属性采用hooks中的方法来处理(参看jQuery.attrHooks)&lt;br /&gt;
-有 type, value, tabIndex等等&lt;/p&gt;
-
-&lt;p&gt;根据浏览器支持的情况，attrHooks集合中的项会有不同，如IE中会对href,src,width,height,style等做特殊处理。 &lt;strong&gt;“这也提供了一种把特殊代码隔离的方法，我们可以用到实践中”&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;如果是checked disabled readonly selected 等 boolean类型的attribute(参看rboolean)使用 boolHook&lt;br /&gt;
-否则使用 nodeHook (即处理IE67不能使用getAttribute/setAttribute获取/设置一些属性, 如id/name)&lt;/p&gt;
-
-&lt;p&gt;设置属性时， 首先使用hook方法，如果返回空(代码中是undefined)， 则使用 elm.setAttribute方法&lt;br /&gt;
-获取属性时，首先使用hook方法，如果返回空(代码中是null), 则使用 elem.getAttribute方法&lt;/p&gt;
-
-&lt;h3 id=&quot;prop&quot;&gt;prop&lt;/h3&gt;
-
-&lt;p&gt;prop是直接读取/设置节点属性, 而attr使用 get/setAttribute来工作。 如我们使用 select.prop(‘selectedInde’) 或 checkbox.prop(‘checked’) 来获取属性。相当于 select[0].selectedIndex 或 checkbox[0].checked。&lt;/p&gt;
-
-&lt;p&gt;处理流程如下：&lt;/p&gt;
-
-&lt;p&gt;1. 使用jquery.propFix来 fix名称&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;class -&amp;gt; className
-for -&amp;gt; htmlFor
-readonly -&amp;gt; readOnly
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;2. 如果存在于 jQuery.propHooks中， 则使用相应方法处理&lt;br /&gt;
-	目前好像只有tabIndex，我们不大走这个分支&lt;/p&gt;
-
-&lt;p&gt;3. 第2步不行，则使用：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;set：elm[name] = value
-get: return elm[name]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;attrprop&quot;&gt;attr/prop&lt;/h3&gt;
-
-&lt;p&gt;&lt;code&gt;addClass()&lt;/code&gt; &lt;code&gt;removeClass()&lt;/code&gt; &lt;code&gt;toggleClass()&lt;/code&gt; &lt;code&gt;val()&lt;/code&gt; 等方法参数都可以是一个function。&lt;/p&gt;
-
-&lt;p&gt;add/removeClass/toggleClass 参数可以是一个function&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;elms.addClass(function(i) {
-  return &#39;item&#39; + i; 
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;toggleClass不仅可以用来切换class状态，还可以&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var checked = checkbox.prop(&#39;checked&#39;); 
-elm.toggleClass(&#39;selected&#39;, checked);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;val 可以正确地对 select进行取值/多选也可以(参看valHooks)&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;sel.val(&#39;123&#39;), 会选中option.value相等的那个
-sel.val(), 会返回选中的option的值, 如果是多选，会返回一个数组
-
-sel.prop(&#39;selectedIndex&#39;) 获取选中的index 相当于sel[0].selectedIndex
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;attrhooks&quot;&gt;attrHooks&lt;/h3&gt;
-
-&lt;p&gt;有父节点的button/input 的type属性是不允许被改的&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;elm.attr(&#39;type&#39;, ...) 在jQuery中会抛出一个异常，来防止这种行为
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-        <pubDate>Thu, 23 Feb 2012 00:00:00 +0800</pubDate>
-        <link>http://bencode.github.io/javascript/inside-jquery.html</link>
-        <guid isPermaLink="true">http://bencode.github.io/javascript/inside-jquery.html</guid>
         
         
         <category>javascript</category>
