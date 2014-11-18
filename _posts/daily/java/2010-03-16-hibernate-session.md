@@ -12,35 +12,35 @@ categories: java
 
 ```java
 public void test1() {
-    Item item = new Item(); // transient
+  Item item = new Item(); // transient
 
-    Session session = HibernateUtil.openSession();
-    Transaction tx = session.beginTransaction();
+  Session session = HibernateUtil.openSession();
+  Transaction tx = session.beginTransaction();
 
-    session.save(item); // persistent
-    //session.saveOrUpdate(item);  // persistent
+  session.save(item); // persistent
+  //session.saveOrUpdate(item);  // persistent
 
-    tx.commit();
-    session.close();
+  tx.commit();
+  session.close();
 
-    // item is detached
+  // item is detached
 }
 ```
 
 ```java
 public void test2() {
-    Session session = HibernateUtil.openSession();
-    Transaction tx = session.beginTransaction();
+  Session session = HibernateUtil.openSession();
+  Transaction tx = session.beginTransaction();
 
-    Item item = (Item) session.get(Item.class, 1);
+  Item item = (Item) session.get(Item.class, 1);
 
-    session.delete(item);
-    // item's state is removed
+  session.delete(item);
+  // item's state is removed
 
-    tx.commit();
-    session.close();
+  tx.commit();
+  session.close();
 
-    // item's state is transient
+  // item's state is transient
 }
 ```
 
@@ -49,15 +49,15 @@ public void test2() {
 
 ```java
 public void test3() {
-    Session session = HibernateUtil.openSession();
-    Transaction tx = session.beginTransaction();
+  Session session = HibernateUtil.openSession();
+  Transaction tx = session.beginTransaction();
 
-    Item item = (Item) session.get(Item.class, 1);
+  Item item = (Item) session.get(Item.class, 1);
 
-    item.setName("Another Name");  // 将会自动更新到数据库中, 你不需要调用session.update
+  item.setName("Another Name");  // 将会自动更新到数据库中, 你不需要调用session.update
 
-    tx.commit();
-    session.close();
+  tx.commit();
+  session.close();
 }
 ```
 
@@ -91,21 +91,21 @@ update items set name=? where id=?
 
 ```java
 public void test4() {
-    Session session = HibernateUtil.openSession();
-    Transaction tx = session.beginTransaction();
+  Session session = HibernateUtil.openSession();
+  Transaction tx = session.beginTransaction();
 
-    Item item1 = (Item) session.get(Item.class, 1);
-    assertNotNull(item1);
+  Item item1 = (Item) session.get(Item.class, 1);
+  assertNotNull(item1);
 
-    Item item2 = (Item) session.createQuery("from Item item where item.name = :name")
-            .setString("name", "item1").uniqueResult();
-    assertNotNull(item2);
-    assertEquals(1, item2.getId());
+  Item item2 = (Item) session.createQuery("from Item item where item.name = :name")
+      .setString("name", "item1").uniqueResult();
+  assertNotNull(item2);
+  assertEquals(1, item2.getId());
 
-    assertTrue(item1 == item2);  // 它们是同一样对象， 虽然通过不同的途经取得
+  assertTrue(item1 == item2);  // 它们是同一样对象， 虽然通过不同的途经取得
 
-    tx.commit();
-    session.close();
+  tx.commit();
+  session.close();
 }
 ```
 
@@ -122,14 +122,14 @@ session.createQuery(... ----> select ... from items item0_ where item0_.name=?
 
 ```java
 public void test5() {
-    Session session = HibernateUtil.openSession();
-    Transaction tx = session.beginTransaction();
+  Session session = HibernateUtil.openSession();
+  Transaction tx = session.beginTransaction();
 
-    Item item1 = (Item) session.get(Item.class, 1);
-    Item item2 = (Item) session.get(Item.class, 1); // 不需要执行SQL语句，缓存中已有
-    assertTrue(item1 == item2); // 它们是同一个对象
-    tx.commit();
-    session.close();
+  Item item1 = (Item) session.get(Item.class, 1);
+  Item item2 = (Item) session.get(Item.class, 1); // 不需要执行SQL语句，缓存中已有
+  assertTrue(item1 == item2); // 它们是同一个对象
+  tx.commit();
+  session.close();
 }
 ```
 
@@ -137,24 +137,24 @@ public void test5() {
 
 ```java
 public void test6() {
-    Session session1 = HibernateUtil.openSession();
-    Transaction tx1 = session1.beginTransaction();
+  Session session1 = HibernateUtil.openSession();
+  Transaction tx1 = session1.beginTransaction();
 
-    Item item1 = (Item) session1.get(Item.class, 1); // 从第一个session取得
+  Item item1 = (Item) session1.get(Item.class, 1); // 从第一个session取得
 
-    tx1.commit();
-    session1.close();
+  tx1.commit();
+  session1.close();
 
-    Session session2 = HibernateUtil.openSession();
-    Transaction tx2= session2.beginTransaction();
+  Session session2 = HibernateUtil.openSession();
+  Transaction tx2= session2.beginTransaction();
 
-    Item item2 = (Item) session2.get(Item.class, 1); // 从第二个session取得
+  Item item2 = (Item) session2.get(Item.class, 1); // 从第二个session取得
 
-    tx2.commit();
-    session2.close();
+  tx2.commit();
+  session2.close();
 
-    assertTrue(item1.getId() == item2.getId());  // id 相等
-    assertFalse(item1 == item2);  // 却不是同一个对象
+  assertTrue(item1.getId() == item2.getId());  // id 相等
+  assertFalse(item1 == item2);  // 却不是同一个对象
 }
 ```
 
@@ -162,27 +162,27 @@ public void test6() {
 
 ```java
 public class Item {
-    private int id;
-    private String code;
-    private String name;
-    private double price;
+  private int id;
+  private String code;
+  private String name;
+  private double price;
 
-    private byte[] cache = new byte[10 * 1024 * 1024]; // 添加了这行，内存大户
-    ...
+  private byte[] cache = new byte[10 * 1024 * 1024]; // 添加了这行，内存大户
+  ...
 ```
 
 ```java
 public void test10() {
-    Session session = HibernateUtil.openSession();
-    Transaction tx = session.beginTransaction();
+  Session session = HibernateUtil.openSession();
+  Transaction tx = session.beginTransaction();
 
-    for (int i = 0; i < 100; i++) {
-        Item item = new Item();
-        session.save(item);
-    }
+  for (int i = 0; i < 100; i++) {
+    Item item = new Item();
+    session.save(item);
+  }
 
-    tx.commit();
-    session.close();
+  tx.commit();
+  session.close();
 }
 ```
 
@@ -192,21 +192,21 @@ public void test10() {
 
 ```java
 public void test10() {
-    Session session = HibernateUtil.openSession();
-    Transaction tx = session.beginTransaction();
+  Session session = HibernateUtil.openSession();
+  Transaction tx = session.beginTransaction();
 
-    //session.setCacheMode(CacheMode.IGNORE); // 如果有二级缓存的话，也需要禁止二级缓存
-    for (int i = 0; i < 100; i++) {
-        Item item = new Item();
-        session.save(item);
-        if (i % 3 == 0) {
-            session.flush();
-            session.clear();
-        }
+  //session.setCacheMode(CacheMode.IGNORE); // 如果有二级缓存的话，也需要禁止二级缓存
+  for (int i = 0; i < 100; i++) {
+    Item item = new Item();
+    session.save(item);
+    if (i % 3 == 0) {
+      session.flush();
+      session.clear();
     }
+  }
 
-    tx.commit();
-    session.close();
+  tx.commit();
+  session.close();
 }
 ```
 
@@ -228,19 +228,19 @@ item1.getId() == item2.getId()， 因为它们本来就对应数据库中的同�
 ```java
 @Override
 public boolean equals(Object other) {
-    if (this == other) {
-        return true;
-    }
-    if (other instanceof Item) {
-        Item item = (Item) other;
-        return this.getCode() == item.getCode(); // code 是item的编号...
-    }
-    return false;
+  if (this == other) {
+    return true;
+  }
+  if (other instanceof Item) {
+    Item item = (Item) other;
+    return this.getCode() == item.getCode(); // code 是item的编号...
+  }
+  return false;
 }
 
 @Override
 public int hashCode() {
-    return this.getCode().hashCode();
+  return this.getCode().hashCode();
 }
 ```
 
@@ -250,25 +250,25 @@ session.get 会返回实际的对象，而session.load可能会返回一个代�
 
 ```java
 public void test7() {
-    Session session = HibernateUtil.openSession();
-    Transaction tx = session.beginTransaction();
+  Session session = HibernateUtil.openSession();
+  Transaction tx = session.beginTransaction();
 
-    Item item1 = (Item) session.get(Item.class, 1);
-    Item item1_ = (Item) session.load(Item.class, 1);  // 会在缓存中找到
-    Item item2 = (Item) session.load(Item.class, 2);  // 仅返回一个proxy
+  Item item1 = (Item) session.get(Item.class, 1);
+  Item item1_ = (Item) session.load(Item.class, 1);  // 会在缓存中找到
+  Item item2 = (Item) session.load(Item.class, 2);  // 仅返回一个proxy
 
-    assertTrue(item1 == item1_);  // 它们是同一个对象
-    assertTrue(item1.getClass()== Item.class);
-    assertTrue(item1_.getClass()== Item.class);
+  assertTrue(item1 == item1_);  // 它们是同一个对象
+  assertTrue(item1.getClass()== Item.class);
+  assertTrue(item1_.getClass()== Item.class);
 
-    assertFalse(item2.getClass() == Item.class);  // item2 是一个proxy
+  assertFalse(item2.getClass() == Item.class);  // item2 是一个proxy
 
-    println(item2.getId());  // 此时不需要查询数据库
-    println(item2.getClass());
-    println(item2.getName()); // 此时再骈查询数据库
+  println(item2.getId());  // 此时不需要查询数据库
+  println(item2.getClass());
+  println(item2.getName()); // 此时再骈查询数据库
 
-    tx.commit();
-    session.close();
+  tx.commit();
+  session.close();
 }
 ```
 
@@ -288,24 +288,24 @@ item2
 
 ```java
 public void test8() {
-    Session session = HibernateUtil.openSession();
-    Transaction tx = session.beginTransaction();
+  Session session = HibernateUtil.openSession();
+  Transaction tx = session.beginTransaction();
 
-    Item item1 = (Item) session.get(Item.class, 1000);
-    Item item2 = (Item) session.load(Item.class, 2000);
+  Item item1 = (Item) session.get(Item.class, 1000);
+  Item item2 = (Item) session.load(Item.class, 2000);
 
-    assertNull(item1);  // item1 == null
-    assertNotNull(item2);  // item2 is a proxy
+  assertNull(item1);  // item1 == null
+  assertNotNull(item2);  // item2 is a proxy
 
-    try {
-        item2.getName();  // 出异常
-        fail();
-    } catch (Exception ex) {
-        assertTrue(ex.getClass() == ObjectNotFoundException.class);
-    }
+  try {
+    item2.getName();  // 出异常
+    fail();
+  } catch (Exception ex) {
+    assertTrue(ex.getClass() == ObjectNotFoundException.class);
+  }
 
-    tx.commit();
-    session.close();
+  tx.commit();
+  session.close();
 }
 ```
 
@@ -320,16 +320,16 @@ public void test8() {
 
 ```java
 public void test11() {
-    Session session = HibernateUtil.openSession();
-    Transaction tx = session.beginTransaction();
+  Session session = HibernateUtil.openSession();
+  Transaction tx = session.beginTransaction();
 
-    Item item = (Item) session.load(Item.class, 1);
-    Part part = (Part) session.load(Part.class, 1);
+  Item item = (Item) session.load(Item.class, 1);
+  Part part = (Part) session.load(Part.class, 1);
 
-    item.setPart(part);
+  item.setPart(part);
 
-    tx.commit();
-    session.close();
+  tx.commit();
+  session.close();
 }
 ```
 
