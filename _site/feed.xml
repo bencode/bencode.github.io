@@ -5,9 +5,42 @@
     <description></description>
     <link>http://bencode.github.io/</link>
     <atom:link href="http://bencode.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 18 Nov 2014 23:13:01 +0800</pubDate>
-    <lastBuildDate>Tue, 18 Nov 2014 23:13:01 +0800</lastBuildDate>
+    <pubDate>Tue, 25 Nov 2014 09:27:29 +0800</pubDate>
+    <lastBuildDate>Tue, 25 Nov 2014 09:27:29 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>iframe自适应高度</title>
+        <description>&lt;p&gt;这两天项目中需要，上网搜了一把找到一大堆，最后使用下面的方案。&lt;br /&gt;
+发现一个问题，就是onload时再触发有点太慢了，可以改用domready等事件，还好我这个自适应不在线上使用，只存在开发环境下的mock。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var fn = function() {
+    try {
+        var bHeight = iframe.contentWindow.document.body.scrollHeight;
+        var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+        var height = Math.max(bHeight, dHeight);
+        if (height) {
+            iframe.height = height;
+        }
+        setTimeout(fn, 200);
+    } catch (e) {
+        console.error(e);
+    }
+};
+
+fn();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;http://www.cnblogs.com/MaxIE/archive/2008/08/13/1266597.html&lt;/p&gt;
+</description>
+        <pubDate>Tue, 25 Nov 2014 00:00:00 +0800</pubDate>
+        <link>http://bencode.github.io/web/iframe-autoresize.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/web/iframe-autoresize.html</guid>
+        
+        
+        <category>web</category>
+        
+      </item>
     
       <item>
         <title>［译］Shadow DOM 101</title>
@@ -1328,312 +1361,6 @@ proxy_read_timeout    15;
         
         
         <category>nginx</category>
-        
-      </item>
-    
-      <item>
-        <title>AOP及其在Javascript中的应用</title>
-        <description>&lt;h2 id=&quot;section&quot;&gt;两个例子&lt;/h2&gt;
-
-&lt;h3 id=&quot;section-1&quot;&gt;示例1&lt;/h3&gt;
-
-&lt;p&gt;旺铺中有一些前端的方法，提供APP，模板，自定义样式的基本功能&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;// 用于应用模板
-TemplateService.apply(template)
-
-// 应用自定义样式
-CustomStyleService.apply(subject, data);
-
-// 用于添加，载入，编辑，删除app
-AppService.load(app)
-AppService.edit(app)
-AppService.del(app)
-AppService.add(app)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;有一个需求是：这些操作成功后，需要打个点&lt;/p&gt;
-
-&lt;p&gt;我们知道直接在这些实现中打点是不适合适的，因为打点不是这些功能“应有的逻辑”，而是“附加”的逻辑&lt;/p&gt;
-
-&lt;p&gt;一种不错的的方法是使用事件，比如旺铺以上这些操作都对应于事件&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;page-template-apply
-page-custom-style-update
-
-app-load
-app-save
-app-delete
-app.add
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;打点实现&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;site.on(&#39;page-template-apply&#39;, function() {
-  doTrace(&#39;...&#39;);
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;可以看到，原先我们可能需要在基础代码中进行打点，而现在通过一个observer “倒置”了依赖，让打点依赖于这些事件&lt;/p&gt;
-
-&lt;p&gt;再看另一种“邪恶”一点的实现, 我们直接看一下代码&lt;/p&gt;
-
-&lt;p&gt;在template-service.js中&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var TemplateService = {
-  apply: function() {
-  }
-};
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;在另一个打点文件中&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var _apply = TemplateService.apply;
-TemplateService.apply = function() {
-  var defer = _apply.apply(this, arguments);
-  defer.done(function() {
-    doTrace();	// 应用成功后我们打个点
-  });
-  return defer;
-};
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;对第二种情况分析下：&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;原来的模块不需要依赖业务模块，还是那么干净，而且如果单为实现这个功能，连事件都不需要&lt;/li&gt;
-  &lt;li&gt;写以上代码时，你会感觉有点害怕&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;section-2&quot;&gt;示例2&lt;/h3&gt;
-
-&lt;p&gt;有时候我们需要对一些第三方库fix，比如我们对Number#toFixed进行一些修改以支持价格展示&lt;/p&gt;
-
-&lt;p&gt;比如旺铺中为了更好地规划jQuery的构造，context不能为空&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var node = $(&#39;div.panel&#39;, context);
-var node = $(&#39;.panel&#39;);   // 在开发时应该提示一些警告，说最好带上tag以及context
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;示例代码&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;if (may.log.isEnabled(&#39;info&#39;)) {
-
-  var orijQuery = jQuery,
-    ...;
-
-  jQuery = function(selector, context) {
-    if (typeof selector === &#39;string&#39; &amp;amp;&amp;amp; 
-        selector !== &#39;body&#39; &amp;amp;&amp;amp;
-        !/^\s*&amp;lt;/.test(selector) &amp;amp;&amp;amp; 
-        !/^#/.test(selector)) {
-
-      if (context === undefined) {
-        warn(&#39;please specify context for &#39;+ selector + &#39; in &#39;, 
-            arguments.callee.caller);
-      }
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;我们在日志级别为info时疯狂了一把,&lt;br /&gt;
-然后开发时代码就会帮我们检查了。&lt;/p&gt;
-
-&lt;p&gt;总结：&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;在方法执行后执行一段逻辑&lt;/li&gt;
-  &lt;li&gt;重写方法，执行自己的逻辑&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;section-3&quot;&gt;词汇&lt;/h2&gt;
-
-&lt;p&gt;连接点(join point)&lt;br /&gt;
-切入点(pointcut)&lt;br /&gt;
-通知(Advice)&lt;br /&gt;
-Aspect&lt;br /&gt;
-编织(weaving)&lt;/p&gt;
-
-&lt;h2 id=&quot;aspect&quot;&gt;Aspect模块简介&lt;/h2&gt;
-
-&lt;p&gt;静态方法&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;Aspect.before(target, pointcut, advice)
-Aspect.after(target, pointcut, advice)
-Aspect.around(target, pointcut, advice)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;实例方法&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;Aspect#before(target, pointcut, advice)
-Aspect#after(target, pointcut, advice)
-Aspect#around(target, pointcut, advice)
-
-Aspect#attach()
-Aspect#detach()
-
-Aspect#isDetached
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&quot;section-4&quot;&gt;实践&lt;/h2&gt;
-
-&lt;h3 id=&quot;section-5&quot;&gt;示例1&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;define(&#39;demo.Page&#39;, [&#39;jQuery&#39;, &#39;Log&#39;, &#39;lang.Aspect&#39;, &#39;ui.Dialog&#39;], 
-
-function($, Log, Aspect, Dialog) {
-
-
-var log = new Log(&#39;demo.Page&#39;);
-
-var aspect = new Aspect();
-  
-return {
-  init: function(div) {
-    var self = this;
-    div.on(&#39;click&#39;, &#39;a[data-action]&#39;, function(e) {
-      e.preventDefault();
-
-      var action = $(this).data(&#39;action&#39;);
-      log.info(action)
-      self[action]();
-    });
-  },
-
-  onAlert: function() {
-    alert(&#39;Hello&#39;);
-  },
-
-  onBefore: function() {
-    aspect.before(window, &#39;alert&#39;, function(o) {
-      var title = o.args[0];
-      return [&#39;Before &#39; + title];
-    });
-  },
-
-  onAfter: function() {
-    aspect.after(window, &#39;alert&#39;, function(o) {
-      var _alert = o.method;	
-      _alert(o.args[0] + &#39; After&#39;);
-    });
-  },
-
-  onAround: function() {
-    aspect.around(window, &#39;alert&#39;, function(o) {
-      Dialog.info(o.args[0]);
-    });
-  },
-
-  onAttach: function() {
-    aspect.attach();
-  },
-
-  onDetach: function() {
-    aspect.detach();
-  }
-
-};
-  
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;section-6&quot;&gt;示例2&lt;/h3&gt;
-
-&lt;p&gt;HtmlParser结构&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var HtmlParser = {
-  parse: function(),
-  parseNode: function(),
-  parseComment: function(),
-  parseElement: function(),
-  parseTag: function(),
-  parseAttribute: function(),
-  parseText: function()...
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Visitor结构&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var Visitor = {
-  visitNode: function(node) {
-    console.debug(node);
-  },
-
-  visitComment: function(comment) {
-    console.debug(comment);
-  },
-
-  visitElement: function(elm) {
-    console.debug(elm);
-  },
-
-  visitTag: function(tag) {
-    console.debug(tag);
-  },
-
-  visitAttribute: function(attr) {
-    console.debug(attr);
-  },
-
-  visitText: function(text) {
-    console.debug(text);
-  }
-};
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;parse和parseWithVisit&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;  init: function(div) {
-    $(&#39;a.parse&#39;, div).on(&#39;click&#39;, $.proxy(this, &#39;parse&#39;));
-    $(&#39;a.parse-with-visit&#39;, div).on(&#39;click&#39;, $.proxy(this, &#39;parseWithVisit&#39;));
-
-    this.text = $(&#39;textarea.html-text&#39;, div);
-  },
-
-  parse: function() {
-    var parser = new HtmlParser(this.text.val());
-    var o = parser.parse();
-    console.debug(o);
-  },
-
-  parseWithVisit: function() {
-    var parser = new HtmlParser(this.text.val());
-    
-    this.weave(parser);
-    
-    parser.parse();
-  },
-
-  weave: function(parser) {
-    Aspect.after(parser, /^parse\w+/, function(o) {
-      var name = o.name,
-        visitName = &#39;visit&#39; + /^parse(\w+)$/.exec(name)[1];
-      
-      Visitor[visitName] &amp;amp;&amp;amp; Visitor[visitName](o.result);
-    });
-  }
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&quot;section-7&quot;&gt;注意&lt;/h2&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;OOP 和 AOP &lt;/p&gt;
-
-    &lt;p&gt;OOP: 处理核心逻辑&lt;/p&gt;
-
-    &lt;p&gt;AOP： 处理切面逻辑&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;执行流程比较难理解&lt;/li&gt;
-  &lt;li&gt;破坏了封装性&lt;/li&gt;
-&lt;/ol&gt;
-</description>
-        <pubDate>Wed, 26 Dec 2012 00:00:00 +0800</pubDate>
-        <link>http://bencode.github.io/javascript/aop-practice.html</link>
-        <guid isPermaLink="true">http://bencode.github.io/javascript/aop-practice.html</guid>
-        
-        
-        <category>javascript</category>
         
       </item>
     
