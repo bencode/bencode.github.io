@@ -10,17 +10,17 @@ categories: web
 
 ```js
 var fn = function() {
-    try {
-        var bHeight = iframe.contentWindow.document.body.scrollHeight;
-        var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
-        var height = Math.max(bHeight, dHeight);
-        if (height) {
-            iframe.height = height;
-        }
-        setTimeout(fn, 200);
-    } catch (e) {
-        console.error(e);
+  try {
+    var bHeight = iframe.contentWindow.document.body.scrollHeight;
+    var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+    var height = Math.max(bHeight, dHeight);
+    if (height) {
+      iframe.height = height;
     }
+    setTimeout(fn, 200);
+  } catch (e) {
+    console.error(e);
+  }
 };
 
 fn();
