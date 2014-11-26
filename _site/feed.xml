@@ -5,9 +5,64 @@
     <description></description>
     <link>http://bencode.github.io/</link>
     <atom:link href="http://bencode.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 25 Nov 2014 09:30:28 +0800</pubDate>
-    <lastBuildDate>Tue, 25 Nov 2014 09:30:28 +0800</lastBuildDate>
+    <pubDate>Wed, 26 Nov 2014 10:40:03 +0800</pubDate>
+    <lastBuildDate>Wed, 26 Nov 2014 10:40:03 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>eclipse review</title>
+        <description>&lt;h2 id=&quot;section&quot;&gt;一些名词&lt;/h2&gt;
+
+&lt;p&gt;plug-ins&lt;/p&gt;
+
+&lt;p&gt;structed bundle of code and/or data to contribute functionality to system&lt;/p&gt;
+
+&lt;p&gt;extensions extension-point&lt;/p&gt;
+
+&lt;p&gt;JDT PDE&lt;/p&gt;
+
+&lt;h2 id=&quot;runtime&quot;&gt;Runtime&lt;/h2&gt;
+
+&lt;p&gt;manifest -&amp;gt; registry&lt;/p&gt;
+
+&lt;p&gt;plugin = bundle&lt;/p&gt;
+
+&lt;p&gt;定义在 org.eclipse.osgi and org.eclipse.core.runtime&lt;/p&gt;
+
+&lt;p&gt;定义插件结构，实现加载策略&lt;/p&gt;
+
+&lt;p&gt;找到并执行应用，维护plugin registry, extension and extension point&lt;/p&gt;
+
+&lt;p&gt;提供一些基础设施：日志，调试，adapter，preference store，concurrency基础设施&lt;/p&gt;
+
+&lt;p&gt;Bundle&lt;/p&gt;
+
+&lt;p&gt;BundleActivator&lt;br /&gt;
+  start(BundleContext)&lt;br /&gt;
+  stop(BundleContext)&lt;/p&gt;
+
+&lt;p&gt;BundleEvent&lt;br /&gt;
+BundleContext&lt;/p&gt;
+
+&lt;p&gt;Extension ExtensionPoint ExtensionRegistry&lt;/p&gt;
+
+&lt;p&gt;ConfigurationElement&lt;/p&gt;
+
+&lt;p&gt;Platform&lt;/p&gt;
+
+&lt;h2 id=&quot;resource-management&quot;&gt;Resource management&lt;/h2&gt;
+
+&lt;h2 id=&quot;workbench-ui&quot;&gt;Workbench UI&lt;/h2&gt;
+
+</description>
+        <pubDate>Wed, 26 Nov 2014 00:00:00 +0800</pubDate>
+        <link>http://bencode.github.io/eclipse/review.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/eclipse/review.html</guid>
+        
+        
+        <category>eclipse</category>
+        
+      </item>
     
       <item>
         <title>iframe自适应高度</title>
@@ -990,377 +1045,6 @@ preventDispose
         <category>reading</category>
         
         <category>polymer</category>
-        
-      </item>
-    
-      <item>
-        <title>Nginx学习记录</title>
-        <description>&lt;p&gt;a high performance HTTP and reverse proxy server, as well as a mail proxy server&lt;/p&gt;
-
-&lt;h2 id=&quot;section&quot;&gt;前言&lt;/h2&gt;
-
-&lt;p&gt;2009.10 &amp;gt;= 45% apache&lt;/p&gt;
-
-&lt;p&gt;nginx –&amp;gt; engine x&lt;/p&gt;
-
-&lt;p&gt;2008-9 http请求每天50亿&lt;/p&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;安装&lt;/h2&gt;
-
-&lt;h3 id=&quot;section-2&quot;&gt;依赖&lt;/h3&gt;
-
-&lt;p&gt;gcc, pcre, zlib, openssl&lt;/p&gt;
-
-&lt;h3 id=&quot;section-3&quot;&gt;当前稳定版本&lt;/h3&gt;
-
-&lt;p&gt;1.4.2&lt;/p&gt;
-
-&lt;h3 id=&quot;section-4&quot;&gt;配置&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;./configure
-./configure --help
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;prefix&quot;&gt;–prefix&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;./configure --prefix=/User/bencode/bin/nginx
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;默认是/usr/local/nginx&lt;/p&gt;
-
-&lt;h3 id=&quot;section-5&quot;&gt;可配置的项&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;安装目录，配置文件路径，日志文件路径，进程描述符文件路径&lt;/li&gt;
-  &lt;li&gt;开启和关闭一些模块&lt;/li&gt;
-  &lt;li&gt;指定一些依赖库的路径&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;section-6&quot;&gt;编译碰到的问题&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;--with-pcre=...
---with-openssl=
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&quot;section-7&quot;&gt;运行&lt;/h2&gt;
-
-&lt;p&gt;由于需要运行在80端口, 所以需要root权限&lt;/p&gt;
-
-&lt;h3 id=&quot;section-8&quot;&gt;帮助&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;nginx -h
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;section-9&quot;&gt;操作命令&lt;/h3&gt;
-
-&lt;p&gt;注：使用nginx时要保证配置文件正确&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;nginx
-nginx -s quit  # 使用QUIT(3)信号
-nginx -s stop  # 使用TERM(15)信号
-nginx -s reload
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;section-10&quot;&gt;测试配置&lt;/h3&gt;
-
-&lt;p&gt;在生产机上修改配置时，可先cp一份，修改后先用以下测试&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;nginx -t -c modified.conf
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&quot;section-11&quot;&gt;基本配置&lt;/h2&gt;
-
-&lt;h3 id=&quot;section-12&quot;&gt;指令&lt;/h3&gt;
-
-&lt;p&gt;nginx由模块组成，每个模块提供一组指令&lt;/p&gt;
-
-&lt;h3 id=&quot;section-13&quot;&gt;指令上下文&lt;/h3&gt;
-
-&lt;p&gt;main&lt;br /&gt;
-http&lt;br /&gt;
-server&lt;br /&gt;
-location&lt;br /&gt;
-mail&lt;/p&gt;
-
-&lt;h4 id=&quot;include&quot;&gt;include&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;include sites/*.conf;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;一般来说，有几个配置文件组成&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;nginx.conf
-mime.types
-fastcgi.conf
-proxy.conf
-sites.conf
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&quot;section-14&quot;&gt;指令块&lt;/h4&gt;
-
-&lt;p&gt;由模块提供&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;events {
-    worker_connections  1024;
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&quot;section-15&quot;&gt;区段继承&lt;/h4&gt;
-
-&lt;h4 id=&quot;section-16&quot;&gt;单位&lt;/h4&gt;
-
-&lt;p&gt;大小&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;k m
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;client_max_body_size 20m;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;时间&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;ms s m h d w M y
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&quot;section-17&quot;&gt;变量&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;$nginx_version
-$remote_addr
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&quot;section-18&quot;&gt;字符串&lt;/h4&gt;
-
-&lt;p&gt;可以不需要引号，如果包含空格，则需要引号&lt;/p&gt;
-
-&lt;h2 id=&quot;section-19&quot;&gt;进程结构&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/nginx/01.png&quot; alt=&quot;进程结构&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;异步非阻塞&lt;/p&gt;
-
-&lt;p&gt;epoll(linux)&lt;br /&gt;
-kqueue (max)&lt;/p&gt;
-
-&lt;p&gt;处理流程&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;while (true) {
-    for t in run_tasks:
-        t.handler();
-    update_time(&amp;amp;now);
-    timeout = ETERNITY;
-    for t in wait_tasks: /* sorted already */
-        if (t.time &amp;lt;= now) {
-            t.timeout_handler();
-        } else {
-            timeout = t.time - now;
-            break;
-        }
-    nevents = poll_function(events, timeout);
-    for i in nevents:
-        task t;
-        if (events[i].type == READ) {
-            t.handler = read_handler;
-        } else (events[i].type == WRITE) {
-            t.handler = write_handler;
-        }
-        run_tasks_add(t);
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;数据：24G内存的机器上，处理的并发请求数达到过200万&lt;/p&gt;
-
-&lt;h3 id=&quot;section-20&quot;&gt;核心模块&lt;/h3&gt;
-
-&lt;p&gt;基本特征和指令，如进程管理和安全&lt;/p&gt;
-
-&lt;p&gt;http://nginx.org/en/docs/&lt;/p&gt;
-
-&lt;h4 id=&quot;daemon&quot;&gt;daemon&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;daemon on | off;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;errorlog&quot;&gt;error_log&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;error_log  logs/error.log;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;lognotfound&quot;&gt;log_not_found&lt;/h3&gt;
-
-&lt;h3 id=&quot;user&quot;&gt;user&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;user username group;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;workercpuaffinity&quot;&gt;worker_cpu_affinity&lt;/h3&gt;
-
-&lt;p&gt;在我的mac机下不支持&lt;/p&gt;
-
-&lt;h3 id=&quot;workerrlimitnofile&quot;&gt;worker_rlimit_nofile&lt;/h3&gt;
-
-&lt;p&gt;一个worker进程可以处理的文件数量&lt;/p&gt;
-
-&lt;h2 id=&quot;event&quot;&gt;event模块&lt;/h2&gt;
-
-&lt;p&gt;&lt;strong&gt;配置网络机制，对性能会有重要影响&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;workerconnections&quot;&gt;worker_connections&lt;/h3&gt;
-
-&lt;p&gt;定义一个worker进程有够同时连接的数量&lt;/p&gt;
-
-&lt;h3 id=&quot;use&quot;&gt;use&lt;/h3&gt;
-
-&lt;p&gt;kqueue (mac)&lt;br /&gt;
-epoll  (linux)&lt;br /&gt;
-select (windows)&lt;/p&gt;
-
-&lt;h2 id=&quot;section-21&quot;&gt;配置模块&lt;/h2&gt;
-
-&lt;h3 id=&quot;include-1&quot;&gt;include&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;可以在配置文件的任何地方使用&lt;/li&gt;
-  &lt;li&gt;如果没有指定绝对路径，则相对于当前配置文件&lt;/li&gt;
-  &lt;li&gt;可以使用通配符&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;section-22&quot;&gt;必须的配置&lt;/h2&gt;
-
-&lt;h3 id=&quot;user-1&quot;&gt;user&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;user nginx nginx;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;workerprocesses&quot;&gt;worker_processes&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;worker_processes  4;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;lognotonfound&quot;&gt;log_not_on_found&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;log_not_on_found on;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;workerconnections-1&quot;&gt;worker_connections&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;worker_connections 1024;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&quot;http&quot;&gt;http配置&lt;/h2&gt;
-
-&lt;h3 id=&quot;http-1&quot;&gt;http&lt;/h3&gt;
-
-&lt;h3 id=&quot;server&quot;&gt;server&lt;/h3&gt;
-
-&lt;p&gt;声明一个站点&lt;/p&gt;
-
-&lt;h3 id=&quot;location&quot;&gt;location&lt;/h3&gt;
-
-&lt;p&gt;定义一个站点的特定位置&lt;/p&gt;
-
-&lt;h3 id=&quot;section-23&quot;&gt;常用指令&lt;/h3&gt;
-
-&lt;p&gt;listern&lt;br /&gt;
-server_name&lt;br /&gt;
-root&lt;br /&gt;
-alias&lt;br /&gt;
-error_page&lt;br /&gt;
-index&lt;/p&gt;
-
-&lt;p&gt;sendfile&lt;br /&gt;
-tcp_nopush&lt;/p&gt;
-
-&lt;p&gt;log_not_found&lt;/p&gt;
-
-&lt;h3 id=&quot;section-24&quot;&gt;客户端请求&lt;/h3&gt;
-
-&lt;p&gt;keepalive_requests&lt;br /&gt;
-keepalive_timeout&lt;/p&gt;
-
-&lt;p&gt;send_timeout 默认为60s&lt;/p&gt;
-
-&lt;p&gt;client_max_body_size&lt;/p&gt;
-
-&lt;h3 id=&quot;location-1&quot;&gt;location&lt;/h3&gt;
-
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;location [=&lt;/td&gt;
-      &lt;td&gt;~&lt;/td&gt;
-      &lt;td&gt;~*&lt;/td&gt;
-      &lt;td&gt;^~&lt;/td&gt;
-      &lt;td&gt;@] pattern { … }&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;pre&gt;&lt;code&gt;# 严格匹配 (querystring是可以加上的)
-location = /abcd {}
-
-# 前缀匹配
-location /abcd {}
-
-# 正则匹配，区分大小写
-location ~ ^/abcd {}
-
-# 正则匹配, 不区分大小写
-location ~* ^/abcd {}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&quot;section-25&quot;&gt;搜索顺序&lt;/h4&gt;
-
-&lt;p&gt;严格匹配 &amp;gt; 无修辞精确匹配 &amp;gt; 正则匹配 &amp;gt; 无修辞匹配&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;location /doc {}
-location ~ /^document$ {}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;/document&lt;/p&gt;
-
-&lt;h3 id=&quot;rewrite-&quot;&gt;Rewrite 模块&lt;/h3&gt;
-
-&lt;p&gt;可以尝试打开 error_log debug 方便rewrite的编写&lt;/p&gt;
-
-&lt;h2 id=&quot;section-26&quot;&gt;和应用服务器连接&lt;/h2&gt;
-
-&lt;h3 id=&quot;proxy&quot;&gt;proxy&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;proxy_pass      http://127.0.0.1:8080;
-
-## 对响应本身不做任何处理
-proxy_redirect    off;    
-
-## 让应用服务器得到客户端host
-proxy_set_header  Host $host;
-
-## 让应用服务器得到用户ip
-proxy_set_header  X-Real-IP $remote_addr;
-
-## 让具有代理的客户端访问时，应用服务器能得到用户ip
-proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
-
-
-client_max_body_size  10m;
-client_body_buffer_size 128k;
-
-
-proxy_connect_timeout 15;
-proxy_send_timeout    15;
-proxy_read_timeout    15;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;upstream&quot;&gt;upstream&lt;/h3&gt;
-
-&lt;h3 id=&quot;fastcgi&quot;&gt;fastcgi&lt;/h3&gt;
-
-</description>
-        <pubDate>Wed, 04 Sep 2013 00:00:00 +0800</pubDate>
-        <link>http://bencode.github.io/nginx/nginx.html</link>
-        <guid isPermaLink="true">http://bencode.github.io/nginx/nginx.html</guid>
-        
-        
-        <category>nginx</category>
         
       </item>
     
