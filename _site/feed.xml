@@ -5,8 +5,8 @@
     <description></description>
     <link>http://bencode.github.io/</link>
     <atom:link href="http://bencode.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 26 Nov 2014 10:40:03 +0800</pubDate>
-    <lastBuildDate>Wed, 26 Nov 2014 10:40:03 +0800</lastBuildDate>
+    <pubDate>Fri, 28 Nov 2014 21:54:07 +0800</pubDate>
+    <lastBuildDate>Fri, 28 Nov 2014 21:54:07 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -50,10 +50,33 @@ BundleContext&lt;/p&gt;
 
 &lt;p&gt;Platform&lt;/p&gt;
 
-&lt;h2 id=&quot;resource-management&quot;&gt;Resource management&lt;/h2&gt;
+&lt;h2 id=&quot;workbench&quot;&gt;Workbench&lt;/h2&gt;
 
-&lt;h2 id=&quot;workbench-ui&quot;&gt;Workbench UI&lt;/h2&gt;
+&lt;p&gt;Workbench(WorkbenchWindow)&lt;/p&gt;
 
+&lt;p&gt;Ppage: for group part&lt;/p&gt;
+
+&lt;p&gt;Workbench&lt;br /&gt;
+  - Page&lt;br /&gt;
+    - MenuBar&lt;br /&gt;
+    - ToolBar&lt;br /&gt;
+    - StausLine&lt;br /&gt;
+    - ShotcutBar&lt;/p&gt;
+
+&lt;p&gt;Perspective:&lt;br /&gt;
+  views, layout, actions&lt;/p&gt;
+
+&lt;p&gt;切换perspective时,editor不受影响&lt;/p&gt;
+
+&lt;p&gt;Part&lt;br /&gt;
+1. ViewPart&lt;br /&gt;
+2. EditPart: save-close lifecycle&lt;/p&gt;
+
+&lt;p&gt;View and Editor&lt;/p&gt;
+
+&lt;p&gt;createPartControl&lt;br /&gt;
+setFocus&lt;br /&gt;
+dispose&lt;/p&gt;
 </description>
         <pubDate>Wed, 26 Nov 2014 00:00:00 +0800</pubDate>
         <link>http://bencode.github.io/eclipse/review.html</link>
