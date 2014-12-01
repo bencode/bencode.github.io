@@ -4,7 +4,8 @@ title: 配置error_page
 categories: nginx
 ---
 
-http://nginx.org/en/docs/http/ngx_http_core_module.html#error_page
+官网文档：[查看](http://nginx.org/en/docs/http/ngx_http_core_module.html#error_page)
+
 
 注意点是，如果error_page指向的页面是一个远程地址，如http://demo.com/errorpage.html
 那默认页面会进行302跳转，而不管原来的状态码。
