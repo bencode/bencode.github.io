@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 配置error_page
+title: nginx配置error_page
 categories: nginx
 ---
 
