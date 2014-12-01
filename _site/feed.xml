@@ -5,8 +5,8 @@
     <description></description>
     <link>http://bencode.github.io/</link>
     <atom:link href="http://bencode.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 01 Dec 2014 16:55:46 +0800</pubDate>
-    <lastBuildDate>Mon, 01 Dec 2014 16:55:46 +0800</lastBuildDate>
+    <pubDate>Mon, 01 Dec 2014 17:12:36 +0800</pubDate>
+    <lastBuildDate>Mon, 01 Dec 2014 17:12:36 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -45,7 +45,9 @@ location @fallback {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;会出现指令出错。&lt;code&gt;nginx: [emerg] &quot;proxy_pass&quot; cannot have URI part in location given by regular expression, or inside named location, or inside &quot;if&quot; statement, or inside &quot;limit_except&quot; block in&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;会出现指令出错。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;nginx: [emerg] &quot;proxy_pass&quot; cannot have URI part in location given by regular expression, or inside named location, or inside &quot;if&quot; statement, or inside &quot;limit_except&quot; block in&lt;/code&gt;&lt;/p&gt;
 </description>
         <pubDate>Mon, 01 Dec 2014 00:00:00 +0800</pubDate>
         <link>http://bencode.github.io/nginx/error_page.html</link>
