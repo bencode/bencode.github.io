@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 《算法导论》散列表
+title: 《算法导论》读书笔记7 散列表
 categories: algorithms
 ---
 
