@@ -5,9 +5,73 @@
     <description></description>
     <link>http://bencode.github.io/</link>
     <atom:link href="http://bencode.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 22 Dec 2014 21:20:13 +0800</pubDate>
-    <lastBuildDate>Mon, 22 Dec 2014 21:20:13 +0800</lastBuildDate>
+    <pubDate>Wed, 24 Dec 2014 23:31:37 +0800</pubDate>
+    <lastBuildDate>Wed, 24 Dec 2014 23:31:37 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>git最佳实践</title>
+        <description>&lt;h2 id=&quot;section&quot;&gt;关于提交&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;经常提交，并让每个提交尽量小，提交的内容包含&lt;strong&gt;相关&lt;/strong&gt;改动。  &lt;br /&gt;
+  比如2个bug，一次性改完，那也要分两次提交，可以配合使用stash来达到目的。&lt;/li&gt;
+  &lt;li&gt;提交时必须带上相应的描述，描述格式如下&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code&gt;[tag]: [简短描述]    # 这一行不要超过72字符，否则使用命令行自动分页功能时会超出屏幕外
+                      # 这里空一行
+这里是提交的描述
+可以说明为什么要这么改
+加一些方便代码review的信息
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;关于简单描述，只用一句话说明本次所作的提交，如果一句话说不清楚，那有可能这个提交得拆分成多次提交，这有点像方法重构。&lt;br /&gt;
+  很多文章中说这里不要超过50个字符，不过那指的是英文，汉字表达能力更足，应该20个字就搞定了。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;关于类别，这一点是我使用过程中感觉很有用的一点，不过对于不同类型的仓库，可能会定义不同的tag。我常用的tag有&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;(1) Fix: 修改了某个bug&lt;br /&gt;
+(2) Add: 添加新特性&lt;br /&gt;
+(3) Change: 修改某些特性&lt;br /&gt;
+(4) Update: 更新依赖库造成的修改&lt;br /&gt;
+(5) Remove: 去掉了某些特性&lt;br /&gt;
+(6) Refactor: 重构代码(指的是不修改代码功能，优化代码结构)&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;为了能让提交时不仅仅出现“fix”, “ci”等无用注释，建议&lt;strong&gt;永远不要带上 -m 参数&lt;/strong&gt;  &lt;br /&gt;
+  使用 git commit &lt;enter&gt;, 系统会弹出编辑器让你写。 所以建议好好配置一下git的外置编辑器&lt;/enter&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;描述后面的空行很重要&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;相关文档&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;https://ruby-china.org/topics/15737&lt;/li&gt;
+  &lt;li&gt;http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html&lt;/li&gt;
+  &lt;li&gt;http://web-design-weekly.com/2013/09/01/a-better-git-commit/&lt;/li&gt;
+  &lt;li&gt;http://ablogaboutcode.com/2011/03/23/proper-git-commit-messages-and-an-elegant-git-history/&lt;/li&gt;
+  &lt;li&gt;https://github.com/erlang/otp/wiki/Writing-good-commit-messages&lt;/li&gt;
+  &lt;li&gt;http://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Tue, 23 Dec 2014 00:00:00 +0800</pubDate>
+        <link>http://bencode.github.io/git/best-practice.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/git/best-practice.html</guid>
+        
+        
+        <category>git</category>
+        
+      </item>
     
       <item>
         <title>Hammer.js默认情况下会preventDefault的解决</title>
@@ -360,50 +424,6 @@ shadow DOM不能被用户访问到，它有自己的空间。 &lt;br /&gt;
         <pubDate>Sat, 08 Nov 2014 00:00:00 +0800</pubDate>
         <link>http://bencode.github.io/reading/polymer/shadow-dom.html</link>
         <guid isPermaLink="true">http://bencode.github.io/reading/polymer/shadow-dom.html</guid>
-        
-        
-        <category>reading</category>
-        
-        <category>polymer</category>
-        
-      </item>
-    
-      <item>
-        <title>Polymer学习笔记 - Helper Methods</title>
-        <description>&lt;h2 id=&quot;html-imports&quot;&gt;动态Html imports&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;Polymer.import(urls, callback)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;&amp;lt;dynamic-element&amp;gt;
-  I&#39;m just an unknown element.
-&amp;lt;/dynamic-element&amp;gt;
-
-&amp;lt;script&amp;gt;
-  var button = document.querySelector(&#39;button&#39;)
-  button.addEventListener(&#39;click&#39;, function() {
-    Polymer.import([&#39;dynamic-element.html&#39;], function() {
-      document.querySelector(&#39;dynamic-element&#39;).description = &#39;a dynamic import&#39;
-    })
-  });
-&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&quot;mixins&quot;&gt;mixins&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;Polymer.mixin(target, obj1 [, obj2, ..., objN ] )
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&quot;section&quot;&gt;强制注册元素&lt;/h2&gt;
-
-&lt;p&gt;默认情况下，Polymer会等待所有元素ready, 再进行注册和更新。 &lt;br /&gt;
-如果一个元素没有调用Polymer构造函数，也没有使用noscript属性，则它会一直等待。 &lt;br /&gt;
-Polymer.waitingFor帮助方法返回一个阻塞状态的polymer-element列表。  &lt;br /&gt;
-Polymer.forceReady通知Polymer强制注册所有已ready的元素，忽略未完成的元素。&lt;/p&gt;
-</description>
-        <pubDate>Sat, 08 Nov 2014 00:00:00 +0800</pubDate>
-        <link>http://bencode.github.io/reading/polymer/helper-methods.html</link>
-        <guid isPermaLink="true">http://bencode.github.io/reading/polymer/helper-methods.html</guid>
         
         
         <category>reading</category>
