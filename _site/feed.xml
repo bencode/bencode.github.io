@@ -5,9 +5,74 @@
     <description></description>
     <link>http://bencode.github.io/</link>
     <atom:link href="http://bencode.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 28 Dec 2014 15:45:03 +0800</pubDate>
-    <lastBuildDate>Sun, 28 Dec 2014 15:45:03 +0800</lastBuildDate>
+    <pubDate>Sun, 28 Dec 2014 15:46:33 +0800</pubDate>
+    <lastBuildDate>Sun, 28 Dec 2014 15:46:33 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>《黑客与画家》读书笔记（第二章）</title>
+        <description>&lt;p&gt;黑客与画家的共同之处，在于他们都是创作者。他们的本质都不是在做研究。&lt;/p&gt;
+
+&lt;p&gt;计算机科学应该由三部分组成： 1. 数学家  2. 计算机科学家 3. 黑客&lt;/p&gt;
+
+&lt;p&gt;黑客的最高境界是创造规格&lt;/p&gt;
+
+&lt;p&gt;创造优美的事物的方式往往不是从头做起，而是在现有成果的基础上做一些小小的调整。&lt;/p&gt;
+
+&lt;p&gt;人们无法考核你的工作，甚至误解你的工作，这些都不是最糟的事。更大的危险是你自己也误解自己的工作。&lt;/p&gt;
+
+&lt;p&gt;“我不是耐心地一步步写出整个程序，确保大体上是正确的，而是一股脑不管对错，先把代码堆上去，再慢慢修改”，编程就是调试&lt;/p&gt;
+
+&lt;p&gt;你把整个程序想清楚的时间点，应该是在编写代码的同时，而不是编写代码之前&lt;/p&gt;
+
+&lt;p&gt;编程语言是用来帮助思考程序的，而不是用来表达你已想好的程序。&lt;/p&gt;
+
+&lt;p&gt;开发优秀的方式之一就是自己创业&lt;/p&gt;
+
+&lt;p&gt;赚钱的软件往往不是好玩的软件&lt;/p&gt;
+
+&lt;p&gt;解决生计问题的方法是找一份“白天工作”，然后在其余时间开发优美的软件&lt;/p&gt;
+
+&lt;p&gt;通过实践学习编程，通过范例学习编程&lt;/p&gt;
+
+&lt;p&gt;定期地从头开始，而不要长年累月地在一个项目上不断工作，并且试图把所有的最新想法都以修订版的形式包括进去&lt;/p&gt;
+
+&lt;p&gt;黑客的出发点的是原创，最终得到一个优美的结果；而科学家的出发点是别人优美的结果，最终得到原创性。&lt;/p&gt;
+
+&lt;p&gt;一副画是逐步完成的，你不能盼望先有一个完美的设计，然后再动手编程，如果你预先承认设计是不完美的，在编程的时间，就可以根据需求当场修改，最终会有一个更好的结果。&lt;/p&gt;
+
+&lt;p&gt;过早优先是一件危险的事情，过早设计也有同样的担忧&lt;/p&gt;
+
+&lt;p&gt;最容易修改的语言就是简短的语言&lt;/p&gt;
+
+&lt;p&gt;一幅优秀的绘画作品必须比它应该有的样子更好&lt;/p&gt;
+
+&lt;p&gt;有些工作需要投入巨大的热情，另一些工作则是不需要很操心的日常琐事。在你厌倦的时候再去做那些比较容易的工作。比如“写代码”和“改bug”&lt;/p&gt;
+
+&lt;p&gt;当多个画家共同创作一幅作品时，每个人画的部分都是不一样的。通常来说，大师负责画主要人物，助手们负责画次要人物和背景。但是，你肯定找不到某个部分是两个人一起画的。&lt;/p&gt;
+
+&lt;p&gt;“需要合作，但不要合得过头”&lt;/p&gt;
+
+&lt;p&gt;正确的合作方法是将项目分割成严格定义的模块，每一个模块由一个人明确负责。模块与模块之间的接口经过精心设计，如果可能的话，最好把文档说明写得像编程语言规范那样清晰。&lt;/p&gt;
+
+&lt;p&gt;必须能够站在用户的角度思考问题，必须学会“换位思考”&lt;/p&gt;
+
+&lt;p&gt;程序写出来是给人看的，附带能在机器上运行&lt;/p&gt;
+
+&lt;p&gt;编程到底能够有多酷，取决于我们能够用这种新媒介做出怎样的工作&lt;/p&gt;
+</description>
+        <pubDate>Sun, 28 Dec 2014 00:00:00 +0800</pubDate>
+        <link>http://bencode.github.io/hackers/and/painters/c2.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/hackers/and/painters/c2.html</guid>
+        
+        
+        <category>hackers</category>
+        
+        <category>and</category>
+        
+        <category>painters</category>
+        
+      </item>
     
       <item>
         <title>git最佳实践</title>
@@ -369,61 +434,6 @@ document.body.appendChild(clone);
         <pubDate>Sat, 08 Nov 2014 00:00:00 +0800</pubDate>
         <link>http://bencode.github.io/reading/polymer/template.html</link>
         <guid isPermaLink="true">http://bencode.github.io/reading/polymer/template.html</guid>
-        
-        
-        <category>reading</category>
-        
-        <category>polymer</category>
-        
-      </item>
-    
-      <item>
-        <title>Polymer学习笔记 - Shadow DOM</title>
-        <description>&lt;h2 id=&quot;section&quot;&gt;基本使用&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var el = document.createElement(&#39;div&#39;)
-var shadow = el.createShadowRoot()
-shadow.innerHTML = &#39;&amp;lt;content select=&quot;q&quot;&amp;gt;&amp;lt;/content&amp;gt;&#39;
-document.body.appendChild(el)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&quot;subtrees&quot;&gt;subtrees&lt;/h2&gt;
-
-&lt;p&gt;一个节点承载三棵树： light DOM, shadow DOM 和 composed DOM&lt;/p&gt;
-
-&lt;p&gt;组件提供者创建shadow DOM, 使用者提供light DOM， 然后浏览器结合两者成为composed DOM进行渲染。 &lt;br /&gt;
-shadow DOM不能被用户访问到，它有自己的空间。 &lt;br /&gt;
-这本质上是一种封装和开放，设计上的艺术。&lt;/p&gt;
-
-&lt;h2 id=&quot;polyfill&quot;&gt;Polyfill&lt;/h2&gt;
-
-&lt;p&gt;原生不支持ShadowDom的浏览器，可以使用ShadowDOMPolyfill来包装，只是即使这样，也有若干限制。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-1&quot;&gt;事件重定向&lt;/h3&gt;
-
-&lt;h3 id=&quot;section-2&quot;&gt;已知的缺陷&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;css封装性&lt;/li&gt;
-  &lt;li&gt;Object.prototype.toString和原生支持的返回不一致&lt;/li&gt;
-  &lt;li&gt;document, window, document.body, document.head等不可配置，不能被重写&lt;/li&gt;
-  &lt;li&gt;跨window, frame未实现&lt;/li&gt;
-  &lt;li&gt;:host()伪类选择器最多支持1层嵌套的括号选择器&lt;br /&gt;
-例：&lt;code&gt;:host(.zot)&lt;/code&gt; and &lt;code&gt;:host(.zot:not(.bar))&lt;/code&gt; 支持, &lt;br /&gt;
-  &lt;code&gt;:host(.zot:not(.bar:nth-child(2)))&lt;/code&gt; 不支持&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;[资料]&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.polymer-project.org/platform/shadow-dom.html&quot;&gt;https://www.polymer-project.org/platform/shadow-dom.html&lt;/a&gt;&lt;br /&gt;
-&lt;a href=&quot;https://dvcs.w3.org/hg/webcomponents/raw-file/57f8cfc4a7dc/explainer/index.html#shadow-dom-section&quot;&gt;https://dvcs.w3.org/hg/webcomponents/raw-file/57f8cfc4a7dc/explainer/index.html#shadow-dom-section&lt;/a&gt;&lt;br /&gt;
-&lt;a href=&quot;http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom/&quot;&gt;http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom/&lt;/a&gt;&lt;br /&gt;
-&lt;a href=&quot;http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-201/&quot;&gt;http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-201/&lt;/a&gt;&lt;br /&gt;
-&lt;a href=&quot;http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-301/&quot;&gt;http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-301/&lt;/a&gt;&lt;/p&gt;
-</description>
-        <pubDate>Sat, 08 Nov 2014 00:00:00 +0800</pubDate>
-        <link>http://bencode.github.io/reading/polymer/shadow-dom.html</link>
-        <guid isPermaLink="true">http://bencode.github.io/reading/polymer/shadow-dom.html</guid>
         
         
         <category>reading</category>
