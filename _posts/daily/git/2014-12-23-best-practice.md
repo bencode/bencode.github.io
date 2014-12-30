@@ -62,5 +62,4 @@ categories: git
 
 ## 关于分支
 
-分支实在是git的杀手锏，没有分支就没有git。
 
