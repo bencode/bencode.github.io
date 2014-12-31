@@ -4,6 +4,8 @@ title: 资源
 permalink: /links/
 ---
 
+暂时收集，还没来得及看的东西
+
 ## Library
 
 [d3js](http://d3js.org/)
@@ -14,6 +16,11 @@ http://zaach.github.io/jison/
 
 [TOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content)
 [layout](http://zh.learnlayout.com)
+
+
+## 模块
+[webpack](http://webpack.github.io)
+
 
 
 ## [文档]
