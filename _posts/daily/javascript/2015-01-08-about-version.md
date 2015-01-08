@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Node Package的版本
+title: 关于nodejs中版本号
 categories: javascript
 ---
 
