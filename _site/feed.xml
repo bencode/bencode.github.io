@@ -5,14 +5,21 @@
     <description></description>
     <link>http://bencode.github.io/</link>
     <atom:link href="http://bencode.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 24 Jan 2015 23:20:28 +0800</pubDate>
-    <lastBuildDate>Sat, 24 Jan 2015 23:20:28 +0800</lastBuildDate>
+    <pubDate>Thu, 29 Jan 2015 17:13:23 +0800</pubDate>
+    <lastBuildDate>Thu, 29 Jan 2015 17:13:23 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
         <title>常用的nodejs package</title>
         <description>&lt;p&gt;收集工具类nodejs package，避免造轮子&lt;/p&gt;
 
+&lt;h2 id=&quot;section&quot;&gt;工具&lt;/h2&gt;
+
+&lt;h3 id=&quot;path-to-regexp&quot;&gt;path-to-regexp&lt;/h3&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;模板应擎&lt;/h2&gt;
+
+&lt;h3 id=&quot;swig&quot;&gt;swig&lt;/h3&gt;
 </description>
         <pubDate>Sat, 06 Jun 2015 00:00:00 +0800</pubDate>
         <link>http://bencode.github.io/javascript/common-node-js-package.html</link>
