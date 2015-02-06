@@ -11,6 +11,8 @@ permalink: /links/
 [d3js](http://d3js.org/)
 http://zaach.github.io/jison/
 
+[node-fs-extra](https://github.com/jprichardson/node-fs-extra)
+
 
 ## CSS
 
