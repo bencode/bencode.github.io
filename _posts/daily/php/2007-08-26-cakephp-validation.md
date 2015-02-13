@@ -10,7 +10,6 @@ categories: php
 它通过配置其 validate 数组, 就可以进行验证,  阅读了源码, 整理出 validate数组可能的结构, 以及验证的过程
 
 1. 首先, 如果重写了 beforeValidate,  那么它先处理这里的东东... 以决定是否进行下一步验证
-
 2. 然后才会根据 validate数组, 进行实际验证
 
 ```php
@@ -85,15 +84,15 @@ var validate => array(
 
 那么第一步
 
-1. 如果 empty(on) || (on == 'create' && !exists) || (on == 'update' && exists) 就进行验证
+1\. 如果 empty(on) || (on == 'create' && !exists) || (on == 'update' && exists) 就进行验证
 
 说白了. 就是 on 为空, 或者为 'create' 而且数据库中没有相关记录,  或者为 'update' 而且数据库中具有相关记录, 那么进行验证
 
 所以, 我们验证的时候.可以在 网页上看到 debug信息,说是查询数据库用了多少毫秒(心里不知道怎么回事,明明没写什么find findAll)  原因就在这里.
 
-2. 然后根据 allowEmpty 以及 required 信息, 进行空与非空验证,  如果通过这步, 再进行 3
+2\. 然后根据 allowEmpty 以及 required 信息, 进行空与非空验证,  如果通过这步, 再进行 3
 
-3. 然后再根据 rule  进行验证 
+3\. 然后再根据 rule  进行验证 
 
 上面说了 rule 可以是 string(表示一个正则式, 或一个方法名), 但它其实还可以是一个 array 
 
