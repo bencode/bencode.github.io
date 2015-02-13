@@ -5,8 +5,8 @@
     <description></description>
     <link>http://bencode.github.io/</link>
     <atom:link href="http://bencode.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 06 Feb 2015 11:23:07 +0800</pubDate>
-    <lastBuildDate>Fri, 06 Feb 2015 11:23:07 +0800</lastBuildDate>
+    <pubDate>Fri, 13 Feb 2015 10:31:48 +0800</pubDate>
+    <lastBuildDate>Fri, 13 Feb 2015 10:31:48 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -455,19 +455,6 @@ fn();
       </item>
     
       <item>
-        <title>［译］Shadow DOM 101</title>
-        <description>&lt;p&gt;正在进行中…&lt;/p&gt;
-</description>
-        <pubDate>Tue, 11 Nov 2014 00:00:00 +0800</pubDate>
-        <link>http://bencode.github.io/translation/shadow-dom-101.html</link>
-        <guid isPermaLink="true">http://bencode.github.io/translation/shadow-dom-101.html</guid>
-        
-        
-        <category>translation</category>
-        
-      </item>
-    
-      <item>
         <title>child_process的同步方法execSync</title>
         <description>&lt;p&gt;node中通过child_processt和shell交互很方便，只是0.10.x版本中的exec没有同步版本，让做“脚本”用途的node写起来很是麻烦。&lt;br /&gt;
 而在0.11.12版本后添加了execSync方法解决了这个问题。&lt;/p&gt;
@@ -494,6 +481,56 @@ exec(&#39;git log&#39;, { encoding: &#39;utf-8&#39; });
         
         
         <category>nodejs</category>
+        
+      </item>
+    
+      <item>
+        <title>Polymer学习笔记 - HTML5 Template</title>
+        <description>&lt;p&gt;&lt;a href=&quot;http://www.html5rocks.com/zh/tutorials/webcomponents/template/&quot;&gt;参考资料&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;特性检测&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;function supportTemplate() {
+  return &#39;content&#39; in document.createElement(&#39;template&#39;)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;声明模板内容&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;template id=&quot;mytemplate&quot;&amp;gt;
+  &amp;lt;img src=&quot;&quot; alt=&quot;great image&quot;&amp;gt;
+  &amp;lt;div class=&quot;comment&quot;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;/template&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;特性&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;模板内容在激活前不会被渲染&lt;/li&gt;
+  &lt;li&gt;处于模板中的内容无副作用&lt;/li&gt;
+  &lt;li&gt;处理模板中的内容不在文档中&lt;/li&gt;
+  &lt;li&gt;模板可以放置在任意位置，包括&lt;code&gt;&amp;lt;head&amp;gt;, &amp;lt;body&amp;gt;, &amp;lt;frameset&amp;gt;&lt;/code&gt;&lt;br /&gt;
+  并且任何能够出现在以上节点中的内容都可以出现在&lt;code&gt;&amp;lt;template&amp;gt;&lt;/code&gt;中&lt;br /&gt;
+  template能够安全地出现在html解析器不允许出现的位置，几乎可以作为任何内容的子节点，如&lt;code&gt;&amp;lt;table&amp;gt;&lt;/code&gt;和&lt;code&gt;&amp;lt;select&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;激活&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var t = document.querySelector(&#39;#mytemplate&#39;)
+t.content.querySelector(&#39;img&#39;).src = &#39;logo.png&#39;;
+
+var clone = document.importNode(t.content, true);
+document.body.appendChild(clone);
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+        <pubDate>Sat, 08 Nov 2014 00:00:00 +0800</pubDate>
+        <link>http://bencode.github.io/reading/polymer/template.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/reading/polymer/template.html</guid>
+        
+        
+        <category>reading</category>
+        
+        <category>polymer</category>
         
       </item>
     
