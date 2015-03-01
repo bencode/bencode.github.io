@@ -5,8 +5,8 @@
     <description></description>
     <link>http://bencode.github.io/</link>
     <atom:link href="http://bencode.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 01 Mar 2015 12:20:57 +0800</pubDate>
-    <lastBuildDate>Sun, 01 Mar 2015 12:20:57 +0800</lastBuildDate>
+    <pubDate>Sun, 01 Mar 2015 12:22:54 +0800</pubDate>
+    <lastBuildDate>Sun, 01 Mar 2015 12:22:54 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -186,15 +186,15 @@ https://www.npmjs.org/doc/misc/semver.html&lt;/p&gt;
 &lt;p&gt;关于包的一些资料：&lt;/p&gt;
 
 &lt;p&gt;(1) package.json的说明&lt;br /&gt;
-https://www.npmjs.org/doc/files/package.json.html&lt;/p&gt;
+&lt;a href=&quot;https://www.npmjs.org/doc/files/package.json.html&quot;&gt;https://www.npmjs.org/doc/files/package.json.html&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;(2) 怎么样的东西可以被npm install，即package是什么&lt;/p&gt;
 
-&lt;p&gt;https://www.npmjs.org/doc/cli/npm-install.html&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.npmjs.org/doc/cli/npm-install.html&quot;&gt;https://www.npmjs.org/doc/cli/npm-install.html&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;(2) 什么样的东西可以被 require，即 module是什么&lt;/p&gt;
 
-&lt;p&gt;http://nodejs.org/api/modules.html#modules_modules&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://nodejs.org/api/modules.html#modules_modules&quot;&gt;http://nodejs.org/api/modules.html#modules_modules&lt;/a&gt;&lt;/p&gt;
 
 </description>
         <pubDate>Thu, 08 Jan 2015 00:00:00 +0800</pubDate>

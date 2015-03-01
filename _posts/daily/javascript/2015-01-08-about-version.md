@@ -92,15 +92,15 @@ https://github.com/isaacs/node-semver
 关于包的一些资料：
 
 (1) package.json的说明
-https://www.npmjs.org/doc/files/package.json.html
+[https://www.npmjs.org/doc/files/package.json.html](https://www.npmjs.org/doc/files/package.json.html)
 
 (2) 怎么样的东西可以被npm install，即package是什么
 
-https://www.npmjs.org/doc/cli/npm-install.html
+[https://www.npmjs.org/doc/cli/npm-install.html](https://www.npmjs.org/doc/cli/npm-install.html)
 
 (2) 什么样的东西可以被 require，即 module是什么
 
-http://nodejs.org/api/modules.html#modules_modules
+[http://nodejs.org/api/modules.html#modules_modules](http://nodejs.org/api/modules.html#modules_modules)
 
 
 
