@@ -5,8 +5,8 @@
     <description></description>
     <link>http://bencode.github.io/</link>
     <atom:link href="http://bencode.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 01 Mar 2015 12:15:50 +0800</pubDate>
-    <lastBuildDate>Sun, 01 Mar 2015 12:15:50 +0800</lastBuildDate>
+    <pubDate>Sun, 01 Mar 2015 12:17:09 +0800</pubDate>
+    <lastBuildDate>Sun, 01 Mar 2015 12:17:09 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -45,16 +45,12 @@ nothing to commit, working directory clean
 
 &lt;p&gt;解决方案&lt;/p&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;配置大小写敏感&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;1. 配置大小写敏感&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;git config --global core.ignorecase false
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;先移除文件，再添加文件&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;2. 先移除文件，再添加文件&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;$ git rm &amp;lt;filename&amp;gt;; git add &amp;lt;filename&amp;gt; ;  git commit -m &quot;rename file&quot;
 &lt;/code&gt;&lt;/pre&gt;
