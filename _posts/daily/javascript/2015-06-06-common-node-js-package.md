@@ -15,3 +15,10 @@ categories: javascript
 ## 模板应擎
 
 ### swig
+
+
+## 字符串
+
+[minimatch](https://github.com/isaacs/minimatch)
+
+可用于实现glob

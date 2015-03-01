@@ -5,8 +5,8 @@
     <description></description>
     <link>http://bencode.github.io/</link>
     <atom:link href="http://bencode.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 01 Mar 2015 12:17:09 +0800</pubDate>
-    <lastBuildDate>Sun, 01 Mar 2015 12:17:09 +0800</lastBuildDate>
+    <pubDate>Sun, 01 Mar 2015 12:20:57 +0800</pubDate>
+    <lastBuildDate>Sun, 01 Mar 2015 12:20:57 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -20,6 +20,12 @@
 &lt;h2 id=&quot;section-1&quot;&gt;模板应擎&lt;/h2&gt;
 
 &lt;h3 id=&quot;swig&quot;&gt;swig&lt;/h3&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;字符串&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/isaacs/minimatch&quot;&gt;minimatch&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;可用于实现glob&lt;/p&gt;
 </description>
         <pubDate>Sat, 06 Jun 2015 00:00:00 +0800</pubDate>
         <link>http://bencode.github.io/javascript/common-node-js-package.html</link>
@@ -61,23 +67,6 @@ nothing to commit, working directory clean
         
         
         <category>git</category>
-        
-      </item>
-    
-      <item>
-        <title>收集nodejs的package</title>
-        <description>&lt;h2 id=&quot;section&quot;&gt;字符串&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/isaacs/minimatch&quot;&gt;minimatch&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;可用于实现glob&lt;/p&gt;
-</description>
-        <pubDate>Mon, 16 Feb 2015 00:00:00 +0800</pubDate>
-        <link>http://bencode.github.io/nodejs/node-packages.html</link>
-        <guid isPermaLink="true">http://bencode.github.io/nodejs/node-packages.html</guid>
-        
-        
-        <category>nodejs</category>
         
       </item>
     
@@ -424,6 +413,84 @@ nginx: [emerg] &quot;proxy_pass&quot; cannot have URI part in location given by 
         
         
         <category>nginx</category>
+        
+      </item>
+    
+      <item>
+        <title>eclipse review</title>
+        <description>&lt;h2 id=&quot;section&quot;&gt;一些名词&lt;/h2&gt;
+
+&lt;p&gt;plug-ins&lt;/p&gt;
+
+&lt;p&gt;structed bundle of code and/or data to contribute functionality to system&lt;/p&gt;
+
+&lt;p&gt;extensions extension-point&lt;/p&gt;
+
+&lt;p&gt;JDT PDE&lt;/p&gt;
+
+&lt;h2 id=&quot;runtime&quot;&gt;Runtime&lt;/h2&gt;
+
+&lt;p&gt;manifest -&amp;gt; registry&lt;/p&gt;
+
+&lt;p&gt;plugin = bundle&lt;/p&gt;
+
+&lt;p&gt;定义在 org.eclipse.osgi and org.eclipse.core.runtime&lt;/p&gt;
+
+&lt;p&gt;定义插件结构，实现加载策略&lt;/p&gt;
+
+&lt;p&gt;找到并执行应用，维护plugin registry, extension and extension point&lt;/p&gt;
+
+&lt;p&gt;提供一些基础设施：日志，调试，adapter，preference store，concurrency基础设施&lt;/p&gt;
+
+&lt;p&gt;Bundle&lt;/p&gt;
+
+&lt;p&gt;BundleActivator&lt;br /&gt;
+  start(BundleContext)&lt;br /&gt;
+  stop(BundleContext)&lt;/p&gt;
+
+&lt;p&gt;BundleEvent&lt;br /&gt;
+BundleContext&lt;/p&gt;
+
+&lt;p&gt;Extension ExtensionPoint ExtensionRegistry&lt;/p&gt;
+
+&lt;p&gt;ConfigurationElement&lt;/p&gt;
+
+&lt;p&gt;Platform&lt;/p&gt;
+
+&lt;h2 id=&quot;workbench&quot;&gt;Workbench&lt;/h2&gt;
+
+&lt;p&gt;Workbench(WorkbenchWindow)&lt;/p&gt;
+
+&lt;p&gt;Ppage: for group part&lt;/p&gt;
+
+&lt;p&gt;Workbench&lt;br /&gt;
+  - Page&lt;br /&gt;
+    - MenuBar&lt;br /&gt;
+    - ToolBar&lt;br /&gt;
+    - StausLine&lt;br /&gt;
+    - ShotcutBar&lt;/p&gt;
+
+&lt;p&gt;Perspective:&lt;br /&gt;
+  views, layout, actions&lt;/p&gt;
+
+&lt;p&gt;切换perspective时,editor不受影响&lt;/p&gt;
+
+&lt;p&gt;Part&lt;br /&gt;
+1. ViewPart&lt;br /&gt;
+2. EditPart: save-close lifecycle&lt;/p&gt;
+
+&lt;p&gt;View and Editor&lt;/p&gt;
+
+&lt;p&gt;createPartControl&lt;br /&gt;
+setFocus&lt;br /&gt;
+dispose&lt;/p&gt;
+</description>
+        <pubDate>Wed, 26 Nov 2014 00:00:00 +0800</pubDate>
+        <link>http://bencode.github.io/eclipse/review.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/eclipse/review.html</guid>
+        
+        
+        <category>eclipse</category>
         
       </item>
     
