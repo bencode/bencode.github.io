@@ -5,9 +5,200 @@
     <description></description>
     <link>http://bencode.github.io/</link>
     <atom:link href="http://bencode.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 21 Mar 2015 09:51:57 +0800</pubDate>
-    <lastBuildDate>Sat, 21 Mar 2015 09:51:57 +0800</lastBuildDate>
+    <pubDate>Sat, 25 Jul 2015 16:32:53 +0800</pubDate>
+    <lastBuildDate>Sat, 25 Jul 2015 16:32:53 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>iojs中的默认es6特性</title>
+        <description>&lt;h2 id=&quot;let-&quot;&gt;let 块作用域&lt;/h2&gt;
+
+&lt;p&gt;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let&lt;/p&gt;
+
+&lt;h2 id=&quot;const-&quot;&gt;const 常量定义&lt;/h2&gt;
+
+&lt;p&gt;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const&lt;/p&gt;
+
+&lt;h2 id=&quot;class-&quot;&gt;class 类定义&lt;/h2&gt;
+
+&lt;p&gt;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes&lt;/p&gt;
+
+&lt;h3 id=&quot;declarations--&quot;&gt;declarations  申明式&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;class Polygon {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;expression--&quot;&gt;expression  表达式&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;// unnamed
+var Polygon = class {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+};
+
+// named
+var Polygon = class Polygon {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;prototype-method--&quot;&gt;prototype method  实例方法&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;class Polygon {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+  
+  get area() {
+    return this.calcArea()
+  }
+
+  calcArea() {
+    return this.height * this.width;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;static-method--&quot;&gt;static method  静态方法&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;class Point {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    static distance(a, b) {
+        const dx = a.x - b.x;
+        const dy = a.y - b.y;
+
+        return Math.sqrt(dx*dx + dy*dy);
+    }
+}
+
+const p1 = new Point(5, 5);
+const p2 = new Point(10, 10);
+
+console.log(Point.distance(p1, p2));
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;extends--&quot;&gt;extends  继承&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;class Animal { 
+  constructor(name) {
+    this.name = name;
+  }
+  
+  speak() {
+    console.log(this.name + &#39; makes a noise.&#39;);
+  }
+}
+
+class Dog extends Animal {
+  speak() {
+    console.log(this.name + &#39; barks.&#39;);
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;super--&quot;&gt;super  调用父类方法&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;class Cat { 
+  constructor(name) {
+    this.name = name;
+  }
+  
+  speak() {
+    console.log(this.name + &#39; makes a noise.&#39;);
+  }
+}
+
+class Lion extends Cat {
+  speak() {
+    super.speak();
+    console.log(this.name + &#39; roars.&#39;);
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;collections--&quot;&gt;Collections  集合&lt;/h2&gt;
+
+&lt;h3 id=&quot;map--weakmap&quot;&gt;Map &amp;amp; WeakMap&lt;/h3&gt;
+
+&lt;p&gt;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map&lt;br /&gt;
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap&lt;/p&gt;
+
+&lt;h3 id=&quot;set--weakset&quot;&gt;Set &amp;amp; WeakSet&lt;/h3&gt;
+
+&lt;p&gt;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set&lt;br /&gt;
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet&lt;/p&gt;
+
+&lt;h2 id=&quot;generator--&quot;&gt;Generator  生成器&lt;/h2&gt;
+
+&lt;p&gt;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*&lt;/p&gt;
+
+&lt;h2 id=&quot;binary-and-octal-literals-&quot;&gt;Binary and Octal literals 二进制和八进制&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var FLT_SIGNBIT  = 0b10000000000000000000000000000000; // 2147483648
+var FLT_EXPONENT = 0b01111111100000000000000000000000; // 2139095040
+var FLT_MANTISSA = 0B00000000011111111111111111111111; // 8388607
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var n = 0O755; // 493
+var m = 0o644; // 420
+
+// Also possible with leading zeros (see note about decimals above)
+0755
+0644
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;object-literal-extensions-shorthand-properties-and-methods&quot;&gt;Object literal extensions (shorthand properties and methods)&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var obj = {
+  // __proto__
+  __proto__: theProtoObj,
+  // Shorthand for ‘handler: handler’
+  handler,
+  // Methods
+  toString() {
+    // Super calls
+    return &quot;d &quot; + super.toString();
+  },
+  // Computed (dynamic) property names
+  [ &#39;prop_&#39; + (() =&amp;gt; 42)() ]: 42
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;promise&quot;&gt;Promise&lt;/h2&gt;
+
+&lt;p&gt;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise&lt;/p&gt;
+
+&lt;h2 id=&quot;symbols&quot;&gt;Symbols&lt;/h2&gt;
+
+&lt;p&gt;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol&lt;/p&gt;
+
+&lt;h2 id=&quot;template-string&quot;&gt;Template String&lt;/h2&gt;
+
+&lt;p&gt;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/template_strings&lt;/p&gt;
+</description>
+        <pubDate>Thu, 25 Jun 2015 00:00:00 +0800</pubDate>
+        <link>http://bencode.github.io/nodejs/io-default-feature.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/nodejs/io-default-feature.html</guid>
+        
+        
+        <category>nodejs</category>
+        
+      </item>
     
       <item>
         <title>常用的nodejs package</title>
@@ -84,19 +275,6 @@ nothing to commit, working directory clean
         <pubDate>Sun, 15 Feb 2015 00:00:00 +0800</pubDate>
         <link>http://bencode.github.io/beauty-of-mathematics/preface.html</link>
         <guid isPermaLink="true">http://bencode.github.io/beauty-of-mathematics/preface.html</guid>
-        
-        
-        <category>beauty-of-mathematics</category>
-        
-      </item>
-    
-      <item>
-        <title>《数学之美》读书笔记－文字和语言vs数字和信息</title>
-        <description>
-</description>
-        <pubDate>Sun, 15 Feb 2015 00:00:00 +0800</pubDate>
-        <link>http://bencode.github.io/beauty-of-mathematics/c1.html</link>
-        <guid isPermaLink="true">http://bencode.github.io/beauty-of-mathematics/c1.html</guid>
         
         
         <category>beauty-of-mathematics</category>
