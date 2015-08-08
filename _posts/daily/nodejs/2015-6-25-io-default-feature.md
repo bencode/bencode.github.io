@@ -3,20 +3,22 @@ layout: post
 title: iojs中的默认es6特性
 categories: nodejs
 ---
+记录iojs中可以默认使用的es6新特性
+
 
 ## let 块作用域
 
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let
+[link](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)
 
 
 ## const 常量定义
 
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const
+[link](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const)
 
 
 ## class 类定义
 
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
+[link](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
 
 
 ### declarations  申明式
@@ -139,14 +141,14 @@ class Lion extends Cat {
 
 ### Map & WeakMap
 
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap
+[Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
+[WeakMap](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap)
 
 
 ### Set & WeakSet
 
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet
+[Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
+[WeakSet](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet)
 
 
 ## Generator  生成器
@@ -193,14 +195,14 @@ var obj = {
 
 ## Promise
 
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+[link](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
 
 ## Symbols
 
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol
+[link](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol)
 
 
 ## Template String
 
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/template_strings
+[link](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/template_strings)

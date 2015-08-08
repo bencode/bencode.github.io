@@ -6,16 +6,15 @@
   <meta name="viewport" content="width=device-width initial-scale=1">
 
   <title>bencode@编码</title>
-  <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+  <meta name="description" content="爱代码，爱生活
 ">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://yourdomain.com/">
-  <link rel="alternate" type="application/atom+xml" title="bencode@编码" href="http://yourdomain.com/feed.xml" />
+  <link rel="canonical" href="http://bencode.github.io/">
+  <link rel="alternate" type="application/atom+xml" title="bencode@编码" href="http://bencode.github.io/feed.xml" />
   <script src="/scripts/jquery-1.11.2.min.js"></script>
   <script src="/scripts/pithy.js"></script>
 </head>
-
 
   <body>
     <header class="header">
@@ -40,14 +39,20 @@
 			
 			
 				<li>
-					<a href="/about.html">about</a>
+					<a href="/works.html">works</a>
+				</li>			
+			
+			
+				<li>
+					<a href="/links.html">links</a>
 				</li>			
 			
 		</div>
+    <!--
 		<div class="description">  </div>		
 		<ul class="social-links">
 			<li>
-				<a href="https://github.com/jekyll" title="Github">
+				<a href="https://github.com/" title="Github">
 					<img width="19px" height="19px" src="/images/github.png"/>
 				</a>
 			</li>
@@ -62,6 +67,7 @@
 				</a>
 			</li>
 		</ul>		
+    -->
 	</div>
 </header>
 
@@ -79,8 +85,7 @@
         <span class="post-meta">Jun 25, 2015 00:06</span>
         <hr id="line">
 		<div class="content">
-		<h2 id="let-">let 块作用域</h2>
-
+		<p>记录iojs中可以默认使用的es6新特性</p>
 
         </div>
 		<br>
@@ -96,22 +101,6 @@
 		<div class="content">
 		<p>收集工具类nodejs package，避免造轮子</p>
 
-
-        </div>
-		<br>
-      </li>
-    
-      <li>
-        <br>
-        <h3>
-          <a class="post-link" href="/jekyll/update/2015/04/09/welcome-to-jekyll%20copy.html">Welcome to Jekyll!</a>
-        </h3>
-        <span class="post-meta">Apr 9, 2015 19:04</span>
-        <hr id="line">
-		<div class="content">
-		<p>You’ll find this post in your <code>_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code>jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
-
-
         </div>
 		<br>
       </li>
@@ -124,8 +113,7 @@
         <span class="post-meta">Mar 1, 2015 00:03</span>
         <hr id="line">
 		<div class="content">
-		<h2 id="section">文件大小写重命名</h2>
-
+		<h2>文件大小写重命名</h2>
 
         </div>
 		<br>
@@ -141,7 +129,6 @@
 		<div class="content">
 		<p>互联网创使人Tim Berners-Lee: 简单性和模块化是软件工程的基石，分布式和容错性是互联网的生命。</p>
 
-
         </div>
 		<br>
       </li>
@@ -155,7 +142,6 @@
         <hr id="line">
 		<div class="content">
 		<p>我们开始尝试在正式环境使用node，所以对二方包和三方包的稳定性和一致性会有更高的要求。</p>
-
 
         </div>
 		<br>
@@ -171,7 +157,6 @@
 		<div class="content">
 		<p>黑客与画家的共同之处，在于他们都是创作者。他们的本质都不是在做研究。</p>
 
-
         </div>
 		<br>
       </li>
@@ -184,8 +169,7 @@
         <span class="post-meta">Dec 23, 2014 00:12</span>
         <hr id="line">
 		<div class="content">
-		<h2 id="section">关于提交</h2>
-
+		<h2>关于提交</h2>
 
         </div>
 		<br>
@@ -202,7 +186,6 @@
 		<p>默认情况下, hammer.js会preventDefault，这会阻止原生的滚动等行为。
 这在大多数情况下没什么问题，但有些情况下我们需要这类行为时，由于它没有开放相应的参数，就比较麻烦。</p>
 
-
         </div>
 		<br>
       </li>
@@ -217,7 +200,6 @@
 		<div class="content">
 		<p>官网文档：<a href="http://nginx.org/en/docs/http/ngx_http_core_module.html#error_page">查看</a></p>
 
-
         </div>
 		<br>
       </li>
@@ -230,8 +212,7 @@
         <span class="post-meta">Nov 26, 2014 00:11</span>
         <hr id="line">
 		<div class="content">
-		<h2 id="section">一些名词</h2>
-
+		<h2>一些名词</h2>
 
         </div>
 		<br>
@@ -248,7 +229,6 @@
 		<p>这两天项目中需要，上网搜了一把找到一大堆，最后使用下面的方案。
 发现一个问题，就是onload时再触发有点太慢了，可以改用domready等事件，还好我这个自适应不在线上使用，只存在开发环境下的mock。</p>
 
-
         </div>
 		<br>
       </li>
@@ -264,7 +244,6 @@
 		<p>node中通过child_processt和shell交互很方便，只是0.10.x版本中的exec没有同步版本，让做“脚本”用途的node写起来很是麻烦。
 而在0.11.12版本后添加了execSync方法解决了这个问题。</p>
 
-
         </div>
 		<br>
       </li>
@@ -279,7 +258,6 @@
 		<div class="content">
 		<p><a href="http://www.html5rocks.com/zh/tutorials/webcomponents/template/">参考资料</a></p>
 
-
         </div>
 		<br>
       </li>
@@ -292,8 +270,7 @@
         <span class="post-meta">Nov 8, 2014 00:11</span>
         <hr id="line">
 		<div class="content">
-		<h2 id="section">基本使用</h2>
-
+		<h2>基本使用</h2>
 
         </div>
 		<br>
@@ -307,8 +284,7 @@
         <span class="post-meta">Nov 8, 2014 00:11</span>
         <hr id="line">
 		<div class="content">
-		<h2 id="html-imports">动态Html imports</h2>
-
+		<h2>动态Html imports</h2>
 
         </div>
 		<br>
@@ -322,8 +298,7 @@
         <span class="post-meta">Nov 7, 2014 00:11</span>
         <hr id="line">
 		<div class="content">
-		<h2 id="overview">Overview</h2>
-
+		<h2>Overview</h2>
 
         </div>
 		<br>
@@ -339,7 +314,6 @@
 		<div class="content">
 		<p><a href="https://www.polymer-project.org/docs/polymer/polymer.html">链接</a></p>
 
-
         </div>
 		<br>
       </li>
@@ -352,8 +326,7 @@
         <span class="post-meta">Apr 8, 2014 00:04</span>
         <hr id="line">
 		<div class="content">
-		<h2 id="section">通用类</h2>
-
+		<h2>通用类</h2>
 
         </div>
 		<br>
@@ -369,7 +342,6 @@
 		<div class="content">
 		<p>a high performance HTTP and reverse proxy server, as well as a mail proxy server</p>
 
-
         </div>
 		<br>
       </li>
@@ -382,8 +354,7 @@
         <span class="post-meta">Jun 6, 2013 00:06</span>
         <hr id="line">
 		<div class="content">
-		<h2 id="section">行程</h2>
-
+		<h2>行程</h2>
 
         </div>
 		<br>
@@ -397,8 +368,7 @@
         <span class="post-meta">Dec 26, 2012 00:12</span>
         <hr id="line">
 		<div class="content">
-		<h2 id="section">两个例子</h2>
-
+		<h2>两个例子</h2>
 
         </div>
 		<br>
@@ -412,8 +382,7 @@
         <span class="post-meta">Dec 7, 2012 00:12</span>
         <hr id="line">
 		<div class="content">
-		<h2 id="section">背景</h2>
-
+		<h2>背景</h2>
 
         </div>
 		<br>
@@ -427,11 +396,11 @@
         <span class="post-meta">Dec 7, 2012 00:12</span>
         <hr id="line">
 		<div class="content">
-		<h2 id="section">背景</h2>
+		<h2>背景</h2>
+
 <p>在我们的设计师平台，设计师可以在编辑器中输入 HTML, CSS 等代码， 而前端需要对其有效性进行验证，用正则表达式能很好地对词汇进行效验，却难以在语法层面上发挥作用，所以需要实现简单的Parser将HTML,CSS转换成相应的结构进行效验。</p>
 
-<h2 id="section-1">原理</h2>
-
+<h2>原理</h2>
 
         </div>
 		<br>
@@ -445,8 +414,7 @@
         <span class="post-meta">Feb 23, 2012 00:02</span>
         <hr id="line">
 		<div class="content">
-		<h3 id="jqueryfninit--99">jQuery.fn.init处理流程  [99]</h3>
-
+		<h3>jQuery.fn.init处理流程  [99]</h3>
 
         </div>
 		<br>
@@ -462,7 +430,6 @@
 		<div class="content">
 		<p>用git一段时间了，但是只掌握了其中一小部分内容，这两天把progit重新看一遍，这里就记一下关键的东西</p>
 
-
         </div>
 		<br>
       </li>
@@ -477,7 +444,6 @@
 		<div class="content">
 		<p>本文目的在于为Java或有语言基础的同学参于前端开发提供指导</p>
 
-
         </div>
 		<br>
       </li>
@@ -490,8 +456,7 @@
         <span class="post-meta">Oct 22, 2010 00:10</span>
         <hr id="line">
 		<div class="content">
-		<h2 id="section">1. 函数作用域</h2>
-
+		<h2>1. 函数作用域</h2>
 
         </div>
 		<br>
@@ -505,8 +470,7 @@
         <span class="post-meta">Mar 16, 2010 00:03</span>
         <hr id="line">
 		<div class="content">
-		<h2 id="section">不同的对象状态</h2>
-
+		<h2>不同的对象状态</h2>
 
         </div>
 		<br>
@@ -525,31 +489,21 @@
 <p>这一次看的是1.4的源码，因为API接口没变，但功能增强，并且live支持了所有事件, 支持context等。</p>
 
 <p>我们平常这样写：</p>
-
-<p><code>js
-$('#button').click(function() {  
-    alert('you hurt me!');  
-});  
-</code></p>
-
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#button&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;you hurt me!&#39;</span><span class="p">);</span>  
+<span class="p">});</span>  
+</code></pre></div>
 <p>也可以这样写：</p>
-
-<p><code>js
-$('#button').bind('click', function() {  
-    alert("don't touch me!");  
-});  
-</code></p>
-
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#button&#39;</span><span class="p">).</span><span class="nx">bind</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;don&#39;t touch me!&quot;</span><span class="p">);</span>  
+<span class="p">});</span>  
+</code></pre></div>
 <p>想到click的实现应该基于bind, 搜索一下bind, 来到这里：</p>
-
-<p><code>js
-jQuery.each(["bind", "one"], function( i, name ) {  
-    jQuery.fn[ name ] = function( type, data, fn ) {  
-        // Handle object literals  
-</code></p>
-
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">jQuery</span><span class="p">.</span><span class="nx">each</span><span class="p">([</span><span class="s2">&quot;bind&quot;</span><span class="p">,</span> <span class="s2">&quot;one&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">name</span> <span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">jQuery</span><span class="p">.</span><span class="nx">fn</span><span class="p">[</span> <span class="nx">name</span> <span class="p">]</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">type</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">fn</span> <span class="p">)</span> <span class="p">{</span>  
+        <span class="c1">// Handle object literals  </span>
+</code></pre></div>
 <p>看来bind 和 one 有点关系呀！它们的签名都是这样：</p>
-
 
         </div>
 		<br>
@@ -565,20 +519,13 @@ jQuery.each(["bind", "one"], function( i, name ) {
 		<div class="content">
 		<p>在上一篇中，我们介绍了jQuery Utilities部分的代码。 这一部分要看看Core部分的。</p>
 
-<p>我们知道 $(‘#id’) 或 jQuery(‘#id’) 将会返回一个对象， 这个对象的构造函数是：jQuery.fn.init</p>
-
-<p><code>js
-jQuery = window.jQuery = window.$ = function( selector, context ) {  
-    return new jQuery.fn.init( selector, context );  
-},  
-</code></p>
-
-<p><code>js
-jQuery.fn.init.prototype = jQuery.fn;  
-</code></p>
-
+<p>我们知道 $(&#39;#id&#39;) 或 jQuery(&#39;#id&#39;) 将会返回一个对象， 这个对象的构造函数是：jQuery.fn.init</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">jQuery</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">jQuery</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">$</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">selector</span><span class="p">,</span> <span class="nx">context</span> <span class="p">)</span> <span class="p">{</span>  
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">jQuery</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span> <span class="nx">selector</span><span class="p">,</span> <span class="nx">context</span> <span class="p">);</span>  
+<span class="p">},</span>  
+</code></pre></div><div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">jQuery</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">init</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">jQuery</span><span class="p">.</span><span class="nx">fn</span><span class="p">;</span>  
+</code></pre></div>
 <p>让我们先看看 jQuery.fn.init</p>
-
 
         </div>
 		<br>
@@ -601,59 +548,47 @@ jQuery.fn.init.prototype = jQuery.fn;
 <p>我使用的是 1.3.2</p>
 
 <p>我们从开始的地方开始 ：</p>
-
-<p><code>js
-(function() {  
- ...      
-})();  
-</code></p>
-
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>  
+ <span class="p">...</span>      
+<span class="p">})();</span>  
+</code></pre></div>
 <p>所有代码包含在以上的函数中，避免名字冲突。</p>
 
-<h2 id="section">1. 几个”全局变量”</h2>
+<h2>1. 几个&quot;全局变量&quot;</h2>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span>   
+    <span class="nb">window</span> <span class="o">=</span> <span class="k">this</span><span class="p">,</span>  
+    <span class="kc">undefined</span><span class="p">,</span>   
+    <span class="nx">_jQuery</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">jQuery</span><span class="p">,</span>   
+    <span class="nx">_$</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">$</span><span class="p">,</span>  
 
-<p>```js
-var <br />
-    window = this,<br />
-    undefined, <br />
-    _jQuery = window.jQuery, <br />
-    _$ = window.$,  </p>
+    <span class="nx">jQuery</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">jQuery</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">$</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">selector</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>  
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">jQuery</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="nx">selector</span><span class="p">,</span> <span class="nx">context</span><span class="p">);</span>  
+    <span class="p">},</span>  
 
-<pre><code>jQuery = window.jQuery = window.$ = function(selector, context) {  
-    return new jQuery.fn.init(selector, context);  
-},  
-  
-// A simple way to check for HTML strings or ID strings  
-quickExpr = /^[^&lt;]*(&lt;(.|\s)+&gt;)[^&gt;]*$|^#([\w-]+)$/,  
-// Is it a simple selector  
-isSimple = /^.[^:#\[\.,]*$/;   ```
-</code></pre>
-
-<h3 id="section-1">1.1</h3>
+    <span class="c1">// A simple way to check for HTML strings or ID strings  </span>
+    <span class="nx">quickExpr</span> <span class="o">=</span> <span class="sr">/^[^&lt;]*(&lt;(.|\s)+&gt;)[^&gt;]*$|^#([\w-]+)$/</span><span class="p">,</span>  
+    <span class="c1">// Is it a simple selector  </span>
+    <span class="nx">isSimple</span> <span class="o">=</span> <span class="sr">/^.[^:#\[\.,]*$/</span><span class="p">;</span>  
+</code></pre></div>
+<h3>1.1</h3>
 
 <p>window 还是那个window, undefined 还是那个undefined，只是这样让js 解释器更快地找到他们，提高速度。</p>
-
-<p><code>js
- _jQuery = window.jQuery
-_$ = window.$,
-</code></p>
-
+<div class="highlight"><pre><code class="language-js" data-lang="js"> <span class="nx">_jQuery</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">jQuery</span>
+<span class="nx">_$</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">$</span><span class="p">,</span>
+</code></pre></div>
 <p>保存原来的 jQuery 和 $, 因为默认情况下jquery占用名字空间 jQuery 和$</p>
 
 <p>搜索一下使用 _jQuery的地方吧：</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">jQuery</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>  
+    <span class="nx">noConflict</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">deep</span> <span class="p">)</span> <span class="p">{</span>  
+        <span class="nb">window</span><span class="p">.</span><span class="nx">$</span> <span class="o">=</span> <span class="nx">_$</span><span class="p">;</span>  
 
-<p>```js
-jQuery.extend({<br />
-    noConflict: function( deep ) {<br />
-        window.$ = _$;  </p>
+        <span class="k">if</span> <span class="p">(</span> <span class="nx">deep</span> <span class="p">)</span>  
+            <span class="nb">window</span><span class="p">.</span><span class="nx">jQuery</span> <span class="o">=</span> <span class="nx">_jQuery</span><span class="p">;</span>  
 
-<pre><code>    if ( deep )  
-        window.jQuery = _jQuery;  
-  
-    return jQuery;  
-},   ```
-</code></pre>
-
+        <span class="k">return</span> <span class="nx">jQuery</span><span class="p">;</span>  
+    <span class="p">},</span>  
+</code></pre></div>
 <p>OK， 是为了 noConflict。</p>
 
 <p>比如我们要同时使用prototype和jquery, 可以先让html页面包含 prototype.js 再包含 jquery.js。</p>
@@ -662,61 +597,48 @@ jQuery.extend({<br />
 
 <p>还有一个deep参数， 可以让另一个jQuery(可能不怎么有名， 但对你的项目有用) 和 现在的jQuery 共存。</p>
 
-<p>quickExpr:  是一个正则表达式， 用于快速匹配一个 html tag 或 id 字符串（如 ‘#id’)
+<p>quickExpr:  是一个正则表达式， 用于快速匹配一个 html tag 或 id 字符串（如 &#39;#id&#39;)
 isSimple: 也是一个与此同时表达式, 用于匹配一个 selector (css 选择器)</p>
 
-<h3 id="section-2">1.2</h3>
-
-<p><code>js
-jQuery = window.jQuery = window.$ = function(selector, context) {  
-    return new jQuery.fn.init(selector, context);  
-},  
-</code></p>
-
+<h3>1.2</h3>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">jQuery</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">jQuery</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">$</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">selector</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">jQuery</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="nx">selector</span><span class="p">,</span> <span class="nx">context</span><span class="p">);</span>  
+<span class="p">},</span>  
+</code></pre></div>
 <p>我们思考： jQuery.fn.init 是构造函数， 那它的实例方法应该由 : jQuery.fn.init.prototype 指定。</p>
 
 <p>搜索它， 在541行得到以下代码：</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">jQuery</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">init</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">jQuery</span><span class="p">.</span><span class="nx">fn</span><span class="p">;</span>  
+</code></pre></div>
+<p>所以 我们平常使用 $(&#39;#abc&#39;) 或 jQuery(&#39;#abc&#39;) </p>
 
-<p><code>js
-jQuery.fn.init.prototype = jQuery.fn;  
-</code></p>
-
-<p>所以 我们平常使用 $(‘#abc’) 或 jQuery(‘#abc’) </p>
-
-<p>$ 就是 jQuery，它返回一个对象。 这个对象的构造函数是 jQuery.fn.init(…</p>
+<p>$ 就是 jQuery，它返回一个对象。 这个对象的构造函数是 jQuery.fn.init(...</p>
 
 <p>这个对象的实例方法和字段就是 jQuery.fn 的成员。</p>
-
-<p><code>js
-jQuery.fn = jQuery.prototype = {  
-    init: function( selector, context ) {  
-    ...  
-    },  
-    size: function() {  
-        return this.length;  
-    },  
-        ...  
-</code></p>
-
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">jQuery</span><span class="p">.</span><span class="nx">fn</span> <span class="o">=</span> <span class="nx">jQuery</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>  
+    <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">selector</span><span class="p">,</span> <span class="nx">context</span> <span class="p">)</span> <span class="p">{</span>  
+    <span class="p">...</span>  
+    <span class="p">},</span>  
+    <span class="nx">size</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>  
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>  
+    <span class="p">},</span>  
+        <span class="p">...</span>  
+</code></pre></div>
 <p>从以上可以看出，下面的代码等效。</p>
-
-<p><code>js
-var a = $('#id'); // a = new jQuery('#id');
-a.size();
-</code></p>
-
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#id&#39;</span><span class="p">);</span> <span class="c1">// a = new jQuery(&#39;#id&#39;);</span>
+<span class="nx">a</span><span class="p">.</span><span class="nx">size</span><span class="p">();</span>
+</code></pre></div>
 <p>上面我们隐约看到了jQuery的插件结构， 你可以添加方法到 jQuery.fn，就可以在jQuery对象中使用。</p>
 
 <p>但首先，我们先看几个通用工具方法，因为其他很多部分使用它们。</p>
 
-<h2 id="section-3">2. 几个工具方法</h2>
+<h2>2. 几个工具方法</h2>
 
-<h3 id="jqueryextend--jqueryfnextend">2.1  jQuery.extend = jQuery.fn.extend</h3>
+<h3>2.1  jQuery.extend = jQuery.fn.extend</h3>
 
 <p>我们分两部分看这个方法：首先是准备， 然后是拷贝。</p>
 
 <p>准备：</p>
-
 
         </div>
 		<br>
@@ -738,7 +660,6 @@ a.size();
 
 <p>散列表是这样一个东西：它能以key为索引保存东西， 然后在需要的时候嗖的一下就能找出来，灰常地快：）</p>
 
-
         </div>
 		<br>
       </li>
@@ -752,7 +673,6 @@ a.size();
         <hr id="line">
 		<div class="content">
 		<p>这一章《中位数和顺序统计学》很短，也是本书第二部分的最后一章</p>
-
 
         </div>
 		<br>
@@ -779,7 +699,7 @@ a.size();
 <p>n的元素的排序，共有 n! 种 情况， 它们都会出现在决策树的叶子节点上
 高度为 h 的二叉对， 叶子数目不会多于 2^h 个</p>
 
-<p>因此 n! &lt;= 2^h   —-&gt; h &gt; lg(n!)   后者 相当于 nlg(n)    </p>
+<p>因此 n! &lt;= 2^h   ----&gt; h &gt; lg(n!)   后者 相当于 nlg(n)    </p>
 
 <p>也就是说不管怎么样的决策树，它的高度不会小于 nlg(n)</p>
 
@@ -807,7 +727,6 @@ a.size();
 
 <p>等等，我们先产生这样的文件，否则又对什么进行操作呢？</p>
 
-
         </div>
 		<br>
       </li>
@@ -824,7 +743,6 @@ a.size();
 敢取这个名字，应该很快！  </p>
 
 <p>直切主题， 它的算法像这样：  </p>
-
 
         </div>
 		<br>
@@ -849,21 +767,17 @@ a.size();
 <p>这里的堆是一个数据结构，它是一个二叉树（二叉堆），可以存在数组中</p>
 
 <p>像这样：</p>
-
-<p><code>
-           16  
+<div class="highlight"><pre><code class="language-text" data-lang="text">           16  
          /     \  
       14        10  
     /    \     /    \  
   8       7   9      3      -&gt;   16 14 10 8 7 9 3 2 4 1  
  / \     /  
 2   4   1  
-</code></p>
-
-<p>根要比左右两个结点要大，并且左右子树也是一个堆–&gt; 是一个递归定义</p>
+</code></pre></div>
+<p>根要比左右两个结点要大，并且左右子树也是一个堆--&gt; 是一个递归定义</p>
 
 <p>可以用这样的代码来表示上述定义</p>
-
 
         </div>
 		<br>
@@ -879,7 +793,7 @@ a.size();
 		<div class="content">
 		<p>这两天终于把第一部分（基础知识）给过了一遍，算是热身啦。</p>
 
-<h2 id="section">第3章：函数的增长</h2>
+<h2>第3章：函数的增长</h2>
 
 <p>这一章主要讲了复杂度的表示方法：大O小O等。以及各类基本常用函数，像对数，指数。</p>
 
@@ -889,10 +803,9 @@ a.size();
 
 <p>基本上算是把初等数学给温故了一遍。</p>
 
-<h2 id="section-1">第四章：递归式</h2>
+<h2>第四章：递归式</h2>
 
 <p>在“笔记1”中， 我们实现了归并排序， 我们为了求比较次数，把算法简化成这样：</p>
-
 
         </div>
 		<br>
@@ -912,7 +825,7 @@ a.size();
 
 <p>基本上内容有：</p>
 
-<p>1。高数中的级数，常见的数列（级数）的求和。 — 基本上用数学归级法很容易证明
+<p>1。高数中的级数，常见的数列（级数）的求和。 --- 基本上用数学归级法很容易证明
 2。离散数学中的：集合，关系以及函数，图，树，二叉树概念。
 3。概率论的基础知识</p>
 
@@ -931,119 +844,102 @@ a.size();
 <p>比起看枯燥的分析，我更喜欢写实际的可运行的代码。当我用ruby写完插入排序，发现排10万个数据很累，所以又用java实现。</p>
 
 <p>首先，我写了“插入排序”</p>
-
-<p><code>java
-public void insertionSort(int[] ary) {  
-    for (int i = 1; i &lt; ary.length; i++) {  
-        int t = ary[i];  
-        int j = i - 1;  
-        while (j &gt;= 0 &amp;&amp; ary[j] &gt; t) {  
-            ary[j + 1] = ary[j];  
-            j--;  
-        }  
-        ary[j + 1] = t;  
-    }  
-}  
-</code></p>
-
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">insertionSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">ary</span><span class="o">)</span> <span class="o">{</span>  
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ary</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>  
+        <span class="kt">int</span> <span class="n">t</span> <span class="o">=</span> <span class="n">ary</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>  
+        <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>  
+        <span class="k">while</span> <span class="o">(</span><span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">ary</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>  
+            <span class="n">ary</span><span class="o">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">ary</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>  
+            <span class="n">j</span><span class="o">--;</span>  
+        <span class="o">}</span>  
+        <span class="n">ary</span><span class="o">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">t</span><span class="o">;</span>  
+    <span class="o">}</span>  
+<span class="o">}</span>  
+</code></pre></div>
 <p>我需要测试它是否正确， 但是首先得有一个随机数组，于是我又写了一个方法，用于产生随机数组</p>
-
-<p><code>java
-public int[] genRandAry(int n) {  
-    int[] ary = new int[n];  
-    Random rand = new Random();  
-    for (int i = 0; i &lt; ary.length; i++) {  
-        ary[i] = rand.nextInt();  
-    }  
-    return ary;  
-}  
-</code></p>
-
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">genRandAry</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>  
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">ary</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">n</span><span class="o">];</span>  
+    <span class="n">Random</span> <span class="n">rand</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Random</span><span class="o">();</span>  
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ary</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>  
+        <span class="n">ary</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">rand</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>  
+    <span class="o">}</span>  
+    <span class="k">return</span> <span class="n">ary</span><span class="o">;</span>  
+<span class="o">}</span>  
+</code></pre></div>
 <p>现在有随机数组，可以进行排序了。但是在排序后，还需要测试一下，是否正确， 自然地我又写了一个方法，用于测试数组是否正确排序。</p>
-
-<p><code>java
-public boolean isSorted(int[] ary) {  
-    for (int i = 0; i &lt; ary.length - 1; i++) {  
-        if (ary[i] &gt; ary[i + 1]) {  
-            return false;  
-        }  
-    }  
-    return true;  
-}  
-</code></p>
-
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isSorted</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">ary</span><span class="o">)</span> <span class="o">{</span>  
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ary</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>  
+        <span class="k">if</span> <span class="o">(</span><span class="n">ary</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">ary</span><span class="o">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">])</span> <span class="o">{</span>  
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>  
+        <span class="o">}</span>  
+    <span class="o">}</span>  
+    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>  
+<span class="o">}</span>  
+</code></pre></div>
 <p>万事俱备，测试它吧，我写了一个测试方法，使用junit</p>
-
-<p><code>java
-@Test  
-public void testInsertionSort() {  
-    for (int i = 0; i &lt; 1000; ++i) {  
-        int[] ary = genRandAry(i);  
-        insertionSort(ary);  
-        assertTrue(isSorted(ary));  
-    }  
-}  
-</code></p>
-
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Test</span>  
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInsertionSort</span><span class="o">()</span> <span class="o">{</span>  
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>  
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">ary</span> <span class="o">=</span> <span class="n">genRandAry</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>  
+        <span class="n">insertionSort</span><span class="o">(</span><span class="n">ary</span><span class="o">);</span>  
+        <span class="n">assertTrue</span><span class="o">(</span><span class="n">isSorted</span><span class="o">(</span><span class="n">ary</span><span class="o">));</span>  
+    <span class="o">}</span>  
+<span class="o">}</span>  
+</code></pre></div>
 <p>意料之中，看到绿条。</p>
 
 <p>很久前我就知道插入排序比较差，时间复杂度为平方数量级的，可是还真的没比较过呢， 现在刚好可以试一下。</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">sortManyManyData</span><span class="o">()</span> <span class="o">{</span>  
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span> <span class="o">=</span> <span class="o">{</span> <span class="mi">1000</span><span class="o">,</span> <span class="mi">2000</span><span class="o">,</span> <span class="mi">5000</span><span class="o">,</span> <span class="mi">8000</span><span class="o">,</span>  
+            <span class="mi">10000</span><span class="o">,</span> <span class="mi">20000</span><span class="o">,</span> <span class="mi">50000</span><span class="o">,</span> <span class="mi">80000</span><span class="o">,</span>  
+            <span class="mi">100000</span><span class="o">,</span> <span class="mi">200000</span><span class="o">,</span> <span class="mi">500000</span><span class="o">,</span> <span class="mi">800000</span><span class="o">,</span>  
+            <span class="mi">1000000</span><span class="o">,</span> <span class="mi">2000000</span><span class="o">,</span> <span class="mi">5000000</span><span class="o">,</span> <span class="mi">8000000</span><span class="o">,</span>  
+            <span class="mi">10000000</span><span class="o">};</span>  
 
-<p>```java 
-public void sortManyManyData() {<br />
-    int[] nums = { 1000, 2000, 5000, 8000,<br />
-            10000, 20000, 50000, 80000,<br />
-            100000, 200000, 500000, 800000,<br />
-            1000000, 2000000, 5000000, 8000000,<br />
-            10000000};  </p>
+    <span class="kt">long</span><span class="o">[]</span> <span class="n">sortTimes</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">long</span><span class="o">[</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">];</span>  
 
-<pre><code>long[] sortTimes = new long[nums.length];  
-  
-for (int i = 0; i &lt; nums.length; ++i) {  
-    int k = 10;  
-    long time = 0;  
-    for (int j = 0; j &lt; k; ++j) {  
-        int[] ary = genRandAry(nums[i]);  
-        long begin = Calendar.getInstance().getTimeInMillis();  
-        insertionSort(ary);  
-        //mergeSort(ary);  
-        //Arrays.sort(ary);  
-        long end = Calendar.getInstance().getTimeInMillis();  
-        time += (end - begin);  
-    }  
-    sortTimes[i] = time / k;  
-}  
-  
-System.out.println("排序数量\t\t排序时间(ms)");  
-for (int i = 0; i &lt; nums.length; ++i) {  
-    System.out.println("" + nums[i] + "\t\t" + sortTimes[i]);  
-}   }   ```
-</code></pre>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>  
+        <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>  
+        <span class="kt">long</span> <span class="n">time</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>  
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">k</span><span class="o">;</span> <span class="o">++</span><span class="n">j</span><span class="o">)</span> <span class="o">{</span>  
+            <span class="kt">int</span><span class="o">[]</span> <span class="n">ary</span> <span class="o">=</span> <span class="n">genRandAry</span><span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>  
+            <span class="kt">long</span> <span class="n">begin</span> <span class="o">=</span> <span class="n">Calendar</span><span class="o">.</span><span class="na">getInstance</span><span class="o">().</span><span class="na">getTimeInMillis</span><span class="o">();</span>  
+            <span class="n">insertionSort</span><span class="o">(</span><span class="n">ary</span><span class="o">);</span>  
+            <span class="c1">//mergeSort(ary);  </span>
+            <span class="c1">//Arrays.sort(ary);  </span>
+            <span class="kt">long</span> <span class="n">end</span> <span class="o">=</span> <span class="n">Calendar</span><span class="o">.</span><span class="na">getInstance</span><span class="o">().</span><span class="na">getTimeInMillis</span><span class="o">();</span>  
+            <span class="n">time</span> <span class="o">+=</span> <span class="o">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">begin</span><span class="o">);</span>  
+        <span class="o">}</span>  
+        <span class="n">sortTimes</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">time</span> <span class="o">/</span> <span class="n">k</span><span class="o">;</span>  
+    <span class="o">}</span>  
 
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;排序数量\t\t排序时间(ms)&quot;</span><span class="o">);</span>  
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>  
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;&quot;</span> <span class="o">+</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="s">&quot;\t\t&quot;</span> <span class="o">+</span> <span class="n">sortTimes</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>  
+    <span class="o">}</span>  
+<span class="o">}</span>  
+</code></pre></div>
 <p>我运行了以上代码，结果做了一个晚餐，他还没运行好，被我强制中断，修改了nums, 让它小一点。 结果排序10万整数时间大约为9秒（更大的我没耐心等了，呼呼）。</p>
 
 <p>然后我用Array.sort也进行排序， 结果排序一千万整数，竟然不到3秒。</p>
 
 <p>先不忙分析复杂度， 因为书中还介绍了另一个算法“归并排序”。我先实现它。 算法也很简单：</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">mergeSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">ary</span><span class="o">)</span> <span class="o">{</span>  
+    <span class="k">if</span> <span class="o">(</span><span class="n">ary</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">ary</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>  
+        <span class="k">return</span><span class="o">;</span>  
+    <span class="o">}</span>  
 
-<p>```java
-public void mergeSort(int[] ary) {<br />
-    if (ary.length == 0 || ary.length == 1) {<br />
-        return;<br />
-    }  </p>
+    <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">ary</span><span class="o">.</span><span class="na">length</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>  
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">a</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">copyOfRange</span><span class="o">(</span><span class="n">ary</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">mid</span><span class="o">);</span>  
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">b</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">copyOfRange</span><span class="o">(</span><span class="n">ary</span><span class="o">,</span> <span class="n">mid</span><span class="o">,</span> <span class="n">ary</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>  
 
-<pre><code>int mid = ary.length / 2;  
-int[] a = Arrays.copyOfRange(ary, 0, mid);  
-int[] b = Arrays.copyOfRange(ary, mid, ary.length);  
-  
-mergeSort(a);  
-mergeSort(b);  
-  
-merge(a, b, ary);   }   ```
-</code></pre>
+    <span class="n">mergeSort</span><span class="o">(</span><span class="n">a</span><span class="o">);</span>  
+    <span class="n">mergeSort</span><span class="o">(</span><span class="n">b</span><span class="o">);</span>  
 
+    <span class="n">merge</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">,</span> <span class="n">ary</span><span class="o">);</span>  
+<span class="o">}</span>  
+</code></pre></div>
 <p>先分割原数组成两个数组，再分别归并排序，最后合并成一个大数组：），当然还有一个merge</p>
-
 
         </div>
 		<br>
@@ -1057,8 +953,7 @@ merge(a, b, ary);   }   ```
         <span class="post-meta">Nov 28, 2009 00:11</span>
         <hr id="line">
 		<div class="content">
-		<h2 id="ruby-exerb">1. 使用ruby正常运行， 但exerb导出时，运行失败：</h2>
-
+		<h2>1. 使用ruby正常运行， 但exerb导出时，运行失败：</h2>
 
         </div>
 		<br>
@@ -1074,7 +969,6 @@ merge(a, b, ary);   }   ```
 		<div class="content">
 		<p>昨天一朋友(估计要考二级了)问我:  int * a[];  这玩意儿到底是指针还是数组.  我告诉他, 这是数组, 里 </p>
 
-
         </div>
 		<br>
       </li>
@@ -1088,7 +982,6 @@ merge(a, b, ary);   }   ```
         <hr id="line">
 		<div class="content">
 		<p>和Rails 一样,  CakePHP的Model也有Validation</p>
-
 
         </div>
 		<br>
@@ -1104,7 +997,6 @@ merge(a, b, ary);   }   ```
 		<div class="content">
 		<p>昨天一朋友找工作, 碰到两道算法笔试题, 都是当于链表操作的.</p>
 
-
         </div>
 		<br>
       </li>
@@ -1119,7 +1011,6 @@ merge(a, b, ary);   }   ```
 		<div class="content">
 		<p>最近一个工具，由于是工具，本来是用SDK编写的，只是功能完成后，对界面不满意，但是苦于手头可用的东东有限。。。</p>
 
-
         </div>
 		<br>
       </li>
@@ -1133,9 +1024,8 @@ merge(a, b, ary);   }   ```
         <hr id="line">
 		<div class="content">
 		<p>我的代码中有一个 ComboViewer, 不过在Window 2000，Form 中，样式有点难看，有讨厌的三维边框。
-而 FormToolkit 只对 CCombo 控件 进行细边框绘制（FormToolkit.paintBorderFor(…)）
+而 FormToolkit 只对 CCombo 控件 进行细边框绘制（FormToolkit.paintBorderFor(...)）
 所以我依照 ComboViewer “抄” 了一个 CComboViewer。 </p>
-
 
         </div>
 		<br>
@@ -1149,8 +1039,7 @@ merge(a, b, ary);   }   ```
         <span class="post-meta">Feb 27, 2007 00:02</span>
         <hr id="line">
 		<div class="content">
-		<p>今天把机子显示模式调到 “Windows经典”，发现 Form 中的 Text, Table 等控件都没有了边框，变成了空白。</p>
-
+		<p>今天把机子显示模式调到 &quot;Windows经典&quot;，发现 Form 中的 Text, Table 等控件都没有了边框，变成了空白。</p>
 
         </div>
 		<br>
@@ -1166,7 +1055,6 @@ merge(a, b, ary);   }   ```
 		<div class="content">
 		<p>以下情景：</p>
 
-
         </div>
 		<br>
       </li>
@@ -1180,7 +1068,6 @@ merge(a, b, ary);   }   ```
         <hr id="line">
 		<div class="content">
 		<p>在TreeViewer或TableViewer中，可用CellEditor结合CellModifier可以很实现表格的编辑功能，但是默认的是单击，就会打开编辑区域。有时候我们会需要双击进行（或者其他），于是我写了一个<code>DoubleCellModifier</code>，只要让你的<code>CellModifier</code>继承它，就可以很方便实现双击编辑。</p>
-
 
         </div>
 		<br>
@@ -1196,7 +1083,6 @@ merge(a, b, ary);   }   ```
 		<div class="content">
 		<p>查Eclipse源码可以看到： </p>
 
-
         </div>
 		<br>
       </li>
@@ -1209,9 +1095,8 @@ merge(a, b, ary);   }   ```
         <span class="post-meta">Dec 16, 2006 00:12</span>
         <hr id="line">
 		<div class="content">
-		<p>```java</p>
-
-
+		<div class="highlight"><pre><code class="language-java" data-lang="java">
+</code></pre></div>
         </div>
 		<br>
       </li>
@@ -1224,8 +1109,7 @@ merge(a, b, ary);   }   ```
         <span class="post-meta">Aug 17, 2006 00:08</span>
         <hr id="line">
 		<div class="content">
-		<h4 id="swt-layout-2006-8-17">1. 关于SWT Layout <em>(2006-8-17)</em></h4>
-
+		<h4>1. 关于SWT Layout <em>(2006-8-17)</em></h4>
 
         </div>
 		<br>

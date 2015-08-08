@@ -1,7 +1,5 @@
 ---
-layout: page
-title: 资源
-permalink: /links/
+layout: default
 ---
 
 暂时收集，还没来得及看的东西

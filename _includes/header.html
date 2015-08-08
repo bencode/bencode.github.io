@@ -34,18 +34,30 @@
 					<a href="/category.html">category</a>
 				</li>			
 			{% endif %}
-			{% if page.path == "about.html" %}
+			{% if page.path == "works.html" %}
 			<span class="title">
 				<li>
-					<a href="/about.html">about</a>
+					<a href="/works.html">works</a>
 				</li>
 			</span>			
 			{% else %}
 				<li>
-					<a href="/about.html">about</a>
+					<a href="/works.html">works</a>
+				</li>			
+			{% endif %}
+			{% if page.path == "links.html" %}
+			<span class="title">
+				<li>
+					<a href="/links.html">links</a>
+				</li>
+			</span>			
+			{% else %}
+				<li>
+					<a href="/links.html">links</a>
 				</li>			
 			{% endif %}
 		</div>
+    <!--
 		<div class="description"> {{ site.motto }} </div>		
 		<ul class="social-links">
 			<li>
@@ -64,5 +76,6 @@
 				</a>
 			</li>
 		</ul>		
+    -->
 	</div>
 </header>

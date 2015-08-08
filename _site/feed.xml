@@ -2,208 +2,183 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>bencode@编码</title>
-    <description>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+    <description>爱代码，爱生活
 </description>
-    <link>http://yourdomain.com/</link>
-    <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 08 Aug 2015 14:43:35 +0800</pubDate>
-    <lastBuildDate>Sat, 08 Aug 2015 14:43:35 +0800</lastBuildDate>
+    <link>http://bencode.github.io/</link>
+    <atom:link href="http://bencode.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sat, 08 Aug 2015 15:46:06 +0800</pubDate>
+    <lastBuildDate>Sat, 08 Aug 2015 15:46:06 +0800</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
         <title>iojs中的默认es6特性</title>
-        <description>&lt;h2 id=&quot;let-&quot;&gt;let 块作用域&lt;/h2&gt;
+        <description>&lt;p&gt;记录iojs中可以默认使用的es6新特性&lt;/p&gt;
 
-&lt;p&gt;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let&lt;/p&gt;
+&lt;h2&gt;let 块作用域&lt;/h2&gt;
 
-&lt;h2 id=&quot;const-&quot;&gt;const 常量定义&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let&quot;&gt;link&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const&lt;/p&gt;
+&lt;h2&gt;const 常量定义&lt;/h2&gt;
 
-&lt;h2 id=&quot;class-&quot;&gt;class 类定义&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const&quot;&gt;link&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes&lt;/p&gt;
+&lt;h2&gt;class 类定义&lt;/h2&gt;
 
-&lt;h3 id=&quot;declarations--&quot;&gt;declarations  申明式&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes&quot;&gt;link&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;js
-class Polygon {
-  constructor(height, width) {
-    this.height = height;
-    this.width = width;
-  }
-}
-&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;declarations  申明式&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Polygon&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;height&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;width&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;expression  表达式&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// unnamed&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Polygon&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;height&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;width&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
 
-&lt;h3 id=&quot;expression--&quot;&gt;expression  表达式&lt;/h3&gt;
+&lt;span class=&quot;c1&quot;&gt;// named&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Polygon&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Polygon&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;height&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;width&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;prototype method  实例方法&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Polygon&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;height&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;width&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
-&lt;p&gt;```js
-// unnamed
-var Polygon = class {
-  constructor(height, width) {
-    this.height = height;
-    this.width = width;
-  }
-};&lt;/p&gt;
+  &lt;span class=&quot;nx&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;area&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;calcArea&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
-&lt;p&gt;// named
-var Polygon = class Polygon {
-  constructor(height, width) {
-    this.height = height;
-    this.width = width;
-  }
-};
-```&lt;/p&gt;
+  &lt;span class=&quot;nx&quot;&gt;calcArea&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;height&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;static method  静态方法&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Point&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
-&lt;h3 id=&quot;prototype-method--&quot;&gt;prototype method  实例方法&lt;/h3&gt;
+    &lt;span class=&quot;kr&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;distance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;dx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;dy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
-&lt;p&gt;```js
-class Polygon {
-  constructor(height, width) {
-    this.height = height;
-    this.width = width;
-  }&lt;/p&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Math&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sqrt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;dy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
-&lt;p&gt;get area() {
-    return this.calcArea()
-  }&lt;/p&gt;
+&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;p1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Point&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;p2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Point&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 
-&lt;p&gt;calcArea() {
-    return this.height * this.width;
-  }
-}
-```&lt;/p&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Point&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;distance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;p1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;p2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;extends  继承&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Animal&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+  &lt;span class=&quot;nx&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
-&lt;h3 id=&quot;static-method--&quot;&gt;static method  静态方法&lt;/h3&gt;
+  &lt;span class=&quot;nx&quot;&gt;speak&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39; makes a noise.&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
-&lt;p&gt;```js
-class Point {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
-    }&lt;/p&gt;
+&lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Dog&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Animal&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;speak&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39; barks.&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;super  调用父类方法&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Cat&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+  &lt;span class=&quot;nx&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
-&lt;pre&gt;&lt;code&gt;static distance(a, b) {
-    const dx = a.x - b.x;
-    const dy = a.y - b.y;
+  &lt;span class=&quot;nx&quot;&gt;speak&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39; makes a noise.&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
-    return Math.sqrt(dx*dx + dy*dy);
-} }
-&lt;/code&gt;&lt;/pre&gt;
+&lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Lion&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Cat&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;speak&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kr&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;speak&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39; roars.&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Collections  集合&lt;/h2&gt;
 
-&lt;p&gt;const p1 = new Point(5, 5);
-const p2 = new Point(10, 10);&lt;/p&gt;
+&lt;h3&gt;Map &amp;amp; WeakMap&lt;/h3&gt;
 
-&lt;p&gt;console.log(Point.distance(p1, p2));
-```&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map&quot;&gt;Map&lt;/a&gt;
+&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap&quot;&gt;WeakMap&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;extends--&quot;&gt;extends  继承&lt;/h3&gt;
+&lt;h3&gt;Set &amp;amp; WeakSet&lt;/h3&gt;
 
-&lt;p&gt;```js
-class Animal { 
-  constructor(name) {
-    this.name = name;
-  }&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set&quot;&gt;Set&lt;/a&gt;
+&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet&quot;&gt;WeakSet&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;speak() {
-    console.log(this.name + ‘ makes a noise.’);
-  }
-}&lt;/p&gt;
-
-&lt;p&gt;class Dog extends Animal {
-  speak() {
-    console.log(this.name + ‘ barks.’);
-  }
-}
-```&lt;/p&gt;
-
-&lt;h3 id=&quot;super--&quot;&gt;super  调用父类方法&lt;/h3&gt;
-
-&lt;p&gt;```js
-class Cat { 
-  constructor(name) {
-    this.name = name;
-  }&lt;/p&gt;
-
-&lt;p&gt;speak() {
-    console.log(this.name + ‘ makes a noise.’);
-  }
-}&lt;/p&gt;
-
-&lt;p&gt;class Lion extends Cat {
-  speak() {
-    super.speak();
-    console.log(this.name + ‘ roars.’);
-  }
-}
-```&lt;/p&gt;
-
-&lt;h2 id=&quot;collections--&quot;&gt;Collections  集合&lt;/h2&gt;
-
-&lt;h3 id=&quot;map--weakmap&quot;&gt;Map &amp;amp; WeakMap&lt;/h3&gt;
-
-&lt;p&gt;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap&lt;/p&gt;
-
-&lt;h3 id=&quot;set--weakset&quot;&gt;Set &amp;amp; WeakSet&lt;/h3&gt;
-
-&lt;p&gt;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet&lt;/p&gt;
-
-&lt;h2 id=&quot;generator--&quot;&gt;Generator  生成器&lt;/h2&gt;
+&lt;h2&gt;Generator  生成器&lt;/h2&gt;
 
 &lt;p&gt;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*&lt;/p&gt;
 
-&lt;h2 id=&quot;binary-and-octal-literals-&quot;&gt;Binary and Octal literals 二进制和八进制&lt;/h2&gt;
+&lt;h2&gt;Binary and Octal literals 二进制和八进制&lt;/h2&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;FLT_SIGNBIT&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;b10000000000000000000000000000000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 2147483648&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;FLT_EXPONENT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;b01111111100000000000000000000000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 2139095040&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;FLT_MANTISSA&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;B00000000011111111111111111111111&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 8388607&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;O755&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 493&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;o644&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 420&lt;/span&gt;
 
-&lt;p&gt;&lt;code&gt;js
-var FLT_SIGNBIT  = 0b10000000000000000000000000000000; // 2147483648
-var FLT_EXPONENT = 0b01111111100000000000000000000000; // 2139095040
-var FLT_MANTISSA = 0B00000000011111111111111111111111; // 8388607
-&lt;/code&gt;&lt;/p&gt;
+&lt;span class=&quot;c1&quot;&gt;// Also possible with leading zeros (see note about decimals above)&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;0755&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;0644&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Object literal extensions (shorthand properties and methods)&lt;/h2&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// __proto__&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;__proto__&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;theProtoObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// Shorthand for ‘handler: handler’&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;handler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// Methods&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Super calls&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;d &amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// Computed (dynamic) property names&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;prop_&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Promise&lt;/h2&gt;
 
-&lt;p&gt;```js
-var n = 0O755; // 493
-var m = 0o644; // 420&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise&quot;&gt;link&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;// Also possible with leading zeros (see note about decimals above)
-0755
-0644
-```&lt;/p&gt;
+&lt;h2&gt;Symbols&lt;/h2&gt;
 
-&lt;h2 id=&quot;object-literal-extensions-shorthand-properties-and-methods&quot;&gt;Object literal extensions (shorthand properties and methods)&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol&quot;&gt;link&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;js
-var obj = {
-  // __proto__
-  __proto__: theProtoObj,
-  // Shorthand for ‘handler: handler’
-  handler,
-  // Methods
-  toString() {
-    // Super calls
-    return &quot;d &quot; + super.toString();
-  },
-  // Computed (dynamic) property names
-  [ &#39;prop_&#39; + (() =&amp;gt; 42)() ]: 42
-};
-&lt;/code&gt;&lt;/p&gt;
+&lt;h2&gt;Template String&lt;/h2&gt;
 
-&lt;h2 id=&quot;promise&quot;&gt;Promise&lt;/h2&gt;
-
-&lt;p&gt;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise&lt;/p&gt;
-
-&lt;h2 id=&quot;symbols&quot;&gt;Symbols&lt;/h2&gt;
-
-&lt;p&gt;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol&lt;/p&gt;
-
-&lt;h2 id=&quot;template-string&quot;&gt;Template String&lt;/h2&gt;
-
-&lt;p&gt;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/template_strings&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/template_strings&quot;&gt;link&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Thu, 25 Jun 2015 00:00:00 +0800</pubDate>
-        <link>http://yourdomain.com/nodejs/2015/06/25/io-default-feature.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/nodejs/2015/06/25/io-default-feature.html</guid>
+        <link>http://bencode.github.io/nodejs/2015/06/25/io-default-feature.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/nodejs/2015/06/25/io-default-feature.html</guid>
         
         
         <category>nodejs</category>
@@ -214,23 +189,23 @@ var obj = {
         <title>常用的nodejs package</title>
         <description>&lt;p&gt;收集工具类nodejs package，避免造轮子&lt;/p&gt;
 
-&lt;h2 id=&quot;section&quot;&gt;工具&lt;/h2&gt;
+&lt;h2&gt;工具&lt;/h2&gt;
 
-&lt;h3 id=&quot;path-to-regexp&quot;&gt;path-to-regexp&lt;/h3&gt;
+&lt;h3&gt;path-to-regexp&lt;/h3&gt;
 
-&lt;h2 id=&quot;section-1&quot;&gt;模板应擎&lt;/h2&gt;
+&lt;h2&gt;模板应擎&lt;/h2&gt;
 
-&lt;h3 id=&quot;swig&quot;&gt;swig&lt;/h3&gt;
+&lt;h3&gt;swig&lt;/h3&gt;
 
-&lt;h2 id=&quot;section-2&quot;&gt;字符串&lt;/h2&gt;
+&lt;h2&gt;字符串&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/isaacs/minimatch&quot;&gt;minimatch&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;可用于实现glob&lt;/p&gt;
 </description>
         <pubDate>Sat, 06 Jun 2015 00:00:00 +0800</pubDate>
-        <link>http://yourdomain.com/javascript/2015/06/06/common-node-js-package.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/javascript/2015/06/06/common-node-js-package.html</guid>
+        <link>http://bencode.github.io/javascript/2015/06/06/common-node-js-package.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/javascript/2015/06/06/common-node-js-package.html</guid>
         
         
         <category>javascript</category>
@@ -238,64 +213,27 @@ var obj = {
       </item>
     
       <item>
-        <title>Welcome to Jekyll!</title>
-        <description>&lt;p&gt;You’ll find this post in your &lt;code&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
-
-&lt;p&gt;To add new posts, simply add a file in the &lt;code&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
-
-&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Tom&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints &amp;#39;Hi, Tom&amp;#39; to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://github.com/jekyll/jekyll-help&quot;&gt;Jekyll’s dedicated Help repository&lt;/a&gt;.&lt;/p&gt;
-
-</description>
-        <pubDate>Thu, 09 Apr 2015 19:23:32 +0800</pubDate>
-        <link>http://yourdomain.com/jekyll/update/2015/04/09/welcome-to-jekyll%20copy.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/jekyll/update/2015/04/09/welcome-to-jekyll%20copy.html</guid>
-        
-        
-        <category>jekyll</category>
-        
-        <category>update</category>
-        
-      </item>
-    
-      <item>
         <title>git常见问题</title>
-        <description>&lt;h2 id=&quot;section&quot;&gt;文件大小写重命名&lt;/h2&gt;
+        <description>&lt;h2&gt;文件大小写重命名&lt;/h2&gt;
 
 &lt;p&gt;重命名文件大小写后，&lt;code&gt;git status&lt;/code&gt; 没反应。&lt;/p&gt;
-
-&lt;p&gt;```shell
-$ git status
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;$ git status
 On branch master
-Your branch is up-to-date with ‘origin/master’.&lt;/p&gt;
+Your branch is up-to-date with &amp;#39;origin/master&amp;#39;.
 
-&lt;p&gt;nothing to commit, working directory clean
-```&lt;/p&gt;
-
+nothing to commit, working directory clean
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;解决方案&lt;/p&gt;
 
 &lt;p&gt;1. 配置大小写敏感&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;
-git config --global core.ignorecase false
-&lt;/code&gt;&lt;/p&gt;
-
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;git config --global core.ignorecase false
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;2. 先移除文件，再添加文件&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;
-$ git rm &amp;lt;filename&amp;gt;; git add &amp;lt;filename&amp;gt; ;  git commit -m &quot;rename file&quot;
-&lt;/code&gt;&lt;/p&gt;
-</description>
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;$ git rm &amp;lt;filename&amp;gt;; git add &amp;lt;filename&amp;gt; ;  git commit -m &amp;quot;rename file&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
         <pubDate>Sun, 01 Mar 2015 00:00:00 +0800</pubDate>
-        <link>http://yourdomain.com/git/2015/03/01/faq.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/git/2015/03/01/faq.html</guid>
+        <link>http://bencode.github.io/git/2015/03/01/faq.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/git/2015/03/01/faq.html</guid>
         
         
         <category>git</category>
@@ -311,11 +249,10 @@ $ git rm &amp;lt;filename&amp;gt;; git add &amp;lt;filename&amp;gt; ;  git commi
 &lt;p&gt;伽利略：数学是上帝描写自然的语言。&lt;/p&gt;
 
 &lt;p&gt;爱因斯坦：纯数学使我们能够发现概念和联系这些概念的规律，这些概念和规律给了我们理解自然现象的钥匙。&lt;/p&gt;
-
 </description>
         <pubDate>Sun, 15 Feb 2015 00:00:00 +0800</pubDate>
-        <link>http://yourdomain.com/beauty-of-mathematics/2015/02/15/preface.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/beauty-of-mathematics/2015/02/15/preface.html</guid>
+        <link>http://bencode.github.io/beauty-of-mathematics/2015/02/15/preface.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/beauty-of-mathematics/2015/02/15/preface.html</guid>
         
         
         <category>beauty-of-mathematics</category>
@@ -329,49 +266,42 @@ $ git rm &amp;lt;filename&amp;gt;; git add &amp;lt;filename&amp;gt; ;  git commi
 &lt;p&gt;node package中包的依赖是通过package.json中的dependencies字段申明的， 其信息包括模块名和版本号（区域）。
 但其表达方式可能比较复杂，如  ~1.2.3 或  ^ 1.2.3 或 1.2.x 等，可能有些同学不是非常清楚。&lt;/p&gt;
 
-&lt;h2 id=&quot;section&quot;&gt;1. 关于版本号&lt;/h2&gt;
+&lt;h2&gt;1. 关于版本号&lt;/h2&gt;
 
 &lt;p&gt;node package使用的是一个版本规范：http://semver.org/lang/zh-CN/&lt;/p&gt;
 
 &lt;p&gt;总的来说是这样的：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;版本格式：主版本号.次版本号.修订号，版本号递增规则如下：
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;版本格式：主版本号.次版本号.修订号，版本号递增规则如下：
 
 主版本号：当你做了不兼容的API 修改，
 次版本号：当你做了向下兼容的功能性新增，
 修订号：当你做了向下兼容的问题修正。
 先行版本号及版本编译信息可以加到“主版本号.次版本号.修订号”的后面，作为延伸。
-&lt;/code&gt;&lt;/pre&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;大家可以看一下这个文章，讲得很清楚&lt;/p&gt;
 
-&lt;h2 id=&quot;section-1&quot;&gt;2. 关于模块依赖&lt;/h2&gt;
+&lt;h2&gt;2. 关于模块依赖&lt;/h2&gt;
 
 &lt;p&gt;node package使用的依赖都是描述在 package.json中的 dependencies属性中&lt;/p&gt;
 
 &lt;p&gt;比如:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;{ &quot;dependencies&quot; :
-  { &quot;foo&quot; : &quot;1.0.0 - 2.9999.9999&quot;
-  , &quot;bar&quot; : &quot;&amp;gt;=1.0.2 &amp;lt;2.1.2&quot;
-  , &quot;baz&quot; : &quot;&amp;gt;1.0.2 &amp;lt;=2.3.4&quot;
-  , &quot;boo&quot; : &quot;2.0.1&quot;
-&lt;/code&gt;&lt;/pre&gt;
-
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;{ &amp;quot;dependencies&amp;quot; :
+  { &amp;quot;foo&amp;quot; : &amp;quot;1.0.0 - 2.9999.9999&amp;quot;
+  , &amp;quot;bar&amp;quot; : &amp;quot;&amp;gt;=1.0.2 &amp;lt;2.1.2&amp;quot;
+  , &amp;quot;baz&amp;quot; : &amp;quot;&amp;gt;1.0.2 &amp;lt;=2.3.4&amp;quot;
+  , &amp;quot;boo&amp;quot; : &amp;quot;2.0.1&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;大部分的描述都比较直观。 但有些特别语法描述，如果不知道还真不知道。&lt;/p&gt;
 
 &lt;p&gt;比如&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;{ &quot;dependencies&quot; :
-  { &quot;til&quot; : &quot;~1.2&quot;, 
-    &quot;elf&quot; : “^1.2.3”
-&lt;/code&gt;&lt;/pre&gt;
-
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;{ &amp;quot;dependencies&amp;quot; :
+  { &amp;quot;til&amp;quot; : &amp;quot;~1.2&amp;quot;, 
+    &amp;quot;elf&amp;quot; : “^1.2.3”
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;在依赖中，除了可以直接写死版本号外，还可以灵活地指定 版本区域。  &lt;/p&gt;
 
 &lt;p&gt;大概像这样&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;1.2.3       明确的版本
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;1.2.3       明确的版本
 
 &amp;gt;1.2.3     表示 大于1.2.3,  相似的有:
 &amp;lt;1.2.3
@@ -386,8 +316,7 @@ $ git rm &amp;lt;filename&amp;gt;; git add &amp;lt;filename&amp;gt; ;  git commi
 
 1.2.x  这个好理解， 就是 &amp;gt;=1.2.0 &amp;lt;1.3.0  
 1.2.*   和上面一样
-&lt;/code&gt;&lt;/pre&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;现在应该统统看得懂了，具体的可以参考：
 https://www.npmjs.org/doc/misc/semver.html&lt;/p&gt;
 
@@ -395,12 +324,12 @@ https://www.npmjs.org/doc/misc/semver.html&lt;/p&gt;
 
 &lt;p&gt;https://github.com/isaacs/node-semver&lt;/p&gt;
 
-&lt;h2 id=&quot;section-2&quot;&gt;3. 关于版本的使用&lt;/h2&gt;
+&lt;h2&gt;3. 关于版本的使用&lt;/h2&gt;
 
 &lt;p&gt;虽然版本号申明方式很灵活，但是在正式的应用中， 我觉得 二方包和三方包，都应使用明确的 版本号，而不是模糊匹配。
 这样多人开发时和发布上线时，就可以保证依赖包代码是一致的，可以避免很多问题&lt;/p&gt;
 
-&lt;h2 id=&quot;package&quot;&gt;4. 关于package&lt;/h2&gt;
+&lt;h2&gt;4. 关于package&lt;/h2&gt;
 
 &lt;p&gt;关于包的一些资料：&lt;/p&gt;
 
@@ -414,11 +343,10 @@ https://www.npmjs.org/doc/misc/semver.html&lt;/p&gt;
 &lt;p&gt;(2) 什么样的东西可以被 require，即 module是什么&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://nodejs.org/api/modules.html#modules_modules&quot;&gt;http://nodejs.org/api/modules.html#modules_modules&lt;/a&gt;&lt;/p&gt;
-
 </description>
         <pubDate>Thu, 08 Jan 2015 00:00:00 +0800</pubDate>
-        <link>http://yourdomain.com/javascript/2015/01/08/about-version.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/javascript/2015/01/08/about-version.html</guid>
+        <link>http://bencode.github.io/javascript/2015/01/08/about-version.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/javascript/2015/01/08/about-version.html</guid>
         
         
         <category>javascript</category>
@@ -437,7 +365,7 @@ https://www.npmjs.org/doc/misc/semver.html&lt;/p&gt;
 
 &lt;p&gt;人们无法考核你的工作，甚至误解你的工作，这些都不是最糟的事。更大的危险是你自己也误解自己的工作。&lt;/p&gt;
 
-&lt;p&gt;“我不是耐心地一步步写出整个程序，确保大体上是正确的，而是一股脑不管对错，先把代码堆上去，再慢慢修改”，编程就是调试&lt;/p&gt;
+&lt;p&gt;&amp;quot;我不是耐心地一步步写出整个程序，确保大体上是正确的，而是一股脑不管对错，先把代码堆上去，再慢慢修改&amp;quot;，编程就是调试&lt;/p&gt;
 
 &lt;p&gt;你把整个程序想清楚的时间点，应该是在编写代码的同时，而不是编写代码之前&lt;/p&gt;
 
@@ -478,8 +406,8 @@ https://www.npmjs.org/doc/misc/semver.html&lt;/p&gt;
 &lt;p&gt;编程到底能够有多酷，取决于我们能够用这种新媒介做出怎样的工作&lt;/p&gt;
 </description>
         <pubDate>Sun, 28 Dec 2014 00:00:00 +0800</pubDate>
-        <link>http://yourdomain.com/hackers/and/painters/2014/12/28/c2.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/hackers/and/painters/2014/12/28/c2.html</guid>
+        <link>http://bencode.github.io/hackers/and/painters/2014/12/28/c2.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/hackers/and/painters/2014/12/28/c2.html</guid>
         
         
         <category>hackers</category>
@@ -492,68 +420,66 @@ https://www.npmjs.org/doc/misc/semver.html&lt;/p&gt;
     
       <item>
         <title>git最佳实践</title>
-        <description>&lt;h2 id=&quot;section&quot;&gt;关于提交&lt;/h2&gt;
+        <description>&lt;h2&gt;关于提交&lt;/h2&gt;
 
-&lt;h3 id=&quot;section-1&quot;&gt;1. 经常提交，并让每个提交尽量小，提交的内容只包含&lt;strong&gt;相关&lt;/strong&gt;改动。&lt;/h3&gt;
+&lt;h3&gt;1. 经常提交，并让每个提交尽量小，提交的内容只包含&lt;strong&gt;相关&lt;/strong&gt;改动。&lt;/h3&gt;
 
 &lt;p&gt;比如2个bug，一次性改完，那也要分两次提交，可以配合使用stash来达到目的。&lt;/p&gt;
 
-&lt;h3 id=&quot;section-2&quot;&gt;2. 提交时&lt;strong&gt;必须&lt;/strong&gt;带上相应的描述，格式如下&lt;/h3&gt;
+&lt;h3&gt;2. 提交时&lt;strong&gt;必须&lt;/strong&gt;带上相应的描述，格式如下&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;标签: 简短描述
 
-&lt;p&gt;```
-标签: 简短描述&lt;/p&gt;
-
-&lt;p&gt;这里是提交的详细描述
+这里是提交的详细描述
 可以说明为什么要这么修改，是如何解决问题的
 以及这些变化可能会影响到的点
-这些信息用于方便review，很可能下一个看的就是自己&lt;/p&gt;
+这些信息用于方便review，很可能下一个看的就是自己
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;3. 关于简短描述&lt;/h3&gt;
 
-&lt;p&gt;```&lt;/p&gt;
-
-&lt;h3 id=&quot;section-3&quot;&gt;3. 关于简短描述&lt;/h3&gt;
-&lt;p&gt;只用一句话说明本次所作的提交&lt;br /&gt;
-  如果一句话说不清楚，那有可能这个提交得拆分成多次提交，这有点像方法重构。&lt;br /&gt;
+&lt;p&gt;只用一句话说明本次所作的提交&lt;br&gt;
+  如果一句话说不清楚，那有可能这个提交得拆分成多次提交，这有点像方法重构。&lt;br&gt;
   很多文章中建议这里不要超过50个字符，而且那指的是英文，汉字表达能力更足，应该20个字就搞定了。  &lt;/p&gt;
 
-&lt;h3 id=&quot;section-4&quot;&gt;4. 关于类别&lt;/h3&gt;
+&lt;h3&gt;4. 关于类别&lt;/h3&gt;
+
 &lt;p&gt;这一点是我使用过程中感觉很有用的一点，不过对于不同类型的仓库，可能会定义不同的tag。我常用的tag有&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Fix: 修改了某个bug&lt;/li&gt;
-  &lt;li&gt;Add: 添加新特性&lt;/li&gt;
-  &lt;li&gt;Change: 修改某些特性&lt;/li&gt;
-  &lt;li&gt;Update: 更新依赖库造成的修改&lt;/li&gt;
-  &lt;li&gt;Remove: 去掉了某些特性&lt;/li&gt;
-  &lt;li&gt;Refactor: 重构代码(指的是不修改代码功能，优化代码结构)&lt;/li&gt;
+&lt;li&gt;Fix: 修改了某个bug&lt;/li&gt;
+&lt;li&gt;Add: 添加新特性&lt;/li&gt;
+&lt;li&gt;Change: 修改某些特性&lt;/li&gt;
+&lt;li&gt;Update: 更新依赖库造成的修改&lt;/li&gt;
+&lt;li&gt;Remove: 去掉了某些特性&lt;/li&gt;
+&lt;li&gt;Refactor: 重构代码(指的是不修改代码功能，优化代码结构)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;其它不同的仓库有不同的规范，比如nodejs源码的提交，往往会带上修改的包名，比如src, test等。&lt;br /&gt;
+&lt;p&gt;其它不同的仓库有不同的规范，比如nodejs源码的提交，往往会带上修改的包名，比如src, test等。&lt;br&gt;
 强列建议看看一些优秀仓库的提交log, 比如git本身就是很好的例子&lt;/p&gt;
 
-&lt;h3 id=&quot;m&quot;&gt;5. 关于-m参数&lt;/h3&gt;
-&lt;p&gt;为了能让提交时不仅仅出现“fix”, “ci”等无用注释，建议&lt;strong&gt;永远不要带上 -m 参数&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;5. 关于-m参数&lt;/h3&gt;
 
-&lt;p&gt;使用 git commit [-a] &lt;enter&gt;, 系统会弹出编辑器让你写。 所以建议好好配置一下git的外置编辑器&lt;/enter&gt;&lt;/p&gt;
+&lt;p&gt;为了能让提交时不仅仅出现“fix”, &amp;quot;ci&amp;quot;等无用注释，建议&lt;strong&gt;永远不要带上 -m 参数&lt;/strong&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;section-5&quot;&gt;6. 描述后面的空行很重要，它会一些自动化脚本提供支持&lt;/h3&gt;
+&lt;p&gt;使用 git commit [-a] &lt;enter&gt;, 系统会弹出编辑器让你写。 所以建议好好配置一下git的外置编辑器&lt;/p&gt;
 
-&lt;h3 id=&quot;section-6&quot;&gt;相关文档&lt;/h3&gt;
+&lt;h3&gt;6. 描述后面的空行很重要，它会一些自动化脚本提供支持&lt;/h3&gt;
+
+&lt;h3&gt;相关文档&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;https://ruby-china.org/topics/15737&lt;/li&gt;
-  &lt;li&gt;http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html&lt;/li&gt;
-  &lt;li&gt;http://web-design-weekly.com/2013/09/01/a-better-git-commit/&lt;/li&gt;
-  &lt;li&gt;http://ablogaboutcode.com/2011/03/23/proper-git-commit-messages-and-an-elegant-git-history/&lt;/li&gt;
-  &lt;li&gt;https://github.com/erlang/otp/wiki/Writing-good-commit-messages&lt;/li&gt;
-  &lt;li&gt;http://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message&lt;/li&gt;
+&lt;li&gt;https://ruby-china.org/topics/15737&lt;/li&gt;
+&lt;li&gt;http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html&lt;/li&gt;
+&lt;li&gt;http://web-design-weekly.com/2013/09/01/a-better-git-commit/&lt;/li&gt;
+&lt;li&gt;http://ablogaboutcode.com/2011/03/23/proper-git-commit-messages-and-an-elegant-git-history/&lt;/li&gt;
+&lt;li&gt;https://github.com/erlang/otp/wiki/Writing-good-commit-messages&lt;/li&gt;
+&lt;li&gt;http://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;section-7&quot;&gt;关于分支&lt;/h2&gt;
-
+&lt;h2&gt;关于分支&lt;/h2&gt;
 </description>
         <pubDate>Tue, 23 Dec 2014 00:00:00 +0800</pubDate>
-        <link>http://yourdomain.com/git/2014/12/23/best-practice.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/git/2014/12/23/best-practice.html</guid>
+        <link>http://bencode.github.io/git/2014/12/23/best-practice.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/git/2014/12/23/best-practice.html</guid>
         
         
         <category>git</category>
@@ -566,20 +492,16 @@ https://www.npmjs.org/doc/misc/semver.html&lt;/p&gt;
 这在大多数情况下没什么问题，但有些情况下我们需要这类行为时，由于它没有开放相应的参数，就比较麻烦。&lt;/p&gt;
 
 &lt;p&gt;不过也不是不能解决，通过阅读源码，找到以下解决方案：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Hammer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Manager&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;mc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(...)&lt;/span&gt;
 
-&lt;p&gt;```js
-var mc = new Hammer.Manager();
-mc.add(…)&lt;/p&gt;
-
-&lt;p&gt;mc.touchAction.preventSrc = function() {
-    // 什么都不做
-};
-```&lt;/p&gt;
-
-</description>
+&lt;span class=&quot;nx&quot;&gt;mc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;touchAction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;preventSrc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 什么都不做&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
         <pubDate>Sat, 20 Dec 2014 00:00:00 +0800</pubDate>
-        <link>http://yourdomain.com/javascript/2014/12/20/hammer-prevent-default.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/javascript/2014/12/20/hammer-prevent-default.html</guid>
+        <link>http://bencode.github.io/javascript/2014/12/20/hammer-prevent-default.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/javascript/2014/12/20/hammer-prevent-default.html</guid>
         
         
         <category>javascript</category>
@@ -594,49 +516,118 @@ mc.add(…)&lt;/p&gt;
 那默认页面会进行302跳转，而不管原来的状态码。&lt;/p&gt;
 
 &lt;p&gt;如&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;
-error_page 404      http://demo.com/404.html;
-&lt;/code&gt;&lt;/p&gt;
-
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;error_page 404      http://demo.com/404.html;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;则nginx会302到以上页面，这样会对SEO有影响，我们希望实现对页面进行代理请求&lt;/p&gt;
 
 &lt;p&gt;此时可以配合proxy-pass做一个中间层&lt;/p&gt;
-
-&lt;p&gt;```
-location / {
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;location / {
     error_page 404 /404;
-}&lt;/p&gt;
+}
 
-&lt;p&gt;location /404 {
+location /404 {
     proxy_pass http://demo.com/404.html;
 }
-```&lt;/p&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;文档中有这样的例子，但是我试过无效果：&lt;/p&gt;
-
-&lt;p&gt;```
-location / {
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;location / {
     error_page 404 = @fallback;
-}&lt;/p&gt;
+}
 
-&lt;p&gt;location @fallback {
+location @fallback {
     proxy_pass http://backend;
 }
-```&lt;/p&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;会出现指令出错。&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;
-nginx: [emerg] &quot;proxy_pass&quot; cannot have URI part in location given by regular expression, or inside named location, or inside &quot;if&quot; statement, or inside &quot;limit_except&quot; block in
+nginx: [emerg] &amp;quot;proxy_pass&amp;quot; cannot have URI part in location given by regular expression, or inside named location, or inside &amp;quot;if&amp;quot; statement, or inside &amp;quot;limit_except&amp;quot; block in
 &lt;/code&gt;&lt;/p&gt;
 </description>
         <pubDate>Mon, 01 Dec 2014 00:00:00 +0800</pubDate>
-        <link>http://yourdomain.com/nginx/2014/12/01/error_page.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/nginx/2014/12/01/error_page.html</guid>
+        <link>http://bencode.github.io/nginx/2014/12/01/error_page.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/nginx/2014/12/01/error_page.html</guid>
         
         
         <category>nginx</category>
+        
+      </item>
+    
+      <item>
+        <title>eclipse review</title>
+        <description>&lt;h2&gt;一些名词&lt;/h2&gt;
+
+&lt;p&gt;plug-ins&lt;/p&gt;
+
+&lt;p&gt;structed bundle of code and/or data to contribute functionality to system&lt;/p&gt;
+
+&lt;p&gt;extensions extension-point&lt;/p&gt;
+
+&lt;p&gt;JDT PDE&lt;/p&gt;
+
+&lt;h2&gt;Runtime&lt;/h2&gt;
+
+&lt;p&gt;manifest -&amp;gt; registry&lt;/p&gt;
+
+&lt;p&gt;plugin = bundle&lt;/p&gt;
+
+&lt;p&gt;定义在 org.eclipse.osgi and org.eclipse.core.runtime&lt;/p&gt;
+
+&lt;p&gt;定义插件结构，实现加载策略&lt;/p&gt;
+
+&lt;p&gt;找到并执行应用，维护plugin registry, extension and extension point&lt;/p&gt;
+
+&lt;p&gt;提供一些基础设施：日志，调试，adapter，preference store，concurrency基础设施&lt;/p&gt;
+
+&lt;p&gt;Bundle&lt;/p&gt;
+
+&lt;p&gt;BundleActivator
+  start(BundleContext)
+  stop(BundleContext)&lt;/p&gt;
+
+&lt;p&gt;BundleEvent
+BundleContext&lt;/p&gt;
+
+&lt;p&gt;Extension ExtensionPoint ExtensionRegistry&lt;/p&gt;
+
+&lt;p&gt;ConfigurationElement&lt;/p&gt;
+
+&lt;p&gt;Platform&lt;/p&gt;
+
+&lt;h2&gt;Workbench&lt;/h2&gt;
+
+&lt;p&gt;Workbench(WorkbenchWindow)&lt;/p&gt;
+
+&lt;p&gt;Ppage: for group part&lt;/p&gt;
+
+&lt;p&gt;Workbench
+  - Page
+    - MenuBar
+    - ToolBar
+    - StausLine
+    - ShotcutBar&lt;/p&gt;
+
+&lt;p&gt;Perspective:
+  views, layout, actions&lt;/p&gt;
+
+&lt;p&gt;切换perspective时,editor不受影响&lt;/p&gt;
+
+&lt;p&gt;Part
+1. ViewPart
+2. EditPart: save-close lifecycle&lt;/p&gt;
+
+&lt;p&gt;View and Editor&lt;/p&gt;
+
+&lt;p&gt;createPartControl
+setFocus
+dispose&lt;/p&gt;
+</description>
+        <pubDate>Wed, 26 Nov 2014 00:00:00 +0800</pubDate>
+        <link>http://bencode.github.io/eclipse/2014/11/26/review.html</link>
+        <guid isPermaLink="true">http://bencode.github.io/eclipse/2014/11/26/review.html</guid>
+        
+        
+        <category>eclipse</category>
         
       </item>
     
