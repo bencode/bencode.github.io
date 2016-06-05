@@ -1,0 +1,112 @@
+<script>
+var proxy = function() {};
+
+var Class = function(parent, o) {
+	// 如果没有父类，可以省略第一个参数
+	if (!o) {
+		o = parent;
+		parent = null;
+	}
+
+	var klass = function() {
+		// init就是构造函数
+		var init = this.init;
+		return init && init.apply(this, arguments);
+	};
+
+	var proto = null;
+	if (parent) {
+		proxy.prototype = parent.prototype;
+		proto = new proxy();
+	} else {
+		proto = {};
+	}
+
+	for (var k in o) {
+		proto[k] = o[k];
+	}
+
+	klass.prototype = proto;
+	return klass;
+};
+
+
+var Fixture = new Class({
+	init: function() {
+		this.children = [];
+	},
+
+	add: function(child) {
+		this.children.push(child);
+	},
+
+	draw: function() {
+		this.drawBody();
+		this.drawChildren();
+		this.drawBorder();
+	},
+
+	drawBody: function() {
+    console.log('draw fixture body');
+	},
+
+	drawChildren: function() {
+		this.children.forEach(function(child) {
+        child.draw();
+    });
+	},
+
+	drawBorder: function() {
+    console.log('draw fixture border');
+	}
+});
+
+
+
+var Circle = new Class(Fixture, {
+	
+	init: function(radius) {
+		Fixture.prototype.init.call(this);
+    this.radius = radius;
+	},
+
+	drawBody: function() {
+    console.log('draw circle body: ' + this.radius);
+	},
+
+	drawBorder: function() {
+    console.log('draw circle border: ' + this.radius);
+	}
+	
+});
+
+
+var Rectangle = new Class(Fixture, {
+	
+	init: function(width, height) {
+		Fixture.prototype.init.call(this);
+		this.width = width;
+		this.height = height;
+	},
+
+	drawBody: function() {
+    console.log('draw rectangle body: ' + this.width + ', ' + this.height);
+	}
+	
+});
+
+var fixture = new Fixture();
+
+fixture.add(new Circle(100));
+
+var rect1 = new Rectangle(200, 100);
+fixture.add(rect1);
+
+var rect2 = new Rectangle(100, 200);
+rect1.add(rect2);
+
+rect2.add(new Circle(400));
+
+fixture.draw();
+
+</script>

@@ -1,0 +1,112 @@
+<script>
+Object.prototype.clone = function() {
+    var o = {};
+	o.__proto__ = this;
+    return o;
+};
+
+
+// fixture是一个普通的对象
+var Fixture = {};
+
+
+/**
+ * 初始化方式
+ */
+Fixture.init = function() {
+	this.children = [];
+};
+
+
+/**
+ * 添加子fixture
+ */
+Fixture.add = function(child) {
+    this.children.push(child);
+};
+
+
+/**
+ * 绘制
+ */
+Fixture.draw = function() {
+    this.drawBody();
+    this.drawChildren();
+    this.drawBorder();
+};
+
+
+Fixture.drawBody = function() {
+    console.log('draw fixture body');
+};
+
+
+Fixture.drawChildren = function() {
+	this.children.forEach(function(child) {
+        child.draw();
+    });
+};
+
+
+Fixture.drawBorder = function() {
+    console.log('draw fixture border');
+};
+
+
+// Circle继承自Fixture
+var Circle = Fixture.clone();
+
+
+Circle.init = function(radius) {
+	Fixture.init.call(this); // 调用父类构造函数
+    this.radius = radius;
+};
+
+
+// Circle有自己的绘制方式
+Circle.drawBody = function() {
+    console.log('draw circle body: ' + this.radius);
+};
+
+
+Circle.drawBorder = function() {
+    console.log('draw circle border: ' + this.radius);
+};
+
+
+// 继承自Fixture
+var Rectangle = Fixture.clone();
+
+Rectangle.init = function(width, height) {
+	Fixture.init.call(this);
+    this.width = width;
+    this.height = height;
+};
+
+
+Rectangle.drawBody = function() {
+    console.log('draw rectangle body: ' + this.width + ', ' + this.height);
+};
+
+
+var fixture = Fixture.clone();
+fixture.init();
+
+var circle1 = Circle.clone();
+circle1.init(100);
+fixture.add(circle1);
+
+var rect1 = Rectangle.clone();
+rect1.init(200, 100);
+fixture.add(rect1);
+
+var rect2 = Rectangle.clone();
+rect2.init(100, 200);
+rect1.add(rect2);
+
+var circle2 = Circle.clone();
+circle2.init(400);
+rect2.add(circle2);
+
+fixture.draw();
+</script>
