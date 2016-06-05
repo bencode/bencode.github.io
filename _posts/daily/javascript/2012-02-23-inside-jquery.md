@@ -100,7 +100,7 @@ jquery方法中，如果是生成一个新的jQuery对象，一般会调用pushS
 
 熟悉以下对象结构图，有助于更好地理解jQuery, 也能知道和评估它的成本
 
-![jQuery对象结构图](/assets/inside-jquery/01.png)
+![jQuery对象结构图](/assets/javascript/inside-jquery/01.png)
 
 
 ### extend
@@ -519,7 +519,7 @@ $('#mydiv2').data('someData3', [1, 2, 3]);
 </script>
 ```
 
-![data数据结构](/assets/inside-jquery/02.png)
+![data数据结构](/assets/javascript/inside-jquery/02.png)
 
 我们用户的数据存在名叫data的域中，jQuery内部很多地方使用了这个jQuery.cache。
 如queue, event(下面会讲), 以及其他方法中的一些标识。
