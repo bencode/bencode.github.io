@@ -10,7 +10,7 @@ categories: javascript
  
 ```js
 jQuery = window.jQuery = window.$ = function( selector, context ) {  
-    return new jQuery.fn.init( selector, context );  
+  return new jQuery.fn.init( selector, context );  
 },  
 ```
  
@@ -23,8 +23,8 @@ jQuery.fn.init.prototype = jQuery.fn;
 
 ```js
 jQuery.fn = jQuery.prototype = {  
-    init: function( selector, context ) {  
-        selector = selector || document;  
+  init: function( selector, context ) {  
+    selector = selector || document;  
 ```
  
 selector 可以指定不同的数据类型，我们一个一个来：
@@ -35,10 +35,10 @@ selector 可以指定不同的数据类型，我们一个一个来：
 ```js
 // Handle $(DOMElement)  
 if ( selector.nodeType ) {  
-    this[0] = selector;  
-    this.length = 1;  
-    this.context = selector;  
-    return this;  
+  this[0] = selector;  
+  this.length = 1;  
+  this.context = selector;  
+  return this;  
 }  
 ```
 
@@ -60,15 +60,15 @@ elem.length; //
  
 ```js 
 if ( typeof selector === "string" ) {  
-    // Are we dealing with HTML string or an ID?  
-    var match = quickExpr.exec( selector );  
+  // Are we dealing with HTML string or an ID?  
+  var match = quickExpr.exec( selector );  
   
-    // Verify a match, and that no context was specified for #id  
-    if ( match && (match[1] || !context) ) {  
+  // Verify a match, and that no context was specified for #id  
+  if ( match && (match[1] || !context) ) {  
   
-        // HANDLE: $(html) -> $(array)  
-        if ( match[1] )  
-            selector = jQuery.clean( [ match[1] ], context );  
+    // HANDLE: $(html) -> $(array)  
+    if ( match[1] )  
+      selector = jQuery.clean( [ match[1] ], context );  
 ```
  
 quickExpr 是一个正则式，用于匹配一个html string 或 id 字符串 (见第1篇)
@@ -87,8 +87,8 @@ $('<div id="new-div" />')
  
 ```js
 return this.setArray(jQuery.isArray( selector ) ?  
-    selector :  
-    jQuery.makeArray(selector));  
+  selector :  
+  jQuery.makeArray(selector));  
 ```
  
 // setArray 马上就会分析到（因为下面用到）
@@ -106,18 +106,18 @@ jQuery(elements, [context])
 ```js
 // HANDLE: $("#id")  
 else {  
-    var elem = document.getElementById( match[3] );  
+  var elem = document.getElementById( match[3] );  
   
-    // Handle the case where IE and Opera return items  
-    // by name instead of ID  
-    if ( elem && elem.id != match[3] )  
-        return jQuery().find( selector );  
+  // Handle the case where IE and Opera return items  
+  // by name instead of ID  
+  if ( elem && elem.id != match[3] )  
+    return jQuery().find( selector );  
   
-    // Otherwise, we inject the element directly into the jQuery object  
-    var ret = jQuery( elem || [] );  
-    ret.context = document;  
-    ret.selector = selector;  
-    return ret;  
+  // Otherwise, we inject the element directly into the jQuery object  
+  var ret = jQuery( elem || [] );  
+  ret.context = document;  
+  ret.selector = selector;  
+  return ret;  
 }  
 ```
  
@@ -140,7 +140,7 @@ elm.selector = '#id'';
  
 ```js 
 } else if ( jQuery.isFunction( selector ) )  
-    return jQuery( document ).ready( selector );  
+  return jQuery( document ).ready( selector );  
 ``` 
 
 ```js 
@@ -158,11 +158,11 @@ $().ready(function() {...});
  
 ```js 
 if ( typeof selector === "string" ) {  
-    var match = quickExpr.exec( selector );  
-    if ( match && (match[1] || !context) ) {  
-        ...  
-    } else  
-        return jQuery( context ).find( selector );  
+  var match = quickExpr.exec( selector );  
+  if ( match && (match[1] || !context) ) {  
+    ...  
+  } else  
+    return jQuery( context ).find( selector );  
 ```
  
 如果是除id 以外的 css 选择器， 那么就把这个艰巨任务的任务交给 
@@ -176,13 +176,13 @@ if ( typeof selector === "string" ) {
  
 ```js
 if ( selector.selector && selector.context ) {  
-    this.selector = selector.selector;  
-    this.context = selector.context;  
+  this.selector = selector.selector;  
+  this.context = selector.context;  
 }  
   
 return this.setArray(jQuery.isArray( selector ) ?  
-    selector :  
-    jQuery.makeArray(selector));  
+  selector :  
+  jQuery.makeArray(selector));  
 ```
  
 有时候我们这样：
@@ -207,9 +207,9 @@ setArray很简单：
  
 ```js
 setArray: function( elems ) {  
-    this.length = 0;  
-    Array.prototype.push.apply( this, elems );  
-    return this;  
+  this.length = 0;  
+  Array.prototype.push.apply( this, elems );  
+  return this;  
 }  
 ```
  
@@ -223,7 +223,7 @@ setArray: function( elems ) {
  
 ```js
 each: function( callback, args ) {  
-    return jQuery.each( this, callback, args );  
+  return jQuery.each( this, callback, args );  
 },  
 ```
  
@@ -233,7 +233,7 @@ args 内部使用。
  
 ```js
 size: function() {  
-    return this.length;  
+  return this.length;  
 },  
 ```
  
@@ -246,7 +246,7 @@ size: function() {
  
 ```js 
 eq: function( i ) {  
-    return this.slice( i, +i + 1 );  
+  return this.slice( i, +i + 1 );  
 },  
 ```
  
@@ -273,9 +273,9 @@ $('.mydiv').eq(3).css(...
  
 ```js 
 get: function( num ) {  
-    return num === undefined ?  
-        Array.prototype.slice.call( this ) :  
-        this[ num ];  
+  return num === undefined ?  
+    Array.prototype.slice.call( this ) :  
+    this[ num ];  
 },  
 ```
  
@@ -286,9 +286,9 @@ get: function( num ) {
  
 ```js 
 index: function( elem ) {  
-    return jQuery.inArray(  
-        elem && elem.jquery ? elem[0] : elem  
-    , this );  
+  return jQuery.inArray(  
+    elem && elem.jquery ? elem[0] : elem  
+  , this );  
 },  
 ```
  
@@ -303,7 +303,7 @@ index的参数也可以是 jQuery 对象哦
  
 ```js 
 function now(){  
-    return +new Date;  
+  return +new Date;  
 }  
 ```
  
@@ -320,27 +320,27 @@ jQuery.data 将一个对象和一个 html dom关联。 让我们可以管理节�
  
 ```js 
 jQuery.extend({  
-    cache: {},  // 实际的数据存放在这里  
+  cache: {},  // 实际的数据存放在这里  
   
-    data: function( elem, name, data ) {  
-        elem = elem == window ? // 对 window 进行特殊处理(在IE下 document == window)  
-            windowData :  
-            elem;  
+  data: function( elem, name, data ) {  
+    elem = elem == window ? // 对 window 进行特殊处理(在IE下 document == window)  
+      windowData :  
+      elem;  
   
-        var id = elem[ expando ];  // 节点上其实仅仅存一个uuid, expando 是一个串  
-        if ( !id )  
-            id = elem[ expando ] = ++uuid;  // 节点没有uuid, 就生成一个  
+    var id = elem[ expando ];  // 节点上其实仅仅存一个uuid, expando 是一个串  
+    if ( !id )  
+      id = elem[ expando ] = ++uuid;  // 节点没有uuid, 就生成一个  
   
-        if ( name && !jQuery.cache[ id ] )  
-            jQuery.cache[ id ] = {};<span style="white-space: pre;">    </span>// 节点相关的数据保存在这里  
+    if ( name && !jQuery.cache[ id ] )  
+      jQuery.cache[ id ] = {};<span style="white-space: pre;">  </span>// 节点相关的数据保存在这里  
   
-        if ( data !== undefined )  
-            jQuery.cache[ id ][ name ] = data;<span style="white-space: pre;">  </span>// 存数据  
+    if ( data !== undefined )  
+      jQuery.cache[ id ][ name ] = data;<span style="white-space: pre;">  </span>// 存数据  
   
-        return name ?   
-            jQuery.cache[ id ][ name ] :<span style="white-space: pre;">    </span>// 取数据  
-            id;<span style="white-space: pre;"> </span>// 取ID  
-    },  
+    return name ?   
+      jQuery.cache[ id ][ name ] :<span style="white-space: pre;">  </span>// 取数据  
+      id;<span style="white-space: pre;"> </span>// 取ID  
+  },  
 ```
  
  
@@ -357,39 +357,39 @@ var value = jQuery.data(elm, name, value);
  
 
 ```js 
-    removeData: function( elem, name ) {  
-        elem = elem == window ?<span style="white-space: pre;"> </span>// 如上  
-            windowData :  
-            elem;  
+  removeData: function( elem, name ) {  
+    elem = elem == window ?<span style="white-space: pre;"> </span>// 如上  
+      windowData :  
+      elem;  
   
-        var id = elem[ expando ];  
+    var id = elem[ expando ];  
   
-        if ( name ) {<span style="white-space: pre;">   </span>// 仅仅移除name相关的数据  
-            if ( jQuery.cache[ id ] ) {  
-                delete jQuery.cache[ id ][ name ];  
+    if ( name ) {<span style="white-space: pre;">   </span>// 仅仅移除name相关的数据  
+      if ( jQuery.cache[ id ] ) {  
+        delete jQuery.cache[ id ][ name ];  
   
-                // 如果 jQuery.cache[id] 是空对象，那么就 jQuery.removeData(elem)  
-                name = "";  
+        // 如果 jQuery.cache[id] 是空对象，那么就 jQuery.removeData(elem)  
+        name = "";  
   
-                for ( name in jQuery.cache[ id ] )  
-                    break;  
+        for ( name in jQuery.cache[ id ] )  
+          break;  
   
-                if ( !name )  
-                    jQuery.removeData( elem );  
-            }  
-        } else {<span style="white-space: pre;">    </span>// 移除节点的关联数据  
-<span style="white-space: pre;">            </span>// 先删除dom 节点上的 uuid  
-            try {  
-                delete elem[ expando ];  
-            } catch(e){  
-<span style="white-space: pre;">                </span>// IE下需要使用removeAttribute进行移除  
-                if ( elem.removeAttribute )  
-                    elem.removeAttribute( expando );  
-            }  
-            // 再删除实际数据  
-            delete jQuery.cache[ id ];  
-        }  
-    },  
+        if ( !name )  
+          jQuery.removeData( elem );  
+      }  
+    } else {<span style="white-space: pre;">  </span>// 移除节点的关联数据  
+<span style="white-space: pre;">      </span>// 先删除dom 节点上的 uuid  
+      try {  
+        delete elem[ expando ];  
+      } catch(e){  
+<span style="white-space: pre;">        </span>// IE下需要使用removeAttribute进行移除  
+        if ( elem.removeAttribute )  
+          elem.removeAttribute( expando );  
+      }  
+      // 再删除实际数据  
+      delete jQuery.cache[ id ];  
+    }  
+  },  
 ```
  
 所以可以这样使用(jQuery内部)
@@ -407,24 +407,24 @@ jQuery.removeData(elem, name);
 
 ```js 
 jQuery.fn.extend({  
-    data: function( key, value ){  
-        var parts = key.split(".");  
-        parts[1] = parts[1] ? "." + parts[1] : "";  
+  data: function( key, value ){  
+    var parts = key.split(".");  
+    parts[1] = parts[1] ? "." + parts[1] : "";  
   
-        if ( value === undefined ) {  
-            var data = this.triggerHandler("getData" + parts[1] + "!", [parts[0]]);  
+    if ( value === undefined ) {  
+      var data = this.triggerHandler("getData" + parts[1] + "!", [parts[0]]);  
   
-            if ( data === undefined && this.length )  
-                data = jQuery.data( this[0], key );  
+      if ( data === undefined && this.length )  
+        data = jQuery.data( this[0], key );  
   
-            return data === undefined && parts[1] ?  
-                this.data( parts[0] ) :  
-                data;  
-        } else  
-            return this.trigger("setData" + parts[1] + "!", [parts[0], value]).each(function(){  
-                jQuery.data( this, key, value );  
-            });  
-    },  
+      return data === undefined && parts[1] ?  
+        this.data( parts[0] ) :  
+        data;  
+    } else  
+      return this.trigger("setData" + parts[1] + "!", [parts[0], value]).each(function(){  
+        jQuery.data( this, key, value );  
+      });  
+  },  
 ```
  
  
@@ -480,13 +480,13 @@ var tags = $('#tags').data('tags');
 
 ```js
 $('#tags').bind('getData', function(e, name) {  
-    if (name == 'tags') {  
-        return $(this).val().split(/\s*;\s*/);  
-    }  
+  if (name == 'tags') {  
+    return $(this).val().split(/\s*;\s*/);  
+  }  
 }).bind('setData', function(e, name, value) {  
-    if (name == 'tags') {  
-        $(this).val(value.join('; '));  
-    }  
+  if (name == 'tags') {  
+    $(this).val(value.join('; '));  
+  }  
 });  
 ```
  
@@ -501,21 +501,21 @@ jQuery.queue,  jQuery.dequeue
 
 ```js
 jQuery.extend({  
-    ...  
-    queue: function( elem, type, data ) {  
-        if ( elem ){  
-            type = (type || "fx") + "queue";  
+  ...  
+  queue: function( elem, type, data ) {  
+    if ( elem ){  
+      type = (type || "fx") + "queue";  
   
-            var q = jQuery.data( elem, type );  
-      
-            if ( !q || jQuery.isArray(data) )  
-                q = jQuery.data( elem, type, jQuery.makeArray(data) );  
-            else if( data )  
-                q.push( data );  
-      
-        }  
-        return q;  
-    },  
+      var q = jQuery.data( elem, type );  
+    
+      if ( !q || jQuery.isArray(data) )  
+        q = jQuery.data( elem, type, jQuery.makeArray(data) );  
+      else if( data )  
+        q.push( data );  
+    
+    }  
+    return q;  
+  },  
 ```
  
 (PS: return q 在 if 里面更好?)
@@ -527,14 +527,14 @@ jQuery.extend({
  
 ```js
 dequeue: function( elem, type ){  
-    var queue = jQuery.queue( elem, type ),  
-        fn = queue.shift();  
+  var queue = jQuery.queue( elem, type ),  
+    fn = queue.shift();  
+    
+  if( !type || type === "fx" )  
+    fn = queue[0];  
       
-    if( !type || type === "fx" )  
-        fn = queue[0];  
-          
-    if( fn !== undefined )  
-        fn.call(elem);  
+  if( fn !== undefined )  
+    fn.call(elem);  
 }  
 ```
  
@@ -546,24 +546,24 @@ jQuery.queue 和 jQuery.dequeue 是工具方法， jQuery对象对它们进行�
 
 ```js
 jQuery.fn.extend({  
-    ...  
+  ...  
   
-    queue: function(type, data){  
-        if ( typeof type !== "string" ) {   
-            data = type;  
-            type = "fx";  
-        }  
+  queue: function(type, data){  
+    if ( typeof type !== "string" ) {   
+      data = type;  
+      type = "fx";  
+    }  
   
-        if ( data === undefined )  
-            return jQuery.queue( this[0], type );  
+    if ( data === undefined )  
+      return jQuery.queue( this[0], type );  
   
-        return this.each(function(){  
-            var queue = jQuery.queue( this, type, data );  
-              
-             if( type == "fx" && queue.length == 1 )  
-                queue[0].call(this);  
-        });  
-    },  
+    return this.each(function(){  
+      var queue = jQuery.queue( this, type, data );  
+        
+       if( type == "fx" && queue.length == 1 )  
+        queue[0].call(this);  
+    });  
+  },  
 ```
  
 1.  $('#id').queue(function() ...);   相当于   $('#id').queue('fx', function() ...);   用于添加操作到 fx
@@ -574,9 +574,9 @@ dequeue 很简单， 对每个dom元素， 都调用jQuery.dequeue
  
 ```js
 dequeue: function(type){  
-    return this.each(function(){  
-        jQuery.dequeue( this, type );  
-    });  
+  return this.each(function(){  
+    jQuery.dequeue( this, type );  
+  });  
 }  
 ```
  

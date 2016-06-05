@@ -13,7 +13,7 @@ categories: javascript
  
 ```js
 $('#button').click(function() {  
-    alert('you hurt me!');  
+  alert('you hurt me!');  
 });  
 ```
  
@@ -21,7 +21,7 @@ $('#button').click(function() {
  
 ```js
 $('#button').bind('click', function() {  
-    alert("don't touch me!");  
+  alert("don't touch me!");  
 });  
 ```
  
@@ -29,8 +29,8 @@ $('#button').bind('click', function() {
  
 ```js
 jQuery.each(["bind", "one"], function( i, name ) {  
-    jQuery.fn[ name ] = function( type, data, fn ) {  
-        // Handle object literals  
+  jQuery.fn[ name ] = function( type, data, fn ) {  
+    // Handle object literals  
 ```
  
 看来bind 和 one 有点关系呀！它们的签名都是这样：
@@ -43,7 +43,7 @@ one 是啥？
  
 ```js
 $('#button').one('click', function() {  
-    alert('下次点我就不会有效果了!');  
+  alert('下次点我就不会有效果了!');  
 });  
 ```
  
@@ -51,10 +51,10 @@ $('#button').one('click', function() {
  
 ```js
 if ( typeof type === "object" ) {  
-    for ( var key in type ) {  
-        this[ name ](key, data, type[key], fn);  
-    }  
-    return this;  
+  for ( var key in type ) {  
+    this[ name ](key, data, type[key], fn);  
+  }  
+  return this;  
 }  
 ```
  
@@ -74,9 +74,9 @@ $('#div').bind({
  
 ```js
 if ( jQuery.isFunction( data ) ) {  
-    thisObject = fn;  // thisObject 哪里来的？  
-    fn = data;  
-    data = undefined;  
+  thisObject = fn;  // thisObject 哪里来的？  
+  fn = data;  
+  data = undefined;  
 }  
 ```
  
@@ -88,7 +88,7 @@ bind 和 one 的 签名是 function(type, [data], fn),  这个 if 让我们可�
 
 ```js
 $('#button').bind('click', function() {
-    this.name;  // 现在的this不是 button
+  this.name;  // 现在的this不是 button
 }, { name: 123 });
 ```
 
@@ -99,9 +99,9 @@ $('#button').bind('click', function() {
  
 ```js
 var handler = name === "one" ? jQuery.proxy( fn, function( event ) {  
-            jQuery( this ).unbind( event, handler );  
-            return fn.apply( this, arguments );  
-        }) : fn;  
+      jQuery( this ).unbind( event, handler );  
+      return fn.apply( this, arguments );  
+    }) : fn;  
 ```
  
 这段代码对one进行特别处理， 创建一个新的代理事件方法，让其执行后进行解绑，以达到one的效果。
@@ -110,27 +110,27 @@ jQuery.proxy 是 1.4 中新添加的方法, 它可以生成一个代理function,
  
 ```js
 proxy: function( fn, proxy, thisObject ) {  
-    if ( arguments.length === 2 ) {  
-        if ( typeof proxy === "string" ) {  
-            thisObject = fn;  
-            fn = thisObject[ proxy ];  
-            proxy = undefined;  
-        } else if ( proxy && !jQuery.isFunction( proxy ) ) {  
-            thisObject = proxy;  
-            proxy = undefined;  
-        }  
+  if ( arguments.length === 2 ) {  
+    if ( typeof proxy === "string" ) {  
+      thisObject = fn;  
+      fn = thisObject[ proxy ];  
+      proxy = undefined;  
+    } else if ( proxy && !jQuery.isFunction( proxy ) ) {  
+      thisObject = proxy;  
+      proxy = undefined;  
     }  
+  }  
   
-    if ( !proxy && fn ) {  
-        proxy = function() {  
-            return fn.apply( thisObject || this, arguments );  
-        };  
-    }  
+  if ( !proxy && fn ) {  
+    proxy = function() {  
+      return fn.apply( thisObject || this, arguments );  
+    };  
+  }  
   
-    if ( fn ) {  
-        proxy.guid = fn.guid = fn.guid || proxy.guid || jQuery.guid++;  
-    }  
-    return proxy;  
+  if ( fn ) {  
+    proxy.guid = fn.guid = fn.guid || proxy.guid || jQuery.guid++;  
+  }  
+  return proxy;  
 },  
 ```
  
@@ -138,17 +138,17 @@ proxy: function( fn, proxy, thisObject ) {
  
 ```js 
 var user = {  
-    name: "bena",  
-    say: function() {  
-        alert( this.name );  
-     }  
+  name: "bena",  
+  say: function() {  
+    alert( this.name );  
+   }  
 };  
 ```
   
 ```js
 $("#button").click(jQuery.proxy(user, 'say'));  
   
-$("#button").click(jQuery.proxy(user.say, user));    
+$("#button").click(jQuery.proxy(user.say, user));  
 ```
  
  
@@ -159,11 +159,11 @@ $("#button").click(jQuery.proxy(user.say, user));
 ```js
 var handler  = fn;  
 if (name === 'one') {  
-    handler = function(event) {  
-        jQuery(this).unbind(event, handler);  
-        return fn.apply(this, arguments);  
-    };  
-    handler.guid = fn.guid = ...;  
+  handler = function(event) {  
+    jQuery(this).unbind(event, handler);  
+    return fn.apply(this, arguments);  
+  };  
+  handler.guid = fn.guid = ...;  
 }  
 ```
  
@@ -171,10 +171,10 @@ if (name === 'one') {
  
 ```js
 return type === "unload" && name !== "one" ?  
-    this.one( type, data, fn, thisObject ) :  
-    this.each(function() {  
-        jQuery.event.add( this, type, handler, data );  
-    });  
+  this.one( type, data, fn, thisObject ) :  
+  this.each(function() {  
+    jQuery.event.add( this, type, handler, data );  
+  });  
 ```
 
 当 type == 'unload' 时： this.one(type, data, fn, thisObject);  // 看，这里是调用四个参数的，和我们上面的猜想一致(可能在下一版本中实现)
@@ -185,20 +185,20 @@ return type === "unload" && name !== "one" ?
  
 ```js 
 jQuery.event = {  
-    add: function( elem, types, handler, data ) {  
-        if ( elem.nodeType === 3 || elem.nodeType === 8 ) {  
-            return;  
-        }  
+  add: function( elem, types, handler, data ) {  
+    if ( elem.nodeType === 3 || elem.nodeType === 8 ) {  
+      return;  
+    }  
   
-        // For whatever reason, IE has trouble passing the window object  
-        // around, causing it to be cloned in the process  
-        if ( elem.setInterval && ( elem !== window && !elem.frameElement ) ) {  
-            elem = window;  
-        }  
+    // For whatever reason, IE has trouble passing the window object  
+    // around, causing it to be cloned in the process  
+    if ( elem.setInterval && ( elem !== window && !elem.frameElement ) ) {  
+      elem = window;  
+    }  
   
-        if ( !handler.guid ) {  
-            handler.guid = jQuery.guid++;  
-        }  
+    if ( !handler.guid ) {  
+      handler.guid = jQuery.guid++;  
+    }  
 ```
  
  
@@ -211,14 +211,14 @@ nodeType == 3 表示文本text， nodeType  == 8 表示注释， 这两个不需
  
 ```js
 if ( data !== undefined ) {  
-    // Create temporary function pointer to original handler  
-    var fn = handler;  
+  // Create temporary function pointer to original handler  
+  var fn = handler;  
   
-    // Create unique handler function, wrapped around original handler  
-    handler = jQuery.proxy( fn );  
+  // Create unique handler function, wrapped around original handler  
+  handler = jQuery.proxy( fn );  
   
-    // Store data in unique handler  
-    handler.data = data;  
+  // Store data in unique handler  
+  handler.data = data;  
 }  
 ```
  
@@ -230,20 +230,20 @@ if ( data !== undefined ) {
 
 ```js 
 var events = jQuery.data( elem, "events" ) || jQuery.data( elem, "events", {} ),  
-    handle = jQuery.data( elem, "handle" ), eventHandle;  
+  handle = jQuery.data( elem, "handle" ), eventHandle;  
   
 if ( !handle ) {  
-    eventHandle = function() {  
-        return typeof jQuery !== "undefined" && !jQuery.event.triggered ?  
-            jQuery.event.handle.apply( eventHandle.elem, arguments ) :  
-            undefined;  
-    };  
+  eventHandle = function() {  
+    return typeof jQuery !== "undefined" && !jQuery.event.triggered ?  
+      jQuery.event.handle.apply( eventHandle.elem, arguments ) :  
+      undefined;  
+  };  
   
-    handle = jQuery.data( elem, "handle", eventHandle );  
+  handle = jQuery.data( elem, "handle", eventHandle );  
 }  
   
 if ( !handle ) {  
-    return;  
+  return;  
 }  
   
 // Add elem as a property of the handle function  
@@ -263,10 +263,10 @@ handle 是一个函数， 函数体等用到的时候再看。
 types = types.split( /\s+/ );  
 var type, i=0;  
 while ( (type = types[ i++ ]) ) {  
-    // Namespaced event handlers  
-    var namespaces = type.split(".");  
-    type = namespaces.shift();  
-    handler.type = namespaces.slice(0).sort().join(".");  
+  // Namespaced event handlers  
+  var namespaces = type.split(".");  
+  type = namespaces.shift();  
+  handler.type = namespaces.slice(0).sort().join(".");  
 ```
  
 我们可以这样使用：
@@ -290,18 +290,18 @@ $('#button').bind('click.abc.def', function() {});
 
 ```js 
 var handlers = events[ type ],  
-    special = this.special[ type ] || {};  
+  special = this.special[ type ] || {};  
   
 if ( !handlers ) {  
-    handlers = events[ type ] = {};  
+  handlers = events[ type ] = {};  
   
-    if ( !special.setup || special.setup.call( elem, data, namespaces, handler) === false ) {  
-        if ( elem.addEventListener ) {  
-            elem.addEventListener( type, handle, false );  
-        } else if ( elem.attachEvent ) {  
-            elem.attachEvent( "on" + type, handle );  
-        }  
+  if ( !special.setup || special.setup.call( elem, data, namespaces, handler) === false ) {  
+    if ( elem.addEventListener ) {  
+      elem.addEventListener( type, handle, false );  
+    } else if ( elem.attachEvent ) {  
+      elem.attachEvent( "on" + type, handle );  
     }  
+  }  
 }  
 ```
  
@@ -312,9 +312,9 @@ if ( !handlers ) {
  
 ```js
 if ( elem.addEventListener ) { // DOM  
-    elem.addEventListener( type, handle, false );  
+  elem.addEventListener( type, handle, false );  
 } else if ( elem.attachEvent ) { // IE  
-    elem.attachEvent( "on" + type, handle );  
+  elem.attachEvent( "on" + type, handle );  
 }  
 ```
  
@@ -324,16 +324,16 @@ if ( elem.addEventListener ) { // DOM
  
 ```js
 if ( !handle ) {  
-    eventHandle = function() {  
-        return typeof jQuery !== "undefined" && !jQuery.event.triggered ?  
-            jQuery.event.handle.apply( eventHandle.elem, arguments ) :  
-            undefined;  
-    };  
+  eventHandle = function() {  
+    return typeof jQuery !== "undefined" && !jQuery.event.triggered ?  
+      jQuery.event.handle.apply( eventHandle.elem, arguments ) :  
+      undefined;  
+  };  
   
-    handle = jQuery.data( elem, "handle", eventHandle );  
+  handle = jQuery.data( elem, "handle", eventHandle );  
 }  
 if ( !handle ) {  
-    return;  
+  return;  
 }  
   
 // Add elem as a property of the handle function  
@@ -347,7 +347,7 @@ handle.elem = elem;
 ```js
 handle 仅仅把操作代理给
 handle = function() {
-    jQuery.event.handle.apply(elem, arguments) :
+  jQuery.event.handle.apply(elem, arguments) :
 };
 ```
  
@@ -358,10 +358,10 @@ handle = function() {
  
 ```js
 handle: function( event ) {  
-    var all, handlers;  
+  var all, handlers;  
   
-    event = arguments[0] = jQuery.event.fix( event || window.event );  
-    event.currentTarget = this;  
+  event = arguments[0] = jQuery.event.fix( event || window.event );  
+  event.currentTarget = this;  
 ```
  
 首先将 event 包装成 jQuery.Event 对象， 让其在所有浏览器上都有相同的属性和行为。
@@ -386,26 +386,26 @@ handlers = ( jQuery.data(this, "events") || {} )[ event.type ];
  
 ```js 
 for ( var j in handlers ) {  
-    var handler = handlers[ j ];  
-    if ( all || namespace.test(handler.type) ) {  
-        event.handler = handler;  
-        event.data = handler.data;  
+  var handler = handlers[ j ];  
+  if ( all || namespace.test(handler.type) ) {  
+    event.handler = handler;  
+    event.data = handler.data;  
   
-        var ret = handler.apply( this, arguments );  
+    var ret = handler.apply( this, arguments );  
   
-        if ( ret !== undefined ) {  
-            event.result = ret;  
-            if ( ret === false ) {  
-                event.preventDefault();  
-                event.stopPropagation();  
-            }  
-        }  
-  
-        if ( event.isImmediatePropagationStopped() ) {  
-            break;  
-        }  
-  
+    if ( ret !== undefined ) {  
+      event.result = ret;  
+      if ( ret === false ) {  
+        event.preventDefault();  
+        event.stopPropagation();  
+      }  
     }  
+  
+    if ( event.isImmediatePropagationStopped() ) {  
+      break;  
+    }  
+  
+  }  
 }  
   
 return event.result;  

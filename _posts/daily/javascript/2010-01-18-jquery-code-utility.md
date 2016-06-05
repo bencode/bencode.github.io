@@ -16,7 +16,7 @@ categories: javascript
  
 ```js
 (function() {  
- ...      
+ ...    
 })();  
 ```
  
@@ -26,19 +26,19 @@ categories: javascript
  
 ```js
 var   
-    window = this,  
-    undefined,   
-    _jQuery = window.jQuery,   
-    _$ = window.$,  
+  window = this,  
+  undefined,   
+  _jQuery = window.jQuery,   
+  _$ = window.$,  
   
-    jQuery = window.jQuery = window.$ = function(selector, context) {  
-        return new jQuery.fn.init(selector, context);  
-    },  
+  jQuery = window.jQuery = window.$ = function(selector, context) {  
+    return new jQuery.fn.init(selector, context);  
+  },  
   
-    // A simple way to check for HTML strings or ID strings  
-    quickExpr = /^[^<]*(<(.|\s)+>)[^>]*$|^#([\w-]+)$/,  
-    // Is it a simple selector  
-    isSimple = /^.[^:#\[\.,]*$/;  
+  // A simple way to check for HTML strings or ID strings  
+  quickExpr = /^[^<]*(<(.|\s)+>)[^>]*$|^#([\w-]+)$/,  
+  // Is it a simple selector  
+  isSimple = /^.[^:#\[\.,]*$/;  
 ```
  
 ### 1.1
@@ -57,14 +57,14 @@ _$ = window.$,
  
 ```js
 jQuery.extend({  
-    noConflict: function( deep ) {  
-        window.$ = _$;  
+  noConflict: function( deep ) {  
+    window.$ = _$;  
   
-        if ( deep )  
-            window.jQuery = _jQuery;  
+    if ( deep )  
+      window.jQuery = _jQuery;  
   
-        return jQuery;  
-    },  
+    return jQuery;  
+  },  
 ```
  
 OK， 是为了 noConflict。
@@ -84,7 +84,7 @@ isSimple: 也是一个与此同时表达式, 用于匹配一个 selector (css �
  
 ```js
 jQuery = window.jQuery = window.$ = function(selector, context) {  
-    return new jQuery.fn.init(selector, context);  
+  return new jQuery.fn.init(selector, context);  
 },  
 ```
  
@@ -106,13 +106,13 @@ $ 就是 jQuery，它返回一个对象。 这个对象的构造函数是 jQuery
  
 ```js
 jQuery.fn = jQuery.prototype = {  
-    init: function( selector, context ) {  
+  init: function( selector, context ) {  
+  ...  
+  },  
+  size: function() {  
+    return this.length;  
+  },  
     ...  
-    },  
-    size: function() {  
-        return this.length;  
-    },  
-        ...  
 ```
  
 从以上可以看出，下面的代码等效。
@@ -137,22 +137,22 @@ a.size();
 
 ```js
 jQuery.extend = jQuery.fn.extend = function() {  
-    var target = arguments[0] || {}, i = 1, length = arguments.length, deep = false, options;  
+  var target = arguments[0] || {}, i = 1, length = arguments.length, deep = false, options;  
   
-    if ( typeof target === "boolean" ) {  
-        deep = target;  
-        target = arguments[1] || {};  
+  if ( typeof target === "boolean" ) {  
+    deep = target;  
+    target = arguments[1] || {};  
   
-        i = 2;  
-    }  
+    i = 2;  
+  }  
   
-    if ( typeof target !== "object" && !jQuery.isFunction(target) )  
-        target = {};  
+  if ( typeof target !== "object" && !jQuery.isFunction(target) )  
+    target = {};  
   
-    if ( length == i ) {  
-        target = this;  
-        --i;  
-    }  
+  if ( length == i ) {  
+    target = this;  
+    --i;  
+  }  
 ```
  
 可以看到，第一个参数可以指定为 boolean , 表示： 是否进行 深拷贝
@@ -189,22 +189,22 @@ $.fn.extend({
 
 ```js
 for ( ; i < length; i++ )  
-    if ( (options = arguments[ i ]) != null )  
-        for ( var name in options ) {  
-            var src = target[ name ], copy = options[ name ];  
+  if ( (options = arguments[ i ]) != null )  
+    for ( var name in options ) {  
+      var src = target[ name ], copy = options[ name ];  
   
-            if ( target === copy )  
-                continue;  
+      if ( target === copy )  
+        continue;  
   
-            if ( deep && copy && typeof copy === "object" && !copy.nodeType )  
-                target[ name ] = jQuery.extend( deep,   
-                    src || ( copy.length != null ? [ ] : { } )  
-                , copy );  
+      if ( deep && copy && typeof copy === "object" && !copy.nodeType )  
+        target[ name ] = jQuery.extend( deep,   
+          src || ( copy.length != null ? [ ] : { } )  
+        , copy );  
   
-            else if ( copy !== undefined )  
-                target[ name ] = copy;  
+      else if ( copy !== undefined )  
+        target[ name ] = copy;  
   
-        }  
+    }  
   
 return target;  
 ```
@@ -215,7 +215,7 @@ return target;
 ```js
 // args is for internal usage only  
 each: function( object, callback, args ) {  
-    var name, i = 0, length = object.length;  
+  var name, i = 0, length = object.length;  
   
 ..  
 ```
@@ -226,16 +226,16 @@ each: function( object, callback, args ) {
 
 ```js
 if ( args ) {  
-    if ( length === undefined ) {  
-        for ( name in object )  
-            if ( callback.apply( object[ name ], args ) === false )  
-                break;  
-    } else  
-        for ( ; i < length; )  
-            if ( callback.apply( object[ i++ ], args ) === false )  
-                break;  
+  if ( length === undefined ) {  
+    for ( name in object )  
+      if ( callback.apply( object[ name ], args ) === false )  
+        break;  
+  } else  
+    for ( ; i < length; )  
+      if ( callback.apply( object[ i++ ], args ) === false )  
+        break;  
   
-    // A special, fast, case for the most common use of each  
+  // A special, fast, case for the most common use of each  
 } else {  
 ```
  
@@ -243,14 +243,14 @@ if ( args ) {
  
 ```js
 } else {  
-    if ( length === undefined ) {  
-        for ( name in object )  
-            if ( callback.call( object[ name ], name, object[ name ] ) === false )  
-                break;  
-    } else  
-        for ( var value = object[0];  
-            i < length && callback.call( value, i, value ) !== false;   
-            value = object[++i] ){}  
+  if ( length === undefined ) {  
+    for ( name in object )  
+      if ( callback.call( object[ name ], name, object[ name ] ) === false )  
+        break;  
+  } else  
+    for ( var value = object[0];  
+      i < length && callback.call( value, i, value ) !== false;   
+      value = object[++i] ){}  
 ```
  
  从代码中，我们知道，可以对“数组”或“对象”进行迭代。
@@ -260,7 +260,7 @@ if ( args ) {
 var a = ['a', 'b', 'c', 'd', 'e'];  
   
 $.each(a, function() {  
-    alert(this);  // this即每次迭代的值  
+  alert(this);  // this即每次迭代的值  
 });  
   
 $.each(a, function(index, value) {  
@@ -269,7 +269,7 @@ $.each(a, function(index, value) {
   
 $.each(a, function() {  
    if (this == 'c') {  
-    return false;    // 'break'  
+  return false;  // 'break'  
   }  
 }  
 ```
@@ -286,17 +286,17 @@ $.each(a, function() {
 // Since version 1.3, DOM methods and functions like alert  
 // aren't supported. They return false on IE (#2968).  
 isFunction: function( obj ) {  
-    return toString.call(obj) === "[object Function]";  
+  return toString.call(obj) === "[object Function]";  
 },  
   
 isArray: function( obj ) {  
-    return toString.call(obj) === "[object Array]";  
+  return toString.call(obj) === "[object Array]";  
 },  
   
 // check if an element is in a (or is an) XML document  
 isXMLDoc: function( elem ) {  
-    return elem.nodeType === 9 && elem.documentElement.nodeName !== "HTML" ||  
-        !!elem.ownerDocument && jQuery.isXMLDoc( elem.ownerDocument );  
+  return elem.nodeType === 9 && elem.documentElement.nodeName !== "HTML" ||  
+    !!elem.ownerDocument && jQuery.isXMLDoc( elem.ownerDocument );  
 },  
 ```
  
@@ -306,7 +306,7 @@ isXMLDoc: function( elem ) {
  
 ```js
 trim: function( text ) {  
-    return (text || "").replace( /^\s+|\s+$/g, "" );  
+  return (text || "").replace( /^\s+|\s+$/g, "" );  
 },  
 ```
  
@@ -324,12 +324,12 @@ strip: function() {
  
 ```js
 grep: function( elems, callback, inv ) {  
-    var ret = [];  
-    for ( var i = 0, length = elems.length; i < length; i++ )  
-        if ( !inv != !callback( elems[ i ], i ) )  
-            ret.push( elems[ i ] );  
+  var ret = [];  
+  for ( var i = 0, length = elems.length; i < length; i++ )  
+    if ( !inv != !callback( elems[ i ], i ) )  
+      ret.push( elems[ i ] );  
   
-    return ret;  
+  return ret;  
 },  
 ```
  
@@ -339,11 +339,11 @@ grep: function( elems, callback, inv ) {
 var a = [2, 3, 6, 1, 8, 9];  
 
 $.grep(a, function(v) {  //   只要>= 3的数  
-    return v >= 3;  
+  return v >= 3;  
 });  
   
 $.grep(a, function(v) {  
-    return v >= 3;  
+  return v >= 3;  
 }, false); // 这样相当于 < 3  
 ```
  
@@ -351,15 +351,15 @@ $.grep(a, function(v) {
  
 ```js
 map: function( elems, callback ) {  
-    var ret = [];  
-    for ( var i = 0, length = elems.length; i < length; i++ ) {  
-        var value = callback( elems[ i ], i );  
+  var ret = [];  
+  for ( var i = 0, length = elems.length; i < length; i++ ) {  
+    var value = callback( elems[ i ], i );  
   
-        if ( value != null )  
-            ret[ ret.length ] = value;  
-    }  
+    if ( value != null )  
+      ret[ ret.length ] = value;  
+  }  
   
-    return ret.concat.apply( [], ret );  
+  return ret.concat.apply( [], ret );  
 }  
 ```
  
@@ -376,7 +376,7 @@ var a = [].concat(1, 2, 3, [4, 5]) ; // a = [1, 2, 3, 4, 5];
 a = [1, 2, 3, 4];  
   
 b = $.map(a, function(v) {  
-    return [v, 2 * v];  
+  return [v, 2 * v];  
 });  
   
 // b = [1, 2, 2, 4, 3, 6, 4, 8];  
@@ -389,19 +389,19 @@ b = $.map(a, function(v) {
  
 ```js
 makeArray: function( array ) {  
-    var ret = [];  
+  var ret = [];  
   
-    if( array != null ){  
-        var i = array.length;  
-        // The window, strings (and functions) also have 'length'  
-        if( i == null || typeof array === "string" || jQuery.isFunction(array) || array.setInterval )  
-            ret[0] = array;  
-        else  
-            while( i )  
-                ret[--i] = array[i];  
-    }  
+  if( array != null ){  
+    var i = array.length;  
+    // The window, strings (and functions) also have 'length'  
+    if( i == null || typeof array === "string" || jQuery.isFunction(array) || array.setInterval )  
+      ret[0] = array;  
+    else  
+      while( i )  
+        ret[--i] = array[i];  
+  }  
   
-    return ret;  
+  return ret;  
 },  
 ```
  
@@ -410,12 +410,12 @@ makeArray: function( array ) {
  
 ```js
 inArray: function( elem, array ) {  
-    for ( var i = 0, length = array.length; i < length; i++ )  
-    // Use === because on IE, window == document  
-        if ( array[ i ] === elem )  
-            return i;  
+  for ( var i = 0, length = array.length; i < length; i++ )  
+  // Use === because on IE, window == document  
+    if ( array[ i ] === elem )  
+      return i;  
   
-    return -1;  
+  return -1;  
 },  
 ```
  
@@ -427,21 +427,21 @@ inArray: function( elem, array ) {
  
 ```js
 merge: function( first, second ) {  
-    // We have to loop this way because IE & Opera overwrite the length  
-    // expando of getElementsByTagName  
-    var i = 0, elem, pos = first.length;  
-    // Also, we need to make sure that the correct elements are being returned  
-    // (IE returns comment nodes in a '*' query)  
-    if ( !jQuery.support.getAll ) {  
-        while ( (elem = second[ i++ ]) != null )  
-            if ( elem.nodeType != 8 )  
-                first[ pos++ ] = elem;  
+  // We have to loop this way because IE & Opera overwrite the length  
+  // expando of getElementsByTagName  
+  var i = 0, elem, pos = first.length;  
+  // Also, we need to make sure that the correct elements are being returned  
+  // (IE returns comment nodes in a '*' query)  
+  if ( !jQuery.support.getAll ) {  
+    while ( (elem = second[ i++ ]) != null )  
+      if ( elem.nodeType != 8 )  
+        first[ pos++ ] = elem;  
   
-    } else  
-        while ( (elem = second[ i++ ]) != null )  
-            first[ pos++ ] = elem;  
+  } else  
+    while ( (elem = second[ i++ ]) != null )  
+      first[ pos++ ] = elem;  
   
-    return first;  
+  return first;  
 },  
 ```
  
