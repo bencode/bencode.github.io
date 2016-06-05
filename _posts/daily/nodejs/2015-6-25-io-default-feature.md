@@ -3,6 +3,7 @@ layout: post
 title: iojs中的默认es6特性
 categories: nodejs
 ---
+
 记录iojs中可以默认使用的es6新特性
 
 
