@@ -450,4 +450,4 @@ merge: function( first, second ) {
  
 整理一下先：
 
-![结构](/assets/jquery/01.gif)
+![结构](/assets/javascript/jquery/01.gif)

@@ -584,4 +584,4 @@ dequeue: function(type){
  
 同样，还是总结一下：
 
-![结构](/assets/jquery/02.gif)
+![结构](/assets/javascript/jquery/02.gif)

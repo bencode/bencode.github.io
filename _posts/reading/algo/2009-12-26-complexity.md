@@ -47,7 +47,7 @@ public int mergeSort2(int n) {
 工作了整一天，先直接看看程序的效果图哈：
  
 
-![图](/assets/alog/01.gif)
+![图](/assets/reading/algo/02.gif)
  
  
 现在谁快谁慢， 图中一目了然了。
@@ -73,7 +73,7 @@ end
 现在我来看看，那个递归式T(n) = 2 T(n/2) + n 是否真的接近于 nlog(n)， 我把n设置得大一点， 这样让递归式的曲线更平滑。因为我的实现是只计算整数的。
  
  
-![图](/assets/alog/02.gif)
+![图](/assets/reading/algo/03.gif)
  
  
 和nlog(n)最接近， 就是它啦！
