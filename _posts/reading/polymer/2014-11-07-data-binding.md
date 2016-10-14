@@ -458,5 +458,3 @@ MyFancyHTMLWidget.prototype.bind = function(name, observable, oneTime) {
   }
 }
 ```
-
-
