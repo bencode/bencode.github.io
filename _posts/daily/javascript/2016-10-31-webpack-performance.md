@@ -48,9 +48,11 @@ Time: 51897ms
 
 配置前:
 
+```
 Hash: c779a668485b650971c0
 Version: webpack 2.1.0-beta.25
 Time: 56239ms
+```
 
 
 添加配置后：
@@ -69,9 +71,11 @@ Time: 56239ms
         },
 ```
 
+```
 Hash: fea7318458effdd97ccf
 Version: webpack 2.1.0-beta.25
 Time: 25038ms
+```
 
 
 ## source map
@@ -101,9 +105,11 @@ Time: 25038ms
 配置前：
 
 
+```
 Hash: fea7318458effdd97ccf
 Version: webpack 2.1.0-beta.25
 Time: 21685ms
+```
 
 
 配置后：
@@ -120,9 +126,11 @@ Time: 21685ms
     }
 ```
 
+```
 Hash: fea7318458effdd97ccf
 Version: webpack 2.1.0-beta.25
 Time: 12422ms
+```
 
 
 所以经过简单的配置，我们的编译时间从原来的 **63s** 降到 **12s**。
@@ -130,7 +138,7 @@ Time: 12422ms
 
 ## 参考文档
 
-https://segmentfault.com/a/1190000005770042
-https://medium.com/@lcxfs1991/webpack-performance-the-comprehensive-guide-4d382d36253b#.56n46hlo
-http://code.oneapm.com/javascript/2015/07/07/webpack_performance_1/
+[如何 10 倍提高你的 Webpack 构建效率](https://segmentfault.com/a/1190000005770042)
+[webpack Performance: The Comprehensive Guide](https://medium.com/@lcxfs1991/webpack-performance-the-comprehensive-guide-4d382d36253b#.56n46hlo)
+[Webpack 性能优化](http://code.oneapm.com/javascript/2015/07/07/webpack_performance_1/)
 
