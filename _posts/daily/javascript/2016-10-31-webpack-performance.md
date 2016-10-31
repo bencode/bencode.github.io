@@ -37,16 +37,11 @@ Time: 63341ms
     ],
 ```
 
+```
 Hash: c779a668485b650971c0
 Version: webpack 2.1.0-beta.25
 Time: 51897ms
-
-
-## resolve.root & resolve.moduleDirectories
-
-https://github.com/webpack/webpack/issues/472#issuecomment-55706013
-
-因为我们的node_modules不是扁平的，所以不能仅使用root。
+```
 
 
 ## loader exclude
@@ -101,7 +96,7 @@ Time: 25038ms
 
 # 配置cacheDirectory
 
-这一步可以大大提升编译速度。（重复编译的话）
+这一步可以大大提升编译速度。
 
 配置前：
 
