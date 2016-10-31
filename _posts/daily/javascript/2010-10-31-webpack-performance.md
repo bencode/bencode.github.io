@@ -6,6 +6,15 @@ tags: webpack npm yarn
 ---
 
 
+## 定位
+
+运行webpack时添加以下参数可以知道每一步的耗时。
+
+```
+webpack --colors --profile --display-modules
+```
+
+
 ## noParse
 
 不需要再分析依赖的模块可以加到noParse中，特别是一些比较大的模块，比如lodash和moment。
@@ -127,6 +136,6 @@ Time: 12422ms
 ## 参考文档
 
 https://segmentfault.com/a/1190000005770042
-https://medium.com/@lcxfs1991/webpack-performance-the-comprehensive-guide-4d382d36253b
+https://medium.com/@lcxfs1991/webpack-performance-the-comprehensive-guide-4d382d36253b#.56n46hlo
 http://code.oneapm.com/javascript/2015/07/07/webpack_performance_1/
 
