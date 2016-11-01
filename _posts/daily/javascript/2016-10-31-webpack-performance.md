@@ -138,7 +138,7 @@ Time: 12422ms
 
 ## 参考文档
 
-[如何 10 倍提高你的 Webpack 构建效率](https://segmentfault.com/a/1190000005770042)
-[webpack Performance: The Comprehensive Guide](https://medium.com/@lcxfs1991/webpack-performance-the-comprehensive-guide-4d382d36253b#.56n46hlo)
-[Webpack 性能优化](http://code.oneapm.com/javascript/2015/07/07/webpack_performance_1/)
+- [如何 10 倍提高你的 Webpack 构建效率](https://segmentfault.com/a/1190000005770042)
+- [webpack Performance: The Comprehensive Guide](https://medium.com/@lcxfs1991/webpack-performance-the-comprehensive-guide-4d382d36253b#.56n46hlo)
+- [Webpack 性能优化](http://code.oneapm.com/javascript/2015/07/07/webpack_performance_1/)
 
