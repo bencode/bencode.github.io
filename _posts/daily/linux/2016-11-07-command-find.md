@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 一天一个Linux命令 - find
+title: Linux命令学习记录 - find
 categories: linux
 ---
 
