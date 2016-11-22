@@ -8,3 +8,8 @@ categories: nodejs
 
 - [How to track down CPU issues in Node.js](http://apmblog.dynatrace.com/2016/01/14/how-to-track-down-cpu-issues-in-node-js/)
 - [Understanding Garbage Collection and hunting Memory Leaks in Node.js](http://apmblog.dynatrace.com/2015/11/04/understanding-garbage-collection-and-hunting-memory-leaks-in-node-js/)
+
+
+## npm
+
+[eleven-npm-tricks-that-will-knock-your-wombat-socks-off](https://nodesource.com/blog/eleven-npm-tricks-that-will-knock-your-wombat-socks-off/)
