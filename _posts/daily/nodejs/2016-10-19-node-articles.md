@@ -12,4 +12,4 @@ categories: nodejs
 
 ## npm
 
-[eleven-npm-tricks-that-will-knock-your-wombat-socks-off](https://nodesource.com/blog/eleven-npm-tricks-that-will-knock-your-wombat-socks-off/)
+- [eleven-npm-tricks-that-will-knock-your-wombat-socks-off](https://nodesource.com/blog/eleven-npm-tricks-that-will-knock-your-wombat-socks-off/)

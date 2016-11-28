@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Linux命令学习记录 - 文件查找
+title: Linux命令学习 - 文件查找
 categories: linux
 ---
 
