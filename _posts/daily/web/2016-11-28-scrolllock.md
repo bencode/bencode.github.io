@@ -1,7 +1,7 @@
 ---
 layout: post
 title: scroll lock
-categories: javascript
+categories: web
 ---
 
 内部层滚动时不希望触发window scroll，可以参考 [jquery-scrollLock](https://github.com/MohammadYounes/jquery-scrollLock)实现
