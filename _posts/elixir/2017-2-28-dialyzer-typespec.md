@@ -103,3 +103,34 @@ mix dialyzer
 @spec add(integer | float, integer | float) :: integer | float
 @spec add(number, number) :: number
 ```
+
+再来一个复杂的
+
+```elixir
+@spec map(f, list_1) :: list_2 when
+  f: ((a) -> b),
+  list_1: [a],
+  list_2: [b],
+  a: term,
+  b: term
+```
+
+## 定义自定义类型
+
+使用@type定义自定义类型
+
+```elixir
+defmodule Hexy do
+  @type rbg() :: (0..255, 0..255, 0..255)
+  @type hex() :: binary
+  @type current() :: :sgd | :usd
+
+  @spec rgb_to_hex(rgb) :: hex | {:error, :invalid}
+end
+```
+
+
+参考文档
+
+1. The Little Elixir & OTP Guidebook Chapter 10
+
