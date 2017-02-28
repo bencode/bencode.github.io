@@ -83,3 +83,23 @@ mix do deps.get, deps.compile
 ```shell
 mix dialyzer
 ```
+
+## 类型声明
+
+默认情况下dialyzer就能够发现你代码中可能的错误，可以使用type specs让它工作得更好。
+
+类型声明的格式大致如下：
+
+```elixir
+@spec function_name(type1, type2) :: return_type
+```
+
+常用的类型有 term, boolean, char, number, binary, char_list, list, fun, pid, tuple, map
+
+以下是一些具体的示例
+
+```elixir
+@spec add(integer, integer) :: integer
+@spec add(integer | float, integer | float) :: integer | float
+@spec add(number, number) :: number
+```
