@@ -14,9 +14,9 @@ categories: php
 
 ```php
 var validate => array(
-    ...
-    fileldName => ruleSet
-    ...
+  ...
+  fileldName => ruleSet
+  ...
 );
 ```
 
@@ -26,11 +26,11 @@ ruleSet 可有三种情况:
 
 ```
 1. string, 可以是正则式, 方法名, 或者...(见下面)
-2. array('rule' => validator);    一个 key 为 rule 的单元素数组, 
+2. array('rule' => validator);  一个 key 为 rule 的单元素数组, 
 3. array( 
-    ...
-    index => validator
-    ...
+  ...
+  index => validator
+  ...
 )
 ```
 
@@ -41,15 +41,15 @@ ruleSet 可有三种情况:
 
 ```
 1. string, 上面有过哦, 可以是正则式, 或者方法名 .. 或者...
-2. array(    // 又是一个 array, 看来, 这个总的结构还可以真复杂呀
-                   //  array中大概可以具有以下元素. 
-    'allowEmpty' => null,
-    'required' => null,
-    'rule' => 'blank',           //  这里有个 rule 哦...
-    'last' => false,
-    'on' => null
+2. array(  // 又是一个 array, 看来, 这个总的结构还可以真复杂呀
+           //  array中大概可以具有以下元素. 
+  'allowEmpty' => null,
+  'required' => null,
+  'rule' => 'blank',       //  这里有个 rule 哦...
+  'last' => false,
+  'on' => null
 
-    'message' =>null         //   如果是空, 那么将被设置为:  This field cannot be left blank
+  'message' =>null     //   如果是空, 那么将被设置为:  This field cannot be left blank
 )
 ```
 
@@ -57,21 +57,21 @@ ruleSet 可有三种情况:
 
 ```php
 var validate => array(
-    fileldName1 => ...
-    fileldName2 => array{
-           index1 => ...
-            index2 => array(
-               'allowEmpty' => null,
-               'required' => null,
-                'rule' => 'blank',           //  这里有个 rule 哦...
-               'last' => false,
-                'on' => null
+  fileldName1 => ...
+  fileldName2 => array{
+       index1 => ...
+      index2 => array(
+         'allowEmpty' => null,
+         'required' => null,
+        'rule' => 'blank',       //  这里有个 rule 哦...
+         'last' => false,
+        'on' => null
 
-                'message' =>null         //   如果是空, 那么将被设置为:  This field cannot be left blank
-            )
-            ...
-    };
-    ...
+        'message' =>null     //   如果是空, 那么将被设置为:  This field cannot be left blank
+      )
+      ...
+  };
+  ...
 );
 ```
 
@@ -112,9 +112,9 @@ var validate => array(
 
 ```php
 if (!isset($validator['message'])) {
-    if (is_string($index)) {
-         $validator['message'] = $index;
-     } else {
+  if (is_string($index)) {
+     $validator['message'] = $index;
+   } else {
  $validator['message'] = ife(is_numeric($index) && count($ruleSet) > 1, ($index + 1), $message);
 }
 ```

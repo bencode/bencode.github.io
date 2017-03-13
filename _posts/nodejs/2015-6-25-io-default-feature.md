@@ -1,6 +1,6 @@
 ---
 layout: post
-title: iojs中的默认es6特性
+title: iojs中的默认支持ES6特性
 categories: nodejs
 ---
 
