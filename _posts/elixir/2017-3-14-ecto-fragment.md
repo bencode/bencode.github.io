@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 使用Ecto Fragment让`order_by`支持自定义排序。
+title: 使用Ecto Fragment支持自定义排序。
 categories: elixir
 ---
 
