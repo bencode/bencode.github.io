@@ -4,7 +4,7 @@ title: 使用Ecto Fragment支持自定义排序。
 categories: elixir
 ---
 
-ecto的功能很强大，但有时候找不到直接支持的特性，此时可以使用[fragment](https://hexdocs.pm/ecto/Ecto.Query.API.html#fragment/1) 完成查询。
+ecto的功能很强大，但有时候找不到直接支持的特性，此时可以使用[fragment](https://hexdocs.pm/ecto/Ecto.Query.API.html#fragment/1) 构造自定义SQL完成查询。
 
 最近的项目中就碰到这样的场景：
 
