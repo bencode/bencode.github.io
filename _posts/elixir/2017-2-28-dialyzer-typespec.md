@@ -129,6 +129,27 @@ defmodule Hexy do
 end
 ```
 
+## 一个实际例子
+
+一个现实项目中的例子
+
+```elixir
+  @doc """
+  取得页面模块信息
+  """
+  @spec load_page_layout(params) :: %{navs: [nav], pages: [page]} when
+    params: %{page_id: integer, widget_id: integer, city_id: String.t},
+    nav: %{name: String.t, category: String.t, page_id: String.t},
+    page: {:carousel, [carousel_item]} |
+          {:recommend_category, category_total, [category_group]},
+    carousel_item: %{image: String.t, url: String.t},
+    category_total: %{name: String.t, url: String.t},
+    category_group: %{name: String.t, url: String.t, image: String.t}
+  def load_page_layout(params) do
+    ...
+  end
+```
+
 
 参考文档
 
