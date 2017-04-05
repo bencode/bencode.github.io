@@ -508,22 +508,19 @@ parseElement, 到现在为止，我们parse了tagName, attributes, 还有内容�
 到这里为止，我们的HtmlParser全部完成了
 
 
-## 结属
+## 结论
 
 使用LL而不是使用LR后，我感觉有以下几个好处
 
 1. 比较自然，代码比较清晰，从代码就可以体现出整个结构，有种parser的感觉
-2. 每个node的parse都能独立调用，单元测试更容易编写
-  
+2. 每个node的parse都能独立调用，单元测试更容易编写  
 比如我只想parse一个attribute，则可以直接调用
 
 ```javascript
 var parser = new HtmlParser(str);
 var attr = parser.parseAttribute();
 ```
-
-3. 可以比较容易地parser出简单的语言，稍微注意下左递归，否则会死循环了。。
-
+3. 可以比较容易地parser出简单的语言，稍微注意下左递归，否则会死循环了。。  
 最后广告一下，fdlint，这个是前端代码规范扫描工具，里面有HtmlParser, CssParser, 和JsParser的实现，原理和上面的一样
 有兴趣的同学可以看。。
 github地址：
