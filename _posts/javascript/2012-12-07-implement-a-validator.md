@@ -12,7 +12,7 @@ categories: javascript
 
 先看一些例子了解如何使用这个组件
 
-1. 非空验证
+1\. 非空验证
 
 ```javascript
 var elm = $('...');   // 取得节点
@@ -24,7 +24,7 @@ var v = new Validation(elm, { // 初始化验证器
 ```
 
 
-2. 正则式
+2\. 正则式
 
 ```javascript
 new Validation(elm, {
@@ -34,32 +34,30 @@ new Validation(elm, {
 ```
 
 
-3. 多个验证器
+3\. 多个验证器
 
 ```javascript
 new Validation(elm, [
-
-{
-  type: 'require'
-  message: '内容不能为空'
-},
-
-{
-  type: 'price'
-  message: '价格格式不正确'
-},
-
-{ 
-  type: function(v) {
-    return v > 100 * 10000;
+  {
+    type: 'require'
+    message: '内容不能为空'
   },
-  message: '金额不能小于100万'
-}
 
+  {
+    type: 'price'
+    message: '价格格式不正确'
+  },
+
+  {
+    type: function(v) {
+      return v > 100 * 10000;
+    },
+    message: '金额不能小于100万'
+  }
 ]);
 ```
 
-4. 不同的验证时机(触发条件)
+4\. 不同的验证时机(触发条件)
 
 验证触发条件有好些， 比如鼠标录入完后离开输入框（focusout）, 或者输入过程中就会进行效验(instant)
 
@@ -72,7 +70,7 @@ new Validation(elm, {
 });
 ```
 
-5. 不同的验证出错提示
+5\. 不同的验证出错提示
 
 ```javascript
 new Validation(elm, {
@@ -82,7 +80,7 @@ new Validation(elm, {
 ```
 
 
-6. 同时对一组元素应用一组规则
+6\. 同时对一组元素应用一组规则
 
 ```javascript
 var elms = ... // 包含多个元素

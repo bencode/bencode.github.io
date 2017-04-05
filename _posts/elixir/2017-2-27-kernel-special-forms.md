@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Elixir Kernel.SpecialForms 模块学习
+title: Elixir Kernel.SpecialForms 模块学习记录
 categories: elixir
 ---
 

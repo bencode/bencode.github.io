@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Elixir -- Dialyzer and type specifications
+title: 使用 Dialyzer and type specifications
 categories: elixir
 ---
 
