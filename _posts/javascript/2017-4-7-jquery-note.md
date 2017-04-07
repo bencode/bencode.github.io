@@ -52,7 +52,7 @@ jQuery.fn === jQuery.prototype
 
 即jQuery是一个函数，这个函数用于构造一个jQuery对象，这个函数功能比较强大，要熟练掌握各种不同类型的参数。
 
-参考 http://api.jquery.com/jQuery/ 这个文档可以知道这个函数有哪些可能性。  
+参考 http://api.jquery.com/jQuery/ 这个文档可以知道这个函数有哪些特性。  
 
 以下示例把每种情况用了一下，可作参考：
 
