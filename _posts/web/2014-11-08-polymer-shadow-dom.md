@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Polymer学习笔记 - Shadow DOM
-categories: reading polymer
+title: Polymer学习笔记4 - Shadow DOM
+categories: web component polymer
 ---
 
 ## 基本使用

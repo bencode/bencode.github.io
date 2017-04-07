@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Polymer学习笔记 - API Developer Guide
-categories: reading polymer
+title: Polymer学习笔记1 - API
+categories: web component polymer
 ---
 
 [链接](https://www.polymer-project.org/docs/polymer/polymer.html)

@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Polymer学习笔记 - HTML5 Template
-categories: reading polymer
+title: Polymer学习笔记5 - HTML5 Template
+categories: web component polymer
 ---
 
 [参考资料](http://www.html5rocks.com/zh/tutorials/webcomponents/template/)

@@ -4,6 +4,7 @@ title: Inside jQuery
 categories: javascript
 ---
 
+
 ### jQuery.fn.init处理流程  [99]
 
 构造jQuery对象时，会转交给jQuery.fn.init处理。所以先看看它的处理流程, 就能够知道有几种方式调用jQuery方法，也知道内部的一些细节。

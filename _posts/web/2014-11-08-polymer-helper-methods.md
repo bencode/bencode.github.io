@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Polymer学习笔记 - Helper Methods
-categories: reading polymer
+title: Polymer学习笔记3 - Helper Methods
+categories: web component polymer
 ---
 
 ## 动态Html imports

@@ -418,5 +418,3 @@ event.data = handler.data。
 event.preventDefault();
 event.stopPropagation();
  
-//-------------------
- 未完~

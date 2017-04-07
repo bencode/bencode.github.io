@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Polymer学习笔记 - Data Binding
-categories: reading polymer
+title: Polymer学习笔记2 - Data Binding
+categories: web component polymer
 ---
 
 ## Overview
