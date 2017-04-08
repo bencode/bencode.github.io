@@ -1,0 +1,53 @@
+<div class="sidebar">
+  {% if site.categories | size != 0 %}
+  <div class="categories">
+    <h2>Categories</h2>
+    <ul>
+    {% for item in site.categories %}
+      {% if item[1] | size != 0 %}
+      <li><a href="{{ site.baseurl }}/categories#{{ item[0] | url_encode }}" title="{{ item[0] }}">{{ item[0] }}</a> (<span class="count">{{ item[1] | size }}</span>)</li>
+      {% endif %}
+    {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+
+  {% if site.tags | size != 0 %}
+  <div class="tags">
+    <h2>Tags</h2>
+    <ul>
+    {% for item in site.tags %}
+      {% if item[1] | size != 0 %}
+      <li><a href="{{ site.baseurl }}/tags#{{ item[0] | url_encode }}" title="{{ item[0] }}">{{ item[0] }}</a> (<span class="count">{{ item[1] | size }}</span>)</li>
+      {% endif %}
+    {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+
+  {% if page.layout == "archives" %}
+  <div class="archives">
+    <h2>Archives</h2>
+    <ul>
+    {% assign count = 1 %}
+    {% for post in site.posts  %}
+    {% capture this_date %}{{ post.date }}{% endcapture %}
+    {% capture next_date %}{{ post.previous.date }}{% endcapture %}
+    {% capture this_date_str %}{{ this_date | date: "%Y-%m" }}{% endcapture %}
+    {% capture next_date_str %}{{ next_date | date: "%Y-%m" }}{% endcapture %}
+      {% if this_date_str != next_date_str %}
+      <li>
+        <a class="archive-list-link" href="/archives#{{ this_date | date: "%Y-%m" }}">{{ this_date | date: '%Y-%m' }}</a>
+        (<span class="archive-list-count">{{ count }}</span>)
+        {% assign count = 1 %}
+      {% else %}
+        {% assign count = count | plus: 1 %}
+      {% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+</div>

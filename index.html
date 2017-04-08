@@ -3,16 +3,53 @@ layout: default
 ---
 
 <div class="home">
-  <h1 class="page-heading">Posts</h1>
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-      </li>
+  {% for post in paginator.posts %}
+  <article>
+    <h2>
+      <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+    </h2>
+    <span class="post-meta">{{ post.date | date: "%Y-%m-%d" }}</span>
+    <!--
+    <div class="article-content">
+      {% if post.excerpt %}
+      {{ post.excerpt }}
+      {% else %}
+      {{ post.content }}
+      {% endif %}
+      <p class="article-more-link">
+        {% if post.excerpt %}
+        <a href="{{ site.baseurl }}{{ post.url }}#more">Read More</a>
+      {% endif %}
+      </p>
+    </div>
+    -->
+  </article>
+  {% endfor %}
+
+  {% if paginator.posts | size > 1 %}
+  <nav id="page-nav">
+    {% if paginator.previous_page %}
+    <a class="prev" rel="prev" href="{{ paginator.previous_page_path }}"><span></span>Prev</a>
+    {% endif %}
+    {% if paginator.page == 1 %}
+    <span class="page-number current">1</span>
+    {% else %}
+    <a class="page-number" href="/">1</a>
+    {% endif %}
+    {% for i in (2..paginator.total_pages) %}
+    {%if i == paginator.page %}
+    <span class="page-number current">{{ i }}</span>
+    {% else %}
+    <a class="page-number" href="/page{{ i }}">{{ i }}</a>
+    {% endif %}
     {% endfor %}
-  </ul>
+    {% if paginator.next_page %}
+    <a class="next" rel="next" href="{{ paginator.next_page_path }}">Next<span></span></a>
+    {% endif %}
+  </nav>
+  {% endif %}
+
   <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">RSS</a></p>
 </div>
+
+{% include sidebar.html %}

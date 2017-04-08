@@ -1,0 +1,18 @@
+<div class="articles">
+  {% for post in site.posts %}
+  {% assign item = post %}
+  {% assign index = true %}
+  <h2>
+  {% if item.link %}
+  <a href="{{ item.link }}" target="_blank">
+  {% else %}
+  <a href="{{ site.baseurl }}{{ item.url }}" title="{{ item.title }}">
+  {% endif %}
+    {{ item.title }}
+  </a>
+  </h2>
+  <time datetime="{{ item.date }}">{{ item.date | date: '%Y-%m' }}</time>
+  {% endfor %}
+</div>
+
+{% include sidebar.html %}

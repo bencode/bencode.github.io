@@ -27,6 +27,8 @@ jQuery.hello = function() {
 jQuery.hello();
 ```
 
+<!--more-->
+
 以上代码很容易理解。
 
 实例方法可以参考以下示例实现：
@@ -41,12 +43,13 @@ jQuery.fn.red = function() {
 $('.panel').red();
 ```
 
-
 `jQuery.fn` 实际上就是 jQuery.prototype，可以在`Console`中校验
 
 ```js
 jQuery.fn === jQuery.prototype
 ```
+
+
 
 ## 3. 掌握构造函数
 
