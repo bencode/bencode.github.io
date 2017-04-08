@@ -10,7 +10,7 @@ categories: javascript
 
 首先是一个例子
 
-```
+```js
 function foo() { 
   foo.abc = function() { alert('Alibaba') }
   this.abc = function() { alert('Alimama') }
@@ -32,7 +32,7 @@ JS的变量是*函数作用域*，而不是*块作用域*
 所以在函数中不管什么位置申明的变量(不包括内部函数，它们有自己的世界)，相当于在函数顶部申明，所以上述代码相当于：
 
 
-```
+```js
 var foo, obj;
 
 foo = function() {... // 先忽视函数体
@@ -53,7 +53,7 @@ foo.abc() 调用的就是上述的 foo.abc = function... 即 Yahoo
 
 再看foo的函数体, 同样将var申明提前:
 
-```
+```js
 function foo() { 
   var abc;
   
@@ -79,7 +79,7 @@ abc 只是函数 foo的局部变量， 在全局作用域中并不存在。
 
 再看一个例子：
 
-```
+```js
 a = 'hello';
 if (true) {
   var a = 'world';
@@ -91,7 +91,7 @@ alert(a);
 
 上述代码相当于
 
-```
+```js
 var a;
 a = 'hello';
 if (true) {
@@ -105,7 +105,7 @@ alert(a);
 
 但如果上面的是java代码, 像这样:
 
-```
+```js
 String a = "hello";
 if (true) {
   String a = "world";
@@ -118,7 +118,7 @@ println(a);
 
 再看一个我们可能会犯的错误：
 
-```
+```js
 var buttons = document.getElementsByTagName('input');
 
 for (var i = 0; i < buttons.length; i++) {
@@ -130,7 +130,7 @@ for (var i = 0; i < buttons.length; i++) {
 
 上述代码本意是想按每个按扭, 输出他们的序号, 但得不到想要的结果, 因为上述代码实现上像这样:
 
-```
+```js
 var buttons, i;
 
 buttons = document.getElementsByTagName('input');
@@ -146,7 +146,7 @@ for (i = 0; i < buttons.length; i++) {
 
 那怎么办呢? 可以创建一层作用域:
 
-```
+```js
 var buttons = document.getElementsByTagName('input'),
   i;
 
@@ -166,7 +166,7 @@ Jslint也有这样的选项(Allow one var statement per function)用来检查是
 
 关于变量作用域, 还有最后一个问题:
 
-```
+```js
 function a() {
 }
 
@@ -178,7 +178,7 @@ a = function() {
 
 看一个例子：
 
-```
+```js
 function a() {
   var b;
   
@@ -206,7 +206,7 @@ c()();
 
 结果: alert('b') 然后报错, c() is not a function
 
-```
+```js
 var d = function()..., 这是语句
 function b() {...   这是申明
 ```
@@ -234,7 +234,7 @@ Closure讲的就是内部函数可以访问外围函数作用域内的变量，�
 
 如果是这样, 那么内部函数不管有无使用外部作用域变量，都会形成Closure, 而事实确实是这样的。
 
-```
+```js
 window.onload = function() {
   $('button1').onclick = button1Click;
 };
@@ -263,7 +263,7 @@ function $(id) {
 
 ## 3. this
 
-```
+```js
 function printThis() {
   console.debug(this);
   console.debug(this.abc);
@@ -291,7 +291,7 @@ console.debug(o3);
 
 以下例子，用于说明以上情况：
 
-```
+```js
 function A() {
   this.abc = 'abc';
 }
@@ -389,7 +389,7 @@ prototype链和对象的属性查找有关系, 可以使用这个机制实现面
 
 还是一个例子：
 
-```
+```js
 var A = function() {};
 A.prototype = { propPA: 'PA' };
 
@@ -437,7 +437,7 @@ console.debug(c.toString());  // [object Object]
 
 再举个较复杂的例子，然后用文字和图表试着描述它。
 
-```
+```js
 
 var num = 123;
 var str = 'hello world';
@@ -508,7 +508,7 @@ o.run();
 
 准备好环境后，下面就是执行了：
 
-```
+```js
 num = 123;
 str = 'hello world';
 fun = function() {...// 函数没执行，JS引擎在正常情况下是不去管函数体的, 所以仅仅是创建了个函数对象。
@@ -544,7 +544,7 @@ fun = function() {...// 函数没执行，JS引擎在正常情况下是不去管
 
 下面就是执行fun方法：
 
-```
+```js
 num2 = 234;
 str2 = 'alibaba';
 num = 578;
@@ -564,7 +564,7 @@ return function() ...;
 
 然后是: 
 
-```
+```js
 var inner = fun(); 执行完毕
 ```
 
@@ -575,7 +575,7 @@ var inner = fun(); 执行完毕
 
 下面是
 
-```
+```js
 inner();
 ```
 
@@ -583,7 +583,7 @@ inner();
 
 下面是：
 
-```
+```js
 o = \{ title: 'another world', run: inner \};
 o.run();
 ```
