@@ -1,9 +1,18 @@
 # Site settings
-title: bencode@编码
+title: 大鱼@编程
 email: bencode@163.com
 description: > # this means to ignore newlines until "baseurl:"
   爱代码，爱生活
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://bencode.github.io" # the base hostname & protocol for your site
+url: "http://bigyu.co" # the base hostname & protocol for your site
 # Build settings
 markdown: redcarpet
+
+menu:
+    Home: /
+    Archives: /archives
+    About: /about
+
+widgets:
+- category
+- tag

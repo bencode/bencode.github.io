@@ -1,0 +1,41 @@
+---
+layout: default
+---
+
+<div class="summary">
+<ul>
+{% assign count = 1 %}
+{% for post in site.posts  %}
+{% capture this_date %}{{ post.date }}{% endcapture %}
+{% capture next_date %}{{ post.previous.date }}{% endcapture %}
+{% capture this_date_str %}{{ this_date | date: "%Y-%m" }}{% endcapture %}
+{% capture next_date_str %}{{ next_date | date: "%Y-%m" }}{% endcapture %}
+  {% if this_date_str != next_date_str %}
+  <li>
+    <a class="archive-list-link" href="#{{ this_date | date: "%Y-%m" }}">{{ this_date | date: '%Y-%m' }}</a>
+    (<span class="archive-list-count">{{ count }}</span>)
+    {% assign count = 1 %}
+  {% else %}
+    {% assign count = count | plus: 1 %}
+  {% endif %}
+  </li>
+{% endfor %}
+</ul>
+</div>
+
+<div class="articles">
+  {% for post in site.posts %}
+  {% assign item = post %}
+  {% assign index = true %}
+  <h2>
+  <time datetime="{{ item.date }}">{{ item.date | date: '%Y-%m' }}</time>
+  {% if item.link %}
+  <a href="{{ item.link }}" target="_blank">
+  {% else %}
+  <a href="{{ site.baseurl }}{{ item.url }}" title="{{ item.title }}">
+  {% endif %}
+    {{ item.title }}
+  </a>
+  </h2>
+  {% endfor %}
+</div>

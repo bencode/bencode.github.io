@@ -1,12 +1,13 @@
 <header class="site-header">
   <div class="wrapper">
     <a class="site-title" href="{{ site.baseurl }}/">{{ site.title }}</a>
+
     <nav class="site-nav">
-    {% for page in site.pages %}
-      {% if page.title %}
-      <a class="page-link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
-      {% endif %}
+    {% for m in site.menu %}
+      <a href="{{ site.baseurl }}{{ m[1] }}">{{ m[0] }}</a></li>
     {% endfor %}
     </nav>
+
+    {% include _partial/search.html %}
   </div>
 </header>
