@@ -1,26 +1,22 @@
 <div class="sidebar">
-  {% if site.categories | size != 0 %}
+  {% if site.categories.size > 0 %}
   <div class="categories">
     <h2>Categories</h2>
     <ul>
     {% for item in site.categories %}
-      {% if item[1] | size != 0 %}
       <li><a href="{{ site.baseurl }}/categories#{{ item[0] | url_encode }}" title="{{ item[0] }}">{{ item[0] }}</a> (<span class="count">{{ item[1] | size }}</span>)</li>
-      {% endif %}
     {% endfor %}
     </ul>
   </div>
   {% endif %}
 
 
-  {% if site.tags | size != 0 %}
+  {% if site.tags.size > 0 %}
   <div class="tags">
     <h2>Tags</h2>
     <ul>
     {% for item in site.tags %}
-      {% if item[1] | size != 0 %}
       <li><a href="{{ site.baseurl }}/tags#{{ item[0] | url_encode }}" title="{{ item[0] }}">{{ item[0] }}</a> (<span class="count">{{ item[1] | size }}</span>)</li>
-      {% endif %}
     {% endfor %}
     </ul>
   </div>

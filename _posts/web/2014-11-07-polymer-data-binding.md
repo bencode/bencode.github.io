@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Polymer学习笔记2 - Data Binding
-categories: web component polymer
+title: Polymer学习笔记 - Data Binding
+categories: reading polymer
 ---
 
 ## Overview
@@ -357,7 +357,7 @@ Polymer在数据绑定时，不是像传统的ajax那样，会将整片dom进行
 这样第一个实例就是模板结尾开始到第一个实例结尾，后面的依旧。
 
 ```html
-<template repeat="{\{item in myList}}">
+<template repeat="{ {item in myList}}">
   <img>
   <span>{ {item.name}}</span>
 </template>                  

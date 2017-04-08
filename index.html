@@ -3,30 +3,13 @@ layout: default
 ---
 
 <div class="home">
-  {% for post in paginator.posts %}
+  {% for item in paginator.posts %}
   <article>
-    <h2>
-      <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-    </h2>
-    <span class="post-meta">{{ post.date | date: "%Y-%m-%d" }}</span>
-    <!--
-    <div class="article-content">
-      {% if post.excerpt %}
-      {{ post.excerpt }}
-      {% else %}
-      {{ post.content }}
-      {% endif %}
-      <p class="article-more-link">
-        {% if post.excerpt %}
-        <a href="{{ site.baseurl }}{{ post.url }}#more">Read More</a>
-      {% endif %}
-      </p>
-    </div>
-    -->
+  {% include _partial/article_row.html %}
   </article>
   {% endfor %}
 
-  {% if paginator.posts | size > 1 %}
+  {% if paginator.posts.size > 1 %}
   <nav id="page-nav">
     {% if paginator.previous_page %}
     <a class="prev" rel="prev" href="{{ paginator.previous_page_path }}"><span></span>Prev</a>
