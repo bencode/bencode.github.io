@@ -3,9 +3,14 @@
     <a class="site-title" href="{{ site.baseurl }}/">{{ site.title }}</a>
 
     <nav class="site-nav">
-    {% for m in site.menu %}
-      <a href="{{ site.baseurl }}{{ m[1] }}">{{ m[0] }}</a></li>
-    {% endfor %}
+      <ul>
+      {% for m in site.menu %}
+      <li>
+        <a href="{{ site.baseurl }}{{ m[1] }}">{{ m[0] }}</a></li>
+      </li>
+      {% endfor %}
+      <li><a href="{{ "/feed.xml" | prepend: site.baseurl }}">RSS</a></li>
+      </ul>
     </nav>
   </div>
 </header>

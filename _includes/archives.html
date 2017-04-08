@@ -5,3 +5,38 @@
 </div>
 
 {% include sidebar.html %}
+
+<script>
+(function($) {
+  var path = window.location.pathname;
+  var field = path.replace(/\/$/, '') === '/tags' ? 'tags' : "cats";
+
+  function filterPosts(hash) {
+    hash = hash.replace(/\+/g, '%20');
+    var value = decodeURIComponent(hash.replace(/^#/, ''));
+    if (!value) {
+      $('.article-row').addClass('active');
+      return;
+    }
+
+    var elms = $('div.article-meta');
+    elms = elms.filter(function() {
+      var list = $(this).data(field);
+      return list.indexOf(value) !== -1;
+    });
+
+    elms = elms.map(function() {
+      return $(this).closest('.article-row')[0];
+    });
+
+    $('.article-row').not(elms).removeClass('active');
+    elms.addClass('active');
+  }
+
+  $(window).on('hashchange', function() {
+    filterPosts(window.location.hash);
+  });
+
+  filterPosts(window.location.hash);
+})(jQuery);
+</script>
