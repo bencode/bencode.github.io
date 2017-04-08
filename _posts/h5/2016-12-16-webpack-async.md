@@ -2,7 +2,8 @@
 layout: post
 title: webpack异步加载
 categories: web
-tags: webpack async
+tags:
+  - webpack
 ---
 
 相关的一些资料可供参考：

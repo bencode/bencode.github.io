@@ -87,7 +87,6 @@
 }
 
 
-
 /**
  * Site footer
  */
@@ -244,16 +243,99 @@
   }
 }
 
+
+.wrapper {
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
 .page-content {
   @include clearfix;
-  .home {
-    float: left;
-  }
-  .articles {
-    float: left;
-  }
+  background: #fafafa;
+
   .sidebar {
     float: right;
+  }
+}
+
+
+.article-row {
+  h2 {
+    margin-bottom: 5px;
+  }
+}
+
+.article-meta {
+  .catetags {
+    @include clearfix;
+    font-size: 13px;
+  }
+
+
+  ul {
+    margin: 0;
+    padding: 0;
+    float: left;
+  }
+
+  li {
+    float: left;
+    list-style: none;
+    margin-right: 10px;
+    padding: 0 10px;
+    background: #819bb7;
+    border-radius: 10px;
+    a {
+      color: #fff;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .posttime {
+    color: #666;
+    margin-bottom: 10px;
+    font-size: 13px;
+  }
+}
+
+.home {
+  float: left;
+
+  .article-row {
+    margin-bottom: 15px;
+    padding: 10px 20px 15px;
+    background: #fff;
+    border: 1px solid #ddd;
+  }
+
+  .page-nav {
+    margin-bottom: 10px;
+    .page-number {
+      padding: 0 5px;
+    }
+  }
+}
+
+.articles {
+  float: left;
+  .article-row {
+    margin-bottom: 15px;
+    padding: 10px 20px 15px;
+    background: #fff;
+    border: 1px solid #ddd;
+  }
+}
+
+
+@media only screen and (min-width: 1000px) {
+  .wrapper {
+    width: 1000px;
+  }
+
+  .home, .articles {
+    width: 780px;
   }
 }
 

@@ -1,7 +1,10 @@
 ---
 layout: post
 title: Polymer学习笔记4 - Shadow DOM
-categories: web component polymer
+categories: h5
+tags:
+  - web component
+  - polymer
 ---
 
 ## 基本使用

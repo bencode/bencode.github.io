@@ -1,7 +1,9 @@
 ---
 layout: post
 title: 关于jQuery几个重要的知识点
-categories: javascript jQuery
+categories: javascript
+tags:
+  - jquery
 ---
 
 关于jQuery比较重要的几个知识点。

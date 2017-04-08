@@ -6,11 +6,25 @@ layout: default
   {% for item in paginator.posts %}
   <article>
   {% include _partial/article_row.html %}
+  <!--
+    <div class="article-content">
+      {% if item.excerpt %}
+      {{ item.excerpt }}
+      {% else %}
+      {{ item.content }}
+      {% endif %}
+      <p class="article-more-link">
+        {% if item.excerpt %}
+          <a href="{{ site.baseurl }}{{ item.url }}#more">Read More</a>
+        {% endif %}
+     </p>
+    </div>
+  -->
   </article>
   {% endfor %}
 
   {% if paginator.posts.size > 1 %}
-  <nav id="page-nav">
+  <nav class="page-nav">
     {% if paginator.previous_page %}
     <a class="prev" rel="prev" href="{{ paginator.previous_page_path }}"><span></span>Prev</a>
     {% endif %}

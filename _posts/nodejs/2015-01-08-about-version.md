@@ -1,7 +1,9 @@
 ---
 layout: post
 title: 关于nodejs中版本号
-categories: javascript
+categories: nodejs
+tags:
+  - npm
 ---
 
 我们开始尝试在正式环境使用node，所以对二方包和三方包的稳定性和一致性会有更高的要求。

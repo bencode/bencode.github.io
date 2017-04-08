@@ -1,7 +1,10 @@
 ---
 layout: post
 title: Polymer学习笔记1 - API
-categories: web component polymer
+categories: h5
+tags:
+  - web component
+  - polymer
 ---
 
 [链接](https://www.polymer-project.org/docs/polymer/polymer.html)

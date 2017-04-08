@@ -1,7 +1,10 @@
 ---
 layout: post
 title: Polymer学习笔记3 - Helper Methods
-categories: web component polymer
+categories: h5
+tags:
+  - web component
+  - polymer
 ---
 
 ## 动态Html imports

@@ -1,8 +1,9 @@
 ---
 layout: post
 title: 优化webpack编译速度
-categories: web
-tags: webpack npm yarn
+categories: h5
+tags:
+  - webpack
 ---
 
 
