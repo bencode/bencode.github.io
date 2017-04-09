@@ -317,11 +317,15 @@
 }
 
 .home {
-  .article-row {
+  >article {
     margin-bottom: 15px;
     padding: 10px 20px 15px;
     background: #fff;
     border: 1px solid #ddd;
+  }
+
+  .article-content {
+    margin-top: 15px;
   }
 
   .page-nav {

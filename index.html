@@ -6,20 +6,14 @@ layout: default
   {% for item in paginator.posts %}
   <article>
   {% include _partial/article_row.html %}
-  <!--
+  {% if item.excerpt %}
     <div class="article-content">
-      {% if item.excerpt %}
       {{ item.excerpt }}
-      {% else %}
-      {{ item.content }}
-      {% endif %}
-      <p class="article-more-link">
-        {% if item.excerpt %}
-          <a href="{{ site.baseurl }}{{ item.url }}#more">Read More</a>
-        {% endif %}
-     </p>
     </div>
-  -->
+    <div class="article-more-link">
+      <a href="{{ site.baseurl }}{{ item.url }}#more">Read More</a>
+    </div>
+    {% endif %}
   </article>
   {% endfor %}
 
