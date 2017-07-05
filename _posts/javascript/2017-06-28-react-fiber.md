@@ -40,8 +40,7 @@ componentDidUpdate
 componentWillUnmount
 ```
 
-具体细节查看：[https://zhuanlan.zhihu.com/p/2602708](https://zhuanlan.zhihu.com/p/2602708)   
-根据这些API的特性，我们的代码绝大多数都不需要修改就能无缝升级。
-计划在v16版本就可以使用这个特性了，在 [http://isfiberreadyyet.com/](http://isfiberreadyyet.com/)   
-页面中可以看到目前单测的进度，相信很快就可以使用了。
+具体可查看：[知乎-ReactFiber是什么](https://zhuanlan.zhihu.com/p/26027085)   
+计划在v16版本就可以使用这个特性了，在 [is-fiber-ready-yet](http://isfiberreadyyet.com/)   
+页面中可以看到目前单测的进度，相信很快就可以使用了。  
 我在目前的项目中尝试了v16的alpha版，不需要任何修改就能正常工作，所以升级应该是无缝的。
