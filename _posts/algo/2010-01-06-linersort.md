@@ -17,7 +17,7 @@ categories: algorithms
 n的元素的排序，共有 n! 种 情况， 它们都会出现在决策树的叶子节点上
 高度为 h 的二叉对， 叶子数目不会多于 2^h 个
  
-因此 n! <= 2^h   ----> h > lg(n!)   后者 相当于 nlg(n)    
+因此 n! <= 2^h   ----> h > lg(n!)   后者 相当于 nlg(n)  
  
 也就是说不管怎么样的决策树，它的高度不会小于 nlg(n)
  
@@ -49,28 +49,28 @@ n的元素的排序，共有 n! 种 情况， 它们都会出现在决策树的�
 
 ```java
 public void prepareData() throws IOException {  
-    long begin = Calendar.getInstance().getTimeInMillis();  
-      
-    int n = 10000000;   // 7个0;   
-    int[] data = new int[n];    // 这大概要用 40M内存, 在我们的机子上米关系  
-    for (int i = 0; i < n; i++) {  
-        data[i] = i;  
+  long begin = Calendar.getInstance().getTimeInMillis();  
+    
+  int n = 10000000;   // 7个0;   
+  int[] data = new int[n];  // 这大概要用 40M内存, 在我们的机子上米关系  
+  for (int i = 0; i < n; i++) {  
+    data[i] = i;  
+  }  
+    
+  shuffle(data);  // 打乱它  
+    
+  Writer writer =  new BufferedWriter(new FileWriter("data.txt"));  
+  try {  
+    // 选其中的800万个输出  
+    for (int i = 0; i < 8000000; i++) {  
+      writer.write("" + data[i] + "\n");  
     }  
-      
-    shuffle(data);  // 打乱它  
-      
-    Writer writer =  new BufferedWriter(new FileWriter("data.txt"));  
-    try {  
-        // 选其中的800万个输出  
-        for (int i = 0; i < 8000000; i++) {  
-            writer.write("" + data[i] + "\n");  
-        }  
-    } finally {  
-        writer.close();  
-    }  
-      
-    long end = Calendar.getInstance().getTimeInMillis();  
-    System.out.printf("used: %f(s)", (end - begin) / 1000.0);  
+  } finally {  
+    writer.close();  
+  }  
+    
+  long end = Calendar.getInstance().getTimeInMillis();  
+  System.out.printf("used: %f(s)", (end - begin) / 1000.0);  
 }  
 ```
  
@@ -81,15 +81,15 @@ public void prepareData() throws IOException {
  
 ```java
 private void shuffle(int[] data) {  
-    Random rand = new Random();  
-    int n = data.length;  
-    for (int i = 0; i < n; i++) {  
-        int j = rand.nextInt(n);  
-        //swap  
-        int t = data[i];  
-        data[i] = data[j];  
-        data[j] = t;  
-    }  
+  Random rand = new Random();  
+  int n = data.length;  
+  for (int i = 0; i < n; i++) {  
+    int j = rand.nextInt(n);  
+    //swap  
+    int t = data[i];  
+    data[i] = data[j];  
+    data[j] = t;  
+  }  
 }  
 ```
  
@@ -100,35 +100,35 @@ private void shuffle(int[] data) {
  
 ```java
 public void hehe() throws IOException {  
-    long begin = Calendar.getInstance().getTimeInMillis();  
-      
-    BitSet bits = new BitSet();  
-      
-    BufferedReader reader = new BufferedReader(new FileReader("data.txt"));  
-    try {  
-        String s = null;  
-        while ((s = reader.readLine()) != null) {  
-            int k = Integer.parseInt(s);  
-            bits.set(k);  
-        }  
-          
-    } finally {  
-        reader.close();  
+  long begin = Calendar.getInstance().getTimeInMillis();  
+    
+  BitSet bits = new BitSet();  
+    
+  BufferedReader reader = new BufferedReader(new FileReader("data.txt"));  
+  try {  
+    String s = null;  
+    while ((s = reader.readLine()) != null) {  
+      int k = Integer.parseInt(s);  
+      bits.set(k);  
     }  
       
-    Writer writer =  new BufferedWriter(new FileWriter("out.txt"));  
-    try {  
-        for (int i = 0, n = bits.length(); i < n; i++) {  
-            if (bits.get(i)) {  
-                writer.write("" + i + "\n");  
-            }  
-        }  
-    } finally {  
-        writer.close();  
+  } finally {  
+    reader.close();  
+  }  
+    
+  Writer writer =  new BufferedWriter(new FileWriter("out.txt"));  
+  try {  
+    for (int i = 0, n = bits.length(); i < n; i++) {  
+      if (bits.get(i)) {  
+        writer.write("" + i + "\n");  
+      }  
     }  
-      
-    long end = Calendar.getInstance().getTimeInMillis();  
-    System.out.printf("used: %f(s)", (end - begin) / 1000.0);  
+  } finally {  
+    writer.close();  
+  }  
+    
+  long end = Calendar.getInstance().getTimeInMillis();  
+  System.out.printf("used: %f(s)", (end - begin) / 1000.0);  
 }  
 ```
  
@@ -143,28 +143,28 @@ public void hehe() throws IOException {
  
 ```java
 int[] countSort(int[] a, int k) {  
-    int[] c = new int[k];   // 准备好，对所有k个数字进行计数  
-    for (int i = 0; i < c.length; i++) {  
-        c[i] = 0;  
-    }  
-      
-    for (int i = 0, n = a.length; i < n; i++) { // 对数组中的数进行计数  
-        c[a[i]]++;  
-    }  
-    // 到这里为止 c[i]  就是 i 这个数字出现的个数  
+  int[] c = new int[k];   // 准备好，对所有k个数字进行计数  
+  for (int i = 0; i < c.length; i++) {  
+    c[i] = 0;  
+  }  
+    
+  for (int i = 0, n = a.length; i < n; i++) { // 对数组中的数进行计数  
+    c[a[i]]++;  
+  }  
+  // 到这里为止 c[i]  就是 i 这个数字出现的个数  
   
-    for (int i = 1; i < c.length; i++) {  
-        c[i] = c[i] + c[i - 1];  
-    }  
-    // 到这里为止 c[i]  就是 < i 数的个数  
+  for (int i = 1; i < c.length; i++) {  
+    c[i] = c[i] + c[i - 1];  
+  }  
+  // 到这里为止 c[i]  就是 < i 数的个数  
   
-    int[] b = new int[a.length];  
-    for (int i = a.length - 1; i >= 0; i--) {  
-        b[c[a[i]] - 1] = a[i];  // 比a[i] 小的数有 c[a[i]] 个, 我们把它放到相应位置   
-        c[a[i]]--;  // 计数减一， 这样轮到下一次时，就放到<strong>前面</strong>  
-    }  
-      
-    return b;  
+  int[] b = new int[a.length];  
+  for (int i = a.length - 1; i >= 0; i--) {  
+    b[c[a[i]] - 1] = a[i];  // 比a[i] 小的数有 c[a[i]] 个, 我们把它放到相应位置   
+    c[a[i]]--;  // 计数减一， 这样轮到下一次时，就放到<strong>前面</strong>  
+  }  
+    
+  return b;  
 }  
 ``` 
  
@@ -173,19 +173,19 @@ int[] countSort(int[] a, int k) {
 ```java
 @Test  
 public void testCountSort() {  
-    Random rand = new Random();  
-      
-    int n = 5000000;  
-    int k = 10;  
-    int[] a = new int[n];  
-      
-    for (int i = 0; i < n; i++) {  
-        a[i] = rand.nextInt(k);  
-    }  
-      
-    assertFalse(isSorted(a));  
-    int[] b = countSort(a, k);  
-    assertTrue(isSorted(b));  
+  Random rand = new Random();  
+    
+  int n = 5000000;  
+  int k = 10;  
+  int[] a = new int[n];  
+    
+  for (int i = 0; i < n; i++) {  
+    a[i] = rand.nextInt(k);  
+  }  
+    
+  assertFalse(isSorted(a));  
+  int[] b = countSort(a, k);  
+  assertTrue(isSorted(b));  
 }  
 ```
  
@@ -198,10 +198,10 @@ public void testCountSort() {
  
 ```java
 int[] radixSort(int[] a, int d) { // 数据a中的数字不会长于d位  
-    for (int i = 0; i < d; i++) {  
-        a = stableSort(a, i); // 从最右边开始，一位一位排  
-    }  
-    return a;  
+  for (int i = 0; i < d; i++) {  
+    a = stableSort(a, i); // 从最右边开始，一位一位排  
+  }  
+  return a;  
 }  
 ```
  
@@ -211,29 +211,29 @@ stableSort 怎么样呢？ 我们使用上面的计数排序， 稍微进行小�
  
 ```java
 int[] stableSort(int[] a, int k) {  // 对a数组中的数的第k位进行计数排序  
-    int[] c = new int[10];  // 数在[0， 10]  
-    for (int i = 0; i < c.length; ++i) {  
-        c[i] = 0;   
-    }  
-      
-    for (int i = 0, n = a.length; i < n; i++) {  
-        int d = getIndex(a[i], k);   
-        c[d]++; // 统计第k位数  
-    }  
-      
-    for (int i = 1; i < c.length; i++) {  
-        c[i] = c[i] + c[i - 1];  
-    }  
-      
-    int[] b = new int[a.length];  
-    for (int i = a.length - 1; i >= 0; i--) {  
-        int d = getIndex(a[i], k);  
-        b[c[d] - 1] = a[i];  
-        c[d]--;  
-    }  
-      
-    return b;  
-      
+  int[] c = new int[10];  // 数在[0， 10]  
+  for (int i = 0; i < c.length; ++i) {  
+    c[i] = 0;   
+  }  
+    
+  for (int i = 0, n = a.length; i < n; i++) {  
+    int d = getIndex(a[i], k);   
+    c[d]++; // 统计第k位数  
+  }  
+    
+  for (int i = 1; i < c.length; i++) {  
+    c[i] = c[i] + c[i - 1];  
+  }  
+    
+  int[] b = new int[a.length];  
+  for (int i = a.length - 1; i >= 0; i--) {  
+    int d = getIndex(a[i], k);  
+    b[c[d] - 1] = a[i];  
+    c[d]--;  
+  }  
+    
+  return b;  
+    
 }  
 ``` 
  
@@ -241,11 +241,11 @@ getIndext很简单， 大学C语言经常做的，截取指定位数值
  
 ```java
 int getIndex(int a, int k) {  
-    while (a != 0 && k != 0) {  
-        a /= 10;  
-        k--;  
-    }  
-    return a % 10;  
+  while (a != 0 && k != 0) {  
+    a /= 10;  
+    k--;  
+  }  
+  return a % 10;  
 }  
 ```
  
@@ -255,15 +255,15 @@ int getIndex(int a, int k) {
 ```java
 @Test  
 public void testRadixSort() {  
-    Random rand = new Random();  
-      
-    int[] a = new int[100000];  // 一百万个  
-    for (int i = 0; i < a.length; i++) {  
-        a[i] = rand.nextInt(10000000);  // 不大于7位数  
-    }  
-      
-    int[] b = radixSort(a, 7);  
-    assertTrue(isSorted(b));  
+  Random rand = new Random();  
+    
+  int[] a = new int[100000];  // 一百万个  
+  for (int i = 0; i < a.length; i++) {  
+    a[i] = rand.nextInt(10000000);  // 不大于7位数  
+  }  
+    
+  int[] b = radixSort(a, 7);  
+  assertTrue(isSorted(b));  
 }  
 ```
  
@@ -280,46 +280,46 @@ public void testRadixSort() {
  
 ```java
 float[] bucketSort(float a[]) { // 0 < a[i] < 1，且分布较均匀  
-    int n = a.length;  
-      
-    List[] lists = new List[n]; // 准备好n个桶  
-    for (int i = 0; i < n; i++) {  
-        lists[i] = new ArrayList();  
+  int n = a.length;  
+    
+  List[] lists = new List[n]; // 准备好n个桶  
+  for (int i = 0; i < n; i++) {  
+    lists[i] = new ArrayList();  
+  }  
+    
+  for (int i = 0; i < n; i++) {  // 把每个数据放到相应的桶  
+    lists[(int)(n * a[i])].add(a[i]);  
+  }  
+    
+  for (int i = 0; i < n; i++) {  // 现在每个桶中平均有一个数据  
+    insertionSort(lists[i]);  // 对它进行一次插入排序  
+  }  
+    
+  float b[] = new float[n];   // 输出  
+  int k = 0;  
+  for (int i = 0; i < n; i++) {  
+    List list = lists[i];  
+    for (int j = 0; j < list.size(); j++) {  
+      b[k++] = (Float) list.get(j);  
     }  
-      
-    for (int i = 0; i < n; i++) {    // 把每个数据放到相应的桶  
-        lists[(int)(n * a[i])].add(a[i]);  
-    }  
-      
-    for (int i = 0; i < n; i++) {    // 现在每个桶中平均有一个数据  
-        insertionSort(lists[i]);  // 对它进行一次插入排序  
-    }  
-      
-    float b[] = new float[n];   // 输出  
-    int k = 0;  
-    for (int i = 0; i < n; i++) {  
-        List list = lists[i];  
-        for (int j = 0; j < list.size(); j++) {  
-            b[k++] = (Float) list.get(j);  
-        }  
-    }  
-      
-    return b;  
+  }  
+    
+  return b;  
 }  
 ```
  
  
 ```java
 void insertionSort(List list) {  
-    for (int i = 1; i < list.size(); i++) {  
-        float t = (Float) list.get(i);  
-        int j = i - 1;  
-        while (j >= 0 && (Float)list.get(j) > t) {  
-            list.set(j + 1, list.get(j));  
-            j--;  
-        }  
-        list.set(j + 1, t);  
+  for (int i = 1; i < list.size(); i++) {  
+    float t = (Float) list.get(i);  
+    int j = i - 1;  
+    while (j >= 0 && (Float)list.get(j) > t) {  
+      list.set(j + 1, list.get(j));  
+      j--;  
     }  
+    list.set(j + 1, t);  
+  }  
 }  
 ```
  
@@ -329,15 +329,15 @@ void insertionSort(List list) {
 ```java
 @Test  
 public void testBucketSort() {  
-    Random rand = new Random();  
-      
-    float[] a = new float[1000];  
-    for (int i = 0; i < a.length; i++) {  
-        a[i] = rand.nextFloat();  
-    }  
-      
-    float[] b = bucketSort(a);  
-    assertTrue(isSorted(b));  
+  Random rand = new Random();  
+    
+  float[] a = new float[1000];  
+  for (int i = 0; i < a.length; i++) {  
+    a[i] = rand.nextFloat();  
+  }  
+    
+  float[] b = bucketSort(a);  
+  assertTrue(isSorted(b));  
 }  
 ```
  
@@ -349,23 +349,23 @@ public void testBucketSort() {
  
 ```java
 public static boolean isSorted(int[] ary) {  
-    for (int i = 0; i < ary.length - 1; i++) {  
-        if (ary[i] > ary[i + 1]) {  
-            return false;  
-        }  
+  for (int i = 0; i < ary.length - 1; i++) {  
+    if (ary[i] > ary[i + 1]) {  
+      return false;  
     }  
-    return true;  
+  }  
+  return true;  
 }  
 ```
   
 ```java
 public static boolean isSorted(float[] ary) {  
-    for (int i = 0; i < ary.length - 1; i++) {  
-        if (ary[i] > ary[i + 1]) {  
-            return false;  
-        }  
+  for (int i = 0; i < ary.length - 1; i++) {  
+    if (ary[i] > ary[i + 1]) {  
+      return false;  
     }  
-    return true;  
+  }  
+  return true;  
 }  
 ``` 
 
@@ -384,8 +384,8 @@ public static boolean isSorted(float[] ary) {
 桶排序的其它几个循环很清楚，都是线性的，主要是看下面这个循环:
  
 ```java
-for (int i = 0; i < n; i++) {    // 现在每个桶中平均有一个数据  
-    insertionSort(lists[i]);  // 对它进行一次插入排序  
+for (int i = 0; i < n; i++) {  // 现在每个桶中平均有一个数据  
+  insertionSort(lists[i]);  // 对它进行一次插入排序  
 }  
 ```
  
