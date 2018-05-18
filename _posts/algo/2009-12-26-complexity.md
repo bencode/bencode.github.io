@@ -22,10 +22,10 @@ categories: algorithms
 
 ```java 
 public int mergeSort2(int n) {     
-    if (n == 0 || n == 1) {     
-            return 0;     
-    }     
-    return 2 * mergeSort2(n / 2) + n - 1;        
+  if (n == 0 || n == 1) {     
+    return 0;     
+  }     
+  return 2 * mergeSort2(n / 2) + n - 1;        
 }   
 ```
  
